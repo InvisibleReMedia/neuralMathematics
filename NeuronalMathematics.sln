@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		SP-Check-Type.docx = SP-Check-Type.docx
 		SP-Data-class.docx = SP-Data-class.docx
+		..\..\..\Documents\Visual Studio 2015\Projects\NeuronalMathematics\SP-Distribution.docx = ..\..\..\Documents\Visual Studio 2015\Projects\NeuronalMathematics\SP-Distribution.docx
 		SP-Element-Nom.docx = SP-Element-Nom.docx
 		SP-Key-Type.docx = SP-Key-Type.docx
 		SP-Neurone-Command.docx = SP-Neurone-Command.docx
