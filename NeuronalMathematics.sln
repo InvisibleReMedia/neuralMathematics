@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		SP-Neurone-Command.docx = SP-Neurone-Command.docx
 		SP-Nommage-neurone.docx = SP-Nommage-neurone.docx
 		SP-Operation-ar.docx = SP-Operation-ar.docx
+		..\..\..\Documents\SP-Resolve.docx = ..\..\..\Documents\SP-Resolve.docx
 		SP-Serialization.docx = SP-Serialization.docx
 		Toutes les fonctionnalités (dégroupé).xlsx = Toutes les fonctionnalités (dégroupé).xlsx
 	EndProjectSection
