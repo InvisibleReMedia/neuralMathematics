@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuronalMathematics", "NeuronalMathematics\NeuronalMathematics.csproj", "{2C32A5FC-AE5A-47DA-AEBB-16AF3AA64A91}"
 EndProject
@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\..\Downloads\licence.md = ..\..\..\Downloads\licence.md
 		README.md = README.md
 		SP-Check-Type.docx = SP-Check-Type.docx
+		SP-Commutatif.docx = SP-Commutatif.docx
 		SP-Data-class.docx = SP-Data-class.docx
 		SP-Distribution.docx = SP-Distribution.docx
 		SP-Element-Nom.docx = SP-Element-Nom.docx
