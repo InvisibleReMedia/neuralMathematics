@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuronalMathematics", "NeuronalMathematics\NeuronalMathematics.csproj", "{2C32A5FC-AE5A-47DA-AEBB-16AF3AA64A91}"
 EndProject
@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maths", "Maths\Maths.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersistantModel", "PersistantModel\PersistantModel.csproj", "{0A60B16C-0DE7-42F7-B1CE-4DBF9DF65632}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12D24CBB-22FA-40DD-AF00-F1ADDA52611C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Spécifications", "Spécifications", "{12D24CBB-22FA-40DD-AF00-F1ADDA52611C}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\Downloads\licence.md = ..\..\..\Downloads\licence.md
 		README.md = README.md
@@ -32,6 +32,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		SP-Traversal.docx = SP-Traversal.docx
 		Toutes les fonctionnalités (dégroupé).xlsx = Toutes les fonctionnalités (dégroupé).xlsx
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code", "Code", "{7235E1D1-1971-40F9-A602-97D2F4F371E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
