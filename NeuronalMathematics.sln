@@ -11,29 +11,35 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maths", "Maths\Maths.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersistantModel", "PersistantModel\PersistantModel.csproj", "{0A60B16C-0DE7-42F7-B1CE-4DBF9DF65632}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Spécifications", "Spécifications", "{12D24CBB-22FA-40DD-AF00-F1ADDA52611C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specifications", "Specifications", "{12D24CBB-22FA-40DD-AF00-F1ADDA52611C}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\Downloads\licence.md = ..\..\..\Downloads\licence.md
 		README.md = README.md
-		SP-Check-Type.docx = SP-Check-Type.docx
-		SP-Commutatif.docx = SP-Commutatif.docx
-		SP-Data-class.docx = SP-Data-class.docx
-		SP-Distribution.docx = SP-Distribution.docx
-		SP-Element-Nom.docx = SP-Element-Nom.docx
-		SP-Factorisation.docx = SP-Factorisation.docx
-		SP-Heuristique.docx = SP-Heuristique.docx
-		SP-Inversion.docx = SP-Inversion.docx
-		SP-Key-Type.docx = SP-Key-Type.docx
-		SP-Neurone-Command.docx = SP-Neurone-Command.docx
-		SP-Nommage-neurone.docx = SP-Nommage-neurone.docx
-		SP-Operation-ar.docx = SP-Operation-ar.docx
-		SP-Resolve.docx = SP-Resolve.docx
-		SP-Serialization.docx = SP-Serialization.docx
-		SP-Traversal.docx = SP-Traversal.docx
-		Toutes les fonctionnalités (dégroupé).xlsx = Toutes les fonctionnalités (dégroupé).xlsx
+		Specifications\SP-Check-Type.docx = Specifications\SP-Check-Type.docx
+		Specifications\SP-Commutatif.docx = Specifications\SP-Commutatif.docx
+		Specifications\SP-Data-class.docx = Specifications\SP-Data-class.docx
+		Specifications\SP-Distribution.docx = Specifications\SP-Distribution.docx
+		Specifications\SP-Element-Nom.docx = Specifications\SP-Element-Nom.docx
+		Specifications\SP-Factorisation.docx = Specifications\SP-Factorisation.docx
+		Specifications\SP-Heuristique.docx = Specifications\SP-Heuristique.docx
+		Specifications\SP-Inversion.docx = Specifications\SP-Inversion.docx
+		Specifications\SP-Key-Type.docx = Specifications\SP-Key-Type.docx
+		Specifications\SP-Neurone-Command.docx = Specifications\SP-Neurone-Command.docx
+		Specifications\SP-Nommage-neurone.docx = Specifications\SP-Nommage-neurone.docx
+		Specifications\SP-Operation-ar.docx = Specifications\SP-Operation-ar.docx
+		Specifications\SP-Resolve.docx = Specifications\SP-Resolve.docx
+		Specifications\SP-Serialization.docx = Specifications\SP-Serialization.docx
+		Specifications\SP-Traversal.docx = Specifications\SP-Traversal.docx
+		Specifications\Toutes les fonctionnalités (dégroupé).xlsx = Specifications\Toutes les fonctionnalités (dégroupé).xlsx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code", "Code", "{7235E1D1-1971-40F9-A602-97D2F4F371E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rights", "Rights", "{EC05D313-70F5-4FD8-9E9B-682B7120919F}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\licence.md = ..\..\..\Downloads\licence.md
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
