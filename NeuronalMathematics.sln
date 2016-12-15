@@ -34,6 +34,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specifications", "Specifica
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code", "Code", "{7235E1D1-1971-40F9-A602-97D2F4F371E7}"
+	ProjectSection(SolutionItems) = preProject
+		Code\CD-Data-Model.docx = Code\CD-Data-Model.docx
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rights", "Rights", "{EC05D313-70F5-4FD8-9E9B-682B7120919F}"
 	ProjectSection(SolutionItems) = preProject
