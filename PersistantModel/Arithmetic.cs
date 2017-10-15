@@ -12,7 +12,7 @@ namespace PersistantModel
     /// arithmetiques
     /// </summary>
     [Serializable]
-    public class Arithmetic : PersistentDataObject
+    public class Arithmetic : PersistentDataObject, ICloneable
     {
 
         #region Constructors
@@ -63,5 +63,30 @@ namespace PersistantModel
 
         #endregion
 
+        #region Methods
+
+        /// <summary>
+        /// Create a new arithmetic class
+        /// </summary>
+        protected virtual Arithmetic Create()
+        {
+            return new Arithmetic();
+        }
+
+        /// <summary>
+        /// Clone this arithmetic object
+        /// </summary>
+        /// <returns>new arithmetic object</returns>
+        public object Clone()
+        {
+            Arithmetic p = this.Create();
+            foreach (string key in this.Data.Keys)
+            {
+                p.Data.Add(key, this.Data[key].Clone());
+            }
+            return p;
+        }
+
+        #endregion
     }
 }

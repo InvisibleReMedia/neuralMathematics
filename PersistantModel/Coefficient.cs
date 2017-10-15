@@ -27,7 +27,15 @@ namespace PersistantModel
 
         #endregion
 
-        #region Constructor
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public Coefficient()
+        {
+
+        }
 
         /// <summary>
         /// Constructor for a coefficient
@@ -52,6 +60,18 @@ namespace PersistantModel
         {
             this[letterName] = letter;
             this[valueName] = 0.0d;
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Create a new arithmetic class
+        /// </summary>
+        protected override Arithmetic Create()
+        {
+            return new Coefficient();
         }
 
         #endregion

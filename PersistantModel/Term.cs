@@ -33,6 +33,15 @@ namespace PersistantModel
         #region Constructor
 
         /// <summary>
+        /// Default constructor
+        /// Empty data
+        /// </summary>
+        protected Term()
+        {
+
+        }
+
+        /// <summary>
         /// Constructor for a term
         /// </summary>
         /// <param name="constant">store a constant value</param>
@@ -46,5 +55,18 @@ namespace PersistantModel
         }
 
         #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Create a new arithmetic class
+        /// </summary>
+        protected override Arithmetic Create()
+        {
+            return new Term();
+        }
+
+        #endregion
+
     }
 }

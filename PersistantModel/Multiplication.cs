@@ -33,13 +33,10 @@ namespace PersistantModel
 
         /// <summary>
         /// Default constructor
-        /// given an addition of two numbers 0 + 0
+        /// Empty data
         /// </summary>
-        public Multiplication()
+        protected Multiplication()
         {
-            this[operatorName] = '*';
-            this[leftTerm] = new NumericValue(0.0d);
-            this[rightTerm] = new NumericValue(0.0d);
         }
 
         /// <summary>
@@ -53,6 +50,18 @@ namespace PersistantModel
             this[operatorName] = '*';
             this[leftTerm] = new NumericValue(n1);
             this[rightTerm] = new NumericValue(n2);
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Create a new arithmetic class
+        /// </summary>
+        protected override Arithmetic Create()
+        {
+            return new Multiplication();
         }
 
         #endregion

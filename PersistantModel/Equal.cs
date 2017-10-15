@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace PersistantModel
 {
     /// <summary>
-    /// Persistent data format of an addition
+    /// Equality assertion arithmetic operator
     /// </summary>
     [Serializable]
-    public class Addition : Arithmetic
+    public class Equal : Arithmetic
     {
 
         #region Fields
@@ -35,35 +35,35 @@ namespace PersistantModel
         /// Default constructor
         /// Empty data
         /// </summary>
-        protected Addition()
+        protected Equal()
         {
         }
 
         /// <summary>
-        /// Default constructor
-        /// given an addition with two numbers
+        /// Constructor
+        /// given an equality with two numbers
         /// </summary>
         /// <param name="n1">left number</param>
         /// <param name="n2">right number</param>
-        public Addition(double n1, double n2)
+        public Equal(double n1, double n2)
         {
-            this[operatorName] = '+';
+            this[operatorName] = '=';
             this[leftTerm] = new NumericValue(n1);
             this[rightTerm] = new NumericValue(n2);
         }
 
-        #endregion
-
-        #region Methods
-
         /// <summary>
-        /// Create a new addition class
+        /// Constructor
+        /// given an equality with two numbers
         /// </summary>
-        protected override Arithmetic Create()
+        /// <param name="n1">left number</param>
+        /// <param name="n2">right number</param>
+        public Equal(Arithmetic n1, Arithmetic n2)
         {
-            return new Addition();
+            this[operatorName] = '=';
+            this[leftTerm] = n1.Clone() as Arithmetic;
+            this[rightTerm] = n2.Clone() as Arithmetic;
         }
-
         #endregion
 
     }

@@ -25,6 +25,15 @@ namespace PersistantModel
         #region Constructor
 
         /// <summary>
+        /// Default constructor
+        /// Empty data
+        /// </summary>
+        protected NumericValue()
+        {
+
+        }
+
+        /// <summary>
         /// Constructor for a double precision number
         /// </summary>
         /// <param name="d">number</param>
@@ -50,6 +59,18 @@ namespace PersistantModel
             {
                 this[valueName] = value;
             } 
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Create a new arithmetic class
+        /// </summary>
+        protected override Arithmetic Create()
+        {
+            return new NumericValue();
         }
 
         #endregion

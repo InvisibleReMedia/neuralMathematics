@@ -24,12 +24,40 @@ namespace PersistantModel
 
         #region Constructor
 
+        /// <summary>
+        /// Default constructor
+        /// Empty data
+        /// </summary>
+        protected UnknownTerm()
+        {
+
+        }
+
+        /// <summary>
+        /// Constructor
+        /// given a letter name to
+        /// identify unknown term
+        /// </summary>
+        /// <param name="letter"></param>
         public UnknownTerm(string letter)
         {
             this[letterName] = letter;
         }
 
         #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Create a new arithmetic class
+        /// </summary>
+        protected override Arithmetic Create()
+        {
+            return new UnknownTerm();
+        }
+
+        #endregion
+
 
     }
 }
