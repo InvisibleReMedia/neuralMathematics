@@ -40,8 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Multiplication.cs" />
+    <Compile Include="Addition.cs" />
+    <Compile Include="Arithmetic.cs" />
+    <Compile Include="Coefficient.cs" />
+    <Compile Include="NumericValue.cs" />
     <Compile Include="PersistentDataObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Term.cs" />
+    <Compile Include="UnknownTerm.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

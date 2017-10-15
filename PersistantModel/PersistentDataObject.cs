@@ -13,12 +13,33 @@ namespace PersistantModel
     /// Classe contenant la séquence
     /// de sérialisation/déserialisation
     /// </summary>
-    class PersistentDataObject
+    [Serializable]
+    public class PersistentDataObject
     {
         /// <summary>
         /// Field to store data information to serialize
         /// </summary>
         private Dictionary<string, dynamic> dict;
+
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        protected PersistentDataObject()
+        {
+            this.dict = new Dictionary<string, dynamic>();
+        }
+
+        /// <summary>
+        /// Data to be used
+        /// </summary>
+        protected Dictionary<string, dynamic> Data
+        {
+            get
+            {
+                return this.dict;
+            }
+        }
 
         /// <summary>
         /// Lecture d'un document
@@ -37,8 +58,14 @@ namespace PersistantModel
 
                 try
                 {
-                    o = bf.Deserialize(file.Open(FileMode.Open));
-                } catch(SerializationException)
+                    using(Stream s = file.Open(FileMode.Open, FileAccess.Read, FileShare.Read))
+                    {
+                        o = bf.Deserialize(s);
+                        s.Close();
+                    }
+
+                }
+                catch (SerializationException)
                 {
                     return false;
                 }
@@ -50,15 +77,18 @@ namespace PersistantModel
                     {
                         result = p;
                         return true;
-                    } else
+                    }
+                    else
                     {
                         return false;
                     }
-                } else
+                }
+                else
                 {
                     return false;
                 }
-            } else
+            }
+            else
             {
                 return false;
             }
@@ -74,13 +104,12 @@ namespace PersistantModel
         {
             using(FileStream f = new FileStream(file.FullName, FileMode.Create, FileAccess.Write))
             {
-                PersistentDataObject p;
                 BinaryFormatter bf = new BinaryFormatter();
-                Object o;
 
                 try
                 {
                     bf.Serialize(f, data);
+                    f.Close();
                     return true;
                 }
                 catch (SerializationException)

@@ -61,5 +61,7 @@ namespace Maths
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }
