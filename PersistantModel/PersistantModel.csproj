@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Soustraction.cs" />
     <Compile Include="Equal.cs" />
+    <Compile Include="Division.cs" />
     <Compile Include="Multiplication.cs" />
     <Compile Include="Addition.cs" />
     <Compile Include="Arithmetic.cs" />

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace PersistantModel
 {
     /// <summary>
-    /// Persistent data format of an addition
+    /// Persistent data format of a division
     /// </summary>
     [Serializable]
-    public class Addition : Arithmetic
+    public class Division : Arithmetic
     {
 
         #region Fields
@@ -35,32 +35,32 @@ namespace PersistantModel
         /// Default constructor
         /// Empty data
         /// </summary>
-        protected Addition()
+        protected Division()
         {
         }
 
         /// <summary>
-        /// Constructor
+        /// Default constructor
         /// given an addition with two numbers
         /// </summary>
         /// <param name="n1">left number</param>
         /// <param name="n2">right number</param>
-        public Addition(double n1, double n2)
+        public Division(double n1, double n2)
         {
-            this[operatorName] = '+';
+            this[operatorName] = '/';
             this[leftTerm] = new NumericValue(n1);
             this[rightTerm] = new NumericValue(n2);
         }
 
         /// <summary>
         /// Constructor
-        /// given an addition with two terms
+        /// given a multiplication with two terms
         /// </summary>
         /// <param name="t1">left term</param>
         /// <param name="t2">right term</param>
-        public Addition(Arithmetic t1, Arithmetic t2)
+        public Division(Arithmetic t1, Arithmetic t2)
         {
-            this[operatorName] = '+';
+            this[operatorName] = '/';
             this[leftTerm] = t1.Clone();
             this[rightTerm] = t2.Clone();
         }
@@ -70,11 +70,11 @@ namespace PersistantModel
         #region Methods
 
         /// <summary>
-        /// Create a new addition class
+        /// Create a new arithmetic class
         /// </summary>
         protected override Arithmetic Create()
         {
-            return new Addition();
+            return new Division();
         }
 
         #endregion

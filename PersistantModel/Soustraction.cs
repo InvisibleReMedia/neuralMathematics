@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace PersistantModel
 {
     /// <summary>
-    /// Persistent data format of an addition
+    /// Persistent data format of a substract
     /// </summary>
     [Serializable]
-    public class Addition : Arithmetic
+    public class Soustraction : Arithmetic
     {
 
         #region Fields
@@ -35,7 +35,7 @@ namespace PersistantModel
         /// Default constructor
         /// Empty data
         /// </summary>
-        protected Addition()
+        protected Soustraction()
         {
         }
 
@@ -45,9 +45,9 @@ namespace PersistantModel
         /// </summary>
         /// <param name="n1">left number</param>
         /// <param name="n2">right number</param>
-        public Addition(double n1, double n2)
+        public Soustraction(double n1, double n2)
         {
-            this[operatorName] = '+';
+            this[operatorName] = '-';
             this[leftTerm] = new NumericValue(n1);
             this[rightTerm] = new NumericValue(n2);
         }
@@ -58,9 +58,9 @@ namespace PersistantModel
         /// </summary>
         /// <param name="t1">left term</param>
         /// <param name="t2">right term</param>
-        public Addition(Arithmetic t1, Arithmetic t2)
+        public Soustraction(Arithmetic t1, Arithmetic t2)
         {
-            this[operatorName] = '+';
+            this[operatorName] = '-';
             this[leftTerm] = t1.Clone();
             this[rightTerm] = t2.Clone();
         }
@@ -74,7 +74,7 @@ namespace PersistantModel
         /// </summary>
         protected override Arithmetic Create()
         {
-            return new Addition();
+            return new Soustraction();
         }
 
         #endregion

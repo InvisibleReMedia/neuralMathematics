@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PersistantModel
 {
     /// <summary>
-    /// Persistent data format of an addition
+    /// Persistent data format of a product
     /// </summary>
     [Serializable]
     public class Multiplication : Arithmetic
@@ -50,6 +50,19 @@ namespace PersistantModel
             this[operatorName] = '*';
             this[leftTerm] = new NumericValue(n1);
             this[rightTerm] = new NumericValue(n2);
+        }
+
+        /// <summary>
+        /// Constructor
+        /// given a multiplication with two terms
+        /// </summary>
+        /// <param name="t1">left term</param>
+        /// <param name="t2">right term</param>
+        public Multiplication(Arithmetic t1, Arithmetic t2)
+        {
+            this[operatorName] = '*';
+            this[leftTerm] = t1.Clone();
+            this[rightTerm] = t2.Clone();
         }
 
         #endregion
