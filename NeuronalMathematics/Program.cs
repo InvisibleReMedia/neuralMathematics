@@ -18,6 +18,9 @@ namespace NeuronalMathematics
             PersistantModel.PersistentDataObject o = t as PersistantModel.PersistentDataObject;
             PersistantModel.PersistentDataObject.Load(fi, out o);
 
+            Console.WriteLine(o.ToString());
+
+            Console.ReadKey();
         }
     }
 }

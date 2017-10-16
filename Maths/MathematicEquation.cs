@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Interfaces;
 using PersistantModel;
+using Interfaces;
 
 namespace Maths
 {
-    public class Equation : Interfaces.IEquation
+    /// <summary>
+    /// Equation class
+    /// </summary>
+    public class MathematicEquation : IEquation
     {
 
         #region Fields
@@ -37,7 +40,7 @@ namespace Maths
         /// <summary>
         /// Equation data
         /// </summary>
-        private PersistentDataObject eq;
+        private IArithmetic eq;
 
         #endregion
 
@@ -47,7 +50,7 @@ namespace Maths
         /// Default constructor
         /// create an equality of 0 = 0
         /// </summary>
-        public Equation()
+        public MathematicEquation()
         {
             this.eq = new Equal(0.0d, 0.0d);
         }
@@ -57,7 +60,7 @@ namespace Maths
         /// given a numeric value
         /// </summary>
         /// <param name="c">numeric value</param>
-        public Equation(double c)
+        public MathematicEquation(double c)
         {
             this.eq = new NumericValue(c);
         }
@@ -70,7 +73,7 @@ namespace Maths
         /// <param name="op">operator name</param>
         /// <param name="e1">operand one</param>
         /// <param name="e2">operand two</param>
-        public Equation(string op, IEquation e1, IEquation e2)
+        public MathematicEquation(string op, IEquation e1, IEquation e2)
         {
             if (op == OperatorEqual)
             {
@@ -94,39 +97,81 @@ namespace Maths
             }
         }
 
+        /// <summary>
+        /// Constructor to create a coefficient
+        /// </summary>
+        /// <param name="letter">coefficient letter</param>
+        /// <param name="value">value</param>
+        public MathematicEquation(string letter, double value)
+        {
+            this.eq = new Coefficient(letter, value);
+        }
+
+        /// <summary>
+        /// Constructor to create an unknown term
+        /// </summary>
+        /// <param name="letter">unknown letter</param>
+        /// <param name="value">value</param>
+        public MathematicEquation(string letter, IArithmetic value)
+        {
+            this.eq = new UnknownTerm(letter, value);
+        }
+
+        /// <summary>
+        /// Constructor to create a term
+        /// </summary>
+        /// <param name="constant">constant equation</param>
+        /// <param name="coef">coefficient equation</param>
+        public MathematicEquation(IArithmetic constant, IArithmetic coef, IArithmetic x)
+        {
+            this.eq = new Term(constant, coef, x);
+        }
+
         #endregion
 
         #region Properties
 
-        public IEnumerable<Coefficient> Coefficients
+        /// <summary>
+        /// Gets all coefficients terms
+        /// </summary>
+        public IEnumerable<IArithmetic> Coefficients
         {
             get
             {
-                throw new NotImplementedException();
+                return this.eq.Coefficients;
             }
         }
 
-        public IEnumerable<NumericValue> Constants
+        /// <summary>
+        /// Gets all constant values
+        /// </summary>
+        public IEnumerable<IArithmetic> Constants
         {
             get
             {
-                throw new NotImplementedException();
+                return this.eq.Constants;
             }
         }
 
-        public IEnumerable<UnknownTerm> UnknownTerms
+        /// <summary>
+        /// Gets all unknown terms
+        /// </summary>
+        public IEnumerable<IArithmetic> UnknownTerms
         {
             get
             {
-                throw new NotImplementedException();
+                return this.eq.UnknownTerms;
             }
         }
 
-        Arithmetic IEquation.Equation
+        /// <summary>
+        /// Gets the underlying arithmetic operation
+        /// </summary>
+        public IArithmetic Equation
         {
             get
             {
-                throw new NotImplementedException();
+                return this.eq;
             }
         }
 
@@ -134,11 +179,20 @@ namespace Maths
 
         #region Methods
 
+        /// <summary>
+        /// String representation of the algebraic equation
+        /// </summary>
+        /// <returns>string text</returns>
         public string AsRepresented()
         {
-            throw new NotImplementedException();
+            return this.eq.AsRepresented();
         }
 
+        /// <summary>
+        /// Calculate the result of this equation
+        /// terms that are valued are operated with its numeric value
+        /// </summary>
+        /// <returns>string representation number or algebraic</returns>
         public string Calculate()
         {
             throw new NotImplementedException();

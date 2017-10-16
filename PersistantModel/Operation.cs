@@ -8,19 +8,25 @@ using System.Threading.Tasks;
 namespace PersistantModel
 {
     /// <summary>
-    /// Classe stockant une valeur numérique
+    /// Définit une opération binaire
     /// </summary>
     [Serializable]
-    public class NumericValue : Arithmetic
+    public class Operation : Arithmetic
     {
-
         #region Fields
 
         /// <summary>
-        /// Index name to store value
+        /// Index name to store operator name
         /// </summary>
-        private static string valueName = "value";
-
+        protected static string operatorName = "operator";
+        /// <summary>
+        /// Index name to store left value
+        /// </summary>
+        protected static string leftTermName = "left";
+        /// <summary>
+        /// Index name to store right value
+        /// </summary>
+        protected static string rightTermName = "right";
         #endregion
 
         #region Constructor
@@ -29,39 +35,37 @@ namespace PersistantModel
         /// Default constructor
         /// Empty data
         /// </summary>
-        protected NumericValue()
+        protected Operation()
         {
-
         }
 
         /// <summary>
-        /// Constructor for a double precision number
+        /// Constructor
+        /// given a binary operation with two numbers
         /// </summary>
-        /// <param name="d">number</param>
-        public NumericValue(double d)
+        /// <param name="n1">left number</param>
+        /// <param name="n2">right number</param>
+        protected Operation(double n1, double n2)
         {
-            this[valueName] = d;
+            this[leftTermName] = new NumericValue(n1);
+            this[rightTermName] = new NumericValue(n2);
+        }
+
+        /// <summary>
+        /// Constructor
+        /// given a binary operation with two terms
+        /// </summary>
+        /// <param name="t1">left term</param>
+        /// <param name="t2">right term</param>
+        protected Operation(IArithmetic t1, IArithmetic t2)
+        {
+            this[leftTermName] = t1.Clone();
+            this[rightTermName] = t2.Clone();
         }
 
         #endregion
 
         #region Properties
-
-        /// <summary>
-        /// Gets or sets the numeric value
-        /// </summary>
-        public double Value
-        {
-            get
-            {
-                return this[valueName];
-            }
-            set
-            {
-                this[valueName] = value;
-            } 
-        }
-
 
         /// <summary>
         /// Gets the operator ID
@@ -70,7 +74,7 @@ namespace PersistantModel
         {
             get
             {
-                throw new NotSupportedException();
+                return this[operatorName];
             }
         }
 
@@ -81,7 +85,7 @@ namespace PersistantModel
         {
             get
             {
-                return false;
+                return true;
             }
         }
 
@@ -103,7 +107,7 @@ namespace PersistantModel
         {
             get
             {
-                return true;
+                return false;
             }
         }
 
@@ -114,7 +118,7 @@ namespace PersistantModel
         {
             get
             {
-                throw new NotSupportedException();
+                return this[leftTermName];
             }
         }
 
@@ -125,7 +129,7 @@ namespace PersistantModel
         {
             get
             {
-                throw new NotSupportedException();
+                return this[rightTermName];
             }
         }
 
@@ -134,14 +138,13 @@ namespace PersistantModel
         #region Methods
 
         /// <summary>
-        /// Create a new arithmetic class
+        /// Create a new addition class
         /// </summary>
         protected override IArithmetic Create()
         {
-            return new NumericValue();
+            return new Operation();
         }
 
         #endregion
-
     }
 }

@@ -40,16 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IArithmetic.cs" />
     <Compile Include="IEquation.cs" />
     <Compile Include="INeurone.cs" />
     <Compile Include="INeuroneType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PersistantModel\PersistantModel.csproj">
-      <Project>{0a60b16c-0de7-42f7-b1ce-4dbf9df65632}</Project>
-      <Name>PersistantModel</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

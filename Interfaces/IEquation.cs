@@ -17,22 +17,22 @@ namespace Interfaces
         /// <summary>
         /// Gets all unknown terms
         /// </summary>
-        IEnumerable<PersistantModel.UnknownTerm> UnknownTerms { get; }
+        IEnumerable<IArithmetic> UnknownTerms { get; }
 
         /// <summary>
         /// Gets all coefficients terms
         /// </summary>
-        IEnumerable<PersistantModel.Coefficient> Coefficients { get; }
+        IEnumerable<IArithmetic> Coefficients { get; }
 
         /// <summary>
         /// Gets all constant values
         /// </summary>
-        IEnumerable<PersistantModel.NumericValue> Constants { get; }
+        IEnumerable<IArithmetic> Constants { get; }
 
         /// <summary>
         /// Gets the underlying arithmetic operation
         /// </summary>
-        PersistantModel.Arithmetic Equation { get; }
+        IArithmetic Equation { get; }
 
         #endregion
 
@@ -86,6 +86,7 @@ namespace Interfaces
         /// </summary>
         /// <returns>developed equation</returns>
         IEquation Develop();
+
         #endregion
 
     }

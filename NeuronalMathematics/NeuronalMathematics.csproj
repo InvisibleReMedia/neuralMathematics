@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{d963af5e-d503-42ca-82bd-9674edcc183d}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PersistantModel\PersistantModel.csproj">
       <Project>{0a60b16c-0de7-42f7-b1ce-4dbf9df65632}</Project>
       <Name>PersistantModel</Name>

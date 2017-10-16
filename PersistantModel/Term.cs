@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,7 +43,7 @@ namespace PersistantModel
         }
 
         /// <summary>
-        /// Constructor for a term
+        /// Constructor for a simple term
         /// </summary>
         /// <param name="constant">store a constant value</param>
         /// <param name="letter">store a coefficient</param>
@@ -50,8 +51,115 @@ namespace PersistantModel
         public Term(double constant, string letter, string unknown)
         {
             this[constantName] = new NumericValue(constant);
-            this[coefName] = new Coefficient(letter);
-            this[unknownName] = new UnknownTerm(unknown);
+            this[coefName] = new Coefficient(letter, 0.0d);
+            this[unknownName] = new UnknownTerm(unknown, new NumericValue(0.0d));
+        }
+
+        /// <summary>
+        /// Constructor for a term
+        /// </summary>
+        /// <param name="c">constant equation</param>
+        /// <param name="s">coefficient equation</param>
+        /// <param name="u">unknown term equation</param>
+        public Term(IArithmetic c, IArithmetic s, IArithmetic u)
+        {
+            this[constantName] = c.Clone();
+            this[coefName] = s.Clone();
+            this[unknownName] = u.Clone();
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the operator ID
+        /// </summary>
+        public override string Operator
+        {
+            get
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        /// <summary>
+        /// Gets binary switch test
+        /// </summary>
+        public override bool IsBinaryOperator
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Gets unary switch test
+        /// </summary>
+        public override bool IsUnaryOperator
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Gets true if it's not an operator
+        /// </summary>
+        public override bool IsNotOperator
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Gets the left operand
+        /// </summary>
+        public override IArithmetic LeftOperand
+        {
+            get
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        /// <summary>
+        /// Gets the right operand
+        /// </summary>
+        public override IArithmetic RightOperand
+        {
+            get
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        /// <summary>
+        /// Gets the constant element
+        /// </summary>
+        public IArithmetic Constant
+        {
+            get { return this[constantName]; }
+        }
+
+        /// <summary>
+        /// Gets the coefficient element
+        /// </summary>
+        public IArithmetic Coefficient
+        {
+            get { return this[coefName]; }
+        }
+
+        /// <summary>
+        /// Gets the unknown element
+        /// </summary>
+        public IArithmetic Unknown
+        {
+            get { return this[unknownName]; }
         }
 
         #endregion
@@ -61,7 +169,7 @@ namespace PersistantModel
         /// <summary>
         /// Create a new arithmetic class
         /// </summary>
-        protected override Arithmetic Create()
+        protected override IArithmetic Create()
         {
             return new Term();
         }

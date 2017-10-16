@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -64,12 +65,108 @@ namespace PersistantModel
 
         #endregion
 
+        #region Properties
+
+        /// <summary>
+        /// Gets the name of this coefficient
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return this[letterName];
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the value of this coefficient
+        /// </summary>
+        public double Value
+        {
+            get
+            {
+                return this[valueName];
+            }
+            set
+            {
+                this[valueName] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the operator ID
+        /// </summary>
+        public override string Operator
+        {
+            get
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        /// <summary>
+        /// Gets binary switch test
+        /// </summary>
+        public override bool IsBinaryOperator
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Gets unary switch test
+        /// </summary>
+        public override bool IsUnaryOperator
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Gets true if it's not an operator
+        /// </summary>
+        public override bool IsNotOperator
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Gets the left operand
+        /// </summary>
+        public override IArithmetic LeftOperand
+        {
+            get
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        /// <summary>
+        /// Gets the right operand
+        /// </summary>
+        public override IArithmetic RightOperand
+        {
+            get
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>
         /// Create a new arithmetic class
         /// </summary>
-        protected override Arithmetic Create()
+        protected override IArithmetic Create()
         {
             return new Coefficient();
         }

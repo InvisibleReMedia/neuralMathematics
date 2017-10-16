@@ -7,7 +7,7 @@ using Interfaces;
 
 namespace Maths
 {
-    class GenericNeurone : Interfaces.INeurone
+    class GenericNeurone : INeurone
     {
 
         #region Neurone interface

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,24 +11,8 @@ namespace PersistantModel
     /// Persistent data format of a product
     /// </summary>
     [Serializable]
-    public class Multiplication : Arithmetic
+    public class Multiplication : Operation
     {
-
-        #region Fields
-
-        /// <summary>
-        /// Index name to store operator name
-        /// </summary>
-        private static string operatorName = "operator";
-        /// <summary>
-        /// Index name to store left value
-        /// </summary>
-        private static string leftTerm = "left";
-        /// <summary>
-        /// Index name to store right value
-        /// </summary>
-        private static string rightTerm = "right";
-        #endregion
 
         #region Constructor
 
@@ -45,11 +30,9 @@ namespace PersistantModel
         /// </summary>
         /// <param name="n1">left number</param>
         /// <param name="n2">right number</param>
-        public Multiplication(double n1, double n2)
+        public Multiplication(double n1, double n2) : base(n1, n2)
         {
             this[operatorName] = '*';
-            this[leftTerm] = new NumericValue(n1);
-            this[rightTerm] = new NumericValue(n2);
         }
 
         /// <summary>
@@ -58,11 +41,9 @@ namespace PersistantModel
         /// </summary>
         /// <param name="t1">left term</param>
         /// <param name="t2">right term</param>
-        public Multiplication(Arithmetic t1, Arithmetic t2)
+        public Multiplication(IArithmetic t1, IArithmetic t2) : base(t1, t2)
         {
             this[operatorName] = '*';
-            this[leftTerm] = t1.Clone();
-            this[rightTerm] = t2.Clone();
         }
 
         #endregion
@@ -72,7 +53,7 @@ namespace PersistantModel
         /// <summary>
         /// Create a new arithmetic class
         /// </summary>
-        protected override Arithmetic Create()
+        protected override IArithmetic Create()
         {
             return new Multiplication();
         }

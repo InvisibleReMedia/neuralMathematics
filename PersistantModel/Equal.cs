@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,24 +11,8 @@ namespace PersistantModel
     /// Equality assertion arithmetic operator
     /// </summary>
     [Serializable]
-    public class Equal : Arithmetic
+    public class Equal : Operation
     {
-
-        #region Fields
-
-        /// <summary>
-        /// Index name to store operator name
-        /// </summary>
-        private static string operatorName = "operator";
-        /// <summary>
-        /// Index name to store left value
-        /// </summary>
-        private static string leftTerm = "left";
-        /// <summary>
-        /// Index name to store right value
-        /// </summary>
-        private static string rightTerm = "right";
-        #endregion
 
         #region Constructor
 
@@ -45,26 +30,33 @@ namespace PersistantModel
         /// </summary>
         /// <param name="n1">left number</param>
         /// <param name="n2">right number</param>
-        public Equal(double n1, double n2)
+        public Equal(double n1, double n2) : base(n1, n2)
         {
             this[operatorName] = '=';
-            this[leftTerm] = new NumericValue(n1);
-            this[rightTerm] = new NumericValue(n2);
         }
 
         /// <summary>
         /// Constructor
-        /// given an equality with two numbers
+        /// given an equality with two equations
         /// </summary>
-        /// <param name="n1">left number</param>
-        /// <param name="n2">right number</param>
-        public Equal(Arithmetic n1, Arithmetic n2)
+        /// <param name="t1">left equation</param>
+        /// <param name="t2">right equation</param>
+        public Equal(IArithmetic t1, IArithmetic t2) : base(t1, t2)
         {
             this[operatorName] = '=';
-            this[leftTerm] = n1.Clone() as Arithmetic;
-            this[rightTerm] = n2.Clone() as Arithmetic;
         }
         #endregion
 
+        #region Methods
+
+        /// <summary>
+        /// Create a new arithmetic class
+        /// </summary>
+        protected override IArithmetic Create()
+        {
+            return new Equal();
+        }
+
+        #endregion
     }
 }
