@@ -39,33 +39,18 @@ namespace PersistantModel
         {
             get
             {
-                if (this.Data.ContainsKey(name))
-                {
-                    return this.Data[name];
-                }
-                else
-                {
-                    this.Data.Add(name, null);
-                }
-                return this.Data[name];
+                return this.Get(name, new NumericValue(0.0d));
             }
             set
             {
-                if (this.Data.ContainsKey(name))
-                {
-                    this.Data[name] = value;
-                }
-                else
-                {
-                    this.Data.Add(name, value);
-                }
+                this.Set(name, value);
             }
         }
 
         /// <summary>
         /// Gets the operator ID
         /// </summary>
-        public virtual string Operator
+        public virtual char Operator
         {
             get
             {
@@ -238,7 +223,7 @@ namespace PersistantModel
                 if (this.Data[key] is IArithmetic)
                     p[key] = this.Data[key].Clone();
                 else if (this.Data[key] is string)
-                    p[key] = new string(this.Data[key].ToString());
+                    p[key] = this.Data[key].Clone();
                 else
                     p[key] = this.Data[key];
             }

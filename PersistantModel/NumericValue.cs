@@ -66,7 +66,7 @@ namespace PersistantModel
         /// <summary>
         /// Gets the operator ID
         /// </summary>
-        public override string Operator
+        public override char Operator
         {
             get
             {

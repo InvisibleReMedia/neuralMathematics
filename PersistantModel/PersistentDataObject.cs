@@ -42,6 +42,37 @@ namespace PersistantModel
         }
 
         /// <summary>
+        /// Sets a value into the dictionary
+        /// </summary>
+        /// <param name="name">name of the field</param>
+        /// <param name="value">value of field</param>
+        public void Set(string name, dynamic value)
+        {
+            if (this.Data.ContainsKey(name))
+            {
+                this.Data[name] = value;
+            }
+            else
+            {
+                this.Data.Add(name, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets a value from the dictionary
+        /// </summary>
+        /// <param name="name">name of the field</param>
+        /// <returns>value</returns>
+        public dynamic Get(string name, dynamic init = null)
+        {
+            if (!this.Data.ContainsKey(name))
+            {
+                this.Data.Add(name, init);
+            }
+            return this.Data[name];
+        }
+
+        /// <summary>
         /// Lecture d'un document
         /// </summary>
         /// <param name="file">information de fichier</param>
