@@ -39,6 +39,11 @@ namespace Interfaces
         #region Methods
 
         /// <summary>
+        /// Make unique element
+        /// </summary>
+        void MakeUnique();
+
+        /// <summary>
         /// Let a letter as a value
         /// given a letter and its value
         /// </summary>

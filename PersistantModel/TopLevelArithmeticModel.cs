@@ -13,7 +13,7 @@ namespace PersistantModel
     /// model to be save or load from a binary file
     /// </summary>
     [Serializable]
-    class TopLevelArithmeticModel : PersistentDataObject
+    public class TopLevelArithmeticModel : PersistentDataObject
     {
 
         #region Fields
@@ -45,7 +45,7 @@ namespace PersistantModel
         protected TopLevelArithmeticModel()
         {
             this.Set(versionName,"1.0.0.0");
-            this.Set(equationListName, new List<Arithmetic>());
+            this.Set(equationListName, new List<IArithmetic>());
             this.Set(titleName, "New");
             this.Set(revisionName, 0);
         }
@@ -55,12 +55,71 @@ namespace PersistantModel
         /// </summary>
         protected TopLevelArithmeticModel(string title) : base()
         {
+            this.Set(versionName, "1.0.0.0");
+            this.Set(equationListName, new List<IArithmetic>());
+            this.Set(revisionName, 0);
             this.Set(titleName, title);
         }
 
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Gets equation list
+        /// </summary>
+        public List<IArithmetic> EquationList
+        {
+            get
+            {
+                return this.Get(equationListName);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets version number
+        /// </summary>
+        public string Version
+        {
+            get
+            {
+                return this.Get(versionName);
+            }
+            set
+            {
+                this.Set(versionName, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the title
+        /// </summary>
+        public string Title
+        {
+            get
+            {
+                return this.Get(titleName);
+            }
+            set
+            {
+                this.Set(titleName, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the revision number
+        /// </summary>
+        public uint Revision
+        {
+            get
+            {
+                return this.Get(revisionName);
+            }
+            set
+            {
+                this.Set(revisionName, value);
+            }
+        }
 
         #endregion
 

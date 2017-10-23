@@ -151,6 +151,18 @@ namespace PersistantModel
         #region Methods
 
         /// <summary>
+        /// Update data with unique for serialization
+        /// before
+        /// </summary>
+        protected override void UpdateSource()
+        {
+            if (this.LeftOperand != null && this.LeftOperand.OwnerWeight != null)
+                this[leftTermName] = this.LeftOperand.OwnerWeight.OwnerObject;
+            if (this.RightOperand != null && this.RightOperand.OwnerWeight != null)
+               this[rightTermName] = this.RightOperand.OwnerWeight.OwnerObject;
+        }
+
+        /// <summary>
         /// Computes the unique weight
         /// for this object
         /// </summary>

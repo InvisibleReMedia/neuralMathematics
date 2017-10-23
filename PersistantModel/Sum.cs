@@ -246,6 +246,19 @@ namespace PersistantModel
         }
 
         /// <summary>
+        /// Update data with unique for serialization
+        /// before
+        /// </summary>
+        protected override void UpdateSource()
+        {
+            for(int index = 0; index < this.List.Count; ++index)
+            {
+                if (this.List[index] != null && this.List[index].OwnerWeight != null)
+                    this.List[index] = this.List[index].OwnerWeight.OwnerObject;
+            }
+        }
+
+        /// <summary>
         /// Computes the unique weight
         /// for this object
         /// </summary>

@@ -122,6 +122,16 @@ namespace PersistantModel
         #region Methods
 
         /// <summary>
+        /// Update data with unique for serialization
+        /// before
+        /// </summary>
+        protected override void UpdateSource()
+        {
+            if (this.InnerOperand != null && this.InnerOperand.OwnerWeight != null)
+                this[valueName] = this.InnerOperand.OwnerWeight.OwnerObject;
+        }
+
+        /// <summary>
         /// Computes the unique weight
         /// for this object
         /// </summary>

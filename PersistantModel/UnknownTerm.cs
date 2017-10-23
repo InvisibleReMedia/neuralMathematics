@@ -79,13 +79,17 @@ namespace PersistantModel
         }
 
         /// <summary>
-        /// Gets the underlying equation
+        /// Gets or sets the underlying equation
         /// </summary>
         public IArithmetic Content
         {
             get
             {
                 return this[equationName];
+            }
+            set
+            {
+                this[equationName] = value;
             }
         }
 

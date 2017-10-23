@@ -266,6 +266,14 @@ namespace Maths
         #region Methods
 
         /// <summary>
+        /// Make unique element
+        /// </summary>
+        public void MakeUnique()
+        {
+            this.eq.MakeUnique();
+        }
+
+        /// <summary>
         /// String representation of the algebraic equation
         /// </summary>
         /// <param name="type">type representation</param>

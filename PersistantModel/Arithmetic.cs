@@ -264,7 +264,16 @@ namespace PersistantModel
         protected virtual Weight ComputeOwnerWeight()
         {
             throw new NotSupportedException();
-        } 
+        }
+
+        /// <summary>
+        /// Update data with unique for serialization
+        /// before
+        /// </summary>
+        protected virtual void UpdateSource()
+        {
+            throw new NotSupportedException();
+        }
 
         /// <summary>
         /// Verify when a positive equation
@@ -494,14 +503,52 @@ namespace PersistantModel
             return output;
         }
 
-        public void Let(string letter, double value)
+        /// <summary>
+        /// Make unique element
+        /// </summary>
+        public void MakeUnique()
         {
-            throw new NotImplementedException();
+            this.UpdateSource();
         }
 
+        /// <summary>
+        /// Let a letter as a value
+        /// given a letter and its value
+        /// </summary>
+        /// <param name="letter">letter value</param>
+        /// <param name="value">numeric value</param>
+        public void Let(string letter, double value)
+        {
+            foreach(Coefficient c in this.Coefficients)
+            {
+                if (c.Name == letter) c.Value = value;
+            }
+            foreach(UnknownTerm x in this.UnknownTerms)
+            {
+                if (x.Name == letter) x.Content = new NumericValue(value);
+            }
+        }
+
+        /// <summary>
+        /// Let a letter as an equation
+        /// given a letter and its equation
+        /// </summary>
+        /// <param name="letter">letter value</param>
+        /// <param name="value">equation object</param>
         public void Let(string letter, IEquation e)
         {
-            throw new NotImplementedException();
+            foreach (Coefficient c in this.Coefficients)
+            {
+                double d;
+                if (c.Name == letter && Double.TryParse(e.Calculate(), out d))
+                {
+                    c.Value = d;
+                }
+            }
+            foreach (UnknownTerm x in this.UnknownTerms)
+            {
+                if (x.Name == letter) x.Content = (e as ICloneable).Clone() as IArithmetic;
+            }
         }
 
         /// <summary>
