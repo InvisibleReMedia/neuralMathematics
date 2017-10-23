@@ -13,8 +13,14 @@ namespace PersistantModel
     /// arithmetiques
     /// </summary>
     [Serializable]
-    public class Arithmetic : PersistentDataObject, IArithmetic, IEquation, ICloneable
+    public class Arithmetic : PersistentDataObject, IArithmetic, IEquation, ICloneable, IEqualityComparer<IArithmetic>
     {
+
+        #region Fields
+
+        protected static readonly string weightName = "weight";
+
+        #endregion
 
         #region Constructors
 
@@ -30,6 +36,19 @@ namespace PersistantModel
         #region Properties
 
         /// <summary>
+        /// Gets the unique and readonly weight for this object
+        /// </summary>
+        public IWeight OwnerWeight
+        {
+            get
+            {
+                if (!this.Data.ContainsKey(weightName))
+                    this[weightName] = this.ComputeOwnerWeight();
+                return this[weightName];
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a value from
         /// persistent data
         /// </summary>
@@ -39,7 +58,7 @@ namespace PersistantModel
         {
             get
             {
-                return this.Get(name, new NumericValue(0.0d));
+                return this.Get(name);
             }
             set
             {
@@ -236,6 +255,16 @@ namespace PersistantModel
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Computes the unique weight
+        /// for this object
+        /// </summary>
+        /// <returns>weight</returns>
+        protected virtual Weight ComputeOwnerWeight()
+        {
+            throw new NotSupportedException();
+        } 
 
         /// <summary>
         /// Verify when a positive equation
@@ -517,6 +546,28 @@ namespace PersistantModel
         public IEquation Develop()
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Compare two object
+        /// </summary>
+        /// <param name="x">object left</param>
+        /// <param name="y">object right</param>
+        /// <returns></returns>
+        public virtual bool Equals(IArithmetic x, IArithmetic y)
+        {
+            return x.OwnerWeight == y.OwnerWeight;
+        }
+
+        /// <summary>
+        /// Hash code of this object
+        /// replacement with the weight hash code
+        /// </summary>
+        /// <param name="obj">obj</param>
+        /// <returns>hash code</returns>
+        public int GetHashCode(IArithmetic obj)
+        {
+            return obj.OwnerWeight.GetHashCode();
         }
 
         #endregion

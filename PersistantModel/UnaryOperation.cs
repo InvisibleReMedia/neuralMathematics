@@ -44,6 +44,7 @@ namespace PersistantModel
         protected UnaryOperation(double n)
         {
             this[valueName] = new NumericValue(n);
+            this[weightName] = this.ComputeOwnerWeight();
         }
 
         /// <summary>
@@ -54,6 +55,7 @@ namespace PersistantModel
         protected UnaryOperation(IArithmetic t)
         {
             this[valueName] = t.Clone();
+            this[weightName] = this.ComputeOwnerWeight();
         }
 
         #endregion
@@ -118,6 +120,16 @@ namespace PersistantModel
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Computes the unique weight
+        /// for this object
+        /// </summary>
+        /// <returns>weight</returns>
+        protected override Weight ComputeOwnerWeight()
+        {
+            return Weight.ComputeWeight(this);
+        }
 
         /// <summary>
         /// Create a new addition class

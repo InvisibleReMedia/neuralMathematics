@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
-    public interface IArithmetic : IEquation, ICloneable
+    public interface IWeight
     {
-        IWeight OwnerWeight { get; }
-        dynamic this[string name] { get; set; }
+        IArithmetic OwnerObject { get; }
     }
 }

@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:NeuralMathematics"
         xmlns:math="clr-namespace:WpfMath.Controls;assembly=WpfMath"
         mc:Ignorable="d"
-        Title="MainWindow" StateChanged="Window_StateChanged">
+        Title="Neural Mathematics Software" StateChanged="Window_StateChanged">
     <Grid>
-        <FlowDocumentScrollViewer Name="doc" Loaded="doc_Loaded" SizeChanged="doc_SizeChanged" MaxZoom="1000" MinZoom="10" Zoom="300" IsTabStop="False">
+        <FlowDocumentScrollViewer Name="doc" Loaded="doc_Loaded" SizeChanged="doc_SizeChanged" MaxZoom="1000" MinZoom="10" Zoom="100" IsTabStop="False">
 
         </FlowDocumentScrollViewer>
     </Grid>

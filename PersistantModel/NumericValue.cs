@@ -41,6 +41,7 @@ namespace PersistantModel
         public NumericValue(double d)
         {
             this[valueName] = d;
+            this[weightName] = this.ComputeOwnerWeight();
         }
 
         #endregion
@@ -121,6 +122,16 @@ namespace PersistantModel
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Computes the unique weight
+        /// for this object
+        /// </summary>
+        /// <returns>weight</returns>
+        protected override Weight ComputeOwnerWeight()
+        {
+            return Weight.ComputeWeight(this);
+        }
 
         /// <summary>
         /// Create a new arithmetic class

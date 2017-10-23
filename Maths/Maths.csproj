@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Answer.cs" />
+    <Compile Include="Applicatifs.cs" />
     <Compile Include="MathematicEquation.cs" />
     <Compile Include="GenericNeurone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

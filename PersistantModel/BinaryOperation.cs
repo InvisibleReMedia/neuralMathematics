@@ -49,6 +49,7 @@ namespace PersistantModel
         {
             this[leftTermName] = new NumericValue(n1);
             this[rightTermName] = new NumericValue(n2);
+            this[weightName] = this.ComputeOwnerWeight();
         }
 
         /// <summary>
@@ -61,6 +62,7 @@ namespace PersistantModel
         {
             this[leftTermName] = t1.Clone();
             this[rightTermName] = t2.Clone();
+            this[weightName] = this.ComputeOwnerWeight();
         }
 
         #endregion
@@ -147,6 +149,16 @@ namespace PersistantModel
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Computes the unique weight
+        /// for this object
+        /// </summary>
+        /// <returns>weight</returns>
+        protected override Weight ComputeOwnerWeight()
+        {
+            return Weight.ComputeWeight(this);
+        }
 
         /// <summary>
         /// Create a new addition class

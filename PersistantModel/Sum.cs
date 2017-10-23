@@ -44,6 +44,7 @@ namespace PersistantModel
         {
             this[operatorName] = "s";
             this[listName] = inputs.ToList();
+            this[weightName] = this.ComputeOwnerWeight();
         }
         #endregion
 
@@ -242,6 +243,16 @@ namespace PersistantModel
             }
 
             return output;
+        }
+
+        /// <summary>
+        /// Computes the unique weight
+        /// for this object
+        /// </summary>
+        /// <returns>weight</returns>
+        protected override Weight ComputeOwnerWeight()
+        {
+            return Weight.ComputeWeight(this);
         }
 
         /// <summary>
