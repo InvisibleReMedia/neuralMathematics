@@ -97,6 +97,17 @@ namespace PersistantModel
         }
 
         /// <summary>
+        /// Gets multiple switch test
+        /// </summary>
+        public override bool IsMultipleOperator
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Gets true if it's not an operator
         /// </summary>
         public override bool IsNotOperator
@@ -104,28 +115,6 @@ namespace PersistantModel
             get
             {
                 return true;
-            }
-        }
-
-        /// <summary>
-        /// Gets the left operand
-        /// </summary>
-        public override IArithmetic LeftOperand
-        {
-            get
-            {
-                throw new NotSupportedException();
-            }
-        }
-
-        /// <summary>
-        /// Gets the right operand
-        /// </summary>
-        public override IArithmetic RightOperand
-        {
-            get
-            {
-                throw new NotSupportedException();
             }
         }
 

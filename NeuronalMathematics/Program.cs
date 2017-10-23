@@ -39,6 +39,24 @@ namespace NeuronalMathematics
 
             Console.WriteLine(a.ToString());
 
+            PersistantModel.Addition add = new PersistantModel.Addition(2.0d, 3.0d);
+            foreach(Interfaces.IArithmetic item in add.Transform())
+            {
+                Console.WriteLine(item.ToString());
+                foreach(Interfaces.IArithmetic item2 in item.Transform())
+                {
+                    Console.WriteLine(item2.ToString());
+                    foreach (Interfaces.IArithmetic item3 in item2.Transform())
+                    {
+                        Console.WriteLine(item3.ToString());
+                        foreach (Interfaces.IArithmetic item4 in item3.Transform())
+                        {
+                            Console.WriteLine(item4.ToString());
+                        }
+                    }
+                }
+            }
+
             Console.ReadKey();
         }
     }

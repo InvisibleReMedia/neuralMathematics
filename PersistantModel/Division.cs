@@ -11,7 +11,7 @@ namespace PersistantModel
     /// Persistent data format of a division
     /// </summary>
     [Serializable]
-    public class Division : Operation
+    public class Division : BinaryOperation
     {
 
         #region Constructor
@@ -49,6 +49,32 @@ namespace PersistantModel
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Convert mult to a product
+        /// </summary>
+        /// <returns>product</returns>
+        public Product ToProduct()
+        {
+            return EnsureProduct(this, -1);
+        }
+
+        /// <summary>
+        /// Transforms equation object into a tex representation
+        /// </summary>
+        /// <returns>tex representation</returns>
+        public override string ToTex()
+        {
+            string output = string.Empty;
+
+            string left = string.Empty, right = string.Empty;
+            if (this.LeftOperand != null)
+                left = this.LeftOperand.ToTex();
+            if (this.RightOperand != null)
+                right = this.RightOperand.ToTex();
+            output = @"\frac{" + left + "}{" + right + "}";
+            return output;
+        }
 
         /// <summary>
         /// Create a new arithmetic class

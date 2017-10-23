@@ -8,19 +8,21 @@ using System.Threading.Tasks;
 namespace PersistantModel
 {
     /// <summary>
-    /// Terme inconnu
+    /// Définit une opération unaire
     /// </summary>
     [Serializable]
-    public class UnknownTerm : Arithmetic
+    public class UnaryOperation : Arithmetic
     {
-
         #region Fields
 
         /// <summary>
-        /// Index name to store letter value
+        /// Index name to store operator name
         /// </summary>
-        private static string letterName = "letter";
-        private static string equationName = "equation";
+        protected static string operatorName = "operator";
+        /// <summary>
+        /// Index name to store value
+        /// </summary>
+        protected static string valueName = "inner";
 
         #endregion
 
@@ -30,62 +32,33 @@ namespace PersistantModel
         /// Default constructor
         /// Empty data
         /// </summary>
-        protected UnknownTerm()
+        protected UnaryOperation()
         {
-
         }
 
         /// <summary>
         /// Constructor
-        /// given a letter name to
-        /// identify unknown term
+        /// given a unary operation with one number
         /// </summary>
-        /// <param name="letter">letter</param>
-        public UnknownTerm(string letter)
+        /// <param name="n">number</param>
+        protected UnaryOperation(double n)
         {
-            this[letterName] = letter;
-            this[equationName] = new NumericValue(0.0d);
+            this[valueName] = new NumericValue(n);
         }
 
         /// <summary>
         /// Constructor
-        /// given a letter name to
-        /// identify unknown term
-        /// given its equation
+        /// given a unary operation with one term
         /// </summary>
-        /// <param name="letter">ketter</param>
-        /// <param name="eq">equation</param>
-        public UnknownTerm(string letter, IArithmetic eq)
+        /// <param name="t">term</param>
+        protected UnaryOperation(IArithmetic t)
         {
-            this[letterName] = letter;
-            this[equationName] = eq.Clone() as IArithmetic;
+            this[valueName] = t.Clone();
         }
 
         #endregion
 
         #region Properties
-
-        /// <summary>
-        /// Gets the name of this unknown term
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return this[letterName];
-            }
-        }
-
-        /// <summary>
-        /// Gets the underlying equation
-        /// </summary>
-        public IArithmetic Content
-        {
-            get
-            {
-                return this[equationName];
-            }
-        }
 
         /// <summary>
         /// Gets the operator ID
@@ -94,7 +67,7 @@ namespace PersistantModel
         {
             get
             {
-                throw new NotSupportedException();
+                return this[operatorName];
             }
         }
 
@@ -116,7 +89,7 @@ namespace PersistantModel
         {
             get
             {
-                return false;
+                return true;
             }
         }
 
@@ -127,7 +100,18 @@ namespace PersistantModel
         {
             get
             {
-                return true;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Gets the left operand
+        /// </summary>
+        public override IArithmetic InnerOperand
+        {
+            get
+            {
+                return this[valueName];
             }
         }
 
@@ -136,15 +120,13 @@ namespace PersistantModel
         #region Methods
 
         /// <summary>
-        /// Create a new arithmetic class
+        /// Create a new addition class
         /// </summary>
         protected override IArithmetic Create()
         {
-            return new UnknownTerm();
+            return new UnaryOperation();
         }
 
         #endregion
-
-
     }
 }

@@ -36,6 +36,34 @@ namespace Maths
         /// Divide operator ID
         /// </summary>
         public static string OperatorDivide = "divide";
+        /// <summary>
+        /// Product operator ID
+        /// </summary>
+        public static string OperatorPower = "power";
+        /// <summary>
+        /// Divide operator ID
+        /// </summary>
+        public static string OperatorRoot = "root";
+        /// <summary>
+        /// Multiple addition operator ID
+        /// </summary>
+        public static string OperatorMultipleAdd = "multipleAdd";
+        /// <summary>
+        /// Multiple product operator ID
+        /// </summary>
+        public static string OperatorMultipleProduct = "multipleProduct";
+        /// <summary>
+        /// Positive operator ID
+        /// </summary>
+        public static string OperatorPositive = "positive";
+        /// <summary>
+        /// Negative operator ID
+        /// </summary>
+        public static string OperatorNegative = "negative";
+        /// <summary>
+        /// Inverse operator ID
+        /// </summary>
+        public static string OperatorInverse = "inverse";
 
         /// <summary>
         /// Equation data
@@ -95,6 +123,64 @@ namespace Maths
             {
                 this.eq = new Division(e1.Equation, e2.Equation);
             }
+            else if (op == OperatorPower)
+            {
+                this.eq = new Power(e1.Equation, e2.Equation);
+            }
+            else if (op == OperatorRoot)
+            {
+                this.eq = new Root(e1.Equation, e2.Equation);
+            }
+            else if (op == OperatorMultipleAdd)
+            {
+                Sum s1 = Arithmetic.EnsureSum(e1.Equation, 1);
+                Sum s2 = Arithmetic.EnsureSum(e2.Equation, 1);
+                this.eq = new Sum(s1.Items.Concat(s2.Items).ToArray());
+            }
+            else if (op == OperatorMultipleProduct)
+            {
+                Product p1 = Arithmetic.EnsureProduct(e1.Equation, 1);
+                Product p2 = Arithmetic.EnsureProduct(e2.Equation, 1);
+                this.eq = new Product(p1.Items.Concat(p2.Items).ToArray());
+            }
+            else
+                throw new NotSupportedException();
+        }
+
+        /// <summary>
+        /// Create an equation
+        /// with a given operator
+        /// and one operand
+        /// </summary>
+        /// <param name="op">operator name</param>
+        /// <param name="e">operand</param>
+        public MathematicEquation(string op, IEquation e)
+        {
+            if (op == OperatorPositive)
+            {
+                IArithmetic eqTemp = Arithmetic.EnsureSign(e.Equation);
+                this.eq = new Positive(eqTemp);
+            }
+            else if (op == OperatorNegative)
+            {
+                IArithmetic eqTemp = Arithmetic.EnsureSign(e.Equation);
+                this.eq = new Negative(eqTemp);
+            }
+            else if (op == OperatorInverse)
+            {
+                IArithmetic eqTemp = Arithmetic.EnsureInverse(e.Equation);
+                this.eq = new Inverse(eqTemp);
+            }
+            else if (op == OperatorMultipleAdd)
+            {
+                this.eq = Arithmetic.EnsureSum(e.Equation, 1);
+            }
+            else if (op == OperatorMultipleProduct)
+            {
+                this.eq = Arithmetic.EnsureProduct(e.Equation, 1);
+            }
+            else
+                throw new NotSupportedException();
         }
 
         /// <summary>
@@ -182,10 +268,20 @@ namespace Maths
         /// <summary>
         /// String representation of the algebraic equation
         /// </summary>
+        /// <param name="type">type representation</param>
         /// <returns>string text</returns>
-        public string AsRepresented()
+        public string AsRepresented(string type)
         {
-            return this.eq.AsRepresented();
+            return this.eq.AsRepresented(type);
+        }
+
+        /// <summary>
+        /// Transforms equation object into a tex representation
+        /// </summary>
+        /// <returns>tex representation</returns>
+        public virtual string ToTex()
+        {
+            return this.eq.ToTex();
         }
 
         /// <summary>
@@ -218,7 +314,7 @@ namespace Maths
             throw new NotImplementedException();
         }
 
-        public IEquation Transform()
+        public IEnumerable<IArithmetic> Transform()
         {
             throw new NotImplementedException();
         }

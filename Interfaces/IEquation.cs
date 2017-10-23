@@ -56,8 +56,9 @@ namespace Interfaces
         /// <summary>
         /// String representation of the algebraic equation
         /// </summary>
+        /// <param name="type">type of representation ; string or tex</param>
         /// <returns>string text</returns>
-        string AsRepresented();
+        string AsRepresented(string type);
 
         /// <summary>
         /// Calculate the result of this equation
@@ -71,7 +72,7 @@ namespace Interfaces
         /// another equation
         /// </summary>
         /// <returns>transformed equation</returns>
-        IEquation Transform();
+        IEnumerable<IArithmetic> Transform();
 
         /// <summary>
         /// Factorization of an equation
@@ -86,6 +87,12 @@ namespace Interfaces
         /// </summary>
         /// <returns>developed equation</returns>
         IEquation Develop();
+
+        /// <summary>
+        /// Transforms equation object into a tex representation
+        /// </summary>
+        /// <returns>tex representation</returns>
+        string ToTex();
 
         #endregion
 

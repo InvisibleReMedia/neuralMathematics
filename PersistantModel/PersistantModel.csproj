@@ -40,7 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Operation.cs" />
+    <Compile Include="Texte.cs" />
+    <Compile Include="UnaryOperation.cs" />
+    <Compile Include="Inverse.cs" />
+    <Compile Include="Negative.cs" />
+    <Compile Include="BinaryOperation.cs" />
+    <Compile Include="Positive.cs" />
     <Compile Include="Power.cs" />
     <Compile Include="Root.cs" />
     <Compile Include="Soustraction.cs" />
@@ -53,6 +58,8 @@
     <Compile Include="NumericValue.cs" />
     <Compile Include="PersistentDataObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="Sum.cs" />
     <Compile Include="Term.cs" />
     <Compile Include="TopLevelArithmeticModel.cs" />
     <Compile Include="UnknownTerm.cs" />

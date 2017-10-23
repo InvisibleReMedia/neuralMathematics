@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace PersistantModel
 {
     /// <summary>
-    /// Persistent data format of a power
+    /// Persistent data format of an inverse value
     /// </summary>
     [Serializable]
-    public class Power : BinaryOperation
+    public class Inverse : UnaryOperation
     {
 
         #region Constructor
@@ -20,30 +20,28 @@ namespace PersistantModel
         /// Default constructor
         /// Empty data
         /// </summary>
-        protected Power()
+        protected Inverse()
         {
-        }
-
-        /// <summary>
-        /// Default constructor
-        /// given a n2 power of n1
-        /// </summary>
-        /// <param name="n1">left number</param>
-        /// <param name="n2">right number</param>
-        public Power(double n1, double n2) : base(n1, n2)
-        {
-            this[operatorName] = '^';
         }
 
         /// <summary>
         /// Constructor
-        /// given a n2 power of n1
+        /// given a positive value with one number
         /// </summary>
-        /// <param name="t1">left term</param>
-        /// <param name="t2">right term</param>
-        public Power(IArithmetic t1, IArithmetic t2) : base(t1, t2)
+        /// <param name="n">number</param>
+        public Inverse(double n) : base(n)
         {
-            this[operatorName] = '^';
+            this[operatorName] = 'i';
+        }
+
+        /// <summary>
+        /// Constructor
+        /// given a positive value with one term
+        /// </summary>
+        /// <param name="n">term</param>
+        public Inverse(IArithmetic n) : base(n)
+        {
+            this[operatorName] = 'i';
         }
 
         #endregion
@@ -63,16 +61,16 @@ namespace PersistantModel
                 left = this.LeftOperand.ToTex();
             if (this.RightOperand != null)
                 right = this.RightOperand.ToTex();
-            output = @"{" + left + "}^{" + right + "}";
+            output = @"\frac{1}{" + right + "}";
             return output;
         }
 
         /// <summary>
-        /// Create a new arithmetic class
+        /// Create a new addition class
         /// </summary>
         protected override IArithmetic Create()
         {
-            return new Power();
+            return new Inverse();
         }
 
         #endregion

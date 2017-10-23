@@ -11,7 +11,7 @@ namespace PersistantModel
     /// Persistent data format of a substract
     /// </summary>
     [Serializable]
-    public class Soustraction : Operation
+    public class Soustraction : BinaryOperation
     {
 
         #region Constructor
@@ -49,6 +49,15 @@ namespace PersistantModel
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Convert additions to a sum
+        /// </summary>
+        /// <returns></returns>
+        public Sum ToSum()
+        {
+            return EnsureSum(this, -1);
+        }
 
         /// <summary>
         /// Create a new addition class

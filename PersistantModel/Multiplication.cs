@@ -11,7 +11,7 @@ namespace PersistantModel
     /// Persistent data format of a product
     /// </summary>
     [Serializable]
-    public class Multiplication : Operation
+    public class Multiplication : BinaryOperation
     {
 
         #region Constructor
@@ -49,6 +49,35 @@ namespace PersistantModel
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Transforms an addition into a multiplication
+        /// </summary>
+        /// <returns>a list of possibles equation</returns>
+        protected override IEnumerable<IArithmetic> MakeTransform()
+        {
+            List<IArithmetic> list = new List<IArithmetic>();
+            Power p = new Power(this.LeftOperand, new NumericValue(2.0d));
+            Soustraction s = new Soustraction(this.RightOperand, this.LeftOperand);
+            Multiplication m = new Multiplication(s, this.LeftOperand);
+            Addition a = new Addition(p, m);
+            list.Add(a);
+            p = new Power(this.RightOperand, new NumericValue(2.0d));
+            s = new Soustraction(this.LeftOperand, this.RightOperand);
+            m = new Multiplication(s, this.RightOperand);
+            a = new Addition(p, m);
+            list.Add(a);
+            return list;
+        }
+
+        /// <summary>
+        /// Convert mult to a product
+        /// </summary>
+        /// <returns>product</returns>
+        public Product ToProduct()
+        {
+            return EnsureProduct(this, 1);
+        }
 
         /// <summary>
         /// Create a new arithmetic class

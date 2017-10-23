@@ -11,7 +11,7 @@ namespace PersistantModel
     /// Persistent data format of a root
     /// </summary>
     [Serializable]
-    public class Root : Operation
+    public class Root : BinaryOperation
     {
 
         #region Constructor
@@ -49,6 +49,26 @@ namespace PersistantModel
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Transforms equation object into a tex representation
+        /// </summary>
+        /// <returns>tex representation</returns>
+        public override string ToTex()
+        {
+            string output = string.Empty;
+
+            string left = string.Empty, right = string.Empty;
+            if (this.LeftOperand != null)
+                left = this.LeftOperand.ToTex();
+            if (this.RightOperand != null)
+                right = this.RightOperand.ToTex();
+            if (this.RightOperand is NumericValue && (this.RightOperand as NumericValue).Value == 2.0d)
+                output = @"\sqrt{" + left + "}";
+            else
+                output = @"\sqrt[" + right + "]{" + left + "}";
+            return output;
+        }
 
         /// <summary>
         /// Create a new arithmetic class

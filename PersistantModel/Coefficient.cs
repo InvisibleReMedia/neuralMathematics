@@ -127,6 +127,17 @@ namespace PersistantModel
         }
 
         /// <summary>
+        /// Gets multiple switch test
+        /// </summary>
+        public override bool IsMultipleOperator
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Gets true if it's not an operator
         /// </summary>
         public override bool IsNotOperator

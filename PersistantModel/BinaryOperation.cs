@@ -11,7 +11,7 @@ namespace PersistantModel
     /// Définit une opération binaire
     /// </summary>
     [Serializable]
-    public class Operation : Arithmetic
+    public class BinaryOperation : Arithmetic
     {
         #region Fields
 
@@ -35,7 +35,7 @@ namespace PersistantModel
         /// Default constructor
         /// Empty data
         /// </summary>
-        protected Operation()
+        protected BinaryOperation()
         {
         }
 
@@ -45,7 +45,7 @@ namespace PersistantModel
         /// </summary>
         /// <param name="n1">left number</param>
         /// <param name="n2">right number</param>
-        protected Operation(double n1, double n2)
+        protected BinaryOperation(double n1, double n2)
         {
             this[leftTermName] = new NumericValue(n1);
             this[rightTermName] = new NumericValue(n2);
@@ -57,7 +57,7 @@ namespace PersistantModel
         /// </summary>
         /// <param name="t1">left term</param>
         /// <param name="t2">right term</param>
-        protected Operation(IArithmetic t1, IArithmetic t2)
+        protected BinaryOperation(IArithmetic t1, IArithmetic t2)
         {
             this[leftTermName] = t1.Clone();
             this[rightTermName] = t2.Clone();
@@ -97,6 +97,17 @@ namespace PersistantModel
             get
             {
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Gets multiple switch test
+        /// </summary>
+        public override bool IsMultipleOperator
+        {
+            get
+            {
+                return true;
             }
         }
 
@@ -142,7 +153,7 @@ namespace PersistantModel
         /// </summary>
         protected override IArithmetic Create()
         {
-            return new Operation();
+            return new BinaryOperation();
         }
 
         #endregion

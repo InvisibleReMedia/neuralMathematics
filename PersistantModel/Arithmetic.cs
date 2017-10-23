@@ -81,9 +81,31 @@ namespace PersistantModel
         }
 
         /// <summary>
+        /// Gets multiple switch test
+        /// </summary>
+        public virtual bool IsMultipleOperator
+        {
+            get
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        /// <summary>
         /// Gets true if it's not an operator
         /// </summary>
         public virtual bool IsNotOperator
+        {
+            get
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        /// <summary>
+        /// Gets the inner operand
+        /// </summary>
+        public virtual IArithmetic InnerOperand
         {
             get
             {
@@ -129,7 +151,8 @@ namespace PersistantModel
                 }
                 else if (this.IsUnaryOperator)
                 {
-                    foreach (IArithmetic e in this.LeftOperand.UnknownTerms) yield return e;
+                    if (this.InnerOperand != null)
+                        foreach (IArithmetic e in this.InnerOperand.UnknownTerms) yield return e;
                 }
                 else
                 {
@@ -141,6 +164,9 @@ namespace PersistantModel
             }
         }
 
+        /// <summary>
+        /// Gets all coefficients
+        /// </summary>
         public IEnumerable<IArithmetic> Coefficients
         {
             get
@@ -154,7 +180,8 @@ namespace PersistantModel
                 }
                 else if (this.IsUnaryOperator)
                 {
-                    foreach (IArithmetic e in this.LeftOperand.Coefficients) yield return e;
+                    if (this.InnerOperand != null)
+                        foreach (IArithmetic e in this.InnerOperand.Coefficients) yield return e;
                 }
                 else
                 {
@@ -166,6 +193,9 @@ namespace PersistantModel
             }
         }
 
+        /// <summary>
+        /// Gets all constants
+        /// </summary>
         public IEnumerable<IArithmetic> Constants
         {
             get
@@ -179,7 +209,8 @@ namespace PersistantModel
                 }
                 else if (this.IsUnaryOperator)
                 {
-                    foreach (IArithmetic e in this.LeftOperand.Constants) yield return e;
+                    if (this.InnerOperand != null)
+                        foreach (IArithmetic e in this.InnerOperand.Constants) yield return e;
                 }
                 else
                 {
@@ -191,6 +222,9 @@ namespace PersistantModel
             }
         }
 
+        /// <summary>
+        /// Gets equation
+        /// </summary>
         public IArithmetic Equation
         {
             get
@@ -204,11 +238,130 @@ namespace PersistantModel
         #region Methods
 
         /// <summary>
+        /// Verify when a positive equation
+        /// may contains multiple inner positive or negative
+        /// equation
+        /// </summary>
+        /// <param name="e">equation to test</param>
+        /// <returns>correct equation</returns>
+        public static IArithmetic EnsureSign(IArithmetic e)
+        {
+            if (e is Negative || e is Positive)
+            {
+                return EnsureSign((e as UnaryOperation).InnerOperand);
+            }
+            else
+            {
+                return e;
+            }
+        }
+
+        /// <summary>
+        /// Verify when an inverse equation
+        /// may contains multiple inner inverse
+        /// equation
+        /// </summary>
+        /// <param name="e">equation to test</param>
+        /// <returns>correct equation</returns>
+        public static IArithmetic EnsureInverse(IArithmetic e)
+        {
+            if (e is Inverse)
+            {
+                return EnsureInverse((e as Inverse).InnerOperand);
+            }
+            else
+            {
+                return e;
+            }
+        }
+
+        /// <summary>
+        /// Verify when an equation
+        /// may contains multiple inner add or sub equations
+        /// </summary>
+        /// <param name="e">equation to test</param>
+        /// <param name="direction">sommation or difference</param>
+        /// <returns>correct equation</returns>
+        public static Sum EnsureSum(IArithmetic e, int direction)
+        {
+            if (e is Addition)
+            {
+                Sum s1 = EnsureSum((e as BinaryOperation).LeftOperand, direction);
+                Sum s2 = EnsureSum((e as BinaryOperation).RightOperand, direction);
+                return new Sum(s1.Items.Concat(s2.Items).ToArray());
+            }
+            else if (e is Soustraction)
+            {
+                Sum s1 = EnsureSum((e as BinaryOperation).LeftOperand, direction);
+                Sum s2 = EnsureSum((e as BinaryOperation).RightOperand, -direction);
+                return new Sum(s1.Items.Concat(s2.Items).ToArray());
+            }
+            else
+            {
+                if (direction > 0)
+                {
+                    IArithmetic eTemp = EnsureSign(e);
+                    return new Sum(e);
+                }
+                else
+                {
+                    IArithmetic eTemp = EnsureSign(e);
+                    return new Sum(new Negative(e));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Verify when an equation
+        /// may contains multiple inner multiplication or division
+        /// equation
+        /// </summary>
+        /// <param name="e">equation to test</param>
+        /// <param name="direction">sommation or difference</param>
+        /// <returns>correct equation</returns>
+        public static Product EnsureProduct(IArithmetic e, int direction)
+        {
+            if (e is Multiplication)
+            {
+                Product s1 = EnsureProduct((e as BinaryOperation).LeftOperand, direction);
+                Product s2 = EnsureProduct((e as BinaryOperation).RightOperand, direction);
+                return new Product(s1.Items.Concat(s2.Items).ToArray());
+            }
+            else if (e is Division)
+            {
+                Product s1 = EnsureProduct((e as BinaryOperation).LeftOperand, direction);
+                Product s2 = EnsureProduct((e as BinaryOperation).RightOperand, -direction);
+                return new Product(s1.Items.Concat(s2.Items).ToArray());
+            }
+            else
+            {
+                if (direction > 0)
+                {
+                    return new Product(e);
+                }
+                else
+                {
+                    IArithmetic eTemp = EnsureInverse(e);
+                    return new Product(new Inverse(e));
+                }
+            }
+        }
+
+        /// <summary>
         /// Create a new arithmetic class
         /// </summary>
         protected virtual IArithmetic Create()
         {
             return new Arithmetic();
+        }
+
+        /// <summary>
+        /// Transforms an addition into a multiplication
+        /// </summary>
+        /// <returns>a list of possibles equation</returns>
+        protected virtual IEnumerable<IArithmetic> MakeTransform()
+        {
+            throw new NotSupportedException();
         }
 
         /// <summary>
@@ -231,6 +384,47 @@ namespace PersistantModel
         }
 
         /// <summary>
+        /// Transforms equation object into a tex representation
+        /// </summary>
+        /// <returns>tex representation</returns>
+        public virtual string ToTex()
+        {
+            string output = string.Empty;
+
+            if (this.IsBinaryOperator)
+            {
+                string left = string.Empty, right = string.Empty;
+                if (this.LeftOperand != null)
+                    left = this.LeftOperand.ToTex();
+                if (this.RightOperand != null)
+                    right = this.RightOperand.ToTex();
+                output = @"{\left[" + left + " " + this.Operator + " " + right + @"\right]}";
+            }
+            else if (this.IsUnaryOperator)
+            {
+                if (this.InnerOperand != null)
+                    output = this.Operator + "{" + this.InnerOperand.ToTex() + "}";
+            }
+            else
+            {
+                if (this is Term)
+                {
+                    Term t = this as Term;
+                    output = "{" + t.Constant.ToTex() + "} * {" + t.Coefficient.ToTex() + "} * {" + t.Unknown.ToTex() + "}";
+                }
+                else if (this is NumericValue)
+                    output = (this as NumericValue).Value.ToString();
+                else if (this is Coefficient)
+                    output = (this as Coefficient).Name;
+                else if (this is UnknownTerm)
+                    output = (this as UnknownTerm).Name;
+                else
+                    throw new InvalidCastException();
+            }
+            return output;
+        }
+
+        /// <summary>
         /// Transforms equation object into a string representation
         /// </summary>
         /// <returns>string representation</returns>
@@ -245,12 +439,12 @@ namespace PersistantModel
                     left = this.LeftOperand.ToString();
                 if (this.RightOperand != null)
                     right = this.RightOperand.ToString();
-                output = left + " " + this.Operator + " " + right;
+                output = "(" + left + " " + this.Operator + " " + right + ")";
             }
             else if (this.IsUnaryOperator)
             {
-                if (this.LeftOperand != null)
-                    output = this.Operator + "(" + this.LeftOperand.ToString() + ")";
+                if (this.InnerOperand != null)
+                    output = this.Operator + "(" + this.InnerOperand.ToString() + ")";
             }
             else
             {
@@ -284,10 +478,20 @@ namespace PersistantModel
         /// <summary>
         /// String representation of the algebraic equation
         /// </summary>
+        /// <param name="type">type of representation; string or tex</param>
         /// <returns>string text</returns>
-        public string AsRepresented()
+        public string AsRepresented(string type)
         {
-            return this.ToString();
+            if (type == "string")
+            {
+                return this.ToString();
+            }
+            else if (type == "tex")
+            {
+                return this.ToTex();
+            }
+            else
+                return "";
         }
 
         /// <summary>
@@ -300,9 +504,9 @@ namespace PersistantModel
             throw new NotImplementedException();
         }
 
-        public IEquation Transform()
+        public IEnumerable<IArithmetic> Transform()
         {
-            throw new NotImplementedException();
+            return this.MakeTransform();
         }
 
         public IEquation Factorize()

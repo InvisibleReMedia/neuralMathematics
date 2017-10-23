@@ -11,7 +11,7 @@ namespace PersistantModel
     /// Persistent data format of an addition
     /// </summary>
     [Serializable]
-    public class Addition : Operation
+    public class Addition : BinaryOperation
     {
 
         #region Constructor
@@ -49,6 +49,33 @@ namespace PersistantModel
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Transforms an addition into a multiplication
+        /// </summary>
+        /// <returns>a list of possibles equation</returns>
+        protected override IEnumerable<IArithmetic> MakeTransform()
+        {
+            List<IArithmetic> list = new List<IArithmetic>();
+            Division d = new Division(this.LeftOperand, this.RightOperand);
+            Addition a = new Addition(new NumericValue(1.0d), d);
+            Multiplication m = new Multiplication(a, this.RightOperand);
+            list.Add(m);
+            d = new Division(this.RightOperand, this.LeftOperand);
+            a = new Addition(new NumericValue(1.0d), d);
+            m = new Multiplication(a, this.LeftOperand);
+            list.Add(m);
+            return list;
+        }
+
+        /// <summary>
+        /// Convert additions to a sum
+        /// </summary>
+        /// <returns></returns>
+        public Sum ToSum()
+        {
+            return EnsureSum(this, 1);
+        }
 
         /// <summary>
         /// Create a new addition class
