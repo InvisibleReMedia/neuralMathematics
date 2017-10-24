@@ -63,6 +63,7 @@
     <Compile Include="Term.cs" />
     <Compile Include="TopLevelArithmeticModel.cs" />
     <Compile Include="UnknownTerm.cs" />
+    <Compile Include="Verify.cs" />
     <Compile Include="Weight.cs" />
   </ItemGroup>
   <ItemGroup>

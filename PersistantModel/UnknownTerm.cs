@@ -19,8 +19,11 @@ namespace PersistantModel
         /// <summary>
         /// Index name to store letter value
         /// </summary>
-        private static string letterName = "letter";
-        private static string equationName = "equation";
+        private static readonly string letterName = "letter";
+        /// <summary>
+        /// Index name to store the equation object
+        /// </summary>
+        private static readonly string equationName = "equation";
 
         #endregion
 

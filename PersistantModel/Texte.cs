@@ -16,7 +16,7 @@ namespace PersistantModel
 
         #region Fields
 
-        private static string textName = "text";
+        private static readonly string textName = "text";
 
         #endregion
 

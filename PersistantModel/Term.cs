@@ -19,15 +19,15 @@ namespace PersistantModel
         /// <summary>
         /// Index name to store a constant
         /// </summary>
-        private static string constantName = "constant";
+        private static readonly string constantName = "constant";
         /// <summary>
         /// Index name to store a coefficient
         /// </summary>
-        private static string coefName = "coefficient";
+        private static readonly string coefName = "coefficient";
         /// <summary>
         /// Index name to store an unknown term
         /// </summary>
-        private static string unknownName = "unknown";
+        private static readonly string unknownName = "unknown";
 
         #endregion
 

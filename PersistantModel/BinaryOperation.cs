@@ -18,15 +18,15 @@ namespace PersistantModel
         /// <summary>
         /// Index name to store operator name
         /// </summary>
-        protected static string operatorName = "operator";
+        protected static readonly string operatorName = "operator";
         /// <summary>
         /// Index name to store left value
         /// </summary>
-        protected static string leftTermName = "left";
+        protected static readonly string leftTermName = "left";
         /// <summary>
         /// Index name to store right value
         /// </summary>
-        protected static string rightTermName = "right";
+        protected static readonly string rightTermName = "right";
         #endregion
 
         #region Constructor

@@ -18,11 +18,11 @@ namespace PersistantModel
         /// <summary>
         /// Index name to store operator name
         /// </summary>
-        protected static string operatorName = "operator";
+        protected static readonly string operatorName = "operator";
         /// <summary>
         /// Index name to store value
         /// </summary>
-        protected static string valueName = "inner";
+        protected static readonly string valueName = "inner";
 
         #endregion
 

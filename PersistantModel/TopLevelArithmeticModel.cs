@@ -21,19 +21,23 @@ namespace PersistantModel
         /// <summary>
         /// Version model
         /// </summary>
-        private static string versionName = "version";
+        private static readonly string versionName = "version";
         /// <summary>
         /// Equation list
         /// </summary>
-        private static string equationListName = "equations";
+        private static readonly string equationListName = "equations";
         /// <summary>
         /// title of the file
         /// </summary>
-        private static string titleName = "title";
+        private static readonly string titleName = "title";
         /// <summary>
         /// Revision number
         /// </summary>
-        private static string revisionName = "rev";
+        private static readonly string revisionName = "rev";
+        /// <summary>
+        /// Hash code dictionary
+        /// </summary>
+        private static readonly string hashCodeDictName = "hash";
 
         #endregion
 
@@ -47,17 +51,14 @@ namespace PersistantModel
             this.Set(versionName,"1.0.0.0");
             this.Set(equationListName, new List<IArithmetic>());
             this.Set(titleName, "New");
-            this.Set(revisionName, 0);
+            this.Set(revisionName, UInt32.MinValue);
         }
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        protected TopLevelArithmeticModel(string title) : base()
+        protected TopLevelArithmeticModel(string title) : this()
         {
-            this.Set(versionName, "1.0.0.0");
-            this.Set(equationListName, new List<IArithmetic>());
-            this.Set(revisionName, 0);
             this.Set(titleName, title);
         }
 
@@ -143,7 +144,10 @@ namespace PersistantModel
         public static TopLevelArithmeticModel Load(FileInfo fi)
         {
             PersistentDataObject t = null;
-            PersistentDataObject.Load(fi, out t);
+            if (PersistentDataObject.Load(fi, out t))
+            {
+                Weight.HashCodes = t.Get(hashCodeDictName);
+            }
             return t as TopLevelArithmeticModel;
         }
 
@@ -155,8 +159,9 @@ namespace PersistantModel
         /// <returns>object deserialized</returns>
         public void Save(FileInfo fi)
         {
-            int rev = this.Get(revisionName);
+            uint rev = this.Get(revisionName);
             this.Set(revisionName, rev + 1);
+            this.Set(hashCodeDictName, Weight.HashCodes);
             PersistentDataObject.Save(fi, this);
         }
 

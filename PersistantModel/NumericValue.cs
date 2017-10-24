@@ -19,7 +19,7 @@ namespace PersistantModel
         /// <summary>
         /// Index name to store value
         /// </summary>
-        private static string valueName = "value";
+        private static readonly string valueName = "value";
 
         #endregion
 

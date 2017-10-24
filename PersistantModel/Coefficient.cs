@@ -20,11 +20,11 @@ namespace PersistantModel
         /// <summary>
         /// nom pour le champ lettre
         /// </summary>
-        private static string letterName = "letter";
+        private static readonly string letterName = "letter";
         /// <summary>
         /// nom pour le champ valeur
         /// </summary>
-        private static string valueName = "value";
+        private static readonly string valueName = "value";
 
         #endregion
 

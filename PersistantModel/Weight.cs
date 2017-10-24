@@ -9,6 +9,7 @@ namespace PersistantModel
     /// Class to handle bit values
     /// to identify an equation uniquely
     /// </summary>
+    [Serializable]
     public class Weight : IWeight, IEqualityComparer<IWeight>
     {
         #region Fields
@@ -21,35 +22,35 @@ namespace PersistantModel
         /// <summary>
         /// Value type for a constant
         /// </summary>
-        public static byte ConstantValueType = 1;
+        public static readonly byte ConstantValueType = 1;
         /// <summary>
         /// Value type for a coefficient
         /// </summary>
-        public static byte CoefficientValueType = 2;
+        public static readonly byte CoefficientValueType = 2;
         /// <summary>
         /// Value type for an unknown term
         /// </summary>
-        public static byte UnknownTermValueType = 4;
+        public static readonly byte UnknownTermValueType = 4;
         /// <summary>
         /// Value type for a string
         /// </summary>
-        public static byte StringValueType = 8;
+        public static readonly byte StringValueType = 8;
         /// <summary>
         /// Value type for a double value
         /// </summary>
-        public static byte DoubleValueType = 16;
+        public static readonly byte DoubleValueType = 16;
         /// <summary>
         /// Value type for a binary operator
         /// </summary>
-        public static byte BinaryOperatorValueType = 32;
+        public static readonly byte BinaryOperatorValueType = 32;
         /// <summary>
         /// Value type for a unary operator
         /// </summary>
-        public static byte UnaryOperatorValueType = 64;
+        public static readonly byte UnaryOperatorValueType = 64;
         /// <summary>
         /// Value type for a multiple operator
         /// </summary>
-        public static byte MultipleOperationValueType = 128;
+        public static readonly byte MultipleOperationValueType = 128;
 
         /// <summary>
         /// Value type of this weight
@@ -100,6 +101,21 @@ namespace PersistantModel
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Gets or sets all hashcodes required 
+        /// </summary>
+        public static Dictionary<int, Weight> HashCodes
+        {
+            get
+            {
+                return hashCodes;
+            }
+            set
+            {
+                hashCodes = new Dictionary<int, Weight>(value);
+            }
+        }
 
         /// <summary>
         /// Gets the owner object instance
@@ -185,7 +201,10 @@ namespace PersistantModel
         /// </summary>
         public static void Clear()
         {
-            hashCodes.Clear();
+            if (hashCodes != null)
+                hashCodes.Clear();
+            else
+                hashCodes = new Dictionary<int, Weight>();
         }
 
         /// <summary>
@@ -445,6 +464,15 @@ namespace PersistantModel
         public int GetHashCode(IWeight obj)
         {
             return obj.GetHashCode();
+        }
+
+        /// <summary>
+        /// Obtain the equation function as string representation
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return this.OwnerObject.ToString();
         }
 
         #endregion
