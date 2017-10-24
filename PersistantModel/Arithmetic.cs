@@ -390,7 +390,7 @@ namespace PersistantModel
         /// </summary>
         protected virtual IArithmetic Create()
         {
-            return new Arithmetic();
+            throw new NotSupportedException();
         }
 
         /// <summary>

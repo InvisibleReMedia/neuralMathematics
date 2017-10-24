@@ -40,9 +40,11 @@ namespace PersistantModel
         /// Constructor
         /// given a unary operation with one number
         /// </summary>
+        /// <param name="op">operator</param>
         /// <param name="n">number</param>
-        protected UnaryOperation(double n)
+        protected UnaryOperation(char op, double n)
         {
+            this[operatorName] = op;
             this[valueName] = new NumericValue(n);
             this[weightName] = this.ComputeOwnerWeight();
         }
@@ -51,9 +53,11 @@ namespace PersistantModel
         /// Constructor
         /// given a unary operation with one term
         /// </summary>
+        /// <param name="op">operator</param>
         /// <param name="t">term</param>
-        protected UnaryOperation(IArithmetic t)
+        protected UnaryOperation(char op, IArithmetic t)
         {
+            this[operatorName] = op;
             this[valueName] = t.Clone();
             this[weightName] = this.ComputeOwnerWeight();
         }
@@ -146,7 +150,7 @@ namespace PersistantModel
         /// </summary>
         protected override IArithmetic Create()
         {
-            return new UnaryOperation();
+            throw new NotSupportedException();
         }
 
         #endregion

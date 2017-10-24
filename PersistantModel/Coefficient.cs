@@ -96,17 +96,6 @@ namespace PersistantModel
         }
 
         /// <summary>
-        /// Gets the operator ID
-        /// </summary>
-        public override char Operator
-        {
-            get
-            {
-                throw new NotSupportedException();
-            }
-        }
-
-        /// <summary>
         /// Gets binary switch test
         /// </summary>
         public override bool IsBinaryOperator
@@ -135,7 +124,7 @@ namespace PersistantModel
         {
             get
             {
-                return true;
+                return false;
             }
         }
 
@@ -147,28 +136,6 @@ namespace PersistantModel
             get
             {
                 return true;
-            }
-        }
-
-        /// <summary>
-        /// Gets the left operand
-        /// </summary>
-        public override IArithmetic LeftOperand
-        {
-            get
-            {
-                throw new NotSupportedException();
-            }
-        }
-
-        /// <summary>
-        /// Gets the right operand
-        /// </summary>
-        public override IArithmetic RightOperand
-        {
-            get
-            {
-                throw new NotSupportedException();
             }
         }
 

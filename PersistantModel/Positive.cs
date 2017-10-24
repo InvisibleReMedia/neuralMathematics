@@ -29,9 +29,8 @@ namespace PersistantModel
         /// given a positive value with one number
         /// </summary>
         /// <param name="n">number</param>
-        public Positive(double n) : base(n)
+        public Positive(double n) : base('p', n)
         {
-            this[operatorName] = 'p';
         }
 
         /// <summary>
@@ -39,9 +38,8 @@ namespace PersistantModel
         /// given a positive value with one term
         /// </summary>
         /// <param name="n">term</param>
-        public Positive(IArithmetic n) : base(n)
+        public Positive(IArithmetic n) : base('p', n)
         {
-            this[operatorName] = 'p';
         }
 
         #endregion
@@ -53,7 +51,7 @@ namespace PersistantModel
         {
             get
             {
-                return '\0';
+                return this[operatorName];
             }
         }
 

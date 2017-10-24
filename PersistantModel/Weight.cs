@@ -56,6 +56,10 @@ namespace PersistantModel
         /// </summary>
         private byte typeValue;
         /// <summary>
+        /// Operator or function
+        /// </summary>
+        private char arithmeticOperator;
+        /// <summary>
         /// Specific data support
         /// </summary>
         private dynamic value;
@@ -72,32 +76,25 @@ namespace PersistantModel
         /// Compute a weight value
         /// as a computed hash integer
         /// </summary>
-        /// <param name="type"></param>
-        /// <param name="value"></param>
+        /// <param name="type">value type</param>
+        /// <param name="op">operator or function</param>
+        /// <param name="value">value</param>
+        /// <param name="owner">owner object</param>
+        public Weight(byte type, char op, dynamic value, IArithmetic owner)
+        {
+            this.Construct(type, op, value, owner);
+        }
+
+        /// <summary>
+        /// Compute a weight value
+        /// as a computed hash integer
+        /// </summary>
+        /// <param name="type">value type</param>
+        /// <param name="value">value</param>
         /// <param name="owner">owner object</param>
         public Weight(byte type, dynamic value, IArithmetic owner)
         {
-            this.typeValue = type;
-            this.value = value;
-            int h = this.GetHashCode();
-            foreach(Weight w in hashCodes.Values)
-            {
-                if (w == this)
-                {
-                    h = w.GetHashCode();
-                    break;
-                }
-            }
-            if (!hashCodes.ContainsKey(h))
-            {
-                this.ownerInstance = owner;
-                hashCodes.Add(h, this);
-            }
-            else
-                if (hashCodes[h] != this)
-                throw new InvalidCastException(String.Format("Weight {0} is not equals to Weight {1}", hashCodes[h].ToString(), this.ToString()));
-            else
-                this.ownerInstance = hashCodes[h].OwnerObject;
+            this.Construct(type, char.MinValue, value, owner);
         }
 
         #endregion
@@ -126,9 +123,54 @@ namespace PersistantModel
             }
         }
 
+        /// <summary>
+        /// Gets the hash code number
+        /// </summary>
+        public int HashCode
+        {
+            get
+            {
+                return this.GetHashCode();
+            }
+        }
+
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Construction of elements
+        /// with a dynamic element (not working in constructor's function)
+        /// </summary>
+        /// <param name="type">value type</param>
+        /// <param name="op">operator</param>
+        /// <param name="value">value</param>
+        /// <param name="owner">owner object</param>
+        protected void Construct(byte type, char op, dynamic value, IArithmetic owner)
+        {
+            this.typeValue = type;
+            this.arithmeticOperator = op;
+            this.value = value;
+            int h = this.GetHashCode();
+            foreach (Weight w in hashCodes.Values)
+            {
+                if (w == this)
+                {
+                    h = w.GetHashCode();
+                    break;
+                }
+            }
+            if (!hashCodes.ContainsKey(h))
+            {
+                this.ownerInstance = owner;
+                hashCodes.Add(h, this);
+            }
+            else
+                if (hashCodes[h] != this)
+                throw new InvalidCastException(String.Format("Weight {0} is not equals to Weight {1}", hashCodes[h].ToString(), this.ToString()));
+            else
+                this.ownerInstance = hashCodes[h].OwnerObject;
+        }
 
         /// <summary>
         /// Initialize hash codes
@@ -183,7 +225,7 @@ namespace PersistantModel
         /// <returns>weight of this object</returns>
         public static Weight ComputeWeight(BinaryOperation op)
         {
-            return new Weight(BinaryOperatorValueType, new Weight[] { op.LeftOperand.OwnerWeight as Weight, op.RightOperand.OwnerWeight as Weight }, op);
+            return new Weight(BinaryOperatorValueType, op.Operator, new Weight[] { op.LeftOperand.OwnerWeight as Weight, op.RightOperand.OwnerWeight as Weight }, op);
         }
 
         /// <summary>
@@ -193,7 +235,7 @@ namespace PersistantModel
         /// <returns>weight of this object</returns>
         public static Weight ComputeWeight(UnaryOperation op)
         {
-            return new Weight(UnaryOperatorValueType, new Weight[] { op.InnerOperand.OwnerWeight as Weight }, op);
+            return new Weight(UnaryOperatorValueType, op.Operator, new Weight[] { op.InnerOperand.OwnerWeight as Weight }, op);
         }
 
         /// <summary>
@@ -203,7 +245,7 @@ namespace PersistantModel
         /// <returns>weight of this object</returns>
         public static Weight ComputeWeight(Sum op)
         {
-            return new Weight(MultipleOperationValueType, op.Items.Select(x => x.OwnerWeight).Cast<Weight>().ToArray(), op);
+            return new Weight(MultipleOperationValueType, op.Operator, op.Items.Select(x => x.OwnerWeight).Cast<Weight>().ToArray(), op);
         }
 
         /// <summary>
@@ -213,7 +255,7 @@ namespace PersistantModel
         /// <returns>weight of this object</returns>
         public static Weight ComputeWeight(Product op)
         {
-            return new Weight(MultipleOperationValueType, op.Items.Select(x => x.OwnerWeight).Cast<Weight>().ToArray(), op);
+            return new Weight(MultipleOperationValueType, op.Operator, op.Items.Select(x => x.OwnerWeight).Cast<Weight>().ToArray(), op);
         }
 
         /// <summary>
@@ -226,13 +268,34 @@ namespace PersistantModel
         {
             if (x.typeValue == y.typeValue)
             {
-                if (x.value == y.value)
+                if (x.typeValue == BinaryOperatorValueType || x.typeValue == UnaryOperatorValueType || x.typeValue == MultipleOperationValueType)
                 {
-                    return true;
+                    if (x.arithmeticOperator == y.arithmeticOperator)
+                    {
+                        if (x.value == y.value)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
-                    return false;
+                    if (x.value == y.value)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
             else
@@ -251,13 +314,34 @@ namespace PersistantModel
         {
             if (x.typeValue == y.typeValue)
             {
-                if (x.value == y.value)
+                if (x.typeValue == BinaryOperatorValueType || x.typeValue == UnaryOperatorValueType || x.typeValue == MultipleOperationValueType)
                 {
-                    return false;
+                    if (x.arithmeticOperator == y.arithmeticOperator)
+                    {
+                        if (x.value == y.value)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        return true;
+                    }
                 }
                 else
                 {
-                    return true;
+                    if (x.value == y.value)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
                 }
             }
             else
@@ -276,9 +360,38 @@ namespace PersistantModel
             if (obj is Weight)
             {
                 Weight w = obj as Weight;
-                if (this.typeValue == (obj as Weight).typeValue)
+
+                if (this.typeValue == w.typeValue)
                 {
-                    return this.value == w.value;
+                    if (w.typeValue == BinaryOperatorValueType || w.typeValue == UnaryOperatorValueType || w.typeValue == MultipleOperationValueType)
+                    {
+                        if (this.arithmeticOperator == w.arithmeticOperator)
+                        {
+                            if (this.value == w.value)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        if (this.value == w.value)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
                 }
                 else
                 {

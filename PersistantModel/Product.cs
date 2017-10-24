@@ -42,7 +42,7 @@ namespace PersistantModel
         /// <param name="inputs">input list</param>
         public Product(params IArithmetic[] inputs)
         {
-            this[operatorName] = "m";
+            this[operatorName] = 'r';
             this[listName] = inputs.ToList();
             this[weightName] = this.ComputeOwnerWeight();
         }
@@ -57,7 +57,7 @@ namespace PersistantModel
         {
             get
             {
-                return '*';
+                return this[operatorName];
             }
         }
 
@@ -207,7 +207,7 @@ namespace PersistantModel
                     first = false;
                 }
                 else
-                    output += " " + this.Operator + " " + a.ToTex();
+                    output += " * " + a.ToTex();
             }
 
             return output;
@@ -229,7 +229,7 @@ namespace PersistantModel
                     first = false;
                 }
                 else
-                    output += " " + this.Operator + " " + a.ToString();
+                    output += " * " + a.ToString();
             }
 
             return output;

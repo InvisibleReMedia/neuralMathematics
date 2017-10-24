@@ -30,9 +30,8 @@ namespace PersistantModel
         /// </summary>
         /// <param name="n1">left number</param>
         /// <param name="n2">right number</param>
-        public Equal(double n1, double n2) : base(n1, n2)
+        public Equal(double n1, double n2) : base('=', n1, n2)
         {
-            this[operatorName] = '=';
         }
 
         /// <summary>
@@ -41,9 +40,8 @@ namespace PersistantModel
         /// </summary>
         /// <param name="t1">left equation</param>
         /// <param name="t2">right equation</param>
-        public Equal(IArithmetic t1, IArithmetic t2) : base(t1, t2)
+        public Equal(IArithmetic t1, IArithmetic t2) : base('=', t1, t2)
         {
-            this[operatorName] = '=';
         }
         #endregion
 

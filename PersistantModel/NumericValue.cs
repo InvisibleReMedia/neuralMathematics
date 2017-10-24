@@ -63,18 +63,6 @@ namespace PersistantModel
             } 
         }
 
-
-        /// <summary>
-        /// Gets the operator ID
-        /// </summary>
-        public override char Operator
-        {
-            get
-            {
-                throw new NotSupportedException();
-            }
-        }
-
         /// <summary>
         /// Gets binary switch test
         /// </summary>
