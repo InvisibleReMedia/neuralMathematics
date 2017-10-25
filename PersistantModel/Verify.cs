@@ -56,9 +56,11 @@ namespace PersistantModel
         /// <returns>true if valid</returns>
         public bool IsValid()
         {
-            string left = this.equalOp.LeftOperand.Calculate();
-            string right = this.equalOp.RightOperand.Calculate();
-            return left == right;
+            foreach (Weight w in this.equalOp.Records.Records)
+            {
+                w.OwnerObject.Calculate();
+            }
+            return this.equalOp.LeftOperand.Calculate() == this.equalOp.RightOperand.Calculate();
         }
 
         #endregion

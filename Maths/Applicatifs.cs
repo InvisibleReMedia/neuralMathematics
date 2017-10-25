@@ -20,10 +20,10 @@ namespace Maths
             Texte t1 = new Texte("Degré 2");
             Equal eq1 = new Equal(new Power(new Addition(new Coefficient("a"), new Coefficient("b")), new NumericValue(2.0d)),
                                         new Sum(new Power(new Coefficient("a"), new NumericValue(2.0d)), new Product(new NumericValue(2.0d), new Coefficient("a"), new Coefficient("b")), new Power(new Coefficient("b"), new NumericValue(2.0d))));
-            eq1.MakeUnique();
-            Verify v = new Verify(eq1);
-            v.Variables.Single(x => x.Name == "a").Value = 1.0;
-            v.Variables.Single(x => x.Name == "b").Value = 2.0;
+            Equal u = eq1.MakeUnique() as Equal;
+            Verify v = new Verify(u);
+            v.Variables.First(x => x.Name == "a").Value = 1.0;
+            v.Variables.First(x => x.Name == "b").Value = 2.0;
             MessageBox.Show(v.IsValid().ToString());
 
             s1.Add(eq1);

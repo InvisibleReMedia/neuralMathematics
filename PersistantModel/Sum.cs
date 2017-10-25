@@ -188,6 +188,20 @@ namespace PersistantModel
         }
 
         /// <summary>
+        /// Replace an element to an another
+        /// </summary>
+        /// <param name="old">old element</param>
+        /// <param name="n">new element</param>
+        public void Replace(IArithmetic old, IArithmetic n)
+        {
+            int p = this.List.IndexOf(old);
+            if (p != -1)
+            {
+                this.List[p] = n;
+            }
+        }
+
+        /// <summary>
         /// Transforms equation object into a tex representation
         /// </summary>
         /// <returns>tex representation</returns>

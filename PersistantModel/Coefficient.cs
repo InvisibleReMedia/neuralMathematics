@@ -84,15 +84,20 @@ namespace PersistantModel
                     if (a.IsCalculable)
                     {
                         this.Value = Convert.ToDouble(res);
+                        this[isCalculableName] = true;
+                        this[calculatedValueName] = this.Value;
                     }
                     else
                     {
-                        throw new ArgumentException(String.Format("Equation {0} n'est pas calculable", a.ToString()));
+                        this[isCalculableName] = false;
+                        this[uncalculatedValueName] = res;
                     }
                 }
                 else
                 {
                     this.Value = Convert.ToDouble(value);
+                    this[isCalculableName] = true;
+                    this[calculatedValueName] = this.Value;
                 }
             }
         }
@@ -115,11 +120,13 @@ namespace PersistantModel
                 {
                     this[hasValueName] = true;
                     this[valueName] = value.Value;
+                    this[isCalculableName] = true;
                 }
                 else
                 {
                     this[hasValueName] = false;
                     this.persistentData.Remove(valueName);
+                    this[isCalculableName] = false;
                 }
             }
         }

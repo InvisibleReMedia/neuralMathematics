@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Gathering.cs" />
     <Compile Include="RecordZone.cs" />
     <Compile Include="Texte.cs" />
     <Compile Include="UnaryOperation.cs" />

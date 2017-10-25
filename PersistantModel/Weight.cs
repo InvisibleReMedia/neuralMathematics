@@ -68,7 +68,7 @@ namespace PersistantModel
         /// <summary>
         /// The current object that's correspond to itself
         /// </summary>
-        private Weight ownerObject;
+        private IArithmetic ownerObject;
 
         #endregion
 
@@ -102,6 +102,17 @@ namespace PersistantModel
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Gets the recorded object
+        /// </summary>
+        public IArithmetic OwnerObject
+        {
+            get
+            {
+                return this.ownerObject;
+            }
+        }
 
         /// <summary>
         /// Gets the hash code number
@@ -147,7 +158,7 @@ namespace PersistantModel
             int h = this[hashCodeName];
             foreach(Weight w in recordZone.Records)
             {
-                if (w == this.ownerObject)
+                if (w == this)
                 {
                     h = w.GetHashCode();
                     break;
@@ -155,7 +166,7 @@ namespace PersistantModel
             }
             if (!recordZone.Exists(h))
             {
-                recordZone.Add(h, this.ownerObject);
+                recordZone.Add(h, this);
             }
             else
             {
@@ -164,7 +175,7 @@ namespace PersistantModel
                     throw new InvalidCastException(String.Format("Weight {0} is not equals to Weight {1}", recorded.ToString(), this.ToString()));
                 else
                 {
-                    this.ownerObject = recorded;
+                    this.ownerObject = recorded.ownerObject;
                     this[hashCodeName] = h;
                 }
             }
@@ -193,7 +204,7 @@ namespace PersistantModel
             this[arithmeticOperatorName] = op;
             this[valueName] = value;
             this[hashCodeName] = owner.GetHashCode();
-            this.ownerObject = this;
+            this.ownerObject = owner;
             owner.Fetch += Owner_Fetch;
             owner.Unfetch += Owner_Unfetch;
 
@@ -277,11 +288,29 @@ namespace PersistantModel
         /// <returns>true if equals</returns>
         public static bool operator ==(Weight x, Weight y)
         {
-            if (x[typeValueName] == y[typeValueName])
+            if (!Object.Equals(x, null) && !Object.Equals(y, null))
             {
-                if (x[typeValueName] == BinaryOperatorValueType || x[typeValueName] == UnaryOperatorValueType || x[typeValueName] == MultipleOperationValueType)
+                if (x[typeValueName] == y[typeValueName])
                 {
-                    if (x[arithmeticOperatorName] == y[arithmeticOperatorName])
+                    if (x[typeValueName] == BinaryOperatorValueType || x[typeValueName] == UnaryOperatorValueType || x[typeValueName] == MultipleOperationValueType)
+                    {
+                        if (x[arithmeticOperatorName] == y[arithmeticOperatorName])
+                        {
+                            if (x[valueName] == y[valueName])
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
                     {
                         if (x[valueName] == y[valueName])
                         {
@@ -292,27 +321,16 @@ namespace PersistantModel
                             return false;
                         }
                     }
-                    else
-                    {
-                        return false;
-                    }
                 }
                 else
                 {
-                    if (x[valueName] == y[valueName])
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
+            else if (Object.Equals(x, null) && Object.Equals(y, null))
+                return true;
             else
-            {
                 return false;
-            }
         }
 
         /// <summary>
@@ -323,11 +341,29 @@ namespace PersistantModel
         /// <returns>true if at least different</returns>
         public static bool operator !=(Weight x, Weight y)
         {
-            if (x[typeValueName] == y[typeValueName])
+            if (!Object.Equals(x, null) && !Object.Equals(y, null))
             {
-                if (x[typeValueName] == BinaryOperatorValueType || x[typeValueName] == UnaryOperatorValueType || x[typeValueName] == MultipleOperationValueType)
+                if (x[typeValueName] == y[typeValueName])
                 {
-                    if (x[arithmeticOperatorName] == y[arithmeticOperatorName])
+                    if (x[typeValueName] == BinaryOperatorValueType || x[typeValueName] == UnaryOperatorValueType || x[typeValueName] == MultipleOperationValueType)
+                    {
+                        if (x[arithmeticOperatorName] == y[arithmeticOperatorName])
+                        {
+                            if (x[valueName] == y[valueName])
+                            {
+                                return false;
+                            }
+                            else
+                            {
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                    else
                     {
                         if (x[valueName] == y[valueName])
                         {
@@ -338,27 +374,16 @@ namespace PersistantModel
                             return true;
                         }
                     }
-                    else
-                    {
-                        return true;
-                    }
                 }
                 else
                 {
-                    if (x[valueName] == y[valueName])
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
+            else if (Object.Equals(x, null) && Object.Equals(y, null))
+                return false;
             else
-            {
                 return true;
-            }
         }
 
         /// <summary>
@@ -368,7 +393,7 @@ namespace PersistantModel
         /// <returns>true or false</returns>
         public override bool Equals(object obj)
         {
-            if (obj is Weight)
+            if (obj != null && obj is Weight)
             {
                 Weight w = obj as Weight;
 

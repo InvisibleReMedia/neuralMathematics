@@ -116,6 +116,17 @@ namespace PersistantModel
         #region Properties
 
         /// <summary>
+        /// Gets all records
+        /// </summary>
+        public RecordZone<Weight> Records
+        {
+            get
+            {
+                return this.recordZone;
+            }
+        }
+
+        /// <summary>
         /// Gets the weight content
         /// </summary>
         public IWeight OwnerWeight
@@ -301,6 +312,22 @@ namespace PersistantModel
                         foreach (IArithmetic e in (this as Term).Unknown.UnknownTerms) yield return e;
                     else if (this is UnknownTerm)
                         yield return this;
+                    else if (this is Sum)
+                    {
+                        Sum s = this as Sum;
+                        foreach(Arithmetic a in s.Items)
+                        {
+                            foreach (IArithmetic e in a.UnknownTerms) yield return e;
+                        }
+                    }
+                    else if (this is Product)
+                    {
+                        Product p = this as Product;
+                        foreach (Arithmetic a in p.Items)
+                        {
+                            foreach (IArithmetic e in a.UnknownTerms) yield return e;
+                        }
+                    }
                 }
             }
         }
@@ -330,6 +357,22 @@ namespace PersistantModel
                         foreach (IArithmetic e in (this as Term).Coefficient.Coefficients) yield return e;
                     else if (this is Coefficient)
                         yield return this;
+                    else if (this is Sum)
+                    {
+                        Sum s = this as Sum;
+                        foreach (Arithmetic a in s.Items)
+                        {
+                            foreach (IArithmetic e in a.Coefficients) yield return e;
+                        }
+                    }
+                    else if (this is Product)
+                    {
+                        Product p = this as Product;
+                        foreach (Arithmetic a in p.Items)
+                        {
+                            foreach (IArithmetic e in a.Coefficients) yield return e;
+                        }
+                    }
                 }
             }
         }
@@ -359,6 +402,22 @@ namespace PersistantModel
                         foreach (IArithmetic e in (this as Term).Constant.Constants) yield return e;
                     else if (this is NumericValue)
                         yield return this;
+                    else if (this is Sum)
+                    {
+                        Sum s = this as Sum;
+                        foreach (Arithmetic a in s.Items)
+                        {
+                            foreach (IArithmetic e in a.Constants) yield return e;
+                        }
+                    }
+                    else if (this is Product)
+                    {
+                        Product p = this as Product;
+                        foreach (Arithmetic a in p.Items)
+                        {
+                            foreach (IArithmetic e in a.Constants) yield return e;
+                        }
+                    }
                 }
             }
         }
@@ -377,6 +436,24 @@ namespace PersistantModel
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Raise the event fetch
+        /// </summary>
+        /// <param name="records">records</param>
+        protected void OnFetch(RecordZone<Weight> records)
+        {
+            this.eventFetch(records, new EventArgs());
+        }
+
+        /// <summary>
+        /// Raise the event unfetch
+        /// </summary>
+        /// <param name="records">records</param>
+        protected void OnUnfetch(RecordZone<Weight> records)
+        {
+            this.eventUnfetch(records, new EventArgs());
+        }
 
         /// <summary>
         /// Sets a value into the dictionary
@@ -660,16 +737,12 @@ namespace PersistantModel
         /// Generates a new arithmetic object
         /// that's handle by a unique record zone
         /// </summary>
-        /// <returns></returns>
         protected virtual void MakeUnique(Arithmetic parent)
         {
             if (parent == null)
                 this.recordZone = new RecordZone<Weight>();
             else
-                this.recordZone = parent.recordZone;
-
-            this.weight = this.ComputeOwnerWeight();
-            this.eventFetch(this.recordZone, new EventArgs());
+                this.recordZone = parent.Records;
 
             if (this.IsBinaryOperator)
             {
@@ -691,8 +764,26 @@ namespace PersistantModel
                     this[coefName].MakeUnique(this);
                     this[unknownName].MakeUnique(this);
                 }
+                else if (this is Sum)
+                {
+                    Sum s = this as Sum;
+                    foreach(Arithmetic a in s.Items)
+                    {
+                        a.MakeUnique(this);
+                    }
+                }
+                else if (this is Product)
+                {
+                    Product p = this as Product;
+                    foreach (Arithmetic a in p.Items)
+                    {
+                        a.MakeUnique(this);
+                    }
+                }
             }
 
+            this.weight = this.ComputeOwnerWeight();
+            this.eventFetch(this.recordZone, new EventArgs());
             this.eventUnfetch(this.recordZone, new EventArgs());
         }
 
@@ -805,6 +896,7 @@ namespace PersistantModel
         public IArithmetic MakeUnique()
         {
             this.MakeUnique(null);
+            Gathering<Weight> g = new Gathering<Weight>(this.recordZone, this.OwnerWeight as Weight);
             return this;
         }
 
