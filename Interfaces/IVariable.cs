@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeuronalMathematics
+namespace Interfaces
 {
-    class Program
+    public interface IVariable
     {
-        static void Main(string[] args)
-        {
-        }
+        string Name { get; }
+        dynamic Value { get; set; } 
     }
 }

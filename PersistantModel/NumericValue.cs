@@ -14,15 +14,6 @@ namespace PersistantModel
     public class NumericValue : Arithmetic
     {
 
-        #region Fields
-
-        /// <summary>
-        /// Index name to store value
-        /// </summary>
-        private static readonly string valueName = "value";
-
-        #endregion
-
         #region Constructor
 
         /// <summary>
@@ -41,7 +32,6 @@ namespace PersistantModel
         public NumericValue(double d)
         {
             this[valueName] = d;
-            this[weightName] = this.ComputeOwnerWeight();
         }
 
         #endregion

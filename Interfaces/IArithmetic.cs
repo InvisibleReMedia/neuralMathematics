@@ -8,7 +8,25 @@ namespace Interfaces
 {
     public interface IArithmetic : IEquation, ICloneable
     {
+        /// <summary>
+        /// Event to fetch all data into
+        /// a unique list of unique records
+        /// </summary>
+        event EventHandler Fetch;
+        /// <summary>
+        /// Event to unfetch all data into
+        /// a unique list of unique records
+        /// </summary>
+        event EventHandler Unfetch;
+        /// <summary>
+        /// Gets the unique content
+        /// </summary>
         IWeight OwnerWeight { get; }
+        /// <summary>
+        /// Gets an object from a serialized dictionary content
+        /// </summary>
+        /// <param name="name">key name</param>
+        /// <returns>dynamix object (all data type is possible)</returns>
         dynamic this[string name] { get; set; }
     }
 }

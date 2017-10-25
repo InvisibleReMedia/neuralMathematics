@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RecordZone.cs" />
     <Compile Include="Texte.cs" />
     <Compile Include="UnaryOperation.cs" />
     <Compile Include="Inverse.cs" />
@@ -61,7 +62,6 @@
     <Compile Include="Product.cs" />
     <Compile Include="Sum.cs" />
     <Compile Include="Term.cs" />
-    <Compile Include="TopLevelArithmeticModel.cs" />
     <Compile Include="UnknownTerm.cs" />
     <Compile Include="Verify.cs" />
     <Compile Include="Weight.cs" />

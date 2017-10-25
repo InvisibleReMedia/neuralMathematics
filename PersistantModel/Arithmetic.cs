@@ -13,12 +13,91 @@ namespace PersistantModel
     /// arithmetiques
     /// </summary>
     [Serializable]
-    public class Arithmetic : PersistentDataObject, IArithmetic, IEquation, ICloneable, IEqualityComparer<IArithmetic>
+    public class Arithmetic : IArithmetic, IEquation, ICloneable, IEqualityComparer<Arithmetic>
     {
 
         #region Fields
 
-        protected static readonly string weightName = "weight";
+        /// <summary>
+        /// Index name to store the equation object
+        /// </summary>
+        protected static readonly string equationName = "equation";
+        /// <summary>
+        /// nom pour le champ lettre
+        /// </summary>
+        protected static readonly string letterName = "letter";
+        /// <summary>
+        /// Index name to store a boolean value of having an existing value
+        /// </summary>
+        protected static readonly string hasValueName = "hasValue";
+        /// <summary>
+        /// nom pour le champ valeur
+        /// </summary>
+        protected static readonly string valueName = "value";
+        /// <summary>
+        /// Index name to store operator name
+        /// </summary>
+        protected static readonly string operatorName = "operator";
+        /// <summary>
+        /// Index name to store value
+        /// </summary>
+        protected static readonly string innerOperandName = "inner";
+        /// <summary>
+        /// Index name to store left value
+        /// </summary>
+        protected static readonly string leftTermName = "left";
+        /// <summary>
+        /// Index name to store right value
+        /// </summary>
+        protected static readonly string rightTermName = "right";
+        /// <summary>
+        /// Index name to store a constant
+        /// </summary>
+        protected static readonly string constantName = "constant";
+        /// <summary>
+        /// Index name to store a coefficient
+        /// </summary>
+        protected static readonly string coefName = "coefficient";
+        /// <summary>
+        /// Index name to store an unknown term
+        /// </summary>
+        protected static readonly string unknownName = "unknown";
+        /// <summary>
+        /// Boolean to act equation as calculable
+        /// </summary>
+        protected static readonly string isCalculableName = "isCalculable";
+        /// <summary>
+        /// Value that acts as a calculated result
+        /// </summary>
+        protected static readonly string calculatedValueName = "calculated";
+        /// <summary>
+        /// String element that acts as an un-calculable result
+        /// </summary>
+        protected static readonly string uncalculatedValueName = "uncalculated";
+        /// <summary>
+        /// Index name to store list
+        /// </summary>
+        protected static readonly string listName = "list";
+
+        /// <summary>
+        /// Computed weight
+        /// </summary>
+        protected Weight weight;
+
+        /// <summary>
+        /// mutualized record zone
+        /// </summary>
+        protected RecordZone<Weight> recordZone;
+
+        /// <summary>
+        /// Inner data informations
+        /// </summary>
+        protected Dictionary<string, dynamic> persistentData;
+
+        /// <summary>
+        /// Events
+        /// </summary>
+        private event EventHandler eventFetch, eventUnfetch;
 
         #endregion
 
@@ -29,6 +108,7 @@ namespace PersistantModel
         /// </summary>
         protected Arithmetic()
         {
+            this.persistentData = new Dictionary<string, dynamic>();
         }
 
         #endregion
@@ -36,15 +116,13 @@ namespace PersistantModel
         #region Properties
 
         /// <summary>
-        /// Gets the unique and readonly weight for this object
+        /// Gets the weight content
         /// </summary>
         public IWeight OwnerWeight
         {
             get
             {
-                if (!this.Data.ContainsKey(weightName))
-                    this[weightName] = this.ComputeOwnerWeight();
-                return this[weightName];
+                return this.weight;
             }
         }
 
@@ -63,6 +141,38 @@ namespace PersistantModel
             set
             {
                 this.Set(name, value);
+            }
+        }
+
+        /// <summary>
+        /// Event to fetch all data into
+        /// a unique list of unique records
+        /// </summary>
+        public event EventHandler Fetch
+        {
+            add
+            {
+                this.eventFetch += value;
+            }
+            remove
+            {
+                this.eventFetch -= value;
+            }
+        }
+
+        /// <summary>
+        /// Event to unfetch all data into
+        /// a unique list of unique records
+        /// </summary>
+        public event EventHandler Unfetch
+        {
+            add
+            {
+                this.eventUnfetch += value;
+            }
+            remove
+            {
+                this.eventUnfetch -= value;
             }
         }
 
@@ -151,6 +261,18 @@ namespace PersistantModel
             get
             {
                 throw new NotSupportedException();
+            }
+        }
+
+        /// <summary>
+        /// Gets true if equation is calculable
+        /// </summary>
+        public bool IsCalculable
+        {
+            get
+            {
+                this.Compute();
+                return this[isCalculableName];
             }
         }
 
@@ -257,20 +379,42 @@ namespace PersistantModel
         #region Methods
 
         /// <summary>
+        /// Sets a value into the dictionary
+        /// </summary>
+        /// <param name="name">name of the field</param>
+        /// <param name="value">value of field</param>
+        protected void Set(string name, dynamic value)
+        {
+            if (this.persistentData.ContainsKey(name))
+            {
+                this.persistentData[name] = value;
+            }
+            else
+            {
+                this.persistentData.Add(name, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets a value from the dictionary
+        /// </summary>
+        /// <param name="name">name of the field</param>
+        /// <returns>value</returns>
+        protected dynamic Get(string name, dynamic init = null)
+        {
+            if (!this.persistentData.ContainsKey(name))
+            {
+                this.persistentData.Add(name, init);
+            }
+            return this.persistentData[name];
+        }
+
+        /// <summary>
         /// Computes the unique weight
         /// for this object
         /// </summary>
         /// <returns>weight</returns>
         protected virtual Weight ComputeOwnerWeight()
-        {
-            throw new NotSupportedException();
-        }
-
-        /// <summary>
-        /// Update data with unique for serialization
-        /// before
-        /// </summary>
-        protected virtual void UpdateSource()
         {
             throw new NotSupportedException();
         }
@@ -403,20 +547,170 @@ namespace PersistantModel
         }
 
         /// <summary>
+        /// When an equation can be calculable then
+        /// the result is a number else, it's an arithmetic expression
+        /// </summary>
+        /// <returns></returns>
+        protected virtual string Compute()
+        {
+            string output = string.Empty;
+
+            if (this.IsBinaryOperator)
+            {
+                string left = string.Empty, right = string.Empty;
+                if (this.LeftOperand != null)
+                    left = this.LeftOperand.Calculate();
+                if (this.RightOperand != null)
+                    right = this.RightOperand.Calculate();
+                if (this.LeftOperand.IsCalculable && this.RightOperand.IsCalculable)
+                {
+                    this[isCalculableName] = true;
+                    switch(this.Operator)
+                    {
+                        case '+':
+                            output = (Convert.ToDouble(left) + Convert.ToDouble(right)).ToString();
+                            break;
+                        case '-':
+                            output = (Convert.ToDouble(left) - Convert.ToDouble(right)).ToString();
+                            break;
+                        case '*':
+                            output = (Convert.ToDouble(left) * Convert.ToDouble(right)).ToString();
+                            break;
+                        case '/':
+                            double d = Convert.ToDouble(right);
+                            if (d != 0.0d)
+                                output = (Convert.ToDouble(left) / d).ToString();
+                            else
+                                output = Double.NaN.ToString();
+                            break;
+                        case '^':
+                            output = Math.Pow(Convert.ToDouble(left),Convert.ToDouble(right)).ToString();
+                            break;
+                        case 'v':
+                            double r = Convert.ToDouble(right);
+                            if (r != 0.0d)
+                                output = Math.Pow(Convert.ToDouble(left), 1 / r).ToString();
+                            else
+                                output = Double.NaN.ToString();
+                            break;
+                        case '=':
+                            output = "= is TRUE";
+                            break;
+                    }
+                }
+                else
+                {
+                    this[isCalculableName] = false;
+                    output = "(" + left + " " + this.Operator + " " + right + ")";
+                }
+            }
+            else if (this.IsUnaryOperator)
+            {
+                if (this.InnerOperand != null)
+                {
+                    string inner = this.InnerOperand.Calculate();
+                    if (this.InnerOperand.IsCalculable)
+                    {
+                        this[isCalculableName] = true;
+                        switch (this.Operator)
+                        {
+                            case 'p':
+                                output = Convert.ToDouble(inner).ToString();
+                                break;
+                            case 'n':
+                                output = (-Convert.ToDouble(inner)).ToString();
+                                break;
+                            case '\\':
+                                double d = Convert.ToDouble(inner);
+                                if (d != 0.0d)
+                                    output = (1 / d).ToString();
+                                else
+                                    output = Double.NaN.ToString();
+                                break;
+                        }
+
+                    }
+                    else
+                    {
+                        this[isCalculableName] = false;
+                        output = this.Operator + "(" + this.InnerOperand.ToString() + ")";
+                    }
+                }
+            }
+            else
+            {
+                if (this is Term)
+                {
+                    Term t = this as Term;
+                    output = "{" + t.Constant.ToTex() + "} * {" + t.Coefficient.ToTex() + "} * {" + t.Unknown.ToTex() + "}";
+                }
+                else if (this is NumericValue)
+                    output = (this as NumericValue).Value.ToString();
+                else if (this is Coefficient)
+                    output = (this as Coefficient).Compute();
+                else if (this is UnknownTerm)
+                    output = (this as UnknownTerm).Compute();
+                else
+                    throw new InvalidCastException();
+            }
+            return output;
+        }
+
+        /// <summary>
+        /// Generates a new arithmetic object
+        /// that's handle by a unique record zone
+        /// </summary>
+        /// <returns></returns>
+        protected virtual void MakeUnique(Arithmetic parent)
+        {
+            if (parent == null)
+                this.recordZone = new RecordZone<Weight>();
+            else
+                this.recordZone = parent.recordZone;
+
+            this.weight = this.ComputeOwnerWeight();
+            this.eventFetch(this.recordZone, new EventArgs());
+
+            if (this.IsBinaryOperator)
+            {
+                if (this[leftTermName] != null)
+                    this[leftTermName].MakeUnique(this);
+                if (this[rightTermName] != null)
+                    this[rightTermName].MakeUnique(this);
+            }
+            else if (this.IsUnaryOperator)
+            {
+                if (this[innerOperandName] != null)
+                    this[innerOperandName].MakeUnique(this);
+            }
+            else
+            {
+                if (this is Term)
+                {
+                    this[constantName].MakeUnique(this);
+                    this[coefName].MakeUnique(this);
+                    this[unknownName].MakeUnique(this);
+                }
+            }
+
+            this.eventUnfetch(this.recordZone, new EventArgs());
+        }
+
+        /// <summary>
         /// Clone this arithmetic object
         /// </summary>
         /// <returns>new arithmetic object</returns>
         public object Clone()
         {
             IArithmetic p = this.Create();
-            foreach (string key in this.Data.Keys)
+            foreach (string key in this.persistentData.Keys)
             {
-                if (this.Data[key] is IArithmetic)
-                    p[key] = this.Data[key].Clone();
-                else if (this.Data[key] is string)
-                    p[key] = this.Data[key].Clone();
+                if (this.persistentData[key] is IArithmetic)
+                    p[key] = this.persistentData[key].Clone();
+                else if (this.persistentData[key] is string)
+                    p[key] = this.persistentData[key].Clone();
                 else
-                    p[key] = this.Data[key];
+                    p[key] = this.persistentData[key];
             }
             return p;
         }
@@ -504,11 +798,14 @@ namespace PersistantModel
         }
 
         /// <summary>
-        /// Make unique element
+        /// Generates a new arithmetic object
+        /// that's handle by a unique record zone
         /// </summary>
-        public void MakeUnique()
+        /// <returns>arithmetic object</returns>
+        public IArithmetic MakeUnique()
         {
-            this.UpdateSource();
+            this.MakeUnique(null);
+            return this;
         }
 
         /// <summary>
@@ -577,7 +874,31 @@ namespace PersistantModel
         /// <returns>string representation number or algebraic</returns>
         public string Calculate()
         {
-            throw new NotImplementedException();
+            if (this.persistentData.ContainsKey(isCalculableName))
+            {
+                if (this[isCalculableName])
+                {
+                    return this[calculatedValueName].ToString();
+                }
+                else
+                {
+                    return this[uncalculatedValueName];
+                }
+            }
+            else
+            {
+                this[isCalculableName] = false;
+                string res = this.Compute();
+                if (this[isCalculableName])
+                {
+                    this[calculatedValueName] = Convert.ToDouble(res);
+                }
+                else
+                {
+                    this[uncalculatedValueName] = res;
+                }
+                return res;
+            }
         }
 
         public IEnumerable<IArithmetic> Transform()
@@ -601,7 +922,7 @@ namespace PersistantModel
         /// <param name="x">object left</param>
         /// <param name="y">object right</param>
         /// <returns></returns>
-        public virtual bool Equals(IArithmetic x, IArithmetic y)
+        public virtual bool Equals(Arithmetic x, Arithmetic y)
         {
             return x.OwnerWeight == y.OwnerWeight;
         }
@@ -612,9 +933,9 @@ namespace PersistantModel
         /// </summary>
         /// <param name="obj">obj</param>
         /// <returns>hash code</returns>
-        public int GetHashCode(IArithmetic obj)
+        public int GetHashCode(Arithmetic obj)
         {
-            return obj.OwnerWeight.GetHashCode();
+            return obj.GetHashCode();
         }
 
         #endregion

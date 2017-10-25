@@ -13,18 +13,6 @@ namespace PersistantModel
     [Serializable]
     public class UnaryOperation : Arithmetic
     {
-        #region Fields
-
-        /// <summary>
-        /// Index name to store operator name
-        /// </summary>
-        protected static readonly string operatorName = "operator";
-        /// <summary>
-        /// Index name to store value
-        /// </summary>
-        protected static readonly string valueName = "inner";
-
-        #endregion
 
         #region Constructor
 
@@ -45,8 +33,7 @@ namespace PersistantModel
         protected UnaryOperation(char op, double n)
         {
             this[operatorName] = op;
-            this[valueName] = new NumericValue(n);
-            this[weightName] = this.ComputeOwnerWeight();
+            this[innerOperandName] = new NumericValue(n);
         }
 
         /// <summary>
@@ -58,8 +45,7 @@ namespace PersistantModel
         protected UnaryOperation(char op, IArithmetic t)
         {
             this[operatorName] = op;
-            this[valueName] = t.Clone();
-            this[weightName] = this.ComputeOwnerWeight();
+            this[innerOperandName] = t.Clone();
         }
 
         #endregion
@@ -117,23 +103,13 @@ namespace PersistantModel
         {
             get
             {
-                return this[valueName];
+                return this[innerOperandName];
             }
         }
 
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Update data with unique for serialization
-        /// before
-        /// </summary>
-        protected override void UpdateSource()
-        {
-            if (this.InnerOperand != null && this.InnerOperand.OwnerWeight != null)
-                this[valueName] = this.InnerOperand.OwnerWeight.OwnerObject;
-        }
 
         /// <summary>
         /// Computes the unique weight

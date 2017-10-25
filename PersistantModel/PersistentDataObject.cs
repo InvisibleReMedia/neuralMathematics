@@ -42,6 +42,27 @@ namespace PersistantModel
         }
 
         /// <summary>
+        /// Gets all direct keys
+        /// </summary>
+        public IEnumerable<string> Keys
+        {
+            get
+            {
+                return this.Data.Keys;
+            }
+        }
+
+        /// <summary>
+        /// Test if a key exists
+        /// </summary>
+        /// <param name="name">key name</param>
+        /// <returns>true if exists</returns>
+        public bool Exists(string name)
+        {
+            return this.Data.ContainsKey(name);
+        }
+
+        /// <summary>
         /// Sets a value into the dictionary
         /// </summary>
         /// <param name="name">name of the field</param>
@@ -70,6 +91,15 @@ namespace PersistantModel
                 this.Data.Add(name, init);
             }
             return this.Data[name];
+        }
+
+        /// <summary>
+        /// Remove a key
+        /// </summary>
+        /// <param name="name">key name</param>
+        public void Remove(string name)
+        {
+            this.Data.Remove(name);
         }
 
         /// <summary>

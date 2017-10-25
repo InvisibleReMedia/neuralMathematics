@@ -8,6 +8,10 @@ using System.Windows.Documents;
 
 namespace Maths
 {
+    /// <summary>
+    /// Reponse to a question from an exercice
+    /// </summary>
+    [Serializable]
     public class Answer : PersistentDataObject
     {
 

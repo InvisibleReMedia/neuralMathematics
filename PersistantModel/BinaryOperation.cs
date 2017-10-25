@@ -13,21 +13,6 @@ namespace PersistantModel
     [Serializable]
     public class BinaryOperation : Arithmetic
     {
-        #region Fields
-
-        /// <summary>
-        /// Index name to store operator name
-        /// </summary>
-        protected static readonly string operatorName = "operator";
-        /// <summary>
-        /// Index name to store left value
-        /// </summary>
-        protected static readonly string leftTermName = "left";
-        /// <summary>
-        /// Index name to store right value
-        /// </summary>
-        protected static readonly string rightTermName = "right";
-        #endregion
 
         #region Constructor
 
@@ -51,7 +36,6 @@ namespace PersistantModel
             this[operatorName] = op;
             this[leftTermName] = new NumericValue(n1);
             this[rightTermName] = new NumericValue(n2);
-            this[weightName] = this.ComputeOwnerWeight();
         }
 
         /// <summary>
@@ -66,7 +50,6 @@ namespace PersistantModel
             this[operatorName] = op;
             this[leftTermName] = t1.Clone();
             this[rightTermName] = t2.Clone();
-            this[weightName] = this.ComputeOwnerWeight();
         }
 
         #endregion
@@ -153,18 +136,6 @@ namespace PersistantModel
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Update data with unique for serialization
-        /// before
-        /// </summary>
-        protected override void UpdateSource()
-        {
-            if (this.LeftOperand != null && this.LeftOperand.OwnerWeight != null)
-                this[leftTermName] = this.LeftOperand.OwnerWeight.OwnerObject;
-            if (this.RightOperand != null && this.RightOperand.OwnerWeight != null)
-               this[rightTermName] = this.RightOperand.OwnerWeight.OwnerObject;
-        }
 
         /// <summary>
         /// Computes the unique weight

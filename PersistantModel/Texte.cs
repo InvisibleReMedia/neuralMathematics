@@ -11,7 +11,8 @@ namespace PersistantModel
     /// Classe supportant un texte
     /// ou un document rtf
     /// </summary>
-    public class Texte : Arithmetic
+    [Serializable]
+    public class Texte : PersistentDataObject
     {
 
         #region Fields
@@ -65,19 +66,10 @@ namespace PersistantModel
         #region Methods
 
         /// <summary>
-        /// Converts content to string
-        /// </summary>
-        /// <returns></returns>
-        protected override IArithmetic Create()
-        {
-            return new Texte();
-        }
-
-        /// <summary>
         /// Converts content to tex
         /// </summary>
         /// <returns></returns>
-        public override string ToTex()
+        public string ToTex()
         {
             return this.Content;
         }

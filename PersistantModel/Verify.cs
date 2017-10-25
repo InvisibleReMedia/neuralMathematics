@@ -38,11 +38,11 @@ namespace PersistantModel
 
         #region Properties
 
-        public IEnumerable<IArithmetic> Variables
+        public IEnumerable<IVariable> Variables
         {
             get
             {
-                return this.equalOp.Coefficients.Concat(this.equalOp.UnknownTerms);
+                return this.equalOp.Coefficients.Concat(this.equalOp.UnknownTerms).Cast<IVariable>();
             }
         }
 
@@ -56,7 +56,9 @@ namespace PersistantModel
         /// <returns>true if valid</returns>
         public bool IsValid()
         {
-            return false;
+            string left = this.equalOp.LeftOperand.Calculate();
+            string right = this.equalOp.RightOperand.Calculate();
+            return left == right;
         }
 
         #endregion

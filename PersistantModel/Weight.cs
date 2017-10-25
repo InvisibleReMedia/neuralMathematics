@@ -10,14 +10,10 @@ namespace PersistantModel
     /// to identify an equation uniquely
     /// </summary>
     [Serializable]
-    public class Weight : IWeight, IEqualityComparer<IWeight>
+    public class Weight : PersistentDataObject, IWeight, IEqualityComparer<Weight>
     {
-        #region Fields
 
-        /// <summary>
-        /// GetHashCode list
-        /// </summary>
-        private static Dictionary<int, Weight> hashCodes;
+        #region Fields
 
         /// <summary>
         /// Value type for a constant
@@ -53,21 +49,26 @@ namespace PersistantModel
         public static readonly byte MultipleOperationValueType = 128;
 
         /// <summary>
-        /// Value type of this weight
+        /// Index name of value type of this weight
         /// </summary>
-        private byte typeValue;
+        private static readonly string typeValueName = "typeValue";
         /// <summary>
-        /// Operator or function
+        /// Index name for operator or function
         /// </summary>
-        private char arithmeticOperator;
+        private static readonly string arithmeticOperatorName = "arithmeticOperator";
         /// <summary>
-        /// Specific data support
+        /// Index name for specific data support
         /// </summary>
-        private dynamic value;
+        private static readonly string valueName = "value";
         /// <summary>
-        /// Owner instance to keep unique element
+        /// Index value for hash code
         /// </summary>
-        private IArithmetic ownerInstance;
+        private static readonly string hashCodeName = "hash";
+
+        /// <summary>
+        /// The current object that's correspond to itself
+        /// </summary>
+        private Weight ownerObject;
 
         #endregion
 
@@ -103,56 +104,80 @@ namespace PersistantModel
         #region Properties
 
         /// <summary>
-        /// Gets or sets all hashcodes required 
-        /// </summary>
-        public static Dictionary<int, Weight> HashCodes
-        {
-            get
-            {
-                return hashCodes;
-            }
-            set
-            {
-                hashCodes = new Dictionary<int, Weight>(value);
-            }
-        }
-
-        /// <summary>
-        /// Gets the owner object instance
-        /// </summary>
-        public IArithmetic OwnerObject
-        {
-            get
-            {
-                return this.ownerInstance;
-            }
-        }
-
-        /// <summary>
-        /// Gets unique arithmetic instance of object
-        /// </summary>
-        public static IEnumerable<IArithmetic> UniqueArithmeticInstances
-        {
-            get
-            {
-                return hashCodes.Values.Select(x => x.OwnerObject);
-            }
-        }
-
-        /// <summary>
         /// Gets the hash code number
         /// </summary>
         public int HashCode
         {
             get
             {
-                return this.GetHashCode();
+                return this[hashCodeName];
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value from
+        /// persistent data
+        /// </summary>
+        /// <param name="name">name</param>
+        /// <returns>value</returns>
+        public dynamic this[string name]
+        {
+            get
+            {
+                return this.Get(name);
+            }
+            set
+            {
+                this.Set(name, value);
             }
         }
 
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Activate record zone
+        /// </summary>
+        /// <param name="sender">origin</param>
+        /// <param name="e">args</param>
+        private void Owner_Fetch(object sender, EventArgs e)
+        {
+            RecordZone<Weight> recordZone = sender as RecordZone<Weight>;
+            int h = this[hashCodeName];
+            foreach(Weight w in recordZone.Records)
+            {
+                if (w == this.ownerObject)
+                {
+                    h = w.GetHashCode();
+                    break;
+                }
+            }
+            if (!recordZone.Exists(h))
+            {
+                recordZone.Add(h, this.ownerObject);
+            }
+            else
+            {
+                Weight recorded = recordZone.Ask(h);
+                if (recorded != this)
+                    throw new InvalidCastException(String.Format("Weight {0} is not equals to Weight {1}", recorded.ToString(), this.ToString()));
+                else
+                {
+                    this.ownerObject = recorded;
+                    this[hashCodeName] = h;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deactivate record zone
+        /// </summary>
+        /// <param name="sender">origin</param>
+        /// <param name="e">args</param>
+        private void Owner_Unfetch(object sender, EventArgs e)
+        {
+        }
 
         /// <summary>
         /// Construction of elements
@@ -164,47 +189,14 @@ namespace PersistantModel
         /// <param name="owner">owner object</param>
         protected void Construct(byte type, char op, dynamic value, IArithmetic owner)
         {
-            this.typeValue = type;
-            this.arithmeticOperator = op;
-            this.value = value;
-            int h = this.GetHashCode();
-            foreach (Weight w in hashCodes.Values)
-            {
-                if (w == this)
-                {
-                    h = w.GetHashCode();
-                    break;
-                }
-            }
-            if (!hashCodes.ContainsKey(h))
-            {
-                this.ownerInstance = owner;
-                hashCodes.Add(h, this);
-            }
-            else
-                if (hashCodes[h] != this)
-                throw new InvalidCastException(String.Format("Weight {0} is not equals to Weight {1}", hashCodes[h].ToString(), this.ToString()));
-            else
-                this.ownerInstance = hashCodes[h].OwnerObject;
-        }
+            this[typeValueName] = type;
+            this[arithmeticOperatorName] = op;
+            this[valueName] = value;
+            this[hashCodeName] = owner.GetHashCode();
+            this.ownerObject = this;
+            owner.Fetch += Owner_Fetch;
+            owner.Unfetch += Owner_Unfetch;
 
-        /// <summary>
-        /// Initialize hash codes
-        /// </summary>
-        public static void Initialize()
-        {
-            hashCodes = new Dictionary<int, Weight>();
-        }
-
-        /// <summary>
-        /// Empty hash codes list
-        /// </summary>
-        public static void Clear()
-        {
-            if (hashCodes != null)
-                hashCodes.Clear();
-            else
-                hashCodes = new Dictionary<int, Weight>();
         }
 
         /// <summary>
@@ -285,13 +277,13 @@ namespace PersistantModel
         /// <returns>true if equals</returns>
         public static bool operator ==(Weight x, Weight y)
         {
-            if (x.typeValue == y.typeValue)
+            if (x[typeValueName] == y[typeValueName])
             {
-                if (x.typeValue == BinaryOperatorValueType || x.typeValue == UnaryOperatorValueType || x.typeValue == MultipleOperationValueType)
+                if (x[typeValueName] == BinaryOperatorValueType || x[typeValueName] == UnaryOperatorValueType || x[typeValueName] == MultipleOperationValueType)
                 {
-                    if (x.arithmeticOperator == y.arithmeticOperator)
+                    if (x[arithmeticOperatorName] == y[arithmeticOperatorName])
                     {
-                        if (x.value == y.value)
+                        if (x[valueName] == y[valueName])
                         {
                             return true;
                         }
@@ -307,7 +299,7 @@ namespace PersistantModel
                 }
                 else
                 {
-                    if (x.value == y.value)
+                    if (x[valueName] == y[valueName])
                     {
                         return true;
                     }
@@ -331,13 +323,13 @@ namespace PersistantModel
         /// <returns>true if at least different</returns>
         public static bool operator !=(Weight x, Weight y)
         {
-            if (x.typeValue == y.typeValue)
+            if (x[typeValueName] == y[typeValueName])
             {
-                if (x.typeValue == BinaryOperatorValueType || x.typeValue == UnaryOperatorValueType || x.typeValue == MultipleOperationValueType)
+                if (x[typeValueName] == BinaryOperatorValueType || x[typeValueName] == UnaryOperatorValueType || x[typeValueName] == MultipleOperationValueType)
                 {
-                    if (x.arithmeticOperator == y.arithmeticOperator)
+                    if (x[arithmeticOperatorName] == y[arithmeticOperatorName])
                     {
-                        if (x.value == y.value)
+                        if (x[valueName] == y[valueName])
                         {
                             return false;
                         }
@@ -353,7 +345,7 @@ namespace PersistantModel
                 }
                 else
                 {
-                    if (x.value == y.value)
+                    if (x[valueName] == y[valueName])
                     {
                         return false;
                     }
@@ -380,13 +372,13 @@ namespace PersistantModel
             {
                 Weight w = obj as Weight;
 
-                if (this.typeValue == w.typeValue)
+                if (this[typeValueName] == w[typeValueName])
                 {
-                    if (w.typeValue == BinaryOperatorValueType || w.typeValue == UnaryOperatorValueType || w.typeValue == MultipleOperationValueType)
+                    if (w[typeValueName] == BinaryOperatorValueType || w[typeValueName] == UnaryOperatorValueType || w[typeValueName] == MultipleOperationValueType)
                     {
-                        if (this.arithmeticOperator == w.arithmeticOperator)
+                        if (this[arithmeticOperatorName] == w[arithmeticOperatorName])
                         {
-                            if (this.value == w.value)
+                            if (this[valueName] == w[valueName])
                             {
                                 return true;
                             }
@@ -402,7 +394,7 @@ namespace PersistantModel
                     }
                     else
                     {
-                        if (this.value == w.value)
+                        if (this[valueName] == w[valueName])
                         {
                             return true;
                         }
@@ -430,7 +422,7 @@ namespace PersistantModel
         /// <returns>hash code</returns>
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return this[hashCodeName];
         }
 
         /// <summary>
@@ -439,21 +431,9 @@ namespace PersistantModel
         /// <param name="x">weight left</param>
         /// <param name="y">weight right</param>
         /// <returns>true if equals false elsewhere</returns>
-        public bool Equals(IWeight x, IWeight y)
+        public bool Equals(Weight x, Weight y)
         {
-            int hx, hy;
-            hx = this.GetHashCode(x);
-            hy = this.GetHashCode(y);
-            if (hx == hy)
-            {
-                if (hashCodes.ContainsKey(hx) && hashCodes.ContainsKey(hy))
-                {
-                    return hashCodes[hx] == hashCodes[hy];
-                }
-                return true;
-
-            }
-            else return false;
+            return x.Equals(y);
         }
 
         /// <summary>
@@ -461,7 +441,7 @@ namespace PersistantModel
         /// </summary>
         /// <param name="obj">weight</param>
         /// <returns>prior hash code</returns>
-        public int GetHashCode(IWeight obj)
+        public int GetHashCode(Weight obj)
         {
             return obj.GetHashCode();
         }
@@ -472,9 +452,10 @@ namespace PersistantModel
         /// <returns></returns>
         public override string ToString()
         {
-            return this.OwnerObject.ToString();
+            return this.ownerObject.ToString();
         }
 
         #endregion
+
     }
 }

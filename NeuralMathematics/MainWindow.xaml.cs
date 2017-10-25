@@ -32,9 +32,16 @@ namespace NeuralMathematics
 
         private void doc_Loaded(object sender, RoutedEventArgs r)
         {
-            this.doc.Document = Applicatifs.ReloadNewton();
-            this.doc.UpdateLayout();
-            this.WindowState = WindowState.Maximized;
+            try
+            {
+                this.doc.Document = Applicatifs.Newton();
+                this.doc.UpdateLayout();
+                this.WindowState = WindowState.Maximized;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void doc_SizeChanged(object sender, SizeChangedEventArgs e)

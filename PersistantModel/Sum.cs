@@ -14,19 +14,6 @@ namespace PersistantModel
     public class Sum : Arithmetic
     {
 
-        #region Fields
-
-        /// <summary>
-        /// Index name to store operator name
-        /// </summary>
-        protected static readonly string operatorName = "operator";
-        /// <summary>
-        /// Index name to store list
-        /// </summary>
-        protected static readonly string listName = "list";
-
-        #endregion
-
         #region Constructors
 
         /// <summary>
@@ -44,7 +31,6 @@ namespace PersistantModel
         {
             this[operatorName] = 's';
             this[listName] = inputs.ToList();
-            this[weightName] = this.ComputeOwnerWeight();
         }
         #endregion
 
@@ -246,16 +232,80 @@ namespace PersistantModel
         }
 
         /// <summary>
-        /// Update data with unique for serialization
-        /// before
+        /// When an equation can be calculable then
+        /// the result is a number else, it's an arithmetic expression
         /// </summary>
-        protected override void UpdateSource()
+        /// <returns></returns>
+        protected override string Compute()
         {
-            for(int index = 0; index < this.List.Count; ++index)
+            string output = string.Empty;
+            bool first = true;
+            string res;
+            List<double> values = new List<double>();
+            foreach (IArithmetic a in this.Items)
             {
-                if (this.List[index] != null && this.List[index].OwnerWeight != null)
-                    this.List[index] = this.List[index].OwnerWeight.OwnerObject;
+                if (first)
+                {
+                    res = a.Calculate();
+                    if (a.IsCalculable)
+                    {
+                        this[isCalculableName] = true;
+                        this[calculatedValueName] = Convert.ToDouble(res);
+                    }
+                    else
+                    {
+                        this[isCalculableName] = false;
+                        this[uncalculatedValueName] = res;
+                    }
+                    first = false;
+                }
+                else
+                {
+                    res = a.Calculate();
+                    if (a.IsCalculable)
+                    {
+                        if (this[isCalculableName])
+                        {
+                            this[calculatedValueName] = this[calculatedValueName] + Convert.ToDouble(res);
+                        }
+                        else
+                        {
+                            values.Add(Convert.ToDouble(res));
+                        }
+                    }
+                    else
+                    {
+                        if (this[isCalculableName])
+                        {
+                            this[isCalculableName] = false;
+                            values.Add(this[calculatedValueName]);
+                            this[uncalculatedValueName] = res;
+                        }
+                        else
+                        {
+                            this[uncalculatedValueName] = this[uncalculatedValueName] + " + " + res;
+                        }
+                    }
+                }
             }
+
+            if (this[isCalculableName])
+            {
+                output = this[calculatedValueName].ToString();
+            }
+            else
+            {
+                double sum = 0.0d;
+                foreach (double d in values)
+                {
+                    sum += d;
+                }
+                if (values.Count > 0)
+                    output = sum.ToString() + " + ";
+                output += this[uncalculatedValueName];
+                this[uncalculatedValueName] = output;
+            }
+            return output;
         }
 
         /// <summary>

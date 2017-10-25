@@ -1,4 +1,5 @@
 ﻿using Interfaces;
+using PersistantModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersistantModel
+namespace Maths
 {
     /// <summary>
     /// This is the top level arithmetic
@@ -25,7 +26,7 @@ namespace PersistantModel
         /// <summary>
         /// Equation list
         /// </summary>
-        private static readonly string equationListName = "equations";
+        private static readonly string wordingListName = "wordingList";
         /// <summary>
         /// title of the file
         /// </summary>
@@ -49,7 +50,7 @@ namespace PersistantModel
         protected TopLevelArithmeticModel()
         {
             this.Set(versionName,"1.0.0.0");
-            this.Set(equationListName, new List<IArithmetic>());
+            this.Set(wordingListName, new List<Wording>());
             this.Set(titleName, "New");
             this.Set(revisionName, UInt32.MinValue);
         }
@@ -69,11 +70,11 @@ namespace PersistantModel
         /// <summary>
         /// Gets equation list
         /// </summary>
-        public List<IArithmetic> EquationList
+        public List<Wording> WordingList
         {
             get
             {
-                return this.Get(equationListName);
+                return this.Get(wordingListName);
             }
         }
 
@@ -146,7 +147,6 @@ namespace PersistantModel
             PersistentDataObject t = null;
             if (PersistentDataObject.Load(fi, out t))
             {
-                Weight.HashCodes = t.Get(hashCodeDictName);
             }
             return t as TopLevelArithmeticModel;
         }
@@ -161,7 +161,6 @@ namespace PersistantModel
         {
             uint rev = this.Get(revisionName);
             this.Set(revisionName, rev + 1);
-            this.Set(hashCodeDictName, Weight.HashCodes);
             PersistentDataObject.Save(fi, this);
         }
 

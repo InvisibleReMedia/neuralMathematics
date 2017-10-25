@@ -14,23 +14,6 @@ namespace PersistantModel
     public class Term : Arithmetic
     {
 
-        #region Fields
-
-        /// <summary>
-        /// Index name to store a constant
-        /// </summary>
-        private static readonly string constantName = "constant";
-        /// <summary>
-        /// Index name to store a coefficient
-        /// </summary>
-        private static readonly string coefName = "coefficient";
-        /// <summary>
-        /// Index name to store an unknown term
-        /// </summary>
-        private static readonly string unknownName = "unknown";
-
-        #endregion
-
         #region Constructor
 
         /// <summary>

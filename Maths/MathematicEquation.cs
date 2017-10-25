@@ -11,7 +11,7 @@ namespace Maths
     /// <summary>
     /// Equation class
     /// </summary>
-    public class MathematicEquation : IEquation
+    public class MathematicEquation
     {
 
         #region Fields
@@ -66,10 +66,13 @@ namespace Maths
         public static string OperatorInverse = "inverse";
 
         /// <summary>
-        /// Equation data
+        /// Records for this mathematic equation
+        /// </summary>
+        private RecordZone<Weight> records;
+        /// <summary>
+        /// Equation
         /// </summary>
         private IArithmetic eq;
-
         #endregion
 
         #region Constructors
@@ -218,6 +221,18 @@ namespace Maths
         #region Properties
 
         /// <summary>
+        /// Gets true if equation is calculable
+        /// </summary>
+        public bool IsCalculable
+        {
+            get
+            {
+                this.Calculate();
+                return this.eq.IsCalculable;
+            }
+        }
+
+        /// <summary>
         /// Gets all coefficients terms
         /// </summary>
         public IEnumerable<IArithmetic> Coefficients
@@ -266,14 +281,6 @@ namespace Maths
         #region Methods
 
         /// <summary>
-        /// Make unique element
-        /// </summary>
-        public void MakeUnique()
-        {
-            this.eq.MakeUnique();
-        }
-
-        /// <summary>
         /// String representation of the algebraic equation
         /// </summary>
         /// <param name="type">type representation</param>
@@ -299,7 +306,7 @@ namespace Maths
         /// <returns>string representation number or algebraic</returns>
         public string Calculate()
         {
-            throw new NotImplementedException();
+            return this.eq.Calculate();
         }
 
         public IEquation Develop()

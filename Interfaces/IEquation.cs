@@ -15,6 +15,10 @@ namespace Interfaces
         #region Properties
 
         /// <summary>
+        /// Gets true if an equation is calculable
+        /// </summary>
+        bool IsCalculable { get; }
+        /// <summary>
         /// Gets all unknown terms
         /// </summary>
         IEnumerable<IArithmetic> UnknownTerms { get; }
@@ -39,10 +43,11 @@ namespace Interfaces
         #region Methods
 
         /// <summary>
-        /// Make unique element
+        /// Generates a new arithmetic object
+        /// that's handle by a unique record zone
         /// </summary>
-        void MakeUnique();
-
+        /// <returns>arithmetic object</returns>
+        IArithmetic MakeUnique();
         /// <summary>
         /// Let a letter as a value
         /// given a letter and its value

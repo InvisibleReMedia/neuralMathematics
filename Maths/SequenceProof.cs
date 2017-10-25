@@ -14,7 +14,8 @@ namespace Maths
     /// Une séquence pour prouver un résultat
     /// au cours d'un exercice
     /// </summary>
-    public class SequenceProof : Arithmetic
+    [Serializable]
+    public class SequenceProof : PersistentDataObject
     {
 
         #region Fields

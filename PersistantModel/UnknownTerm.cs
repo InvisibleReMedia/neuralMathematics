@@ -11,21 +11,8 @@ namespace PersistantModel
     /// Terme inconnu
     /// </summary>
     [Serializable]
-    public class UnknownTerm : Arithmetic
+    public class UnknownTerm : Arithmetic, IVariable
     {
-
-        #region Fields
-
-        /// <summary>
-        /// Index name to store letter value
-        /// </summary>
-        private static readonly string letterName = "letter";
-        /// <summary>
-        /// Index name to store the equation object
-        /// </summary>
-        private static readonly string equationName = "equation";
-
-        #endregion
 
         #region Constructor
 
@@ -47,8 +34,7 @@ namespace PersistantModel
         public UnknownTerm(string letter)
         {
             this[letterName] = letter;
-            this[equationName] = new NumericValue(0.0d);
-            this[weightName] = this.ComputeOwnerWeight();
+            this[hasValueName] = false;
         }
 
         /// <summary>
@@ -62,8 +48,8 @@ namespace PersistantModel
         public UnknownTerm(string letter, IArithmetic eq)
         {
             this[letterName] = letter;
+            this[hasValueName] = true;
             this[equationName] = eq.Clone() as IArithmetic;
-            this[weightName] = this.ComputeOwnerWeight();
         }
 
         #endregion
@@ -82,17 +68,58 @@ namespace PersistantModel
         }
 
         /// <summary>
+        /// Gets the computed value of this unknown term
+        /// </summary>
+        dynamic IVariable.Value
+        {
+            get
+            {
+                return this.Value;
+            }
+            set
+            {
+                this.Content = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the computed value of this unknown term
+        /// </summary>
+        public string Value
+        {
+            get
+            {
+                if (this[hasValueName])
+                    return this[equationName].Calculate();
+                else
+                    return string.Empty;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the underlying equation
         /// </summary>
         public IArithmetic Content
         {
             get
             {
-                return this[equationName];
+                if (this[hasValueName])
+                    return this[equationName];
+                else
+                    return null;
             }
             set
             {
-                this[equationName] = value;
+                if (value != null)
+                {
+                    this[hasValueName] = true;
+                    this[equationName] = value;
+                }
+                else
+                {
+                    this[hasValueName] = false;
+                    this.persistentData.Remove(equationName);
+                }
             }
         }
 
@@ -143,6 +170,38 @@ namespace PersistantModel
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// When an equation can be calculable then
+        /// the result is a number else, it's an arithmetic expression
+        /// </summary>
+        /// <returns></returns>
+        protected override string Compute()
+        {
+            if (this[hasValueName])
+            {
+                this[equationName].Calculate();
+                if (this[equationName][isCalculableName])
+                {
+                    this[isCalculableName] = true;
+                    this[calculatedValueName] = this[equationName][calculatedValueName];
+                    return this[calculatedValueName];
+                }
+                else
+                {
+                    this[isCalculableName] = false;
+                    this[uncalculatedValueName] = this[equationName][uncalculatedValueName];
+                    return this[uncalculatedValueName];
+                }
+
+            }
+            else
+            {
+                this[isCalculableName] = false;
+                this[uncalculatedValueName] = this[letterName];
+                return this[letterName];
+            }
+        }
 
         /// <summary>
         /// Computes the unique weight

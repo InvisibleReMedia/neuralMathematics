@@ -12,21 +12,8 @@ namespace PersistantModel
     /// ou une équation d'un coefficient
     /// </summary>
     [Serializable]
-    public class Coefficient : Arithmetic
+    public class Coefficient : Arithmetic, IVariable
     {
-
-        #region Fields
-
-        /// <summary>
-        /// nom pour le champ lettre
-        /// </summary>
-        private static readonly string letterName = "letter";
-        /// <summary>
-        /// nom pour le champ valeur
-        /// </summary>
-        private static readonly string valueName = "value";
-
-        #endregion
 
         #region Constructors
 
@@ -48,8 +35,8 @@ namespace PersistantModel
         public Coefficient(string letter, double value)
         {
             this[letterName] = letter;
+            this[hasValueName] = true;
             this[valueName] = value;
-            this[weightName] = this.ComputeOwnerWeight();
         }
 
         /// <summary>
@@ -61,8 +48,7 @@ namespace PersistantModel
         public Coefficient(string letter)
         {
             this[letterName] = letter;
-            this[valueName] = 0.0d;
-            this[weightName] = this.ComputeOwnerWeight();
+            this[hasValueName] = false;
         }
 
         #endregion
@@ -81,17 +67,60 @@ namespace PersistantModel
         }
 
         /// <summary>
-        /// Gets or sets the value of this coefficient
+        /// Gets the value of this coefficient
         /// </summary>
-        public double Value
+        dynamic IVariable.Value
         {
             get
             {
-                return this[valueName];
+                return this.Value;
             }
             set
             {
-                this[valueName] = value;
+                if (value is IArithmetic)
+                {
+                    IArithmetic a = value as IArithmetic;
+                    string res = a.Calculate();
+                    if (a.IsCalculable)
+                    {
+                        this.Value = Convert.ToDouble(res);
+                    }
+                    else
+                    {
+                        throw new ArgumentException(String.Format("Equation {0} n'est pas calculable", a.ToString()));
+                    }
+                }
+                else
+                {
+                    this.Value = Convert.ToDouble(value);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the value of this coefficient
+        /// </summary>
+        public double? Value
+        {
+            get
+            {
+                if (this[hasValueName])
+                    return this[valueName];
+                else
+                    return null;
+            }
+            set
+            {
+                if (value.HasValue)
+                {
+                    this[hasValueName] = true;
+                    this[valueName] = value.Value;
+                }
+                else
+                {
+                    this[hasValueName] = false;
+                    this.persistentData.Remove(valueName);
+                }
             }
         }
 
@@ -143,6 +172,27 @@ namespace PersistantModel
 
         #region Methods
 
+        /// <summary>
+        /// When an equation can be calculable then
+        /// the result is a number else, it's an arithmetic expression
+        /// </summary>
+        /// <returns></returns>
+        protected override string Compute()
+        {
+            if (this[hasValueName])
+            {
+                this[isCalculableName] = true;
+                this[calculatedValueName] = this[valueName];
+                return this[valueName].ToString();
+            }
+            else
+            {
+                this[isCalculableName] = false;
+                this[uncalculatedValueName] = this[letterName];
+                return this[letterName];
+            }
+        }
+        
         /// <summary>
         /// Computes the unique weight
         /// for this object

@@ -44,6 +44,7 @@
     <Compile Include="IEquation.cs" />
     <Compile Include="INeurone.cs" />
     <Compile Include="INeuroneType.cs" />
+    <Compile Include="IVariable.cs" />
     <Compile Include="IWeight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
