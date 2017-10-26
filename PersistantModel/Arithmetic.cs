@@ -282,8 +282,15 @@ namespace PersistantModel
         {
             get
             {
-                this.Compute();
-                return this[isCalculableName];
+                if (this.persistentData.ContainsKey(isCalculableName))
+                {
+                    return this[isCalculableName];
+                }
+                else
+                {
+                    return false;
+                }
+
             }
         }
 
@@ -671,7 +678,7 @@ namespace PersistantModel
                                 output = Double.NaN.ToString();
                             break;
                         case '=':
-                            output = "= is TRUE";
+                            output = (this.LeftOperand[calculatedValueName] == this.RightOperand[calculatedValueName]).ToString();
                             break;
                     }
                 }
@@ -983,7 +990,14 @@ namespace PersistantModel
                 string res = this.Compute();
                 if (this[isCalculableName])
                 {
-                    this[calculatedValueName] = Convert.ToDouble(res);
+                    if (this is Equal)
+                    {
+                        this[calculatedValueName] = 1;
+                    }
+                    else
+                    {
+                        this[calculatedValueName] = Convert.ToDouble(res);
+                    }
                 }
                 else
                 {

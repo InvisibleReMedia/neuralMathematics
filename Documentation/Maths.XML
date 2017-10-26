@@ -1,0 +1,428 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Maths</name>
+    </assembly>
+    <members>
+        <member name="T:Maths.Answer">
+            <summary>
+            Reponse to a question from an exercice
+            </summary>
+        </member>
+        <member name="M:Maths.Answer.#ctor(System.String,Maths.SequenceProof)">
+            <summary>
+            Default constructor
+            </summary>
+            <param name="p">proposal</param>
+            <param name="s">sequence</param>
+        </member>
+        <member name="M:Maths.Answer.ToDocument(System.Windows.Documents.BlockCollection)">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <param name="c">block collection</param>
+        </member>
+        <member name="M:Maths.Answer.ToString">
+            <summary>
+            Transforms equation object into a string representation
+            </summary>
+            <returns>string representation</returns>
+        </member>
+        <member name="T:Maths.MathematicEquation">
+            <summary>
+            Equation class
+            </summary>
+        </member>
+        <member name="F:Maths.MathematicEquation.OperatorEqual">
+            <summary>
+            Equal operator ID
+            </summary>
+        </member>
+        <member name="F:Maths.MathematicEquation.OperatorAdd">
+            <summary>
+            Add operator ID
+            </summary>
+        </member>
+        <member name="F:Maths.MathematicEquation.OperatorSubstract">
+            <summary>
+            Sub operator ID
+            </summary>
+        </member>
+        <member name="F:Maths.MathematicEquation.OperatorProduct">
+            <summary>
+            Product operator ID
+            </summary>
+        </member>
+        <member name="F:Maths.MathematicEquation.OperatorDivide">
+            <summary>
+            Divide operator ID
+            </summary>
+        </member>
+        <member name="F:Maths.MathematicEquation.OperatorPower">
+            <summary>
+            Product operator ID
+            </summary>
+        </member>
+        <member name="F:Maths.MathematicEquation.OperatorRoot">
+            <summary>
+            Divide operator ID
+            </summary>
+        </member>
+        <member name="F:Maths.MathematicEquation.OperatorMultipleAdd">
+            <summary>
+            Multiple addition operator ID
+            </summary>
+        </member>
+        <member name="F:Maths.MathematicEquation.OperatorMultipleProduct">
+            <summary>
+            Multiple product operator ID
+            </summary>
+        </member>
+        <member name="F:Maths.MathematicEquation.OperatorPositive">
+            <summary>
+            Positive operator ID
+            </summary>
+        </member>
+        <member name="F:Maths.MathematicEquation.OperatorNegative">
+            <summary>
+            Negative operator ID
+            </summary>
+        </member>
+        <member name="F:Maths.MathematicEquation.OperatorInverse">
+            <summary>
+            Inverse operator ID
+            </summary>
+        </member>
+        <member name="F:Maths.MathematicEquation.records">
+            <summary>
+            Records for this mathematic equation
+            </summary>
+        </member>
+        <member name="F:Maths.MathematicEquation.eq">
+            <summary>
+            Equation
+            </summary>
+        </member>
+        <member name="M:Maths.MathematicEquation.#ctor">
+            <summary>
+            Default constructor
+            create an equality of 0 = 0
+            </summary>
+        </member>
+        <member name="M:Maths.MathematicEquation.#ctor(System.Double)">
+            <summary>
+            Create an equation
+            given a numeric value
+            </summary>
+            <param name="c">numeric value</param>
+        </member>
+        <member name="M:Maths.MathematicEquation.#ctor(System.String,Interfaces.IEquation,Interfaces.IEquation)">
+            <summary>
+            Create an equation
+            with a given operator
+            and two operands
+            </summary>
+            <param name="op">operator name</param>
+            <param name="e1">operand one</param>
+            <param name="e2">operand two</param>
+        </member>
+        <member name="M:Maths.MathematicEquation.#ctor(System.String,Interfaces.IEquation)">
+            <summary>
+            Create an equation
+            with a given operator
+            and one operand
+            </summary>
+            <param name="op">operator name</param>
+            <param name="e">operand</param>
+        </member>
+        <member name="M:Maths.MathematicEquation.#ctor(System.String,System.Double)">
+            <summary>
+            Constructor to create a coefficient
+            </summary>
+            <param name="letter">coefficient letter</param>
+            <param name="value">value</param>
+        </member>
+        <member name="M:Maths.MathematicEquation.#ctor(System.String,Interfaces.IArithmetic)">
+            <summary>
+            Constructor to create an unknown term
+            </summary>
+            <param name="letter">unknown letter</param>
+            <param name="value">value</param>
+        </member>
+        <member name="M:Maths.MathematicEquation.#ctor(Interfaces.IArithmetic,Interfaces.IArithmetic,Interfaces.IArithmetic)">
+            <summary>
+            Constructor to create a term
+            </summary>
+            <param name="constant">constant equation</param>
+            <param name="coef">coefficient equation</param>
+        </member>
+        <member name="P:Maths.MathematicEquation.IsCalculable">
+            <summary>
+            Gets true if equation is calculable
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.Coefficients">
+            <summary>
+            Gets all coefficients terms
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.Constants">
+            <summary>
+            Gets all constant values
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.UnknownTerms">
+            <summary>
+            Gets all unknown terms
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.Equation">
+            <summary>
+            Gets the underlying arithmetic operation
+            </summary>
+        </member>
+        <member name="M:Maths.MathematicEquation.AsRepresented(System.String)">
+            <summary>
+            String representation of the algebraic equation
+            </summary>
+            <param name="type">type representation</param>
+            <returns>string text</returns>
+        </member>
+        <member name="M:Maths.MathematicEquation.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:Maths.MathematicEquation.Calculate">
+            <summary>
+            Calculate the result of this equation
+            terms that are valued are operated with its numeric value
+            </summary>
+            <returns>string representation number or algebraic</returns>
+        </member>
+        <member name="P:Maths.GenericNeurone.Id">
+            <summary>
+            Identifiant unique
+            </summary>
+        </member>
+        <member name="P:Maths.GenericNeurone.Name">
+            <summary>
+            Nom du neurone
+            </summary>
+        </member>
+        <member name="P:Maths.GenericNeurone.Type">
+            <summary>
+            Type du neurone
+            </summary>
+        </member>
+        <member name="M:Maths.GenericNeurone.Exec">
+            <summary>
+            Exécute le travail du neurone
+            </summary>
+        </member>
+        <member name="M:Maths.GenericNeurone.Learn">
+            <summary>
+            Apprentissage pour la construction
+            des neurones
+            </summary>
+        </member>
+        <member name="T:Maths.Exercice">
+            <summary>
+            Implémente un exercice
+            à résoudre
+            </summary>
+        </member>
+        <member name="F:Maths.Exercice.idName">
+            <summary>
+            Numéro d'exercice
+            </summary>
+        </member>
+        <member name="M:Maths.Exercice.#ctor(System.UInt32,System.String,System.String,Maths.Answer)">
+            <summary>
+            Default constructor
+            given a number, the question phrase and a short notice
+            </summary>
+            <param name="numero">number</param>
+            <param name="q">question</param>
+            <param name="note">notice</param>
+            <param name="a">answer</param>
+        </member>
+        <member name="M:Maths.Exercice.ToDocument(System.Windows.Documents.List)">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <param name="l">list document</param>
+        </member>
+        <member name="M:Maths.Exercice.ToString">
+            <summary>
+            Transforms equation object into a string representation
+            </summary>
+            <returns>string representation</returns>
+        </member>
+        <member name="T:Maths.SequenceProof">
+            <summary>
+            Une séquence pour prouver un résultat
+            au cours d'un exercice
+            </summary>
+        </member>
+        <member name="M:Maths.SequenceProof.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="P:Maths.SequenceProof.Items">
+            <summary>
+            Gets all items
+            </summary>
+        </member>
+        <member name="M:Maths.SequenceProof.Add(Interfaces.IArithmetic[])">
+            <summary>
+            Ajout d'éléments dans la liste
+            </summary>
+            <param name="items">éléments à ajouter</param>
+        </member>
+        <member name="M:Maths.SequenceProof.ToDocument(System.Windows.Documents.BlockCollection)">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <param name="c">block collection</param>
+        </member>
+        <member name="M:Maths.SequenceProof.ToString">
+            <summary>
+            Transforms equation object into a string representation
+            </summary>
+            <returns>string representation</returns>
+        </member>
+        <member name="T:Maths.TopLevelArithmeticModel">
+            <summary>
+            This is the top level arithmetic
+            model to be save or load from a binary file
+            </summary>
+        </member>
+        <member name="F:Maths.TopLevelArithmeticModel.versionName">
+            <summary>
+            Version model
+            </summary>
+        </member>
+        <member name="F:Maths.TopLevelArithmeticModel.wordingListName">
+            <summary>
+            Equation list
+            </summary>
+        </member>
+        <member name="F:Maths.TopLevelArithmeticModel.titleName">
+            <summary>
+            title of the file
+            </summary>
+        </member>
+        <member name="F:Maths.TopLevelArithmeticModel.revisionName">
+            <summary>
+            Revision number
+            </summary>
+        </member>
+        <member name="F:Maths.TopLevelArithmeticModel.hashCodeDictName">
+            <summary>
+            Hash code dictionary
+            </summary>
+        </member>
+        <member name="M:Maths.TopLevelArithmeticModel.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Maths.TopLevelArithmeticModel.#ctor(System.String)">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:Maths.TopLevelArithmeticModel.WordingList">
+            <summary>
+            Gets equation list
+            </summary>
+        </member>
+        <member name="P:Maths.TopLevelArithmeticModel.Version">
+            <summary>
+            Gets or sets version number
+            </summary>
+        </member>
+        <member name="P:Maths.TopLevelArithmeticModel.Title">
+            <summary>
+            Gets or sets the title
+            </summary>
+        </member>
+        <member name="P:Maths.TopLevelArithmeticModel.Revision">
+            <summary>
+            Gets or sets the revision number
+            </summary>
+        </member>
+        <member name="M:Maths.TopLevelArithmeticModel.Create(System.String)">
+            <summary>
+            Create a new top level class
+            </summary>
+        </member>
+        <member name="M:Maths.TopLevelArithmeticModel.Load(System.IO.FileInfo)">
+            <summary>
+            Load a top level arithmetic model
+            from an existing file
+            </summary>
+            <param name="fi">file info to take</param>
+            <returns>object deserialized</returns>
+        </member>
+        <member name="M:Maths.TopLevelArithmeticModel.Save(System.IO.FileInfo)">
+            <summary>
+            Load a top level arithmetic model
+            from an existing file
+            </summary>
+            <param name="fi">file info to take</param>
+            <returns>object deserialized</returns>
+        </member>
+        <member name="T:Maths.Wording">
+            <summary>
+            Classe de description d'un énonçé
+            de mathématique
+            </summary>
+        </member>
+        <member name="F:Maths.Wording.titleName">
+            <summary>
+            Titre de l'énonçé
+            </summary>
+        </member>
+        <member name="F:Maths.Wording.descName">
+            <summary>
+            Description de l'énonçé
+            </summary>
+        </member>
+        <member name="F:Maths.Wording.exercicesName">
+            <summary>
+            Ensemble des exercices
+            </summary>
+        </member>
+        <member name="M:Maths.Wording.#ctor(System.String,System.String,Maths.Exercice[])">
+            <summary>
+            Default constructor
+            </summary>
+            <param name="title">titre</param>
+            <param name="desc">description</param>
+            <param name="ex">exercices</param>
+        </member>
+        <member name="M:Maths.Wording.Add(Maths.Exercice)">
+            <summary>
+            Add a new exercice
+            </summary>
+            <param name="e">exercice</param>
+        </member>
+        <member name="M:Maths.Wording.ToDocument(System.Windows.Documents.FlowDocument)">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <param name="f">flow document</param>
+        </member>
+        <member name="M:Maths.Wording.ToString">
+            <summary>
+            Transforms equation object into a string representation
+            </summary>
+            <returns>string representation</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Interfaces</name>
+    </assembly>
+    <members>
+        <member name="E:Interfaces.IArithmetic.Fetch">
+            <summary>
+            Event to fetch all data into
+            a unique list of unique records
+            </summary>
+        </member>
+        <member name="E:Interfaces.IArithmetic.Unfetch">
+            <summary>
+            Event to unfetch all data into
+            a unique list of unique records
+            </summary>
+        </member>
+        <member name="P:Interfaces.IArithmetic.OwnerWeight">
+            <summary>
+            Gets the unique content
+            </summary>
+        </member>
+        <member name="P:Interfaces.IArithmetic.Item(System.String)">
+            <summary>
+            Gets an object from a serialized dictionary content
+            </summary>
+            <param name="name">key name</param>
+            <returns>dynamix object (all data type is possible)</returns>
+        </member>
+        <member name="T:Interfaces.IEquation">
+            <summary>
+            Interface for an equation
+            </summary>
+        </member>
+        <member name="P:Interfaces.IEquation.IsCalculable">
+            <summary>
+            Gets true if an equation is calculable
+            </summary>
+        </member>
+        <member name="P:Interfaces.IEquation.UnknownTerms">
+            <summary>
+            Gets all unknown terms
+            </summary>
+        </member>
+        <member name="P:Interfaces.IEquation.Coefficients">
+            <summary>
+            Gets all coefficients terms
+            </summary>
+        </member>
+        <member name="P:Interfaces.IEquation.Constants">
+            <summary>
+            Gets all constant values
+            </summary>
+        </member>
+        <member name="P:Interfaces.IEquation.Equation">
+            <summary>
+            Gets the underlying arithmetic operation
+            </summary>
+        </member>
+        <member name="M:Interfaces.IEquation.MakeUnique">
+            <summary>
+            Generates a new arithmetic object
+            that's handle by a unique record zone
+            </summary>
+            <returns>arithmetic object</returns>
+        </member>
+        <member name="M:Interfaces.IEquation.Let(System.String,System.Double)">
+            <summary>
+            Let a letter as a value
+            given a letter and its value
+            </summary>
+            <param name="letter">letter value</param>
+            <param name="value">numeric value</param>
+        </member>
+        <member name="M:Interfaces.IEquation.Let(System.String,Interfaces.IEquation)">
+            <summary>
+            Let a letter as an arithmetic operation
+            </summary>
+            <param name="letter">letter value</param>
+            <param name="e">arithmetic expression</param>
+        </member>
+        <member name="M:Interfaces.IEquation.AsRepresented(System.String)">
+            <summary>
+            String representation of the algebraic equation
+            </summary>
+            <param name="type">type of representation ; string or tex</param>
+            <returns>string text</returns>
+        </member>
+        <member name="M:Interfaces.IEquation.Calculate">
+            <summary>
+            Calculate the result of this equation
+            terms that are valued are operated with its numeric value
+            </summary>
+            <returns>string representation number or algebraic</returns>
+        </member>
+        <member name="M:Interfaces.IEquation.Transform">
+            <summary>
+            Transform the current equation to an
+            another equation
+            </summary>
+            <returns>transformed equation</returns>
+        </member>
+        <member name="M:Interfaces.IEquation.Factorize">
+            <summary>
+            Factorization of an equation
+            works only on a current equation as an addition
+            </summary>
+            <returns>factorized equation</returns>
+        </member>
+        <member name="M:Interfaces.IEquation.Develop">
+            <summary>
+            Develope equation
+            works only on a current equation as a product
+            </summary>
+            <returns>developed equation</returns>
+        </member>
+        <member name="M:Interfaces.IEquation.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="T:Interfaces.INeurone">
+            <summary>
+            Neurone interface declaration
+            Déclare une interface commune à tous les neurones
+            </summary>
+        </member>
+        <member name="P:Interfaces.INeurone.Name">
+            <summary>
+            Nom du neurone
+            </summary>
+        </member>
+        <member name="P:Interfaces.INeurone.Id">
+            <summary>
+            Identifiant unique
+            </summary>
+        </member>
+        <member name="P:Interfaces.INeurone.Type">
+            <summary>
+            Type du neurone
+            </summary>
+        </member>
+        <member name="M:Interfaces.INeurone.Exec">
+            <summary>
+            Exécute le travail du neurone
+            </summary>
+        </member>
+        <member name="M:Interfaces.INeurone.Learn">
+            <summary>
+            Apprentissage pour la construction
+            des neurones
+            </summary>
+        </member>
+        <member name="T:Interfaces.INeuroneType">
+            <summary>
+            Type de neurone
+            </summary>
+        </member>
+        <member name="F:Interfaces.INeuroneType.Constant">
+            <summary>
+            Une constante numérique
+            </summary>
+        </member>
+        <member name="F:Interfaces.INeuroneType.Operator">
+            <summary>
+            Un opérateur arithmétique
+            </summary>
+        </member>
+        <member name="F:Interfaces.INeuroneType.Variable">
+            <summary>
+            Variable arithmétique
+            </summary>
+        </member>
+        <member name="T:Interfaces.IWeight">
+            <summary>
+            Interface to handle a weight
+            for an object identified by a unique hash code
+            </summary>
+        </member>
+    </members>
+</doc>

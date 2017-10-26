@@ -32,6 +32,8 @@ namespace PersistantModel
         public NumericValue(double d)
         {
             this[valueName] = d;
+            this[isCalculableName] = true;
+            this[calculatedValueName] = d;
         }
 
         #endregion
