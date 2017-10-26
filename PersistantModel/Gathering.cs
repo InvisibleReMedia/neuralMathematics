@@ -34,6 +34,7 @@ namespace PersistantModel
         /// Default constructor
         /// </summary>
         /// <param name="r">records</param>
+        /// <param name="start">start</param>
         public Gathering(RecordZone<T> r, T start)
         {
             this.records = r;

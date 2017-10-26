@@ -12,7 +12,7 @@ namespace PersistantModel
     /// ou un document rtf
     /// </summary>
     [Serializable]
-    public class Texte : PersistentDataObject
+    public class Texte : PersistentDataObject, IDocument
     {
 
         #region Fields

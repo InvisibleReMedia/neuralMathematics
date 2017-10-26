@@ -13,7 +13,7 @@ namespace PersistantModel
     /// arithmetiques
     /// </summary>
     [Serializable]
-    public class Arithmetic : IArithmetic, IEquation, ICloneable, IEqualityComparer<Arithmetic>
+    public class Arithmetic : IArithmetic, IEquation, IDocument, ICloneable, IEqualityComparer<Arithmetic>
     {
 
         #region Fields

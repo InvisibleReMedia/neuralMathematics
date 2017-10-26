@@ -24,8 +24,8 @@ namespace Maths
             Verify v = new Verify(u);
             v.Variables.First(x => x.Name == "a").Value = 1.0;
             v.Variables.First(x => x.Name == "b").Value = 2.0;
-            MessageBox.Show(v.IsValid().ToString());
 
+            s1.Add(t1);
             s1.Add(eq1);
             Answer a = new Answer("Expressions avec la formule de Newton", s1);
             Exercice e = new Exercice(1, "Formule de Newton", "Décrivez la production de la formule de newton à l'ordre 2 et 3", a);

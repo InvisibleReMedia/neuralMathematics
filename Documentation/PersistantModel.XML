@@ -31,6 +31,7 @@
             Default constructor
             </summary>
             <param name="r">records</param>
+            <param name="start">start</param>
         </member>
         <member name="T:PersistantModel.RecordZone`1">
             <summary>

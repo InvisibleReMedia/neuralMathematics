@@ -272,12 +272,19 @@
             Empty data
             </summary>
         </member>
+        <member name="M:Maths.SequenceProof.#ctor(Interfaces.IDocument[])">
+            <summary>
+            Constructor
+            given a list of arithmetic equation
+            </summary>
+            <param name="eq">document element</param>
+        </member>
         <member name="P:Maths.SequenceProof.Items">
             <summary>
             Gets all items
             </summary>
         </member>
-        <member name="M:Maths.SequenceProof.Add(Interfaces.IArithmetic[])">
+        <member name="M:Maths.SequenceProof.Add(Interfaces.IDocument[])">
             <summary>
             Ajout d'éléments dans la liste
             </summary>

@@ -34,9 +34,14 @@ namespace Maths
         {
         }
 
-        public SequenceProof(params IArithmetic[] eq)
+        /// <summary>
+        /// Constructor
+        /// given a list of arithmetic equation
+        /// </summary>
+        /// <param name="eq">document element</param>
+        public SequenceProof(params IDocument[] eq)
         {
-            this.Set(listName, new List<IArithmetic>(eq));
+            this.Set(listName, new List<IDocument>(eq));
         }
 
         #endregion
@@ -46,7 +51,7 @@ namespace Maths
         /// <summary>
         /// Gets all items
         /// </summary>
-        public IEnumerable<IArithmetic> Items
+        public IEnumerable<IDocument> Items
         {
             get
             {
@@ -62,9 +67,9 @@ namespace Maths
         /// Ajout d'éléments dans la liste
         /// </summary>
         /// <param name="items">éléments à ajouter</param>
-        public void Add(params IArithmetic[] items)
+        public void Add(params IDocument[] items)
         {
-            List<IArithmetic> list = this.Get(listName);
+            List<IDocument> list = this.Get(listName);
             list.AddRange(items);
             this.Set(listName, list);
         }
@@ -77,7 +82,8 @@ namespace Maths
         {
             List l = new List();
             l.Margin = new System.Windows.Thickness(50.0d, 0, 0, 0);
-            foreach(IArithmetic a in this.Get(listName))
+            l.MarkerStyle = System.Windows.TextMarkerStyle.None;
+            foreach(IDocument a in this.Get(listName))
             {
                 if (a is Texte)
                 {
@@ -87,6 +93,7 @@ namespace Maths
                 else
                 {
                     ListItem li = new ListItem();
+                    li.TextAlignment = System.Windows.TextAlignment.Center;
                     FormulaControl fc = new FormulaControl();
                     fc.Formula = a.ToTex();
                     li.Blocks.Add(new BlockUIContainer(fc));
@@ -103,7 +110,7 @@ namespace Maths
         public override string ToString()
         {
             string output = string.Empty;
-            foreach (IArithmetic a in this.Get(listName))
+            foreach (IDocument a in this.Get(listName))
             {
                 output += a.ToString();
                 output += "\n";

@@ -11,7 +11,7 @@ namespace PersistantModel
     /// Verify the validity of an equal
     /// formula
     /// </summary>
-    public class Verify
+    public class Verify : IDocument
     {
 
         #region Fields
@@ -38,11 +38,25 @@ namespace PersistantModel
 
         #region Properties
 
+        /// <summary>
+        /// Gets all variables
+        /// </summary>
         public IEnumerable<IVariable> Variables
         {
             get
             {
                 return this.equalOp.Coefficients.Concat(this.equalOp.UnknownTerms).Cast<IVariable>();
+            }
+        }
+
+        /// <summary>
+        /// Gets all records
+        /// </summary>
+        public IEnumerable<Weight> Elements
+        {
+            get
+            {
+                return this.equalOp.Records.Records;
             }
         }
 
@@ -61,6 +75,17 @@ namespace PersistantModel
                 w.OwnerObject.Calculate();
             }
             return this.equalOp.LeftOperand.Calculate() == this.equalOp.RightOperand.Calculate();
+        }
+
+        /// <summary>
+        /// Transforms equation object into a tex representation
+        /// </summary>
+        /// <returns>tex representation</returns>
+        public string ToTex()
+        {
+            foreach(IVariable v in this.Variables)
+            {
+            }
         }
 
         #endregion

@@ -28,6 +28,23 @@
             <param name="name">key name</param>
             <returns>dynamix object (all data type is possible)</returns>
         </member>
+        <member name="T:Interfaces.IDocument">
+            <summary>
+            Concerns a document
+            </summary>
+        </member>
+        <member name="M:Interfaces.IDocument.ToString">
+            <summary>
+            Transforms equation object into a string representation
+            </summary>
+            <returns>string representation</returns>
+        </member>
+        <member name="M:Interfaces.IDocument.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
         <member name="T:Interfaces.IEquation">
             <summary>
             Interface for an equation
