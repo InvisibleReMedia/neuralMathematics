@@ -28,6 +28,33 @@
             </summary>
             <returns>string representation</returns>
         </member>
+        <member name="M:Maths.Applicatifs.Newton">
+            <summary>
+            Développement polynôme
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Maths.Applicatifs.ReloadNewton">
+            <summary>
+            Lecture fichier
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Maths.Applicatifs.ResolutionPolynome2Somme">
+            <summary>
+            Résolution polynôme ordre 2
+            </summary>
+        </member>
+        <member name="M:Maths.Applicatifs.ResolutionPolynome2Difference">
+            <summary>
+            Résolution polynôme ordre 2
+            </summary>
+        </member>
+        <member name="M:Maths.Applicatifs.ResolutionPolynome3">
+            <summary>
+            Résolution polynôme ordre 2
+            </summary>
+        </member>
         <member name="T:Maths.MathematicEquation">
             <summary>
             Equation class

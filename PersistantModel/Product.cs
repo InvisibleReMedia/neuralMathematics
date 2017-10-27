@@ -189,11 +189,17 @@ namespace PersistantModel
             {
                 if (first)
                 {
-                    output = a.ToTex();
+                    if (a is Addition || a is Soustraction || a is Sum)
+                        output = @"{\left[ " + a.ToTex() + @" \right]}";
+                    else
+                        output = @"{ " + a.ToTex() + @" }";
                     first = false;
                 }
                 else
-                    output += " * " + a.ToTex();
+                    if (a is Addition || a is Soustraction || a is Sum)
+                    output += @" * {\left[ " + a.ToTex() + @" \right]}";
+                else
+                    output += @" * { " + a.ToTex() + @" }";
             }
 
             return output;
@@ -211,9 +217,15 @@ namespace PersistantModel
             {
                 if (first)
                 {
-                    output = a.ToString();
+                    if (a is Addition || a is Soustraction || a is Sum)
+                        output = "[" + a.ToString() + "]";
+                    else
+                        output = a.ToString();
                     first = false;
                 }
+                else
+                    if (a is Addition || a is Soustraction || a is Sum)
+                    output += " * [" + a.ToString() + "]";
                 else
                     output += " * " + a.ToString();
             }

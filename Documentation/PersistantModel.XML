@@ -102,6 +102,11 @@
             </summary>
             <param name="t">text</param>
         </member>
+        <member name="P:PersistantModel.Texte.IsCalculable">
+            <summary>
+            Test if calculable
+            </summary>
+        </member>
         <member name="P:PersistantModel.Texte.Content">
             <summary>
             Gets or sets the content
@@ -397,6 +402,12 @@
             Transforms equation object into a tex representation
             </summary>
             <returns>tex representation</returns>
+        </member>
+        <member name="M:PersistantModel.Power.ToString">
+            <summary>
+            Transforms equation object into a string representation
+            </summary>
+            <returns>string representation</returns>
         </member>
         <member name="M:PersistantModel.Power.Create">
             <summary>
@@ -1622,11 +1633,32 @@
             </summary>
             <param name="e">equal term</param>
         </member>
+        <member name="P:PersistantModel.Verify.IsCalculable">
+            <summary>
+            Test if calculable
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Verify.Variables">
+            <summary>
+            Gets all variables
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Verify.Elements">
+            <summary>
+            Gets all records
+            </summary>
+        </member>
         <member name="M:PersistantModel.Verify.IsValid">
             <summary>
             
             </summary>
             <returns>true if valid</returns>
+        </member>
+        <member name="M:PersistantModel.Verify.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
         </member>
         <member name="T:PersistantModel.Weight">
             <summary>

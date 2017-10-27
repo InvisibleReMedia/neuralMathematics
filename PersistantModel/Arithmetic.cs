@@ -828,12 +828,35 @@ namespace PersistantModel
                     left = this.LeftOperand.ToTex();
                 if (this.RightOperand != null)
                     right = this.RightOperand.ToTex();
-                output = @"{\left[" + left + " " + this.Operator + " " + right + @"\right]}";
+                if (this.Operator == '+' || this.Operator == '-')
+                {
+                    output = @"{" + left + " " + this.Operator;
+                    if (this.Operator == '-' && !(this.RightOperand is Coefficient || this.RightOperand is UnknownTerm || this.RightOperand is Term || this.RightOperand is NumericValue))
+                        output += @" \left[" + right + @"\right]}";
+                    else
+                        output += @" " + right + @"}";
+                }
+                else if (this.Operator == '*' || this.Operator == '/')
+                {
+                    if (this.LeftOperand is Addition || this.LeftOperand is Sum)
+                        output = @"{\left(" + left + @"\right) " + this.Operator;
+                    else
+                        output = "{" + left + " " + this.Operator;
+                    if (this.Operator == '/')
+                        output += "{ " + right + " }}";
+                    else
+                    {
+                        if (this.RightOperand is Addition || this.RightOperand is Sum)
+                            output += @"\left(" + right + @"\right)}";
+                        else
+                            output += @" " + right + @"}";
+                    }
+                }
             }
             else if (this.IsUnaryOperator)
             {
                 if (this.InnerOperand != null)
-                    output = this.Operator + "{" + this.InnerOperand.ToTex() + "}";
+                    output = this.Operator + @"{\left[" + this.InnerOperand.ToTex() + @"\right]}";
             }
             else
             {
@@ -869,7 +892,30 @@ namespace PersistantModel
                     left = this.LeftOperand.ToString();
                 if (this.RightOperand != null)
                     right = this.RightOperand.ToString();
-                output = "(" + left + " " + this.Operator + " " + right + ")";
+                if (this.Operator == '+' || this.Operator == '-')
+                {
+                    output = left + " " + this.Operator;
+                    if (this.Operator == '-' && !(this.RightOperand is Coefficient || this.RightOperand is UnknownTerm || this.RightOperand is Term || this.RightOperand is NumericValue))
+                        output += " [" + right + "]";
+                    else
+                        output += " " + right;
+                }
+                else if (this.Operator == '*' || this.Operator == '/')
+                {
+                    if (this.LeftOperand is Addition || this.LeftOperand is Sum)
+                        output = "(" + left + ") " + this.Operator;
+                    else
+                        output = left + " " + this.Operator;
+                    if (this.Operator == '/')
+                        output += "(" + right + ")";
+                    else
+                    {
+                        if (this.RightOperand is Addition || this.RightOperand is Sum)
+                            output += " (" + right + ")";
+                        else
+                            output += " " + right;
+                    }
+                }
             }
             else if (this.IsUnaryOperator)
             {

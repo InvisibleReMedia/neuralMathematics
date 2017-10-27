@@ -61,7 +61,38 @@ namespace PersistantModel
                 left = this.LeftOperand.ToTex();
             if (this.RightOperand != null)
                 right = this.RightOperand.ToTex();
-            output = @"{" + left + "}^{" + right + "}";
+            if (this.LeftOperand is Addition || this.LeftOperand is Soustraction || this.LeftOperand is Sum || this.LeftOperand is Product)
+                output = @"{\left(" + left + @"\right)}";
+            else
+                output = "{" + left + "}";
+            if (this.RightOperand is Addition || this.RightOperand is Soustraction || this.RightOperand is Sum || this.RightOperand is Product)
+                output += @" ^ {\left(" + right + @"\right)}";
+            else
+                output += @" ^ {" + right + "}";
+            return output;
+        }
+
+        /// <summary>
+        /// Transforms equation object into a string representation
+        /// </summary>
+        /// <returns>string representation</returns>
+        public override string ToString()
+        {
+            string output = string.Empty;
+
+            string left = string.Empty, right = string.Empty;
+            if (this.LeftOperand != null)
+                left = this.LeftOperand.ToTex();
+            if (this.RightOperand != null)
+                right = this.RightOperand.ToTex();
+            if (this.LeftOperand is Addition || this.LeftOperand is Soustraction || this.LeftOperand is Sum || this.LeftOperand is Product)
+                output = "(" + left + ")";
+            else
+                output = " " + left + " ";
+            if (this.RightOperand is Addition || this.RightOperand is Soustraction || this.RightOperand is Sum || this.RightOperand is Product)
+                output += " ^ (" + right + ")";
+            else
+                output += " ^ " + right;
             return output;
         }
 

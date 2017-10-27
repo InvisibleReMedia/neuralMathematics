@@ -47,6 +47,17 @@ namespace PersistantModel
         #region Properties
 
         /// <summary>
+        /// Test if calculable
+        /// </summary>
+        public bool IsCalculable
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the content
         /// </summary>
         public string Content

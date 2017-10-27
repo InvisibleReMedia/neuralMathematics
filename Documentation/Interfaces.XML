@@ -33,6 +33,11 @@
             Concerns a document
             </summary>
         </member>
+        <member name="P:Interfaces.IDocument.IsCalculable">
+            <summary>
+            Gets true if equation is calculable
+            </summary>
+        </member>
         <member name="M:Interfaces.IDocument.ToString">
             <summary>
             Transforms equation object into a string representation

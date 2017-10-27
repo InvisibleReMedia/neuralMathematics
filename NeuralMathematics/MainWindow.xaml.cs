@@ -34,7 +34,7 @@ namespace NeuralMathematics
         {
             try
             {
-                this.doc.Document = Applicatifs.Newton();
+                this.doc.Document = Applicatifs.ResolutionPolynome2Difference();
                 this.doc.UpdateLayout();
                 this.WindowState = WindowState.Maximized;
             }

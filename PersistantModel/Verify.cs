@@ -39,6 +39,17 @@ namespace PersistantModel
         #region Properties
 
         /// <summary>
+        /// Test if calculable
+        /// </summary>
+        public bool IsCalculable
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Gets all variables
         /// </summary>
         public IEnumerable<IVariable> Variables
@@ -83,9 +94,7 @@ namespace PersistantModel
         /// <returns>tex representation</returns>
         public string ToTex()
         {
-            foreach(IVariable v in this.Variables)
-            {
-            }
+            return "";
         }
 
         #endregion
