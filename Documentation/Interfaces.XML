@@ -4,6 +4,11 @@
         <name>Interfaces</name>
     </assembly>
     <members>
+        <member name="T:Interfaces.IArithmetic">
+            <summary>
+            Interface d'objets arithmetiques
+            </summary>
+        </member>
         <member name="E:Interfaces.IArithmetic.Fetch">
             <summary>
             Event to fetch all data into
@@ -132,7 +137,7 @@
         </member>
         <member name="M:Interfaces.IEquation.Develop">
             <summary>
-            Develope equation
+            Develop equation
             works only on a current equation as a product
             </summary>
             <returns>developed equation</returns>
@@ -195,10 +200,30 @@
             Variable arithmétique
             </summary>
         </member>
+        <member name="T:Interfaces.IVariable">
+            <summary>
+            Interface to get a variable
+            </summary>
+        </member>
+        <member name="P:Interfaces.IVariable.Name">
+            <summary>
+            Gets the name of this variable
+            </summary>
+        </member>
+        <member name="P:Interfaces.IVariable.Value">
+            <summary>
+            Gets or sets the value of this variable
+            </summary>
+        </member>
         <member name="T:Interfaces.IWeight">
             <summary>
             Interface to handle a weight
             for an object identified by a unique hash code
+            </summary>
+        </member>
+        <member name="P:Interfaces.IWeight.HashCode">
+            <summary>
+            Gets the hash code value
             </summary>
         </member>
     </members>

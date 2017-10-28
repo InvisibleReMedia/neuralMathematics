@@ -35,10 +35,6 @@ namespace Maths
         /// Revision number
         /// </summary>
         private static readonly string revisionName = "rev";
-        /// <summary>
-        /// Hash code dictionary
-        /// </summary>
-        private static readonly string hashCodeDictName = "hash";
 
         #endregion
 

@@ -243,7 +243,7 @@ namespace PersistantModel
         /// <summary>
         /// Computes a weight from a binary operator
         /// </summary>
-        /// <param name="ut">binary term object</param>
+        /// <param name="op">binary term object</param>
         /// <returns>weight of this object</returns>
         public static Weight ComputeWeight(BinaryOperation op)
         {
@@ -253,7 +253,7 @@ namespace PersistantModel
         /// <summary>
         /// Computes a weight from a unary operator
         /// </summary>
-        /// <param name="ut">unary term object</param>
+        /// <param name="op">unary term object</param>
         /// <returns>weight of this object</returns>
         public static Weight ComputeWeight(UnaryOperation op)
         {
@@ -263,7 +263,7 @@ namespace PersistantModel
         /// <summary>
         /// Computes a weight from a multiple sum
         /// </summary>
-        /// <param name="ut">sum equation object</param>
+        /// <param name="op">sum equation object</param>
         /// <returns>weight of this object</returns>
         public static Weight ComputeWeight(Sum op)
         {
@@ -273,7 +273,7 @@ namespace PersistantModel
         /// <summary>
         /// Computes a weight from a multiple sum
         /// </summary>
-        /// <param name="ut">product equation object</param>
+        /// <param name="op">product equation object</param>
         /// <returns>weight of this object</returns>
         public static Weight ComputeWeight(Product op)
         {

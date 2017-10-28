@@ -12,6 +12,9 @@ namespace Interfaces
     /// </summary>
     public interface IWeight
     {
+        /// <summary>
+        /// Gets the hash code value
+        /// </summary>
         int HashCode { get; }
     }
 }

@@ -66,10 +66,6 @@ namespace Maths
         public static string OperatorInverse = "inverse";
 
         /// <summary>
-        /// Records for this mathematic equation
-        /// </summary>
-        private RecordZone<Weight> records;
-        /// <summary>
         /// Equation
         /// </summary>
         private IArithmetic eq;
@@ -211,6 +207,7 @@ namespace Maths
         /// </summary>
         /// <param name="constant">constant equation</param>
         /// <param name="coef">coefficient equation</param>
+        /// <param name="x">equation</param>
         public MathematicEquation(IArithmetic constant, IArithmetic coef, IArithmetic x)
         {
             this.eq = new Term(constant, coef, x);
@@ -309,26 +306,52 @@ namespace Maths
             return this.eq.Calculate();
         }
 
+        /// <summary>
+        /// Develop equation
+        /// works only on a current equation as a product
+        /// </summary>
+        /// <returns>developed equation</returns>
         public IEquation Develop()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Factorization of an equation
+        /// works only on a current equation as an addition
+        /// </summary>
+        /// <returns>factorized equation</returns>
         public IEquation Factorize()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Let a letter as an arithmetic operation
+        /// </summary>
+        /// <param name="letter">letter value</param>
+        /// <param name="e">arithmetic expression</param>
         public void Let(string letter, IEquation e)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Let a letter as a value
+        /// given a letter and its value
+        /// </summary>
+        /// <param name="letter">letter value</param>
+        /// <param name="value">numeric value</param>
         public void Let(string letter, double value)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Transform the current equation to an
+        /// another equation
+        /// </summary>
+        /// <returns>transformed equation</returns>
         public IEnumerable<IArithmetic> Transform()
         {
             throw new NotImplementedException();

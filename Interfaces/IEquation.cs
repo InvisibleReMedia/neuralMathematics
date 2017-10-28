@@ -48,6 +48,7 @@ namespace Interfaces
         /// </summary>
         /// <returns>arithmetic object</returns>
         IArithmetic MakeUnique();
+
         /// <summary>
         /// Let a letter as a value
         /// given a letter and its value
@@ -92,7 +93,7 @@ namespace Interfaces
         IEquation Factorize();
 
         /// <summary>
-        /// Develope equation
+        /// Develop equation
         /// works only on a current equation as a product
         /// </summary>
         /// <returns>developed equation</returns>

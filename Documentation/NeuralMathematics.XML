@@ -30,6 +30,39 @@
             MainWindow
             </summary>
         </member>
+        <member name="M:NeuralMathematics.MainWindow.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:NeuralMathematics.MainWindow.doc_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            When the main windows was loaded
+            </summary>
+            <param name="sender">source</param>
+            <param name="r">args</param>
+        </member>
+        <member name="M:NeuralMathematics.MainWindow.Applicatifs_ButtonClicked(System.Object,System.EventArgs)">
+            <summary>
+            When a button was clicked
+            </summary>
+            <param name="sender">button</param>
+            <param name="e">args</param>
+        </member>
+        <member name="M:NeuralMathematics.MainWindow.doc_SizeChanged(System.Object,System.Windows.SizeChangedEventArgs)">
+            <summary>
+            Size Changed
+            </summary>
+            <param name="sender">source</param>
+            <param name="e">args</param>
+        </member>
+        <member name="M:NeuralMathematics.MainWindow.Window_StateChanged(System.Object,System.EventArgs)">
+            <summary>
+            When state changed
+            </summary>
+            <param name="sender">source</param>
+            <param name="e">args</param>
+        </member>
         <member name="M:NeuralMathematics.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent

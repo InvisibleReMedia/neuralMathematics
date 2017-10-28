@@ -897,6 +897,7 @@
             Gets a value from the dictionary
             </summary>
             <param name="name">name of the field</param>
+            <param name="init">default value</param>
             <returns>value</returns>
         </member>
         <member name="M:PersistantModel.Arithmetic.ComputeOwnerWeight">
@@ -1006,7 +1007,7 @@
             given a letter and its equation
             </summary>
             <param name="letter">letter value</param>
-            <param name="value">equation object</param>
+            <param name="e">equation object</param>
         </member>
         <member name="M:PersistantModel.Arithmetic.AsRepresented(System.String)">
             <summary>
@@ -1021,6 +1022,27 @@
             terms that are valued are operated with its numeric value
             </summary>
             <returns>string representation number or algebraic</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Transform">
+            <summary>
+            Transform the current equation to an
+            another equation
+            </summary>
+            <returns>transformed equation</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Factorize">
+            <summary>
+            Factorization of an equation
+            works only on a current equation as an addition
+            </summary>
+            <returns>factorized equation</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Develop">
+            <summary>
+            Develop equation
+            works only on a current equation as a product
+            </summary>
+            <returns>developed equation</returns>
         </member>
         <member name="M:PersistantModel.Arithmetic.Equals(PersistantModel.Arithmetic,PersistantModel.Arithmetic)">
             <summary>
@@ -1219,6 +1241,7 @@
             Gets a value from the dictionary
             </summary>
             <param name="name">name of the field</param>
+            <param name="init">default value</param>
             <returns>value</returns>
         </member>
         <member name="M:PersistantModel.PersistentDataObject.Remove(System.String)">
@@ -1817,28 +1840,28 @@
             <summary>
             Computes a weight from a binary operator
             </summary>
-            <param name="ut">binary term object</param>
+            <param name="op">binary term object</param>
             <returns>weight of this object</returns>
         </member>
         <member name="M:PersistantModel.Weight.ComputeWeight(PersistantModel.UnaryOperation)">
             <summary>
             Computes a weight from a unary operator
             </summary>
-            <param name="ut">unary term object</param>
+            <param name="op">unary term object</param>
             <returns>weight of this object</returns>
         </member>
         <member name="M:PersistantModel.Weight.ComputeWeight(PersistantModel.Sum)">
             <summary>
             Computes a weight from a multiple sum
             </summary>
-            <param name="ut">sum equation object</param>
+            <param name="op">sum equation object</param>
             <returns>weight of this object</returns>
         </member>
         <member name="M:PersistantModel.Weight.ComputeWeight(PersistantModel.Product)">
             <summary>
             Computes a weight from a multiple sum
             </summary>
-            <param name="ut">product equation object</param>
+            <param name="op">product equation object</param>
             <returns>weight of this object</returns>
         </member>
         <member name="M:PersistantModel.Weight.op_Equality(PersistantModel.Weight,PersistantModel.Weight)">

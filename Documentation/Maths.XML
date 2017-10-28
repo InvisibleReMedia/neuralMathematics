@@ -28,6 +28,40 @@
             </summary>
             <returns>string representation</returns>
         </member>
+        <member name="T:Maths.Applicatifs">
+            <summary>
+            Fonctions qui implémentent les documents (FlowDocument)
+            </summary>
+        </member>
+        <member name="E:Maths.Applicatifs.onButtonClick">
+            <summary>
+            Evenement sur click des boutons
+            </summary>
+        </member>
+        <member name="E:Maths.Applicatifs.ButtonClicked">
+            <summary>
+            Event handler for clicked button
+            </summary>
+        </member>
+        <member name="M:Maths.Applicatifs.Menu">
+            <summary>
+            Fonction de menu
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Maths.Applicatifs.Button_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            When click on button 1
+            </summary>
+            <param name="sender">source window</param>
+            <param name="e">args</param>
+        </member>
+        <member name="M:Maths.Applicatifs.SetButtonStyle(System.Windows.Controls.Button)">
+            <summary>
+            Set the button style
+            </summary>
+            <param name="b">button</param>
+        </member>
         <member name="M:Maths.Applicatifs.Newton">
             <summary>
             Développement polynôme
@@ -120,11 +154,6 @@
             Inverse operator ID
             </summary>
         </member>
-        <member name="F:Maths.MathematicEquation.records">
-            <summary>
-            Records for this mathematic equation
-            </summary>
-        </member>
         <member name="F:Maths.MathematicEquation.eq">
             <summary>
             Equation
@@ -182,6 +211,7 @@
             </summary>
             <param name="constant">constant equation</param>
             <param name="coef">coefficient equation</param>
+            <param name="x">equation</param>
         </member>
         <member name="P:Maths.MathematicEquation.IsCalculable">
             <summary>
@@ -227,6 +257,42 @@
             terms that are valued are operated with its numeric value
             </summary>
             <returns>string representation number or algebraic</returns>
+        </member>
+        <member name="M:Maths.MathematicEquation.Develop">
+            <summary>
+            Develop equation
+            works only on a current equation as a product
+            </summary>
+            <returns>developed equation</returns>
+        </member>
+        <member name="M:Maths.MathematicEquation.Factorize">
+            <summary>
+            Factorization of an equation
+            works only on a current equation as an addition
+            </summary>
+            <returns>factorized equation</returns>
+        </member>
+        <member name="M:Maths.MathematicEquation.Let(System.String,Interfaces.IEquation)">
+            <summary>
+            Let a letter as an arithmetic operation
+            </summary>
+            <param name="letter">letter value</param>
+            <param name="e">arithmetic expression</param>
+        </member>
+        <member name="M:Maths.MathematicEquation.Let(System.String,System.Double)">
+            <summary>
+            Let a letter as a value
+            given a letter and its value
+            </summary>
+            <param name="letter">letter value</param>
+            <param name="value">numeric value</param>
+        </member>
+        <member name="M:Maths.MathematicEquation.Transform">
+            <summary>
+            Transform the current equation to an
+            another equation
+            </summary>
+            <returns>transformed equation</returns>
         </member>
         <member name="P:Maths.GenericNeurone.Id">
             <summary>
@@ -353,11 +419,6 @@
         <member name="F:Maths.TopLevelArithmeticModel.revisionName">
             <summary>
             Revision number
-            </summary>
-        </member>
-        <member name="F:Maths.TopLevelArithmeticModel.hashCodeDictName">
-            <summary>
-            Hash code dictionary
             </summary>
         </member>
         <member name="M:Maths.TopLevelArithmeticModel.#ctor">

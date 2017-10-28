@@ -83,6 +83,7 @@ namespace PersistantModel
         /// Gets a value from the dictionary
         /// </summary>
         /// <param name="name">name of the field</param>
+        /// <param name="init">default value</param>
         /// <returns>value</returns>
         public dynamic Get(string name, dynamic init = null)
         {

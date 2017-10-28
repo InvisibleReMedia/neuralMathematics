@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
+    /// <summary>
+    /// Interface d'objets arithmetiques
+    /// </summary>
     public interface IArithmetic : IEquation, ICloneable
     {
         /// <summary>

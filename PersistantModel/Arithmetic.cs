@@ -483,6 +483,7 @@ namespace PersistantModel
         /// Gets a value from the dictionary
         /// </summary>
         /// <param name="name">name of the field</param>
+        /// <param name="init">default value</param>
         /// <returns>value</returns>
         protected dynamic Get(string name, dynamic init = null)
         {
@@ -976,7 +977,7 @@ namespace PersistantModel
         /// given a letter and its equation
         /// </summary>
         /// <param name="letter">letter value</param>
-        /// <param name="value">equation object</param>
+        /// <param name="e">equation object</param>
         public void Let(string letter, IEquation e)
         {
             foreach (Coefficient c in this.Coefficients)
@@ -1053,16 +1054,31 @@ namespace PersistantModel
             }
         }
 
+        /// <summary>
+        /// Transform the current equation to an
+        /// another equation
+        /// </summary>
+        /// <returns>transformed equation</returns>
         public IEnumerable<IArithmetic> Transform()
         {
             return this.MakeTransform();
         }
 
+        /// <summary>
+        /// Factorization of an equation
+        /// works only on a current equation as an addition
+        /// </summary>
+        /// <returns>factorized equation</returns>
         public IEquation Factorize()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Develop equation
+        /// works only on a current equation as a product
+        /// </summary>
+        /// <returns>developed equation</returns>
         public IEquation Develop()
         {
             throw new NotImplementedException();

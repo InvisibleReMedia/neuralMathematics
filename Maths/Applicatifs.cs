@@ -7,12 +7,99 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Media;
 
 namespace Maths
 {
+    /// <summary>
+    /// Fonctions qui implémentent les documents (FlowDocument)
+    /// </summary>
     public static class Applicatifs
     {
+        /// <summary>
+        /// Evenement sur click des boutons
+        /// </summary>
+        private static event EventHandler onButtonClick;
+
+        /// <summary>
+        /// Event handler for clicked button
+        /// </summary>
+        public static event EventHandler ButtonClicked
+        {
+            add
+            {
+                onButtonClick += value;
+            }
+            remove
+            {
+                onButtonClick -= value;
+            }
+        }
+
+
+        /// <summary>
+        /// Fonction de menu
+        /// </summary>
+        /// <returns></returns>
+        public static FlowDocument Menu()
+        {
+            Table t = new Table();
+            t.Columns.Add(new TableColumn());
+            t.Columns.Add(new TableColumn());
+            t.Columns.Add(new TableColumn());
+            TableRowGroup trg = new TableRowGroup();
+            TableRow tr = new TableRow();
+            Button b1 = new Button();
+            b1.Name = "Polynome2Somme";
+            b1.Content = "Polynôme d'ordre 2 - Somme";
+            b1.Click += Button_Click;
+            SetButtonStyle(b1);
+            Button b2 = new Button();
+            b2.Name = "Polynome2Difference";
+            b2.Content = "Polynôme d'ordre 2 - Difference";
+            b2.Click += Button_Click;
+            SetButtonStyle(b2);
+            Button b3 = new Button();
+            b3.Name = "Newton";
+            b3.Content = "Polynôme d'ordre 2 et 3 - Formule du binôme de Newton";
+            b3.Click += Button_Click;
+            SetButtonStyle(b3);
+            TableCell tc = new TableCell(new BlockUIContainer(b1));
+            tr.Cells.Add(tc);
+            tc = new TableCell(new BlockUIContainer(b2));
+            tr.Cells.Add(tc);
+            tc = new TableCell(new BlockUIContainer(b3));
+            tr.Cells.Add(tc);
+            trg.Rows.Add(tr);
+            t.RowGroups.Add(trg);
+
+            FlowDocument fd = new FlowDocument(t);
+            return fd;
+        }
+
+        /// <summary>
+        /// When click on button 1
+        /// </summary>
+        /// <param name="sender">source window</param>
+        /// <param name="e">args</param>
+        private static void Button_Click(object sender, RoutedEventArgs e)
+        {
+            onButtonClick(sender, e);
+        }
+
+        /// <summary>
+        /// Set the button style
+        /// </summary>
+        /// <param name="b">button</param>
+        private static void SetButtonStyle(Button b)
+        {
+            b.Height = 50.0d;
+            b.Background = Brushes.AliceBlue;
+            b.Foreground = Brushes.Black;
+        }
+
         /// <summary>
         /// Développement polynôme
         /// </summary>
@@ -92,6 +179,14 @@ namespace Maths
             t.WordingList.Add(w);
             t.Save(fi);
             FlowDocument fd = new FlowDocument();
+
+            Button but = new Button();
+            but.Name = "GoBack";
+            but.Content = "Retour";
+            but.Click += Button_Click;
+            SetButtonStyle(but);
+            fd.Blocks.Add(new BlockUIContainer(but));
+
             w.ToDocument(fd);
             return fd;
         }
@@ -157,6 +252,14 @@ namespace Maths
             w.Add(e4);
 
             FlowDocument fd = new FlowDocument();
+
+            Button but = new Button();
+            but.Name = "GoBack";
+            but.Content = "Retour";
+            but.Click += Button_Click;
+            SetButtonStyle(but);
+            fd.Blocks.Add(new BlockUIContainer(but));
+
             w.ToDocument(fd);
 
             return fd;
@@ -215,6 +318,14 @@ namespace Maths
             w.Add(e4);
 
             FlowDocument fd = new FlowDocument();
+
+            Button but = new Button();
+            but.Name = "GoBack";
+            but.Content = "Retour";
+            but.Click += Button_Click;
+            SetButtonStyle(but);
+            fd.Blocks.Add(new BlockUIContainer(but));
+
             w.ToDocument(fd);
             return fd;
         }
@@ -281,6 +392,14 @@ namespace Maths
             w.Add(e4);
 
             FlowDocument fd = new FlowDocument();
+
+            Button but = new Button();
+            but.Name = "GoBack";
+            but.Content = "Retour";
+            but.Click += Button_Click;
+            SetButtonStyle(but);
+            fd.Blocks.Add(new BlockUIContainer(but));
+
             w.ToDocument(fd);
             return fd;
         }
