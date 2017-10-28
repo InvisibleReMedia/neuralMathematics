@@ -73,6 +73,16 @@ namespace Maths
             tc = new TableCell(new BlockUIContainer(b3));
             tr.Cells.Add(tc);
             trg.Rows.Add(tr);
+            tr = new TableRow();
+            Button b4 = new Button();
+            b4.Name = "Close";
+            b4.Content = "Quitter";
+            b4.Click += Button_Click;
+            SetButtonStyle(b4);
+            tc = new TableCell(new BlockUIContainer(b4));
+            tc.ColumnSpan = 3;
+            tr.Cells.Add(tc);
+            trg.Rows.Add(tr);
             t.RowGroups.Add(trg);
 
             FlowDocument fd = new FlowDocument(t);

@@ -79,7 +79,9 @@ namespace NeuralMathematics
                     this.doc.Document = Applicatifs.Menu();
                     this.doc.UpdateLayout();
                     break;
-
+                case "Close":
+                    this.Close();
+                    break;
             }
         }
 
