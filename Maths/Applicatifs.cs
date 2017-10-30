@@ -66,6 +66,11 @@ namespace Maths
             b3.Content = "Polynôme d'ordre 2 et 3 - Formule du binôme de Newton";
             b3.Click += Button_Click;
             SetButtonStyle(b3);
+            Button b4 = new Button();
+            b4.Name = "Polynome2Produit";
+            b4.Content = "Polynôme d'ordre 2 - Produit";
+            b4.Click += Button_Click;
+            SetButtonStyle(b4);
             TableCell tc = new TableCell(new BlockUIContainer(b1));
             tr.Cells.Add(tc);
             tc = new TableCell(new BlockUIContainer(b2));
@@ -74,12 +79,17 @@ namespace Maths
             tr.Cells.Add(tc);
             trg.Rows.Add(tr);
             tr = new TableRow();
-            Button b4 = new Button();
-            b4.Name = "Close";
-            b4.Content = "Quitter";
-            b4.Click += Button_Click;
-            SetButtonStyle(b4);
             tc = new TableCell(new BlockUIContainer(b4));
+            tc.ColumnSpan = 3;
+            tr.Cells.Add(tc);
+            trg.Rows.Add(tr);
+            tr = new TableRow();
+            Button b5 = new Button();
+            b5.Name = "Close";
+            b5.Content = "Quitter";
+            b5.Click += Button_Click;
+            SetButtonStyle(b5);
+            tc = new TableCell(new BlockUIContainer(b5));
             tc.ColumnSpan = 3;
             tr.Cells.Add(tc);
             trg.Rows.Add(tr);
@@ -337,6 +347,48 @@ namespace Maths
             fd.Blocks.Add(new BlockUIContainer(but));
 
             w.ToDocument(fd);
+            return fd;
+        }
+
+        /// <summary>
+        /// Résolution polynôme ordre 2 par produit
+        /// </summary>
+        /// <returns>document</returns>
+        public static FlowDocument Polynome2Produit()
+        {
+            Wording w = new Wording("Résolution du polynôme d'ordre 2", "Considérons le produit");
+
+            Texte t1 = new Texte("Equation du second degré");
+            Equal eq1 = new Equal(new UnknownTerm("y"), new Sum(new Multiplication(new Coefficient("a"), new Power(new UnknownTerm("x"), new NumericValue(2.0d))),
+                                                                new Multiplication(new Coefficient("b"), new UnknownTerm("x")),
+                                                                new Coefficient("c")));
+            Texte t12 = new Texte("Je factorise le terme a, puis le terme x, puis je place le coefficient c de l'autre côté de l'égalité");
+            Equal eq12 = new Equal(new Division(new Soustraction(new UnknownTerm("y"), new Coefficient("c")), new Coefficient("a")),
+                                   new Multiplication(new UnknownTerm("x"), new Addition(new UnknownTerm("x"), new Division(new UnknownTerm("b"), new Coefficient("a")))));
+
+            SequenceProof sp1 = new SequenceProof();
+            sp1.Add(t1);
+            sp1.Add(eq1);
+            sp1.Add(t12);
+            sp1.Add(eq12);
+
+            Answer a1 = new Answer("Equation produit", sp1);
+
+            Exercice e1 = new Exercice(1, "Exprimez le polynôme d'ordre 2 sous la forme d'une égalité entre une différence et un produit", "Démarrez à partir de l'équation polynômiale avec des coefficients", a1);
+
+            w.Add(e1);
+
+            FlowDocument fd = new FlowDocument();
+
+            Button but = new Button();
+            but.Name = "GoBack";
+            but.Content = "Retour";
+            but.Click += Button_Click;
+            SetButtonStyle(but);
+            fd.Blocks.Add(new BlockUIContainer(but));
+            
+            w.ToDocument(fd);
+
             return fd;
         }
 

@@ -11,6 +11,400 @@
             </summary>
             <typeparam name="T">Persistent object</typeparam>
         </member>
+        <member name="T:PersistantModel.Arithmetic">
+            <summary>
+            Classe permettant
+            d'enregistrer des éléments
+            arithmetiques
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.equationName">
+            <summary>
+            Index name to store the equation object
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.letterName">
+            <summary>
+            nom pour le champ lettre
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.hasValueName">
+            <summary>
+            Index name to store a boolean value of having an existing value
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.valueName">
+            <summary>
+            nom pour le champ valeur
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.operatorName">
+            <summary>
+            Index name to store operator name
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.innerOperandName">
+            <summary>
+            Index name to store value
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.leftTermName">
+            <summary>
+            Index name to store left value
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.rightTermName">
+            <summary>
+            Index name to store right value
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.constantName">
+            <summary>
+            Index name to store a constant
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.coefName">
+            <summary>
+            Index name to store a coefficient
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.unknownName">
+            <summary>
+            Index name to store an unknown term
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.isCalculableName">
+            <summary>
+            Boolean to act equation as calculable
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.calculatedValueName">
+            <summary>
+            Value that acts as a calculated result
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.uncalculatedValueName">
+            <summary>
+            String element that acts as an un-calculable result
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.listName">
+            <summary>
+            Index name to store list
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.weight">
+            <summary>
+            Computed weight
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.recordZone">
+            <summary>
+            mutualized record zone
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Arithmetic.persistentData">
+            <summary>
+            Inner data informations
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.OnFetch(PersistantModel.RecordZone{PersistantModel.Weight})">
+            <summary>
+            Raise the event fetch
+            </summary>
+            <param name="records">records</param>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.OnUnfetch(PersistantModel.RecordZone{PersistantModel.Weight})">
+            <summary>
+            Raise the event unfetch
+            </summary>
+            <param name="records">records</param>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Set(System.String,System.Object)">
+            <summary>
+            Sets a value into the dictionary
+            </summary>
+            <param name="name">name of the field</param>
+            <param name="value">value of field</param>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Get(System.String,System.Object)">
+            <summary>
+            Gets a value from the dictionary
+            </summary>
+            <param name="name">name of the field</param>
+            <param name="init">default value</param>
+            <returns>value</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.ComputeOwnerWeight">
+            <summary>
+            Computes the unique weight
+            for this object
+            </summary>
+            <returns>weight</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.EnsureSign(Interfaces.IArithmetic)">
+            <summary>
+            Verify when a positive equation
+            may contains multiple inner positive or negative
+            equation
+            </summary>
+            <param name="e">equation to test</param>
+            <returns>correct equation</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.EnsureInverse(Interfaces.IArithmetic)">
+            <summary>
+            Verify when an inverse equation
+            may contains multiple inner inverse
+            equation
+            </summary>
+            <param name="e">equation to test</param>
+            <returns>correct equation</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.EnsureSum(Interfaces.IArithmetic,System.Int32)">
+            <summary>
+            Verify when an equation
+            may contains multiple inner add or sub equations
+            </summary>
+            <param name="e">equation to test</param>
+            <param name="direction">sommation or difference</param>
+            <returns>correct equation</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.EnsureProduct(Interfaces.IArithmetic,System.Int32)">
+            <summary>
+            Verify when an equation
+            may contains multiple inner multiplication or division
+            equation
+            </summary>
+            <param name="e">equation to test</param>
+            <param name="direction">sommation or difference</param>
+            <returns>correct equation</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Create">
+            <summary>
+            Create a new arithmetic class
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.MakeTransform">
+            <summary>
+            Transforms an addition into a multiplication
+            </summary>
+            <returns>a list of possibles equation</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Compute">
+            <summary>
+            When an equation can be calculable then
+            the result is a number else, it's an arithmetic expression
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.MakeUnique(PersistantModel.Arithmetic)">
+            <summary>
+            Generates a new arithmetic object
+            that's handle by a unique record zone
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Clone">
+            <summary>
+            Clone this arithmetic object
+            </summary>
+            <returns>new arithmetic object</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.ToString">
+            <summary>
+            Transforms equation object into a string representation
+            </summary>
+            <returns>string representation</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.MakeUnique">
+            <summary>
+            Generates a new arithmetic object
+            that's handle by a unique record zone
+            </summary>
+            <returns>arithmetic object</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Let(System.String,System.Double)">
+            <summary>
+            Let a letter as a value
+            given a letter and its value
+            </summary>
+            <param name="letter">letter value</param>
+            <param name="value">numeric value</param>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Let(System.String,Interfaces.IEquation)">
+            <summary>
+            Let a letter as an equation
+            given a letter and its equation
+            </summary>
+            <param name="letter">letter value</param>
+            <param name="e">equation object</param>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.AsRepresented(System.String)">
+            <summary>
+            String representation of the algebraic equation
+            </summary>
+            <param name="type">type of representation; string or tex</param>
+            <returns>string text</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Calculate">
+            <summary>
+            Calculate the result of this equation
+            terms that are valued are operated with its numeric value
+            </summary>
+            <returns>string representation number or algebraic</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Transform">
+            <summary>
+            Transform the current equation to an
+            another equation
+            </summary>
+            <returns>transformed equation</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Factorize">
+            <summary>
+            Factorization of an equation
+            works only on a current equation as an addition
+            </summary>
+            <returns>factorized equation</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Develop">
+            <summary>
+            Develop equation
+            works only on a current equation as a product
+            </summary>
+            <returns>developed equation</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Equals(PersistantModel.Arithmetic,PersistantModel.Arithmetic)">
+            <summary>
+            Compare two object
+            </summary>
+            <param name="x">object left</param>
+            <param name="y">object right</param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.GetHashCode(PersistantModel.Arithmetic)">
+            <summary>
+            Hash code of this object
+            replacement with the weight hash code
+            </summary>
+            <param name="obj">obj</param>
+            <returns>hash code</returns>
+        </member>
+        <member name="E:PersistantModel.Arithmetic.eventFetch">
+            <summary>
+            Events
+            </summary>
+        </member>
+        <member name="E:PersistantModel.Arithmetic.eventUnfetch">
+            <summary>
+            Events
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.Records">
+            <summary>
+            Gets all records
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.OwnerWeight">
+            <summary>
+            Gets the weight content
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.Item(System.String)">
+            <summary>
+            Gets or sets a value from
+            persistent data
+            </summary>
+            <param name="name">name</param>
+            <returns>value</returns>
+        </member>
+        <member name="E:PersistantModel.Arithmetic.Fetch">
+            <summary>
+            Event to fetch all data into
+            a unique list of unique records
+            </summary>
+        </member>
+        <member name="E:PersistantModel.Arithmetic.Unfetch">
+            <summary>
+            Event to unfetch all data into
+            a unique list of unique records
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.Operator">
+            <summary>
+            Gets the operator ID
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.IsBinaryOperator">
+            <summary>
+            Gets binary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.IsUnaryOperator">
+            <summary>
+            Gets unary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.IsMultipleOperator">
+            <summary>
+            Gets multiple switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.IsNotOperator">
+            <summary>
+            Gets true if it's not an operator
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.InnerOperand">
+            <summary>
+            Gets the inner operand
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.LeftOperand">
+            <summary>
+            Gets the left operand
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.RightOperand">
+            <summary>
+            Gets the right operand
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.IsCalculable">
+            <summary>
+            Gets true if equation is calculable
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.UnknownTerms">
+            <summary>
+            Gets all unknown terms
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.Coefficients">
+            <summary>
+            Gets all coefficients
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.Constants">
+            <summary>
+            Gets all constants
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.Equation">
+            <summary>
+            Gets equation
+            </summary>
+        </member>
         <member name="F:PersistantModel.Gathering`1.records">
             <summary>
             Records
@@ -38,6 +432,76 @@
             Recording zone to handle objects
             </summary>
         </member>
+        <member name="T:PersistantModel.PersistentDataObject">
+            <summary>
+            Classe contenant la séquence
+            de sérialisation/déserialisation
+            </summary>
+        </member>
+        <member name="F:PersistantModel.PersistentDataObject.dict">
+            <summary>
+            Field to store data information to serialize
+            </summary>
+        </member>
+        <member name="M:PersistantModel.PersistentDataObject.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:PersistantModel.PersistentDataObject.Exists(System.String)">
+            <summary>
+            Test if a key exists
+            </summary>
+            <param name="name">key name</param>
+            <returns>true if exists</returns>
+        </member>
+        <member name="M:PersistantModel.PersistentDataObject.Set(System.String,System.Object)">
+            <summary>
+            Sets a value into the dictionary
+            </summary>
+            <param name="name">name of the field</param>
+            <param name="value">value of field</param>
+        </member>
+        <member name="M:PersistantModel.PersistentDataObject.Get(System.String,System.Object)">
+            <summary>
+            Gets a value from the dictionary
+            </summary>
+            <param name="name">name of the field</param>
+            <param name="init">default value</param>
+            <returns>value</returns>
+        </member>
+        <member name="M:PersistantModel.PersistentDataObject.Remove(System.String)">
+            <summary>
+            Remove a key
+            </summary>
+            <param name="name">key name</param>
+        </member>
+        <member name="M:PersistantModel.PersistentDataObject.Load(System.IO.FileInfo,PersistantModel.PersistentDataObject@)">
+            <summary>
+            Lecture d'un document
+            </summary>
+            <param name="file">information de fichier</param>
+            <param name="result">objet obtenu</param>
+            <returns>true if success</returns>
+        </member>
+        <member name="M:PersistantModel.PersistentDataObject.Save(System.IO.FileInfo,PersistantModel.PersistentDataObject)">
+            <summary>
+            Sauvegarde d'un document
+            </summary>
+            <param name="file">information de fichier</param>
+            <param name="data">objet à sérialiser</param>
+            <returns>true if success</returns>
+        </member>
+        <member name="P:PersistantModel.PersistentDataObject.Data">
+            <summary>
+            Data to be used
+            </summary>
+        </member>
+        <member name="P:PersistantModel.PersistentDataObject.Keys">
+            <summary>
+            Gets all direct keys
+            </summary>
+        </member>
         <member name="F:PersistantModel.RecordZone`1.objectListName">
             <summary>
             Store objects
@@ -54,11 +518,6 @@
             given an existing dictionary of objects
             </summary>
             <param name="keys"></param>
-        </member>
-        <member name="P:PersistantModel.RecordZone`1.Records">
-            <summary>
-            Gets all records
-            </summary>
         </member>
         <member name="M:PersistantModel.RecordZone`1.Add(System.Int32,`0)">
             <summary>
@@ -83,6 +542,11 @@
             <param name="hashCode">hash code</param>
             <returns>true if already exists</returns>
         </member>
+        <member name="P:PersistantModel.RecordZone`1.Records">
+            <summary>
+            Gets all records
+            </summary>
+        </member>
         <member name="T:PersistantModel.Texte">
             <summary>
             Classe supportant un texte
@@ -102,16 +566,6 @@
             </summary>
             <param name="t">text</param>
         </member>
-        <member name="P:PersistantModel.Texte.IsCalculable">
-            <summary>
-            Test if calculable
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Texte.Content">
-            <summary>
-            Gets or sets the content
-            </summary>
-        </member>
         <member name="M:PersistantModel.Texte.ToTex">
             <summary>
             Converts content to tex
@@ -123,6 +577,16 @@
             Affiche le texte
             </summary>
             <returns>contenu du texte</returns>
+        </member>
+        <member name="P:PersistantModel.Texte.IsCalculable">
+            <summary>
+            Test if calculable
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Texte.Content">
+            <summary>
+            Gets or sets the content
+            </summary>
         </member>
         <member name="T:PersistantModel.UnaryOperation">
             <summary>
@@ -151,6 +615,18 @@
             <param name="op">operator</param>
             <param name="t">term</param>
         </member>
+        <member name="M:PersistantModel.UnaryOperation.ComputeOwnerWeight">
+            <summary>
+            Computes the unique weight
+            for this object
+            </summary>
+            <returns>weight</returns>
+        </member>
+        <member name="M:PersistantModel.UnaryOperation.Create">
+            <summary>
+            Create a new addition class
+            </summary>
+        </member>
         <member name="P:PersistantModel.UnaryOperation.Operator">
             <summary>
             Gets the operator ID
@@ -174,18 +650,6 @@
         <member name="P:PersistantModel.UnaryOperation.InnerOperand">
             <summary>
             Gets the left operand
-            </summary>
-        </member>
-        <member name="M:PersistantModel.UnaryOperation.ComputeOwnerWeight">
-            <summary>
-            Computes the unique weight
-            for this object
-            </summary>
-            <returns>weight</returns>
-        </member>
-        <member name="M:PersistantModel.UnaryOperation.Create">
-            <summary>
-            Create a new addition class
             </summary>
         </member>
         <member name="T:PersistantModel.Inverse">
@@ -249,14 +713,14 @@
             </summary>
             <param name="n">term</param>
         </member>
-        <member name="P:PersistantModel.Negative.Operator">
-            <summary>
-            Gets the operator char
-            </summary>
-        </member>
         <member name="M:PersistantModel.Negative.Create">
             <summary>
             Create a new addition class
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Negative.Operator">
+            <summary>
+            Gets the operator char
             </summary>
         </member>
         <member name="T:PersistantModel.BinaryOperation">
@@ -287,6 +751,18 @@
             <param name="op">operator id</param>
             <param name="t1">left term</param>
             <param name="t2">right term</param>
+        </member>
+        <member name="M:PersistantModel.BinaryOperation.ComputeOwnerWeight">
+            <summary>
+            Computes the unique weight
+            for this object
+            </summary>
+            <returns>weight</returns>
+        </member>
+        <member name="M:PersistantModel.BinaryOperation.Create">
+            <summary>
+            Create a new addition class
+            </summary>
         </member>
         <member name="P:PersistantModel.BinaryOperation.Operator">
             <summary>
@@ -323,18 +799,6 @@
             Gets the right operand
             </summary>
         </member>
-        <member name="M:PersistantModel.BinaryOperation.ComputeOwnerWeight">
-            <summary>
-            Computes the unique weight
-            for this object
-            </summary>
-            <returns>weight</returns>
-        </member>
-        <member name="M:PersistantModel.BinaryOperation.Create">
-            <summary>
-            Create a new addition class
-            </summary>
-        </member>
         <member name="T:PersistantModel.Positive">
             <summary>
             Persistent data format of a positive value
@@ -360,14 +824,14 @@
             </summary>
             <param name="n">term</param>
         </member>
-        <member name="P:PersistantModel.Positive.Operator">
-            <summary>
-            Gets the operator char
-            </summary>
-        </member>
         <member name="M:PersistantModel.Positive.Create">
             <summary>
             Create a new addition class
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Positive.Operator">
+            <summary>
+            Gets the operator char
             </summary>
         </member>
         <member name="T:PersistantModel.Power">
@@ -666,400 +1130,6 @@
             Create a new addition class
             </summary>
         </member>
-        <member name="T:PersistantModel.Arithmetic">
-            <summary>
-            Classe permettant
-            d'enregistrer des éléments
-            arithmetiques
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.equationName">
-            <summary>
-            Index name to store the equation object
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.letterName">
-            <summary>
-            nom pour le champ lettre
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.hasValueName">
-            <summary>
-            Index name to store a boolean value of having an existing value
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.valueName">
-            <summary>
-            nom pour le champ valeur
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.operatorName">
-            <summary>
-            Index name to store operator name
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.innerOperandName">
-            <summary>
-            Index name to store value
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.leftTermName">
-            <summary>
-            Index name to store left value
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.rightTermName">
-            <summary>
-            Index name to store right value
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.constantName">
-            <summary>
-            Index name to store a constant
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.coefName">
-            <summary>
-            Index name to store a coefficient
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.unknownName">
-            <summary>
-            Index name to store an unknown term
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.isCalculableName">
-            <summary>
-            Boolean to act equation as calculable
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.calculatedValueName">
-            <summary>
-            Value that acts as a calculated result
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.uncalculatedValueName">
-            <summary>
-            String element that acts as an un-calculable result
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.listName">
-            <summary>
-            Index name to store list
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.weight">
-            <summary>
-            Computed weight
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.recordZone">
-            <summary>
-            mutualized record zone
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Arithmetic.persistentData">
-            <summary>
-            Inner data informations
-            </summary>
-        </member>
-        <member name="E:PersistantModel.Arithmetic.eventFetch">
-            <summary>
-            Events
-            </summary>
-        </member>
-        <member name="E:PersistantModel.Arithmetic.eventUnfetch">
-            <summary>
-            Events
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.#ctor">
-            <summary>
-            Default constructor
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.Records">
-            <summary>
-            Gets all records
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.OwnerWeight">
-            <summary>
-            Gets the weight content
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.Item(System.String)">
-            <summary>
-            Gets or sets a value from
-            persistent data
-            </summary>
-            <param name="name">name</param>
-            <returns>value</returns>
-        </member>
-        <member name="E:PersistantModel.Arithmetic.Fetch">
-            <summary>
-            Event to fetch all data into
-            a unique list of unique records
-            </summary>
-        </member>
-        <member name="E:PersistantModel.Arithmetic.Unfetch">
-            <summary>
-            Event to unfetch all data into
-            a unique list of unique records
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.Operator">
-            <summary>
-            Gets the operator ID
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.IsBinaryOperator">
-            <summary>
-            Gets binary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.IsUnaryOperator">
-            <summary>
-            Gets unary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.IsMultipleOperator">
-            <summary>
-            Gets multiple switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.IsNotOperator">
-            <summary>
-            Gets true if it's not an operator
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.InnerOperand">
-            <summary>
-            Gets the inner operand
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.LeftOperand">
-            <summary>
-            Gets the left operand
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.RightOperand">
-            <summary>
-            Gets the right operand
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.IsCalculable">
-            <summary>
-            Gets true if equation is calculable
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.UnknownTerms">
-            <summary>
-            Gets all unknown terms
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.Coefficients">
-            <summary>
-            Gets all coefficients
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.Constants">
-            <summary>
-            Gets all constants
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.Equation">
-            <summary>
-            Gets equation
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.OnFetch(PersistantModel.RecordZone{PersistantModel.Weight})">
-            <summary>
-            Raise the event fetch
-            </summary>
-            <param name="records">records</param>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.OnUnfetch(PersistantModel.RecordZone{PersistantModel.Weight})">
-            <summary>
-            Raise the event unfetch
-            </summary>
-            <param name="records">records</param>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.Set(System.String,System.Object)">
-            <summary>
-            Sets a value into the dictionary
-            </summary>
-            <param name="name">name of the field</param>
-            <param name="value">value of field</param>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.Get(System.String,System.Object)">
-            <summary>
-            Gets a value from the dictionary
-            </summary>
-            <param name="name">name of the field</param>
-            <param name="init">default value</param>
-            <returns>value</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.ComputeOwnerWeight">
-            <summary>
-            Computes the unique weight
-            for this object
-            </summary>
-            <returns>weight</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.EnsureSign(Interfaces.IArithmetic)">
-            <summary>
-            Verify when a positive equation
-            may contains multiple inner positive or negative
-            equation
-            </summary>
-            <param name="e">equation to test</param>
-            <returns>correct equation</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.EnsureInverse(Interfaces.IArithmetic)">
-            <summary>
-            Verify when an inverse equation
-            may contains multiple inner inverse
-            equation
-            </summary>
-            <param name="e">equation to test</param>
-            <returns>correct equation</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.EnsureSum(Interfaces.IArithmetic,System.Int32)">
-            <summary>
-            Verify when an equation
-            may contains multiple inner add or sub equations
-            </summary>
-            <param name="e">equation to test</param>
-            <param name="direction">sommation or difference</param>
-            <returns>correct equation</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.EnsureProduct(Interfaces.IArithmetic,System.Int32)">
-            <summary>
-            Verify when an equation
-            may contains multiple inner multiplication or division
-            equation
-            </summary>
-            <param name="e">equation to test</param>
-            <param name="direction">sommation or difference</param>
-            <returns>correct equation</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.Create">
-            <summary>
-            Create a new arithmetic class
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.MakeTransform">
-            <summary>
-            Transforms an addition into a multiplication
-            </summary>
-            <returns>a list of possibles equation</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.Compute">
-            <summary>
-            When an equation can be calculable then
-            the result is a number else, it's an arithmetic expression
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.MakeUnique(PersistantModel.Arithmetic)">
-            <summary>
-            Generates a new arithmetic object
-            that's handle by a unique record zone
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.Clone">
-            <summary>
-            Clone this arithmetic object
-            </summary>
-            <returns>new arithmetic object</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.ToTex">
-            <summary>
-            Transforms equation object into a tex representation
-            </summary>
-            <returns>tex representation</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.ToString">
-            <summary>
-            Transforms equation object into a string representation
-            </summary>
-            <returns>string representation</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.MakeUnique">
-            <summary>
-            Generates a new arithmetic object
-            that's handle by a unique record zone
-            </summary>
-            <returns>arithmetic object</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.Let(System.String,System.Double)">
-            <summary>
-            Let a letter as a value
-            given a letter and its value
-            </summary>
-            <param name="letter">letter value</param>
-            <param name="value">numeric value</param>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.Let(System.String,Interfaces.IEquation)">
-            <summary>
-            Let a letter as an equation
-            given a letter and its equation
-            </summary>
-            <param name="letter">letter value</param>
-            <param name="e">equation object</param>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.AsRepresented(System.String)">
-            <summary>
-            String representation of the algebraic equation
-            </summary>
-            <param name="type">type of representation; string or tex</param>
-            <returns>string text</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.Calculate">
-            <summary>
-            Calculate the result of this equation
-            terms that are valued are operated with its numeric value
-            </summary>
-            <returns>string representation number or algebraic</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.Transform">
-            <summary>
-            Transform the current equation to an
-            another equation
-            </summary>
-            <returns>transformed equation</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.Factorize">
-            <summary>
-            Factorization of an equation
-            works only on a current equation as an addition
-            </summary>
-            <returns>factorized equation</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.Develop">
-            <summary>
-            Develop equation
-            works only on a current equation as a product
-            </summary>
-            <returns>developed equation</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.Equals(PersistantModel.Arithmetic,PersistantModel.Arithmetic)">
-            <summary>
-            Compare two object
-            </summary>
-            <param name="x">object left</param>
-            <param name="y">object right</param>
-            <returns></returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.GetHashCode(PersistantModel.Arithmetic)">
-            <summary>
-            Hash code of this object
-            replacement with the weight hash code
-            </summary>
-            <param name="obj">obj</param>
-            <returns>hash code</returns>
-        </member>
         <member name="T:PersistantModel.Coefficient">
             <summary>
             Classe contenant le nom, la valeur numérique
@@ -1087,6 +1157,25 @@
             with value as 0.0
             </summary>
             <param name="letter">letter of coefficient</param>
+        </member>
+        <member name="M:PersistantModel.Coefficient.Compute">
+            <summary>
+            When an equation can be calculable then
+            the result is a number else, it's an arithmetic expression
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistantModel.Coefficient.ComputeOwnerWeight">
+            <summary>
+            Computes the unique weight
+            for this object
+            </summary>
+            <returns>weight</returns>
+        </member>
+        <member name="M:PersistantModel.Coefficient.Create">
+            <summary>
+            Create a new arithmetic class
+            </summary>
         </member>
         <member name="P:PersistantModel.Coefficient.Name">
             <summary>
@@ -1123,25 +1212,6 @@
             Gets true if it's not an operator
             </summary>
         </member>
-        <member name="M:PersistantModel.Coefficient.Compute">
-            <summary>
-            When an equation can be calculable then
-            the result is a number else, it's an arithmetic expression
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:PersistantModel.Coefficient.ComputeOwnerWeight">
-            <summary>
-            Computes the unique weight
-            for this object
-            </summary>
-            <returns>weight</returns>
-        </member>
-        <member name="M:PersistantModel.Coefficient.Create">
-            <summary>
-            Create a new arithmetic class
-            </summary>
-        </member>
         <member name="T:PersistantModel.NumericValue">
             <summary>
             Classe stockant une valeur numérique
@@ -1158,6 +1228,18 @@
             Constructor for a double precision number
             </summary>
             <param name="d">number</param>
+        </member>
+        <member name="M:PersistantModel.NumericValue.ComputeOwnerWeight">
+            <summary>
+            Computes the unique weight
+            for this object
+            </summary>
+            <returns>weight</returns>
+        </member>
+        <member name="M:PersistantModel.NumericValue.Create">
+            <summary>
+            Create a new arithmetic class
+            </summary>
         </member>
         <member name="P:PersistantModel.NumericValue.Value">
             <summary>
@@ -1184,88 +1266,6 @@
             Gets true if it's not an operator
             </summary>
         </member>
-        <member name="M:PersistantModel.NumericValue.ComputeOwnerWeight">
-            <summary>
-            Computes the unique weight
-            for this object
-            </summary>
-            <returns>weight</returns>
-        </member>
-        <member name="M:PersistantModel.NumericValue.Create">
-            <summary>
-            Create a new arithmetic class
-            </summary>
-        </member>
-        <member name="T:PersistantModel.PersistentDataObject">
-            <summary>
-            Classe contenant la séquence
-            de sérialisation/déserialisation
-            </summary>
-        </member>
-        <member name="F:PersistantModel.PersistentDataObject.dict">
-            <summary>
-            Field to store data information to serialize
-            </summary>
-        </member>
-        <member name="M:PersistantModel.PersistentDataObject.#ctor">
-            <summary>
-            Default constructor
-            </summary>
-        </member>
-        <member name="P:PersistantModel.PersistentDataObject.Data">
-            <summary>
-            Data to be used
-            </summary>
-        </member>
-        <member name="P:PersistantModel.PersistentDataObject.Keys">
-            <summary>
-            Gets all direct keys
-            </summary>
-        </member>
-        <member name="M:PersistantModel.PersistentDataObject.Exists(System.String)">
-            <summary>
-            Test if a key exists
-            </summary>
-            <param name="name">key name</param>
-            <returns>true if exists</returns>
-        </member>
-        <member name="M:PersistantModel.PersistentDataObject.Set(System.String,System.Object)">
-            <summary>
-            Sets a value into the dictionary
-            </summary>
-            <param name="name">name of the field</param>
-            <param name="value">value of field</param>
-        </member>
-        <member name="M:PersistantModel.PersistentDataObject.Get(System.String,System.Object)">
-            <summary>
-            Gets a value from the dictionary
-            </summary>
-            <param name="name">name of the field</param>
-            <param name="init">default value</param>
-            <returns>value</returns>
-        </member>
-        <member name="M:PersistantModel.PersistentDataObject.Remove(System.String)">
-            <summary>
-            Remove a key
-            </summary>
-            <param name="name">key name</param>
-        </member>
-        <member name="M:PersistantModel.PersistentDataObject.Load(System.IO.FileInfo,PersistantModel.PersistentDataObject@)">
-            <summary>
-            Lecture d'un document
-            </summary>
-            <param name="file">information de fichier</param>
-            <param name="result">objet obtenu</param>
-            <returns>true if success</returns>
-        </member>
-        <member name="M:PersistantModel.PersistentDataObject.Save(System.IO.FileInfo,PersistantModel.PersistentDataObject)">
-            <summary>
-            Sauvegarde d'un document
-            </summary>
-            <param name="file">information de fichier</param>
-            <param name="data">objet à sérialiser</param>
-            <returns>true if success</returns>
-        </member>
         <member name="T:PersistantModel.Product">
             <summary>
             Product of multiple terms
@@ -1281,41 +1281,6 @@
             Constructor with a input list
             </summary>
             <param name="inputs">input list</param>
-        </member>
-        <member name="P:PersistantModel.Product.Operator">
-            <summary>
-            Gets the operator ID
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Product.IsBinaryOperator">
-            <summary>
-            Gets binary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Product.IsUnaryOperator">
-            <summary>
-            Gets unary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Product.IsMultipleOperator">
-            <summary>
-            Gets multiple switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Product.IsNotOperator">
-            <summary>
-            Gets true if it's not an operator
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Product.Items">
-            <summary>
-            Gets the enumeration of elements by sommation
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Product.List">
-            <summary>
-            Gets the list source
-            </summary>
         </member>
         <member name="M:PersistantModel.Product.IntermediateTransition(PersistantModel.Product)">
             <summary>
@@ -1375,6 +1340,41 @@
             Create a new arithmetic class
             </summary>
         </member>
+        <member name="P:PersistantModel.Product.Operator">
+            <summary>
+            Gets the operator ID
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Product.IsBinaryOperator">
+            <summary>
+            Gets binary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Product.IsUnaryOperator">
+            <summary>
+            Gets unary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Product.IsMultipleOperator">
+            <summary>
+            Gets multiple switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Product.IsNotOperator">
+            <summary>
+            Gets true if it's not an operator
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Product.Items">
+            <summary>
+            Gets the enumeration of elements by sommation
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Product.List">
+            <summary>
+            Gets the list source
+            </summary>
+        </member>
         <member name="T:PersistantModel.Sum">
             <summary>
             Sommation of multiple terms
@@ -1390,41 +1390,6 @@
             Constructor with a input list
             </summary>
             <param name="inputs">input list</param>
-        </member>
-        <member name="P:PersistantModel.Sum.Operator">
-            <summary>
-            Gets the operator ID
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Sum.IsBinaryOperator">
-            <summary>
-            Gets binary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Sum.IsUnaryOperator">
-            <summary>
-            Gets unary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Sum.IsMultipleOperator">
-            <summary>
-            Gets multiple switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Sum.IsNotOperator">
-            <summary>
-            Gets true if it's not an operator
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Sum.Items">
-            <summary>
-            Gets the enumeration of elements by sommation
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Sum.List">
-            <summary>
-            Gets the list source
-            </summary>
         </member>
         <member name="M:PersistantModel.Sum.IntermediateTransition(PersistantModel.Sum)">
             <summary>
@@ -1484,6 +1449,41 @@
             Create a new arithmetic class
             </summary>
         </member>
+        <member name="P:PersistantModel.Sum.Operator">
+            <summary>
+            Gets the operator ID
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sum.IsBinaryOperator">
+            <summary>
+            Gets binary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sum.IsUnaryOperator">
+            <summary>
+            Gets unary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sum.IsMultipleOperator">
+            <summary>
+            Gets multiple switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sum.IsNotOperator">
+            <summary>
+            Gets true if it's not an operator
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sum.Items">
+            <summary>
+            Gets the enumeration of elements by sommation
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sum.List">
+            <summary>
+            Gets the list source
+            </summary>
+        </member>
         <member name="T:PersistantModel.Term">
             <summary>
             Classe stockant un terme
@@ -1510,6 +1510,11 @@
             <param name="c">constant equation</param>
             <param name="s">coefficient equation</param>
             <param name="u">unknown term equation</param>
+        </member>
+        <member name="M:PersistantModel.Term.Create">
+            <summary>
+            Create a new arithmetic class
+            </summary>
         </member>
         <member name="P:PersistantModel.Term.Operator">
             <summary>
@@ -1546,11 +1551,6 @@
             Gets the unknown element
             </summary>
         </member>
-        <member name="M:PersistantModel.Term.Create">
-            <summary>
-            Create a new arithmetic class
-            </summary>
-        </member>
         <member name="T:PersistantModel.UnknownTerm">
             <summary>
             Terme inconnu
@@ -1579,6 +1579,25 @@
             </summary>
             <param name="letter">ketter</param>
             <param name="eq">equation</param>
+        </member>
+        <member name="M:PersistantModel.UnknownTerm.Compute">
+            <summary>
+            When an equation can be calculable then
+            the result is a number else, it's an arithmetic expression
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistantModel.UnknownTerm.ComputeOwnerWeight">
+            <summary>
+            Computes the unique weight
+            for this object
+            </summary>
+            <returns>weight</returns>
+        </member>
+        <member name="M:PersistantModel.UnknownTerm.Create">
+            <summary>
+            Create a new arithmetic class
+            </summary>
         </member>
         <member name="P:PersistantModel.UnknownTerm.Name">
             <summary>
@@ -1620,25 +1639,6 @@
             Gets true if it's not an operator
             </summary>
         </member>
-        <member name="M:PersistantModel.UnknownTerm.Compute">
-            <summary>
-            When an equation can be calculable then
-            the result is a number else, it's an arithmetic expression
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:PersistantModel.UnknownTerm.ComputeOwnerWeight">
-            <summary>
-            Computes the unique weight
-            for this object
-            </summary>
-            <returns>weight</returns>
-        </member>
-        <member name="M:PersistantModel.UnknownTerm.Create">
-            <summary>
-            Create a new arithmetic class
-            </summary>
-        </member>
         <member name="T:PersistantModel.Verify">
             <summary>
             Verify the validity of an equal
@@ -1656,6 +1656,18 @@
             </summary>
             <param name="e">equal term</param>
         </member>
+        <member name="M:PersistantModel.Verify.IsValid">
+            <summary>
+            
+            </summary>
+            <returns>true if valid</returns>
+        </member>
+        <member name="M:PersistantModel.Verify.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
         <member name="P:PersistantModel.Verify.IsCalculable">
             <summary>
             Test if calculable
@@ -1670,18 +1682,6 @@
             <summary>
             Gets all records
             </summary>
-        </member>
-        <member name="M:PersistantModel.Verify.IsValid">
-            <summary>
-            
-            </summary>
-            <returns>true if valid</returns>
-        </member>
-        <member name="M:PersistantModel.Verify.ToTex">
-            <summary>
-            Transforms equation object into a tex representation
-            </summary>
-            <returns>tex representation</returns>
         </member>
         <member name="T:PersistantModel.Weight">
             <summary>
@@ -1772,24 +1772,6 @@
             <param name="type">value type</param>
             <param name="value">value</param>
             <param name="owner">owner object</param>
-        </member>
-        <member name="P:PersistantModel.Weight.OwnerObject">
-            <summary>
-            Gets the recorded object
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Weight.HashCode">
-            <summary>
-            Gets the hash code number
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Weight.Item(System.String)">
-            <summary>
-            Gets or sets a value from
-            persistent data
-            </summary>
-            <param name="name">name</param>
-            <returns>value</returns>
         </member>
         <member name="M:PersistantModel.Weight.Owner_Fetch(System.Object,System.EventArgs)">
             <summary>
@@ -1913,6 +1895,24 @@
             Obtain the equation function as string representation
             </summary>
             <returns></returns>
+        </member>
+        <member name="P:PersistantModel.Weight.OwnerObject">
+            <summary>
+            Gets the recorded object
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Weight.HashCode">
+            <summary>
+            Gets the hash code number
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Weight.Item(System.String)">
+            <summary>
+            Gets or sets a value from
+            persistent data
+            </summary>
+            <param name="name">name</param>
+            <returns>value</returns>
         </member>
     </members>
 </doc>

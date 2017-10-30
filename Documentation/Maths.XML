@@ -33,16 +33,6 @@
             Fonctions qui implémentent les documents (FlowDocument)
             </summary>
         </member>
-        <member name="E:Maths.Applicatifs.onButtonClick">
-            <summary>
-            Evenement sur click des boutons
-            </summary>
-        </member>
-        <member name="E:Maths.Applicatifs.ButtonClicked">
-            <summary>
-            Event handler for clicked button
-            </summary>
-        </member>
         <member name="M:Maths.Applicatifs.Menu">
             <summary>
             Fonction de menu
@@ -84,9 +74,25 @@
             Résolution polynôme ordre 2
             </summary>
         </member>
+        <member name="M:Maths.Applicatifs.Polynome2Produit">
+            <summary>
+            Résolution polynôme ordre 2 par produit
+            </summary>
+            <returns>document</returns>
+        </member>
         <member name="M:Maths.Applicatifs.ResolutionPolynome3">
             <summary>
             Résolution polynôme ordre 2
+            </summary>
+        </member>
+        <member name="E:Maths.Applicatifs.onButtonClick">
+            <summary>
+            Evenement sur click des boutons
+            </summary>
+        </member>
+        <member name="E:Maths.Applicatifs.ButtonClicked">
+            <summary>
+            Event handler for clicked button
             </summary>
         </member>
         <member name="T:Maths.MathematicEquation">
@@ -213,31 +219,6 @@
             <param name="coef">coefficient equation</param>
             <param name="x">equation</param>
         </member>
-        <member name="P:Maths.MathematicEquation.IsCalculable">
-            <summary>
-            Gets true if equation is calculable
-            </summary>
-        </member>
-        <member name="P:Maths.MathematicEquation.Coefficients">
-            <summary>
-            Gets all coefficients terms
-            </summary>
-        </member>
-        <member name="P:Maths.MathematicEquation.Constants">
-            <summary>
-            Gets all constant values
-            </summary>
-        </member>
-        <member name="P:Maths.MathematicEquation.UnknownTerms">
-            <summary>
-            Gets all unknown terms
-            </summary>
-        </member>
-        <member name="P:Maths.MathematicEquation.Equation">
-            <summary>
-            Gets the underlying arithmetic operation
-            </summary>
-        </member>
         <member name="M:Maths.MathematicEquation.AsRepresented(System.String)">
             <summary>
             String representation of the algebraic equation
@@ -294,6 +275,42 @@
             </summary>
             <returns>transformed equation</returns>
         </member>
+        <member name="P:Maths.MathematicEquation.IsCalculable">
+            <summary>
+            Gets true if equation is calculable
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.Coefficients">
+            <summary>
+            Gets all coefficients terms
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.Constants">
+            <summary>
+            Gets all constant values
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.UnknownTerms">
+            <summary>
+            Gets all unknown terms
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.Equation">
+            <summary>
+            Gets the underlying arithmetic operation
+            </summary>
+        </member>
+        <member name="M:Maths.GenericNeurone.Exec">
+            <summary>
+            Exécute le travail du neurone
+            </summary>
+        </member>
+        <member name="M:Maths.GenericNeurone.Learn">
+            <summary>
+            Apprentissage pour la construction
+            des neurones
+            </summary>
+        </member>
         <member name="P:Maths.GenericNeurone.Id">
             <summary>
             Identifiant unique
@@ -307,17 +324,6 @@
         <member name="P:Maths.GenericNeurone.Type">
             <summary>
             Type du neurone
-            </summary>
-        </member>
-        <member name="M:Maths.GenericNeurone.Exec">
-            <summary>
-            Exécute le travail du neurone
-            </summary>
-        </member>
-        <member name="M:Maths.GenericNeurone.Learn">
-            <summary>
-            Apprentissage pour la construction
-            des neurones
             </summary>
         </member>
         <member name="T:Maths.Exercice">
@@ -372,11 +378,6 @@
             </summary>
             <param name="eq">document element</param>
         </member>
-        <member name="P:Maths.SequenceProof.Items">
-            <summary>
-            Gets all items
-            </summary>
-        </member>
         <member name="M:Maths.SequenceProof.Add(Interfaces.IDocument[])">
             <summary>
             Ajout d'éléments dans la liste
@@ -394,6 +395,11 @@
             Transforms equation object into a string representation
             </summary>
             <returns>string representation</returns>
+        </member>
+        <member name="P:Maths.SequenceProof.Items">
+            <summary>
+            Gets all items
+            </summary>
         </member>
         <member name="T:Maths.TopLevelArithmeticModel">
             <summary>
@@ -431,26 +437,6 @@
             Default constructor
             </summary>
         </member>
-        <member name="P:Maths.TopLevelArithmeticModel.WordingList">
-            <summary>
-            Gets equation list
-            </summary>
-        </member>
-        <member name="P:Maths.TopLevelArithmeticModel.Version">
-            <summary>
-            Gets or sets version number
-            </summary>
-        </member>
-        <member name="P:Maths.TopLevelArithmeticModel.Title">
-            <summary>
-            Gets or sets the title
-            </summary>
-        </member>
-        <member name="P:Maths.TopLevelArithmeticModel.Revision">
-            <summary>
-            Gets or sets the revision number
-            </summary>
-        </member>
         <member name="M:Maths.TopLevelArithmeticModel.Create(System.String)">
             <summary>
             Create a new top level class
@@ -471,6 +457,26 @@
             </summary>
             <param name="fi">file info to take</param>
             <returns>object deserialized</returns>
+        </member>
+        <member name="P:Maths.TopLevelArithmeticModel.WordingList">
+            <summary>
+            Gets equation list
+            </summary>
+        </member>
+        <member name="P:Maths.TopLevelArithmeticModel.Version">
+            <summary>
+            Gets or sets version number
+            </summary>
+        </member>
+        <member name="P:Maths.TopLevelArithmeticModel.Title">
+            <summary>
+            Gets or sets the title
+            </summary>
+        </member>
+        <member name="P:Maths.TopLevelArithmeticModel.Revision">
+            <summary>
+            Gets or sets the revision number
+            </summary>
         </member>
         <member name="T:Maths.Wording">
             <summary>

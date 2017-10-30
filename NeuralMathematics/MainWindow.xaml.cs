@@ -71,6 +71,10 @@ namespace NeuralMathematics
                     this.doc.Document = Applicatifs.ResolutionPolynome2Difference();
                     this.doc.UpdateLayout();
                     break;
+                case "Polynome2Produit":
+                    this.doc.Document = Applicatifs.Polynome2Produit();
+                    this.doc.UpdateLayout();
+                    break;
                 case "Newton":
                     this.doc.Document = Applicatifs.Newton();
                     this.doc.UpdateLayout();
