@@ -224,7 +224,7 @@ namespace Maths
         {
             get
             {
-                this.Calculate();
+                this.Calculate(false);
                 return this.eq.IsCalculable;
             }
         }
@@ -232,7 +232,7 @@ namespace Maths
         /// <summary>
         /// Gets all coefficients terms
         /// </summary>
-        public IEnumerable<IArithmetic> Coefficients
+        public IDictionary<string, IArithmetic> Coefficients
         {
             get
             {
@@ -254,7 +254,7 @@ namespace Maths
         /// <summary>
         /// Gets all unknown terms
         /// </summary>
-        public IEnumerable<IArithmetic> UnknownTerms
+        public IDictionary<string, IArithmetic> UnknownTerms
         {
             get
             {
@@ -300,10 +300,11 @@ namespace Maths
         /// Calculate the result of this equation
         /// terms that are valued are operated with its numeric value
         /// </summary>
+        /// <param name="clean">true if calculate again</param>
         /// <returns>string representation number or algebraic</returns>
-        public string Calculate()
+        public string Calculate(bool clean)
         {
-            return this.eq.Calculate();
+            return this.eq.Calculate(clean);
         }
 
         /// <summary>

@@ -4,6 +4,19 @@
         <name>NeuralMathematics</name>
     </assembly>
     <members>
+        <member name="T:NeuralMathematics.Window1">
+            <summary>
+            Logique d'interaction pour Window1.xaml
+            </summary>
+            <summary>
+            Window1
+            </summary>
+        </member>
+        <member name="M:NeuralMathematics.Window1.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:NeuralMathematics.App">
             <summary>
             Logique d'interaction pour App.xaml

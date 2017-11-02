@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Maths
@@ -96,6 +97,10 @@ namespace Maths
             t.RowGroups.Add(trg);
 
             FlowDocument fd = new FlowDocument(t);
+            Paragraph p = new Paragraph();
+            ClipBox cb = new ClipBox();
+            p.Inlines.Add(cb);
+            fd.Blocks.Add(p);
             return fd;
         }
 

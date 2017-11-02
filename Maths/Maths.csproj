@@ -70,12 +70,21 @@
   <ItemGroup>
     <Compile Include="Answer.cs" />
     <Compile Include="Applicatifs.cs" />
+    <Compile Include="ClipBox.xaml.cs">
+      <DependentUpon>ClipBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CoordinatesSystem.cs" />
+    <Compile Include="TemplateTracer2D.cs" />
     <Compile Include="MathematicEquation.cs" />
     <Compile Include="GenericNeurone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Exercice.cs" />
     <Compile Include="SequenceProof.cs" />
     <Compile Include="TopLevelArithmeticModel.cs" />
+    <Compile Include="Tracer.xaml.cs">
+      <DependentUpon>Tracer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataTracer2D.cs" />
     <Compile Include="Wording.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +99,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ClipBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tracer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="add.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="icones-gratuites.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="sub.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

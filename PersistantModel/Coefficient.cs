@@ -80,7 +80,7 @@ namespace PersistantModel
                 if (value is IArithmetic)
                 {
                     IArithmetic a = value as IArithmetic;
-                    string res = a.Calculate();
+                    string res = a.Calculate(true);
                     if (a.IsCalculable)
                     {
                         this.Value = Convert.ToDouble(res);
@@ -183,8 +183,9 @@ namespace PersistantModel
         /// When an equation can be calculable then
         /// the result is a number else, it's an arithmetic expression
         /// </summary>
-        /// <returns></returns>
-        protected override string Compute()
+        /// <param name="clean">true if calculate again</param>
+        /// <returns>result</returns>
+        protected override string Compute(bool clean)
         {
             if (this[hasValueName])
             {

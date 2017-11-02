@@ -90,7 +90,7 @@ namespace PersistantModel
             get
             {
                 if (this[hasValueName])
-                    return this[equationName].Calculate();
+                    return this[equationName].Calculate(false);
                 else
                     return string.Empty;
             }
@@ -175,17 +175,18 @@ namespace PersistantModel
         /// When an equation can be calculable then
         /// the result is a number else, it's an arithmetic expression
         /// </summary>
-        /// <returns></returns>
-        protected override string Compute()
+        /// <param name="clean">true if calculate again</param>
+        /// <returns>result</returns>
+        protected override string Compute(bool clean)
         {
             if (this[hasValueName])
             {
-                this[equationName].Calculate();
+                this[equationName].Calculate(clean);
                 if (this[equationName][isCalculableName])
                 {
                     this[isCalculableName] = true;
                     this[calculatedValueName] = this[equationName][calculatedValueName];
-                    return this[calculatedValueName];
+                    return this[calculatedValueName].ToString();
                 }
                 else
                 {

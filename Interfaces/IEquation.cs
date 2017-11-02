@@ -21,12 +21,12 @@ namespace Interfaces
         /// <summary>
         /// Gets all unknown terms
         /// </summary>
-        IEnumerable<IArithmetic> UnknownTerms { get; }
+        IDictionary<string, IArithmetic> UnknownTerms { get; }
 
         /// <summary>
         /// Gets all coefficients terms
         /// </summary>
-        IEnumerable<IArithmetic> Coefficients { get; }
+        IDictionary<string, IArithmetic> Coefficients { get; }
 
         /// <summary>
         /// Gets all constant values
@@ -62,7 +62,7 @@ namespace Interfaces
         /// </summary>
         /// <param name="letter">letter value</param>
         /// <param name="e">arithmetic expression</param>
-        void Let(string letter, IEquation e);
+        void Let(string letter, IArithmetic e);
 
         /// <summary>
         /// String representation of the algebraic equation
@@ -76,7 +76,7 @@ namespace Interfaces
         /// terms that are valued are operated with its numeric value
         /// </summary>
         /// <returns>string representation number or algebraic</returns>
-        string Calculate();
+        string Calculate(bool clean);
 
         /// <summary>
         /// Transform the current equation to an

@@ -104,6 +104,19 @@ namespace PersistantModel
         #region Methods
 
         /// <summary>
+        /// When an equation can be calculable then
+        /// the result is a number else, it's an arithmetic expression
+        /// </summary>
+        /// <param name="clean">true if calculate again</param>
+        /// <returns>result</returns>
+        protected override string Compute(bool clean)
+        {
+            this[isCalculableName] = true;
+            this[calculatedValueName] = Value;
+            return this[calculatedValueName].ToString();
+        }
+
+        /// <summary>
         /// Computes the unique weight
         /// for this object
         /// </summary>

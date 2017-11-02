@@ -249,8 +249,9 @@ namespace PersistantModel
         /// When an equation can be calculable then
         /// the result is a number else, it's an arithmetic expression
         /// </summary>
-        /// <returns></returns>
-        protected override string Compute()
+        /// <param name="clean">true if calculate again</param>
+        /// <returns>result</returns>
+        protected override string Compute(bool clean)
         {
             string output = string.Empty;
             bool first = true;
@@ -260,7 +261,7 @@ namespace PersistantModel
             {
                 if (first)
                 {
-                    res = a.Calculate();
+                    res = a.Calculate(clean);
                     if (a.IsCalculable)
                     {
                         this[isCalculableName] = true;
@@ -275,7 +276,7 @@ namespace PersistantModel
                 }
                 else
                 {
-                    res = a.Calculate();
+                    res = a.Calculate(clean);
                     if (a.IsCalculable)
                     {
                         if (this[isCalculableName])

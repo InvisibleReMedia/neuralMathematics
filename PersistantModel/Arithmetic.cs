@@ -297,34 +297,34 @@ namespace PersistantModel
         /// <summary>
         /// Gets all unknown terms
         /// </summary>
-        public IEnumerable<IArithmetic> UnknownTerms
+        protected IEnumerable<IArithmetic> SelectUnknownTerms
         {
             get
             {
                 if (this.IsBinaryOperator)
                 {
-                    if (this.LeftOperand != null)
-                        foreach (IArithmetic e in this.LeftOperand.UnknownTerms) yield return e;
-                    if (this.RightOperand != null)
-                        foreach (IArithmetic e in this.RightOperand.UnknownTerms) yield return e;
+                    if (this[leftTermName] != null)
+                        foreach (IArithmetic e in this[leftTermName].SelectUnknownTerms) yield return e;
+                    if (this[rightTermName] != null)
+                        foreach (IArithmetic e in this[rightTermName].SelectUnknownTerms) yield return e;
                 }
                 else if (this.IsUnaryOperator)
                 {
-                    if (this.InnerOperand != null)
-                        foreach (IArithmetic e in this.InnerOperand.UnknownTerms) yield return e;
+                    if (this[innerOperandName] != null)
+                        foreach (IArithmetic e in this[innerOperandName].SelectUnknownTerms) yield return e;
                 }
                 else
                 {
                     if (this is Term)
-                        foreach (IArithmetic e in (this as Term).Unknown.UnknownTerms) yield return e;
+                        foreach (IArithmetic e in this[unknownName].SelectUnknownTerms) yield return e;
                     else if (this is UnknownTerm)
                         yield return this;
                     else if (this is Sum)
                     {
                         Sum s = this as Sum;
-                        foreach(Arithmetic a in s.Items)
+                        foreach (Arithmetic a in s.Items)
                         {
-                            foreach (IArithmetic e in a.UnknownTerms) yield return e;
+                            foreach (IArithmetic e in a.SelectUnknownTerms) yield return e;
                         }
                     }
                     else if (this is Product)
@@ -332,7 +332,63 @@ namespace PersistantModel
                         Product p = this as Product;
                         foreach (Arithmetic a in p.Items)
                         {
-                            foreach (IArithmetic e in a.UnknownTerms) yield return e;
+                            foreach (IArithmetic e in a.SelectUnknownTerms) yield return e;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets all unknown terms
+        /// </summary>
+        public IDictionary<string, IArithmetic> UnknownTerms
+        {
+            get
+            {
+                return this.SelectUnknownTerms.Cast<UnknownTerm>().ToDictionary(x => x.Name, x => x as IArithmetic);
+            }
+        }
+
+        /// <summary>
+        /// Gets all coefficients
+        /// </summary>
+        protected IEnumerable<IArithmetic> SelectCoefficients
+        {
+            get
+            {
+                if (this.IsBinaryOperator)
+                {
+                    if (this[leftTermName] != null)
+                        foreach (IArithmetic e in this[leftTermName].SelectCoefficients) yield return e;
+                    if (this[rightTermName] != null)
+                        foreach (IArithmetic e in this[rightTermName].SelectCoefficients) yield return e;
+                }
+                else if (this.IsUnaryOperator)
+                {
+                    if (this[innerOperandName] != null)
+                        foreach (IArithmetic e in this[innerOperandName].SelectCoefficients) yield return e;
+                }
+                else
+                {
+                    if (this is Term)
+                        foreach (IArithmetic e in this[unknownName].Coefficient.SelectCoefficients) yield return e;
+                    else if (this is Coefficient)
+                        yield return this;
+                    else if (this is Sum)
+                    {
+                        Sum s = this as Sum;
+                        foreach (Arithmetic a in s.Items)
+                        {
+                            foreach (IArithmetic e in a.SelectCoefficients) yield return e;
+                        }
+                    }
+                    else if (this is Product)
+                    {
+                        Product p = this as Product;
+                        foreach (Arithmetic a in p.Items)
+                        {
+                            foreach (IArithmetic e in a.SelectCoefficients) yield return e;
                         }
                     }
                 }
@@ -342,45 +398,11 @@ namespace PersistantModel
         /// <summary>
         /// Gets all coefficients
         /// </summary>
-        public IEnumerable<IArithmetic> Coefficients
+        public IDictionary<string, IArithmetic> Coefficients
         {
             get
             {
-                if (this.IsBinaryOperator)
-                {
-                    if (this.LeftOperand != null)
-                        foreach (IArithmetic e in this.LeftOperand.Coefficients) yield return e;
-                    if (this.RightOperand != null)
-                        foreach (IArithmetic e in this.RightOperand.Coefficients) yield return e;
-                }
-                else if (this.IsUnaryOperator)
-                {
-                    if (this.InnerOperand != null)
-                        foreach (IArithmetic e in this.InnerOperand.Coefficients) yield return e;
-                }
-                else
-                {
-                    if (this is Term)
-                        foreach (IArithmetic e in (this as Term).Coefficient.Coefficients) yield return e;
-                    else if (this is Coefficient)
-                        yield return this;
-                    else if (this is Sum)
-                    {
-                        Sum s = this as Sum;
-                        foreach (Arithmetic a in s.Items)
-                        {
-                            foreach (IArithmetic e in a.Coefficients) yield return e;
-                        }
-                    }
-                    else if (this is Product)
-                    {
-                        Product p = this as Product;
-                        foreach (Arithmetic a in p.Items)
-                        {
-                            foreach (IArithmetic e in a.Coefficients) yield return e;
-                        }
-                    }
-                }
+                return this.SelectCoefficients.Cast<Coefficient>().ToDictionary(x => x.Name, x => x as IArithmetic);
             }
         }
 
@@ -635,8 +657,9 @@ namespace PersistantModel
         /// When an equation can be calculable then
         /// the result is a number else, it's an arithmetic expression
         /// </summary>
-        /// <returns></returns>
-        protected virtual string Compute()
+        /// <param name="clean">true if calculate again</param>
+        /// <returns>result</returns>
+        protected virtual string Compute(bool clean)
         {
             string output = string.Empty;
 
@@ -644,9 +667,9 @@ namespace PersistantModel
             {
                 string left = string.Empty, right = string.Empty;
                 if (this.LeftOperand != null)
-                    left = this.LeftOperand.Calculate();
+                    left = this.LeftOperand.Calculate(clean);
                 if (this.RightOperand != null)
-                    right = this.RightOperand.Calculate();
+                    right = this.RightOperand.Calculate(clean);
                 if (this.LeftOperand.IsCalculable && this.RightOperand.IsCalculable)
                 {
                     this[isCalculableName] = true;
@@ -693,7 +716,7 @@ namespace PersistantModel
             {
                 if (this.InnerOperand != null)
                 {
-                    string inner = this.InnerOperand.Calculate();
+                    string inner = this.InnerOperand.Calculate(clean);
                     if (this.InnerOperand.IsCalculable)
                     {
                         this[isCalculableName] = true;
@@ -732,9 +755,9 @@ namespace PersistantModel
                 else if (this is NumericValue)
                     output = (this as NumericValue).Value.ToString();
                 else if (this is Coefficient)
-                    output = (this as Coefficient).Compute();
+                    output = (this as Coefficient).Compute(clean);
                 else if (this is UnknownTerm)
-                    output = (this as UnknownTerm).Compute();
+                    output = (this as UnknownTerm).Compute(clean);
                 else
                     throw new InvalidCastException();
             }
@@ -962,13 +985,13 @@ namespace PersistantModel
         /// <param name="value">numeric value</param>
         public void Let(string letter, double value)
         {
-            foreach(Coefficient c in this.Coefficients)
+            foreach(Coefficient c in this.Coefficients.Values)
             {
                 if (c.Name == letter) c.Value = value;
             }
-            foreach(UnknownTerm x in this.UnknownTerms)
+            foreach(UnknownTerm x in this.UnknownTerms.Values)
             {
-                if (x.Name == letter) x.Content = new NumericValue(value);
+                if (x.Name == letter) (x as IVariable).Value = new NumericValue(value);
             }
         }
 
@@ -978,19 +1001,19 @@ namespace PersistantModel
         /// </summary>
         /// <param name="letter">letter value</param>
         /// <param name="e">equation object</param>
-        public void Let(string letter, IEquation e)
+        public void Let(string letter, IArithmetic e)
         {
-            foreach (Coefficient c in this.Coefficients)
+            foreach (Coefficient c in this.Coefficients.Values)
             {
                 double d;
-                if (c.Name == letter && Double.TryParse(e.Calculate(), out d))
+                if (c.Name == letter && Double.TryParse(e.Calculate(true), out d))
                 {
                     c.Value = d;
                 }
             }
-            foreach (UnknownTerm x in this.UnknownTerms)
+            foreach (UnknownTerm x in this.UnknownTerms.Values)
             {
-                if (x.Name == letter) x.Content = (e as ICloneable).Clone() as IArithmetic;
+                if (x.Name == letter) (x as IVariable).Value = (e as ICloneable).Clone() as IArithmetic;
             }
         }
 
@@ -1017,10 +1040,11 @@ namespace PersistantModel
         /// Calculate the result of this equation
         /// terms that are valued are operated with its numeric value
         /// </summary>
+        /// <param name="clean">true if calculate again</param>
         /// <returns>string representation number or algebraic</returns>
-        public string Calculate()
+        public string Calculate(bool clean)
         {
-            if (this.persistentData.ContainsKey(isCalculableName))
+            if (!clean && this.persistentData.ContainsKey(isCalculableName))
             {
                 if (this[isCalculableName])
                 {
@@ -1034,7 +1058,7 @@ namespace PersistantModel
             else
             {
                 this[isCalculableName] = false;
-                string res = this.Compute();
+                string res = this.Compute(clean);
                 if (this[isCalculableName])
                 {
                     if (this is Equal)
