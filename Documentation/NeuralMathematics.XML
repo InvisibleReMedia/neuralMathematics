@@ -4,15 +4,15 @@
         <name>NeuralMathematics</name>
     </assembly>
     <members>
-        <member name="T:NeuralMathematics.Window1">
+        <member name="T:NeuralMathematics.Tracer">
             <summary>
             Logique d'interaction pour Window1.xaml
             </summary>
             <summary>
-            Window1
+            Tracer
             </summary>
         </member>
-        <member name="M:NeuralMathematics.Window1.InitializeComponent">
+        <member name="M:NeuralMathematics.Tracer.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>

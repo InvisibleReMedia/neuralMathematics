@@ -4,5 +4,10 @@
         <name>NeuronalMathematics</name>
     </assembly>
     <members>
+        <member name="T:NeuronalMathematics.Program">
+            <summary>
+            Console program
+            </summary>
+        </member>
     </members>
 </doc>

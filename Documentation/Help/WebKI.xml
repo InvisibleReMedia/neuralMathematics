@@ -1,0 +1,1276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title="Add method">
+    <HelpKINode Title="CoordinateSystem.Add Method " Url="html/4fd966bd-84d8-0ecb-f436-1847be9a914d.htm" />
+    <HelpKINode Title="MovingVector.Add Method " Url="html/e771bbf6-eccb-3f4f-5dca-84439f84144d.htm" />
+    <HelpKINode Title="Product.Add Method " Url="html/b1808dca-aa10-449c-9241-f5ef948950c1.htm" />
+    <HelpKINode Title="RecordZone(T).Add Method " Url="html/a1432be4-f718-66c8-f90f-7125f0189749.htm" />
+    <HelpKINode Title="SequenceProof.Add Method " Url="html/e5598034-2629-97be-8090-b29194cb9c07.htm" />
+    <HelpKINode Title="Sum.Add Method " Url="html/242d8325-5775-80ac-7f24-770ff908238a.htm" />
+    <HelpKINode Title="Wording.Add Method " Url="html/e3945345-93ab-60df-3e76-f7a009c5e2be.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Addition class">
+    <HelpKINode Title="Addition Class" Url="html/a37a0e84-9677-ccd6-2638-1ba94630e675.htm" />
+    <HelpKINode Title="about Addition class" Url="html/a37a0e84-9677-ccd6-2638-1ba94630e675.htm" />
+    <HelpKINode Title="constructor" Url="html/f9342aef-d9fd-de0f-3db0-aa6507491b74.htm" />
+    <HelpKINode Title="events" Url="html/7f428a33-9ba6-822c-f6ff-08d5418bdfa3.htm" />
+    <HelpKINode Title="fields" Url="html/85853acf-09b0-1b91-ef01-bc11dda69d91.htm" />
+    <HelpKINode Title="methods" Url="html/3fef55ef-98b2-debe-3abb-9337e900a98f.htm" />
+    <HelpKINode Title="properties" Url="html/23c87d41-a553-077b-c01d-92be44f86006.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Addition.Addition constructor" Url="html/f9342aef-d9fd-de0f-3db0-aa6507491b74.htm" />
+  <HelpKINode Title="Addition.Create method" Url="html/fded988b-dd5f-f774-ea0b-1588a160bd62.htm" />
+  <HelpKINode Title="Addition.MakeTransform method" Url="html/86aa0673-4325-67bf-08dd-7556617c4760.htm" />
+  <HelpKINode Title="Addition.ToSum method" Url="html/568f1b53-d91d-c30c-0e33-072c4e0f03ad.htm" />
+  <HelpKINode Title="Answer class">
+    <HelpKINode Title="Answer Class" Url="html/d6c64b33-2c36-1d15-123d-53a8788bd046.htm" />
+    <HelpKINode Title="about Answer class" Url="html/d6c64b33-2c36-1d15-123d-53a8788bd046.htm" />
+    <HelpKINode Title="constructor" Url="html/32a436fe-1084-cc6e-4fb5-dea6e0fc0767.htm" />
+    <HelpKINode Title="methods" Url="html/b132ff21-eeb7-d444-5b9e-fd6f04158bb5.htm" />
+    <HelpKINode Title="properties" Url="html/9b940c1d-4da9-28e8-a52b-554a58ae6736.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Answer.Answer constructor" Url="html/32a436fe-1084-cc6e-4fb5-dea6e0fc0767.htm" />
+  <HelpKINode Title="Answer.ToDocument method" Url="html/034a1b83-edb6-09c2-4402-c38a3736e6e5.htm" />
+  <HelpKINode Title="Answer.ToString method" Url="html/1c1f7b87-5e2d-adb5-54d9-0636d2cdb7d8.htm" />
+  <HelpKINode Title="App class">
+    <HelpKINode Title="App Class" Url="html/6fed60de-f12f-3031-15d5-70ad7fb065fc.htm" />
+    <HelpKINode Title="about App class" Url="html/6fed60de-f12f-3031-15d5-70ad7fb065fc.htm" />
+    <HelpKINode Title="constructor" Url="html/62caff15-a3a6-46a7-baff-7994a316526f.htm" />
+    <HelpKINode Title="events" Url="html/1564bbc0-44de-4504-fb94-d63b05b11287.htm" />
+    <HelpKINode Title="methods" Url="html/a2a054d5-711b-1bfc-2418-5af464b835ad.htm" />
+    <HelpKINode Title="properties" Url="html/4122dfcc-6d05-920e-cadf-f45899dcf03e.htm" />
+  </HelpKINode>
+  <HelpKINode Title="App.App constructor" Url="html/62caff15-a3a6-46a7-baff-7994a316526f.htm" />
+  <HelpKINode Title="App.InitializeComponent method" Url="html/537d2630-2df1-3b0e-b0e9-8ee36afc2eb1.htm" />
+  <HelpKINode Title="App.Main method" Url="html/df878bac-1624-3055-c17d-f72788dc95ea.htm" />
+  <HelpKINode Title="Applicatifs class">
+    <HelpKINode Title="Applicatifs Class" Url="html/8c1e7b13-b9c5-7e8a-e6a0-dc48dfe01dd4.htm" />
+    <HelpKINode Title="about Applicatifs class" Url="html/8c1e7b13-b9c5-7e8a-e6a0-dc48dfe01dd4.htm" />
+    <HelpKINode Title="events" Url="html/0442d294-2555-649c-b1e5-ce347f03629d.htm" />
+    <HelpKINode Title="methods" Url="html/341e01e6-d544-bc1c-1faf-506771c0e162.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Applicatifs.ButtonClicked event" Url="html/b5b1bd22-4da5-0bee-095a-b9d03c32b5a9.htm" />
+  <HelpKINode Title="Applicatifs.Menu method" Url="html/9f95e99d-be25-b735-6b5d-3c0722d384f9.htm" />
+  <HelpKINode Title="Applicatifs.Newton method" Url="html/43d7a028-e1b5-9e4b-a727-91972c92384d.htm" />
+  <HelpKINode Title="Applicatifs.Polynome2Produit method" Url="html/65dc8ead-8368-2818-5997-909ba945a9a2.htm" />
+  <HelpKINode Title="Applicatifs.ReloadNewton method" Url="html/b6955450-0171-764f-83f1-993889e09501.htm" />
+  <HelpKINode Title="Applicatifs.ResolutionPolynome2Difference method" Url="html/35875ed8-131e-944e-2483-b78167e18a7e.htm" />
+  <HelpKINode Title="Applicatifs.ResolutionPolynome2Somme method" Url="html/c4b223a4-fa4a-d710-f5a7-54993b34a039.htm" />
+  <HelpKINode Title="Applicatifs.ResolutionPolynome3 method" Url="html/aacdf4da-991d-bb07-63c9-b093908b0609.htm" />
+  <HelpKINode Title="Arithmetic class">
+    <HelpKINode Title="Arithmetic Class" Url="html/240a2b41-910b-97b7-51f4-8ae90362af7a.htm" />
+    <HelpKINode Title="about Arithmetic class" Url="html/240a2b41-910b-97b7-51f4-8ae90362af7a.htm" />
+    <HelpKINode Title="constructor" Url="html/0d2ddafc-53d9-3e19-914c-23f57f0ebaea.htm" />
+    <HelpKINode Title="events" Url="html/54bcf4fb-b8a9-9c29-f0ed-5c67a49facd9.htm" />
+    <HelpKINode Title="fields" Url="html/571fa22f-1068-9e1c-1949-f1afd1073170.htm" />
+    <HelpKINode Title="methods" Url="html/bd04a446-c1d0-593a-b37e-f5457ac4ab8b.htm" />
+    <HelpKINode Title="properties" Url="html/28c7cae4-4c63-215b-ce3d-9b902108492a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Arithmetic.Arithmetic constructor" Url="html/0d2ddafc-53d9-3e19-914c-23f57f0ebaea.htm" />
+  <HelpKINode Title="Arithmetic.AsRepresented method" Url="html/81e0aeb9-26f6-5e91-9fbe-297d85e082f2.htm" />
+  <HelpKINode Title="Arithmetic.Calculate method" Url="html/12862f79-7ab3-8868-ad7b-1e9b4655c56c.htm" />
+  <HelpKINode Title="Arithmetic.calculatedValueName field" Url="html/b6ea0084-4cb5-68f1-f98e-9517ea5e370f.htm" />
+  <HelpKINode Title="Arithmetic.Clone method" Url="html/79944b68-794f-e9f7-562f-109320f6d5b3.htm" />
+  <HelpKINode Title="Arithmetic.Coefficients property" Url="html/1dea453b-e911-888e-ae7c-3e030f8d0a98.htm" />
+  <HelpKINode Title="Arithmetic.coefName field" Url="html/1c3345f5-80f4-8401-a001-2342ed1b0d20.htm" />
+  <HelpKINode Title="Arithmetic.Compute method" Url="html/50be5485-d02e-1042-63db-ea7032f99aab.htm" />
+  <HelpKINode Title="Arithmetic.ComputeOwnerWeight method" Url="html/5a05c0f3-50e8-1ed3-5f72-f6bffdf19efd.htm" />
+  <HelpKINode Title="Arithmetic.constantName field" Url="html/a58cf154-26ce-d259-5fd5-990a97fc9d81.htm" />
+  <HelpKINode Title="Arithmetic.Constants property" Url="html/73564584-ae2d-c182-3aec-a08198fac70e.htm" />
+  <HelpKINode Title="Arithmetic.Create method" Url="html/2e05cb4e-28db-bfb9-9d91-19007d69a8e4.htm" />
+  <HelpKINode Title="Arithmetic.Develop method" Url="html/db5d16d7-5d54-bff9-f4a1-a110802aabce.htm" />
+  <HelpKINode Title="Arithmetic.EnsureInverse method" Url="html/4e0ef9be-693d-919e-8e12-b704bbe23337.htm" />
+  <HelpKINode Title="Arithmetic.EnsureProduct method" Url="html/c5b28a6f-38da-e40b-f090-bcdc7adc4279.htm" />
+  <HelpKINode Title="Arithmetic.EnsureSign method" Url="html/8be24f76-d9da-5a00-a889-c5f39240d9f4.htm" />
+  <HelpKINode Title="Arithmetic.EnsureSum method" Url="html/dd419b28-9710-f26e-cd76-63e6864060d0.htm" />
+  <HelpKINode Title="Arithmetic.Equals method" Url="html/8063ff8c-2e9e-465d-8c2e-ec10f1141666.htm" />
+  <HelpKINode Title="Arithmetic.Equation property" Url="html/a1a2ab12-7a1a-3ccf-2308-02abf1d96b44.htm" />
+  <HelpKINode Title="Arithmetic.equationName field" Url="html/771bb456-e5c1-8fe2-2b68-eb3abc90e66b.htm" />
+  <HelpKINode Title="Arithmetic.Factorize method" Url="html/dcafc66e-abdf-cb25-40a2-ed4a566c2f01.htm" />
+  <HelpKINode Title="Arithmetic.Fetch event" Url="html/09557b3c-1c89-2dea-4b5e-9ad910db20c3.htm" />
+  <HelpKINode Title="Arithmetic.Get method" Url="html/8c596790-79bf-3e1a-605b-c76853dbdfaa.htm" />
+  <HelpKINode Title="Arithmetic.GetHashCode method" Url="html/4fdccb9a-be8e-3434-28b1-c5debacdabf1.htm" />
+  <HelpKINode Title="Arithmetic.hasValueName field" Url="html/6e788636-9225-793b-8a67-d6538c40d9e0.htm" />
+  <HelpKINode Title="Arithmetic.InnerOperand property" Url="html/6da91c3d-3289-1cda-5736-817dc5c51084.htm" />
+  <HelpKINode Title="Arithmetic.innerOperandName field" Url="html/3641ac31-0663-1e04-dea0-be479ee556b2.htm" />
+  <HelpKINode Title="Arithmetic.IsBinaryOperator property" Url="html/7cf2da49-feb9-dd96-1d87-df861768e765.htm" />
+  <HelpKINode Title="Arithmetic.IsCalculable property" Url="html/f0758a42-cdd2-8953-b85d-726fe4f20d9d.htm" />
+  <HelpKINode Title="Arithmetic.isCalculableName field" Url="html/257e5fdf-b7bf-7c75-b23b-b3981f49798b.htm" />
+  <HelpKINode Title="Arithmetic.IsMultipleOperator property" Url="html/e0871f7f-8ab2-1d19-2828-4ec8b6678901.htm" />
+  <HelpKINode Title="Arithmetic.IsNotOperator property" Url="html/635b7ebb-2851-3ad0-1b0b-4e2849b5181d.htm" />
+  <HelpKINode Title="Arithmetic.IsUnaryOperator property" Url="html/4a783e49-9715-8075-e22d-17786e594993.htm" />
+  <HelpKINode Title="Arithmetic.Item property" Url="html/3ffd73a6-6960-2c84-c6e3-589c1d5e1bd3.htm" />
+  <HelpKINode Title="Arithmetic.LeftOperand property" Url="html/128f2ab2-2d6f-b6b1-27ee-985f39e860c6.htm" />
+  <HelpKINode Title="Arithmetic.leftTermName field" Url="html/3fc592d4-10b7-2c11-bce5-8e2e6e315adc.htm" />
+  <HelpKINode Title="Arithmetic.Let method" Url="html/0f512e74-08d8-f09c-d7a3-c8bab8579a8e.htm" />
+  <HelpKINode Title="Arithmetic.letterName field" Url="html/bf8b44a8-1be9-6ffc-576d-4b5c2e9590f0.htm" />
+  <HelpKINode Title="Arithmetic.listName field" Url="html/b90238a4-52bf-0d9e-2c22-0d1dd6fa5eb5.htm" />
+  <HelpKINode Title="Arithmetic.MakeTransform method" Url="html/cde13944-4e93-f080-ed2b-4b343d1eaef8.htm" />
+  <HelpKINode Title="Arithmetic.MakeUnique method" Url="html/df2fdd42-118a-6ce4-ecd2-6038939a7418.htm" />
+  <HelpKINode Title="Arithmetic.OnFetch method" Url="html/91c06747-a42d-7e7e-5903-57153d9e3a8e.htm" />
+  <HelpKINode Title="Arithmetic.OnUnfetch method" Url="html/e648c037-12da-a08f-0f73-37fb5d8371cd.htm" />
+  <HelpKINode Title="Arithmetic.Operator property" Url="html/b747c0b3-a4b5-f1a1-493d-668697be89cb.htm" />
+  <HelpKINode Title="Arithmetic.operatorName field" Url="html/cf658fff-3314-08e2-cf64-d392da3cb1a2.htm" />
+  <HelpKINode Title="Arithmetic.OwnerWeight property" Url="html/bb70d157-414f-a415-ff8c-8639a104da2d.htm" />
+  <HelpKINode Title="Arithmetic.persistentData field" Url="html/5e0fec0a-71bc-7601-ef16-e0d32041e3df.htm" />
+  <HelpKINode Title="Arithmetic.Records property" Url="html/bc40a6bb-8472-675b-3e61-27bb89e2091b.htm" />
+  <HelpKINode Title="Arithmetic.recordZone field" Url="html/134d3561-cb37-1505-0392-afcd09afcfc2.htm" />
+  <HelpKINode Title="Arithmetic.RightOperand property" Url="html/687f7381-30d9-24c5-f1c1-bbae0307372c.htm" />
+  <HelpKINode Title="Arithmetic.rightTermName field" Url="html/6c5e2d6c-1330-d0fb-0d12-e1cf16bf345e.htm" />
+  <HelpKINode Title="Arithmetic.SelectCoefficients property" Url="html/6a97813d-64ae-07fa-97a6-78dcdea96b69.htm" />
+  <HelpKINode Title="Arithmetic.SelectUnknownTerms property" Url="html/fdb82402-285a-cb32-ff45-a75a5e235edd.htm" />
+  <HelpKINode Title="Arithmetic.Set method" Url="html/a40b5c31-ecca-9dcd-cb27-9bb0ee87fb2a.htm" />
+  <HelpKINode Title="Arithmetic.ToString method" Url="html/38ed9480-de5a-018e-4387-6ab097c359f0.htm" />
+  <HelpKINode Title="Arithmetic.ToTex method" Url="html/7f780919-597f-ff8c-703f-57ec53ef30e5.htm" />
+  <HelpKINode Title="Arithmetic.Transform method" Url="html/d3c2bb71-3ac7-e7cc-75bc-bc3e10ab42c6.htm" />
+  <HelpKINode Title="Arithmetic.uncalculatedValueName field" Url="html/9d9319db-6a58-3141-ee63-a718f40518a3.htm" />
+  <HelpKINode Title="Arithmetic.Unfetch event" Url="html/e5b2dd46-2bc7-fc34-80ee-88293de2a48f.htm" />
+  <HelpKINode Title="Arithmetic.unknownName field" Url="html/8ce90273-4a4a-0bd2-dafb-dd082c116998.htm" />
+  <HelpKINode Title="Arithmetic.UnknownTerms property" Url="html/517988e0-a7d5-7430-1aac-1800571b66ce.htm" />
+  <HelpKINode Title="Arithmetic.valueName field" Url="html/095ecb9d-065b-6ceb-e460-796e7c86a8d0.htm" />
+  <HelpKINode Title="Arithmetic.weight field" Url="html/e348752b-3f82-ce40-38f5-c8a0208a55c8.htm" />
+  <HelpKINode Title="Ask method" Url="html/d986ce82-d25b-390d-0c99-3ac5247bf76e.htm" />
+  <HelpKINode Title="AsRepresented method">
+    <HelpKINode Title="Arithmetic.AsRepresented Method " Url="html/81e0aeb9-26f6-5e91-9fbe-297d85e082f2.htm" />
+    <HelpKINode Title="IEquation.AsRepresented Method " Url="html/df0400bd-eab4-14d9-277c-125564a75f21.htm" />
+    <HelpKINode Title="MathematicEquation.AsRepresented Method " Url="html/7ba09ec4-a3c6-4261-7176-fecab3abf235.htm" />
+  </HelpKINode>
+  <HelpKINode Title="BinaryOperation class">
+    <HelpKINode Title="BinaryOperation Class" Url="html/de58b417-ba87-5359-ac01-d58b78288979.htm" />
+    <HelpKINode Title="about BinaryOperation class" Url="html/de58b417-ba87-5359-ac01-d58b78288979.htm" />
+    <HelpKINode Title="constructor" Url="html/e1f47890-e5e0-7c8e-a799-3028c786aa52.htm" />
+    <HelpKINode Title="events" Url="html/d885a70f-f8e7-cd20-3296-848203734908.htm" />
+    <HelpKINode Title="fields" Url="html/fe20fc60-66ca-0404-2ee6-18f8d74b06f1.htm" />
+    <HelpKINode Title="methods" Url="html/2564058e-e3d5-8d97-3cd2-c11c2a956475.htm" />
+    <HelpKINode Title="properties" Url="html/d2a879db-4200-0251-9352-08dc2f78a0c4.htm" />
+  </HelpKINode>
+  <HelpKINode Title="BinaryOperation.BinaryOperation constructor" Url="html/e1f47890-e5e0-7c8e-a799-3028c786aa52.htm" />
+  <HelpKINode Title="BinaryOperation.ComputeOwnerWeight method" Url="html/49eb5002-f6e4-8305-75f1-c2ac9f6c80ed.htm" />
+  <HelpKINode Title="BinaryOperation.Create method" Url="html/0ec11d79-c1af-c408-1a04-f1f7217b5686.htm" />
+  <HelpKINode Title="BinaryOperation.IsBinaryOperator property" Url="html/a79c6f8e-edd7-765c-47fd-94ac0e4b2c12.htm" />
+  <HelpKINode Title="BinaryOperation.IsMultipleOperator property" Url="html/7d49ce99-87b6-8839-3c2b-0014bd830b9b.htm" />
+  <HelpKINode Title="BinaryOperation.IsNotOperator property" Url="html/4a11f5d1-3fa9-e9ba-b5e6-353b7c312653.htm" />
+  <HelpKINode Title="BinaryOperation.IsUnaryOperator property" Url="html/145c307c-ae14-a569-d4f3-edd21ea12b54.htm" />
+  <HelpKINode Title="BinaryOperation.LeftOperand property" Url="html/a22c2c11-fc7e-e2cf-3bdb-facfcb8079f3.htm" />
+  <HelpKINode Title="BinaryOperation.Operator property" Url="html/d1190f0e-7ba2-5dd4-1d82-db71859f64a4.htm" />
+  <HelpKINode Title="BinaryOperation.RightOperand property" Url="html/2f6b6ff2-ac7f-baef-d0cd-fc9a019217b2.htm" />
+  <HelpKINode Title="BinaryOperatorValueType field" Url="html/bac43334-a1d8-7271-011c-33d394ca27c0.htm" />
+  <HelpKINode Title="ButtonClicked event" Url="html/b5b1bd22-4da5-0bee-095a-b9d03c32b5a9.htm" />
+  <HelpKINode Title="Calculate method">
+    <HelpKINode Title="Arithmetic.Calculate Method " Url="html/12862f79-7ab3-8868-ad7b-1e9b4655c56c.htm" />
+    <HelpKINode Title="IEquation.Calculate Method " Url="html/ae866fa5-c7c4-266c-1bcd-41d9163cec1d.htm" />
+    <HelpKINode Title="Line.Calculate Method " Url="html/00488795-e7a0-45a6-2bd8-d3ca287fbe3f.htm" />
+    <HelpKINode Title="MathematicEquation.Calculate Method " Url="html/cf80db7a-2fcc-1221-739c-ff0df1da7ff0.htm" />
+  </HelpKINode>
+  <HelpKINode Title="calculatedValueName field" Url="html/b6ea0084-4cb5-68f1-f98e-9517ea5e370f.htm" />
+  <HelpKINode Title="ClipBox class">
+    <HelpKINode Title="ClipBox Class" Url="html/31bcc1e5-3c9c-d5a1-3aff-c94930e4c6ef.htm" />
+    <HelpKINode Title="about ClipBox class" Url="html/31bcc1e5-3c9c-d5a1-3aff-c94930e4c6ef.htm" />
+    <HelpKINode Title="constructor" Url="html/039e317d-96f8-6133-a67a-e76bde093ddd.htm" />
+    <HelpKINode Title="events" Url="html/a4f2c7ec-95e5-d73d-833f-eac0efb5edc2.htm" />
+    <HelpKINode Title="fields" Url="html/8bb4d3d7-2f24-a9e2-4047-a2a68aff4f59.htm" />
+    <HelpKINode Title="methods" Url="html/887d8339-1194-0d13-8fe4-6a8ece3095be.htm" />
+    <HelpKINode Title="properties" Url="html/bad0a9d4-74e1-2e93-8f49-f8e421f36519.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ClipBox.ClipBox constructor" Url="html/039e317d-96f8-6133-a67a-e76bde093ddd.htm" />
+  <HelpKINode Title="ClipBox.InitializeComponent method" Url="html/bdd5c127-b535-bf7a-8de2-102bcfb97bb7.htm" />
+  <HelpKINode Title="ClipBox.ScaleXProperty field" Url="html/c5f7757c-9e51-cd3d-1509-6fb227308d2f.htm" />
+  <HelpKINode Title="ClipBox.ScaleYProperty field" Url="html/58844b63-58b9-2ef5-bd7a-4b1c8460c810.htm" />
+  <HelpKINode Title="ClipBox.TranslateXProperty field" Url="html/391f4421-ea72-4ee7-7a75-ebc31076d6c9.htm" />
+  <HelpKINode Title="ClipBox.TranslateYProperty field" Url="html/1c3beba2-a05b-f58b-2a83-32c14aa48469.htm" />
+  <HelpKINode Title="Clone method" Url="html/79944b68-794f-e9f7-562f-109320f6d5b3.htm" />
+  <HelpKINode Title="Coefficient class">
+    <HelpKINode Title="Coefficient Class" Url="html/ab6234db-17fb-5366-024c-f48aa85cd0d3.htm" />
+    <HelpKINode Title="about Coefficient class" Url="html/ab6234db-17fb-5366-024c-f48aa85cd0d3.htm" />
+    <HelpKINode Title="constructor" Url="html/5453cdc2-31b9-98cb-6640-295242d5b1d6.htm" />
+    <HelpKINode Title="events" Url="html/24cb9c40-f332-3504-1543-087b87436c2a.htm" />
+    <HelpKINode Title="fields" Url="html/60aaab96-42b9-6858-9a7f-02ed4a4f6e11.htm" />
+    <HelpKINode Title="methods" Url="html/e8127c7f-a8e0-0102-0278-2268698b88e2.htm" />
+    <HelpKINode Title="properties" Url="html/8bfd79ca-821d-7c45-48c4-079804b6055d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Coefficient property" Url="html/1355a1af-f7e1-7aa1-9194-d4598d1c87ee.htm" />
+  <HelpKINode Title="Coefficient.Coefficient constructor" Url="html/5453cdc2-31b9-98cb-6640-295242d5b1d6.htm" />
+  <HelpKINode Title="Coefficient.Compute method" Url="html/0481c27b-d4c8-d154-fc7b-1cbf409eaefc.htm" />
+  <HelpKINode Title="Coefficient.ComputeOwnerWeight method" Url="html/cc7fdd55-feed-1aa2-4049-1f2d92675655.htm" />
+  <HelpKINode Title="Coefficient.Create method" Url="html/084d4eaf-fe57-4a36-e124-5c6c7d08477b.htm" />
+  <HelpKINode Title="Coefficient.IsBinaryOperator property" Url="html/906ec94b-f29e-356f-17c4-beb7f0332562.htm" />
+  <HelpKINode Title="Coefficient.IsMultipleOperator property" Url="html/afef7f33-6884-6bdb-427a-b5e7b2c6fd9b.htm" />
+  <HelpKINode Title="Coefficient.IsNotOperator property" Url="html/e6246196-eaab-be64-047a-556b3a78c4ee.htm" />
+  <HelpKINode Title="Coefficient.IsUnaryOperator property" Url="html/533dc186-6020-2505-d312-85be4173d645.htm" />
+  <HelpKINode Title="Coefficient.Name property" Url="html/42dec4c5-8844-fde9-7d9e-285048dcb093.htm" />
+  <HelpKINode Title="Coefficient.Value property" Url="html/4d30eed1-6e0e-787c-c859-3dcb7402ff5a.htm" />
+  <HelpKINode Title="Coefficients property">
+    <HelpKINode Title="Arithmetic.Coefficients Property " Url="html/1dea453b-e911-888e-ae7c-3e030f8d0a98.htm" />
+    <HelpKINode Title="IEquation.Coefficients Property " Url="html/fd3dcbd4-5b9f-0fcd-9ad4-bb21f02ffe37.htm" />
+    <HelpKINode Title="MathematicEquation.Coefficients Property " Url="html/ef5821da-70db-b1c8-6db9-82dfe699a18a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CoefficientValueType field" Url="html/0faaa6f0-f8c0-0eec-2314-07ae7daac2bc.htm" />
+  <HelpKINode Title="coefName field" Url="html/1c3345f5-80f4-8401-a001-2342ed1b0d20.htm" />
+  <HelpKINode Title="Compute method">
+    <HelpKINode Title="Arithmetic.Compute Method " Url="html/50be5485-d02e-1042-63db-ea7032f99aab.htm" />
+    <HelpKINode Title="Coefficient.Compute Method " Url="html/0481c27b-d4c8-d154-fc7b-1cbf409eaefc.htm" />
+    <HelpKINode Title="NumericValue.Compute Method " Url="html/3308fc2a-aa00-ccc6-54b0-d14e986db5fe.htm" />
+    <HelpKINode Title="Product.Compute Method " Url="html/13f88757-330a-c360-7aba-11a4d89fcd32.htm" />
+    <HelpKINode Title="Sum.Compute Method " Url="html/c3e95f89-cd9f-de9d-016a-6d81273c2b29.htm" />
+    <HelpKINode Title="UnknownTerm.Compute Method " Url="html/7bdf8dd8-db69-a4ea-7317-4579da317043.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ComputeOwnerWeight method">
+    <HelpKINode Title="Arithmetic.ComputeOwnerWeight Method " Url="html/5a05c0f3-50e8-1ed3-5f72-f6bffdf19efd.htm" />
+    <HelpKINode Title="BinaryOperation.ComputeOwnerWeight Method " Url="html/49eb5002-f6e4-8305-75f1-c2ac9f6c80ed.htm" />
+    <HelpKINode Title="Coefficient.ComputeOwnerWeight Method " Url="html/cc7fdd55-feed-1aa2-4049-1f2d92675655.htm" />
+    <HelpKINode Title="NumericValue.ComputeOwnerWeight Method " Url="html/f2c061fd-052e-8575-cf2f-0c674e529592.htm" />
+    <HelpKINode Title="Product.ComputeOwnerWeight Method " Url="html/601f0b37-4f82-a15a-6073-08f82b5a035f.htm" />
+    <HelpKINode Title="Sum.ComputeOwnerWeight Method " Url="html/463732b0-3641-8b99-7617-088dcd3c4cde.htm" />
+    <HelpKINode Title="UnaryOperation.ComputeOwnerWeight Method " Url="html/f8bfabd3-9685-5e6f-5d16-4f848d33c931.htm" />
+    <HelpKINode Title="UnknownTerm.ComputeOwnerWeight Method " Url="html/c29d6ed9-6920-7ce5-81c2-a55254693a8a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ComputeWeight method" Url="html/a2d9ef67-1764-44d8-6633-3857e23c15e4.htm" />
+  <HelpKINode Title="Constant enumeration member" Url="html/593d8c97-ba27-8d16-1179-497b839446d7.htm" />
+  <HelpKINode Title="Constant property" Url="html/df1e15c4-ca98-5768-c21c-8d8014a17bbd.htm" />
+  <HelpKINode Title="constantName field" Url="html/a58cf154-26ce-d259-5fd5-990a97fc9d81.htm" />
+  <HelpKINode Title="Constants property">
+    <HelpKINode Title="Arithmetic.Constants Property " Url="html/73564584-ae2d-c182-3aec-a08198fac70e.htm" />
+    <HelpKINode Title="IEquation.Constants Property " Url="html/9daf28f2-3e87-7a60-11b8-3e3cd2ecf2ba.htm" />
+    <HelpKINode Title="MathematicEquation.Constants Property " Url="html/2abdd9fa-3624-d0bd-8d98-9cf7e25d1c89.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ConstantValueType field" Url="html/60b83841-9346-7559-2194-c5674454f96b.htm" />
+  <HelpKINode Title="Construct method" Url="html/92f39346-5362-d53b-b257-0323c8e568da.htm" />
+  <HelpKINode Title="Content property">
+    <HelpKINode Title="Texte.Content Property " Url="html/d943bd0c-28e1-9575-8208-5e24b873f1d2.htm" />
+    <HelpKINode Title="UnknownTerm.Content Property " Url="html/c35d2f27-3b24-3659-5e9a-f1433882d775.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Coordinates class">
+    <HelpKINode Title="Coordinates Class" Url="html/c49bdc9d-bf70-d4ab-0e04-883702e462ff.htm" />
+    <HelpKINode Title="about Coordinates class" Url="html/c49bdc9d-bf70-d4ab-0e04-883702e462ff.htm" />
+    <HelpKINode Title="constructor" Url="html/c29aea96-4a8a-6645-1924-59daa4e5a624.htm" />
+    <HelpKINode Title="methods" Url="html/08499ee4-b189-7fd4-aa09-afeabed392cc.htm" />
+    <HelpKINode Title="properties" Url="html/24df4603-266e-503d-9904-118bc64e3c2a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Coordinates property" Url="html/97d205c1-88a6-7bf1-59ce-b20704f8c83c.htm" />
+  <HelpKINode Title="Coordinates.Coordinates constructor" Url="html/c29aea96-4a8a-6645-1924-59daa4e5a624.htm" />
+  <HelpKINode Title="Coordinates.Dimension property" Url="html/2bbf6f3e-246f-369c-937c-52fcda51fd66.htm" />
+  <HelpKINode Title="Coordinates.Euclidian property" Url="html/23889d71-9637-1586-9010-e97f3b2ac89b.htm" />
+  <HelpKINode Title="Coordinates.Value property" Url="html/1877ce29-fb1d-1e5f-6ccc-c2490dfe94c8.htm" />
+  <HelpKINode Title="CoordinateSystem class">
+    <HelpKINode Title="CoordinateSystem Class" Url="html/384d78fc-a6eb-7892-8ed0-3db11cb32d43.htm" />
+    <HelpKINode Title="about CoordinateSystem class" Url="html/384d78fc-a6eb-7892-8ed0-3db11cb32d43.htm" />
+    <HelpKINode Title="constructor" Url="html/11dd0161-454b-9142-0142-16972f407fcd.htm" />
+    <HelpKINode Title="methods" Url="html/1569265e-7eef-ccc5-227a-61c8f732c9c6.htm" />
+    <HelpKINode Title="properties" Url="html/1044ef21-55c0-4975-8189-cbd0a7b1f7fa.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CoordinateSystem.Add method" Url="html/4fd966bd-84d8-0ecb-f436-1847be9a914d.htm" />
+  <HelpKINode Title="CoordinateSystem.Coordinates property" Url="html/97d205c1-88a6-7bf1-59ce-b20704f8c83c.htm" />
+  <HelpKINode Title="CoordinateSystem.CoordinateSystem constructor" Url="html/11dd0161-454b-9142-0142-16972f407fcd.htm" />
+  <HelpKINode Title="CoordinateSystem.Dimension property" Url="html/0fe0e54d-9792-b925-32ff-9956a81de8aa.htm" />
+  <HelpKINode Title="Create method">
+    <HelpKINode Title="Addition.Create Method " Url="html/fded988b-dd5f-f774-ea0b-1588a160bd62.htm" />
+    <HelpKINode Title="Arithmetic.Create Method " Url="html/2e05cb4e-28db-bfb9-9d91-19007d69a8e4.htm" />
+    <HelpKINode Title="BinaryOperation.Create Method " Url="html/0ec11d79-c1af-c408-1a04-f1f7217b5686.htm" />
+    <HelpKINode Title="Coefficient.Create Method " Url="html/084d4eaf-fe57-4a36-e124-5c6c7d08477b.htm" />
+    <HelpKINode Title="Division.Create Method " Url="html/0691cf33-5b72-43a7-f4cd-c56cb279b62a.htm" />
+    <HelpKINode Title="Equal.Create Method " Url="html/fe12b9a1-620f-2bf3-b4bb-08bc2fae80bb.htm" />
+    <HelpKINode Title="Inverse.Create Method " Url="html/a4173010-43bc-0f63-3f4b-36fd301f6a59.htm" />
+    <HelpKINode Title="Multiplication.Create Method " Url="html/9109ea07-9a6e-ca13-9213-ee562c960c6c.htm" />
+    <HelpKINode Title="Negative.Create Method " Url="html/e1045622-a117-7e84-ba3a-82e8dae2bbbb.htm" />
+    <HelpKINode Title="NumericValue.Create Method " Url="html/fe9f5d9d-7f6a-fc3a-a4c8-d0f9c156db85.htm" />
+    <HelpKINode Title="Positive.Create Method " Url="html/784df4c6-e055-13b7-5023-d3d592cc200d.htm" />
+    <HelpKINode Title="Power.Create Method " Url="html/1b4432b6-278e-5fe1-9c81-d26f76f60169.htm" />
+    <HelpKINode Title="Product.Create Method " Url="html/3e8884b7-41ea-14ad-09b4-d033f695eff2.htm" />
+    <HelpKINode Title="Root.Create Method " Url="html/cd9c2f83-33b7-9942-54fc-424163b28d8c.htm" />
+    <HelpKINode Title="Soustraction.Create Method " Url="html/68d9d796-7569-64e2-af47-ce545a7ea39c.htm" />
+    <HelpKINode Title="Sum.Create Method " Url="html/569fec2e-b0ab-cc51-1729-0be9f399fd0f.htm" />
+    <HelpKINode Title="Term.Create Method " Url="html/e3674a85-046f-b227-1a83-97127a683f5e.htm" />
+    <HelpKINode Title="TopLevelArithmeticModel.Create Method " Url="html/eae104ca-475e-cfe5-ee88-906798e88c94.htm" />
+    <HelpKINode Title="UnaryOperation.Create Method " Url="html/aee5a3cb-192e-6975-71eb-4a784566e715.htm" />
+    <HelpKINode Title="UnknownTerm.Create Method " Url="html/898bbb91-3076-2ba6-369a-98f4b821e290.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Data property" Url="html/eef7a995-4bb4-38fc-dd73-f1e2b22ad3a6.htm" />
+  <HelpKINode Title="DataTracer2D class">
+    <HelpKINode Title="DataTracer2D Class" Url="html/e89aeadd-ac18-a491-4c87-74eb0969afd9.htm" />
+    <HelpKINode Title="about DataTracer2D class" Url="html/e89aeadd-ac18-a491-4c87-74eb0969afd9.htm" />
+    <HelpKINode Title="constructor" Url="html/735a89d0-a7b0-d70a-8e6d-f158b572be33.htm" />
+    <HelpKINode Title="methods" Url="html/f4731803-ee0a-c720-d19e-f2687b5ddd06.htm" />
+    <HelpKINode Title="properties" Url="html/f70a8b71-d802-055d-1a5f-2db66778a4f4.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DataTracer2D.DataTracer2D constructor" Url="html/735a89d0-a7b0-d70a-8e6d-f158b572be33.htm" />
+  <HelpKINode Title="DataTracer2D.DrawCurve method" Url="html/bcd5e002-86cf-cd79-2de9-e9cdc87b3f18.htm" />
+  <HelpKINode Title="DataTracer2D.DrawGrad method" Url="html/4df98756-6ac1-b7c1-cb71-bb7aabf367f2.htm" />
+  <HelpKINode Title="Develop method">
+    <HelpKINode Title="Arithmetic.Develop Method " Url="html/db5d16d7-5d54-bff9-f4a1-a110802aabce.htm" />
+    <HelpKINode Title="IEquation.Develop Method " Url="html/b355fe00-80a9-e27f-e1f9-494df16154ae.htm" />
+    <HelpKINode Title="MathematicEquation.Develop Method " Url="html/16a37140-9f25-e733-7645-d23963ba753c.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Dimension property">
+    <HelpKINode Title="Coordinates.Dimension Property " Url="html/2bbf6f3e-246f-369c-937c-52fcda51fd66.htm" />
+    <HelpKINode Title="CoordinateSystem.Dimension Property " Url="html/0fe0e54d-9792-b925-32ff-9956a81de8aa.htm" />
+    <HelpKINode Title="MovingVector.Dimension Property " Url="html/7f85412c-dc4d-4815-37d8-951d48c1ac28.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Division class">
+    <HelpKINode Title="Division Class" Url="html/da9543d5-bd36-c313-e2cf-5ce1a13cebe0.htm" />
+    <HelpKINode Title="about Division class" Url="html/da9543d5-bd36-c313-e2cf-5ce1a13cebe0.htm" />
+    <HelpKINode Title="constructor" Url="html/e6cbc13d-ee2c-0014-cafc-270beaf13620.htm" />
+    <HelpKINode Title="events" Url="html/65650d3a-daf8-ba32-9514-7b6159129ef1.htm" />
+    <HelpKINode Title="fields" Url="html/a4084cf0-cc97-e7b0-3819-917732eff452.htm" />
+    <HelpKINode Title="methods" Url="html/a16e81f9-62bf-fef5-8188-e717010cdad2.htm" />
+    <HelpKINode Title="properties" Url="html/a1b67dd4-e99a-7c71-946a-7e01511b2f2e.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Division.Create method" Url="html/0691cf33-5b72-43a7-f4cd-c56cb279b62a.htm" />
+  <HelpKINode Title="Division.Division constructor" Url="html/e6cbc13d-ee2c-0014-cafc-270beaf13620.htm" />
+  <HelpKINode Title="Division.ToProduct method" Url="html/105f9c88-804d-a1d1-8c2b-b37c440d340f.htm" />
+  <HelpKINode Title="Division.ToTex method" Url="html/3adddfc4-d245-9e75-0c21-67c992f4ab0d.htm" />
+  <HelpKINode Title="DoubleValueType field" Url="html/1ab0987e-ab80-bae6-6fc5-cd84ce90b8fc.htm" />
+  <HelpKINode Title="DrawCurve method" Url="html/bcd5e002-86cf-cd79-2de9-e9cdc87b3f18.htm" />
+  <HelpKINode Title="DrawGrad method" Url="html/4df98756-6ac1-b7c1-cb71-bb7aabf367f2.htm" />
+  <HelpKINode Title="Elements property" Url="html/e4ed54b4-793d-e255-5c69-6c0ba0a64c44.htm" />
+  <HelpKINode Title="EnsureInverse method" Url="html/4e0ef9be-693d-919e-8e12-b704bbe23337.htm" />
+  <HelpKINode Title="EnsureProduct method" Url="html/c5b28a6f-38da-e40b-f090-bcdc7adc4279.htm" />
+  <HelpKINode Title="EnsureSign method" Url="html/8be24f76-d9da-5a00-a889-c5f39240d9f4.htm" />
+  <HelpKINode Title="EnsureSum method" Url="html/dd419b28-9710-f26e-cd76-63e6864060d0.htm" />
+  <HelpKINode Title="Equal class">
+    <HelpKINode Title="Equal Class" Url="html/86dc375f-3e4d-4520-b542-5afab2607a00.htm" />
+    <HelpKINode Title="about Equal class" Url="html/86dc375f-3e4d-4520-b542-5afab2607a00.htm" />
+    <HelpKINode Title="constructor" Url="html/62bdcc8c-f883-e419-5db9-0d46210e498b.htm" />
+    <HelpKINode Title="events" Url="html/ff3ce78e-ddcd-b089-ab19-88661cff31ec.htm" />
+    <HelpKINode Title="fields" Url="html/7b214822-0853-6329-bc24-c3eb5acfd3b0.htm" />
+    <HelpKINode Title="methods" Url="html/feab58bc-1c22-a891-79c9-f61813c15143.htm" />
+    <HelpKINode Title="properties" Url="html/136ebc5a-6136-b0b4-e81d-4a5b501f8197.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Equal.Create method" Url="html/fe12b9a1-620f-2bf3-b4bb-08bc2fae80bb.htm" />
+  <HelpKINode Title="Equal.Equal constructor" Url="html/62bdcc8c-f883-e419-5db9-0d46210e498b.htm" />
+  <HelpKINode Title="Equal.ToString method" Url="html/487c5426-b1e9-4733-037e-615afb0b9d23.htm" />
+  <HelpKINode Title="Equal.ToTex method" Url="html/123f7003-facb-992a-1a2b-50bbc00256f3.htm" />
+  <HelpKINode Title="Equality operator" Url="html/e7a188f2-c81a-eded-bbf1-1230b1070b17.htm" />
+  <HelpKINode Title="Equals method">
+    <HelpKINode Title="Arithmetic.Equals Method " Url="html/8063ff8c-2e9e-465d-8c2e-ec10f1141666.htm" />
+    <HelpKINode Title="Weight.Equals Method " Url="html/afc1708a-94e9-5704-c30d-e85e4ba135e8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Equation property">
+    <HelpKINode Title="Arithmetic.Equation Property " Url="html/a1a2ab12-7a1a-3ccf-2308-02abf1d96b44.htm" />
+    <HelpKINode Title="IEquation.Equation Property " Url="html/ade2361e-d535-1cd4-6dc7-9df5af9b4b70.htm" />
+    <HelpKINode Title="MathematicEquation.Equation Property " Url="html/3f426ab4-3984-6469-3e6d-a198c41a7991.htm" />
+  </HelpKINode>
+  <HelpKINode Title="equationName field" Url="html/771bb456-e5c1-8fe2-2b68-eb3abc90e66b.htm" />
+  <HelpKINode Title="Euclidian property">
+    <HelpKINode Title="Coordinates.Euclidian Property " Url="html/23889d71-9637-1586-9010-e97f3b2ac89b.htm" />
+    <HelpKINode Title="MovingVector.Euclidian Property " Url="html/e42271a2-651e-d9b9-4bae-9bcafebeeb21.htm" />
+    <HelpKINode Title="Vector.Euclidian Property " Url="html/6b16eda0-f0a0-ab68-1e69-5bfe1b044581.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Exec method" Url="html/91211542-ab49-7465-05b2-0d163b048918.htm" />
+  <HelpKINode Title="Exercice class">
+    <HelpKINode Title="Exercice Class" Url="html/a097e3b4-4da5-e49d-5875-888b84124c9f.htm" />
+    <HelpKINode Title="about Exercice class" Url="html/a097e3b4-4da5-e49d-5875-888b84124c9f.htm" />
+    <HelpKINode Title="constructor" Url="html/0ee9aaa6-466f-72d5-b734-f9815ac466a4.htm" />
+    <HelpKINode Title="methods" Url="html/38af9892-ba54-8c69-040f-a9a2d438ffa0.htm" />
+    <HelpKINode Title="properties" Url="html/218b6fa0-671e-539d-2b19-c8b7e9f4defc.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Exercice.Exercice constructor" Url="html/0ee9aaa6-466f-72d5-b734-f9815ac466a4.htm" />
+  <HelpKINode Title="Exercice.ToDocument method" Url="html/9d03656c-995b-cdbf-dcc6-5790a608ea8e.htm" />
+  <HelpKINode Title="Exercice.ToString method" Url="html/cc473379-a3ac-06cb-e546-2565535ad170.htm" />
+  <HelpKINode Title="Exists method">
+    <HelpKINode Title="PersistentDataObject.Exists Method " Url="html/e912c7da-bf1e-62f4-b5b3-da8fcb76512b.htm" />
+    <HelpKINode Title="RecordZone(T).Exists Method " Url="html/0b26fc4a-d7e1-1c00-5f8e-75ce5f9a0da0.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Factorize method">
+    <HelpKINode Title="Arithmetic.Factorize Method " Url="html/dcafc66e-abdf-cb25-40a2-ed4a566c2f01.htm" />
+    <HelpKINode Title="IEquation.Factorize Method " Url="html/423bd958-0685-30d3-cde1-195a9c56d010.htm" />
+    <HelpKINode Title="MathematicEquation.Factorize Method " Url="html/e9b406cd-108c-edfb-05b3-b4f1f5eb0612.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Fetch event">
+    <HelpKINode Title="Arithmetic.Fetch Event" Url="html/09557b3c-1c89-2dea-4b5e-9ad910db20c3.htm" />
+    <HelpKINode Title="IArithmetic.Fetch Event" Url="html/a9e08e08-d922-ba5d-f2b4-a236adc970a0.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Floor method" Url="html/78a2bc1b-3a91-19e9-a14c-94c165f45afc.htm" />
+  <HelpKINode Title="Gathering(Of T) class">
+    <HelpKINode Title="Gathering(T) Class" Url="html/5e2b5fff-d117-430a-dd35-94ecda1dfad3.htm" />
+    <HelpKINode Title="about Gathering(Of T) class" Url="html/5e2b5fff-d117-430a-dd35-94ecda1dfad3.htm" />
+    <HelpKINode Title="constructor" Url="html/cb880187-d9cf-5071-c6db-ca3d7390481a.htm" />
+    <HelpKINode Title="events" Url="html/2429515b-e2fb-0dba-1dd9-1f9eccd17de3.htm" />
+    <HelpKINode Title="fields" Url="html/99f6b089-ae7e-8a3e-4d88-c4df76278d03.htm" />
+    <HelpKINode Title="methods" Url="html/b28d5b41-2511-f858-21b4-c19a123f5b27.htm" />
+    <HelpKINode Title="properties" Url="html/f9195d36-3897-7d51-dbba-af3591249a26.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Gathering(Of T).Gathering constructor" Url="html/cb880187-d9cf-5071-c6db-ca3d7390481a.htm" />
+  <HelpKINode Title="Gathering&lt;T&gt; class">
+    <HelpKINode Title="Gathering(T) Class" Url="html/5e2b5fff-d117-430a-dd35-94ecda1dfad3.htm" />
+    <HelpKINode Title="about Gathering&lt;T&gt; class" Url="html/5e2b5fff-d117-430a-dd35-94ecda1dfad3.htm" />
+    <HelpKINode Title="constructor" Url="html/cb880187-d9cf-5071-c6db-ca3d7390481a.htm" />
+    <HelpKINode Title="events" Url="html/2429515b-e2fb-0dba-1dd9-1f9eccd17de3.htm" />
+    <HelpKINode Title="fields" Url="html/99f6b089-ae7e-8a3e-4d88-c4df76278d03.htm" />
+    <HelpKINode Title="methods" Url="html/b28d5b41-2511-f858-21b4-c19a123f5b27.htm" />
+    <HelpKINode Title="properties" Url="html/f9195d36-3897-7d51-dbba-af3591249a26.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Gathering&lt;T&gt;.Gathering constructor" Url="html/cb880187-d9cf-5071-c6db-ca3d7390481a.htm" />
+  <HelpKINode Title="GenerateMove method" Url="html/eb32c9aa-a229-1a3e-f221-5fba381371f5.htm" />
+  <HelpKINode Title="Get method">
+    <HelpKINode Title="Arithmetic.Get Method " Url="html/8c596790-79bf-3e1a-605b-c76853dbdfaa.htm" />
+    <HelpKINode Title="PersistentDataObject.Get Method " Url="html/15003341-7104-4596-e63b-da807f167259.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetHashCode method">
+    <HelpKINode Title="Arithmetic.GetHashCode Method " Url="html/4fdccb9a-be8e-3434-28b1-c5debacdabf1.htm" />
+    <HelpKINode Title="Weight.GetHashCode Method " Url="html/ce58005f-2a15-24b7-ce8b-4514bbb98713.htm" />
+  </HelpKINode>
+  <HelpKINode Title="HashCode property">
+    <HelpKINode Title="IWeight.HashCode Property " Url="html/29e684e5-f31c-78aa-5215-159c2427bb67.htm" />
+    <HelpKINode Title="Weight.HashCode Property " Url="html/de961787-dbf2-71c2-6f16-20a39b696285.htm" />
+  </HelpKINode>
+  <HelpKINode Title="hasValueName field" Url="html/6e788636-9225-793b-8a67-d6538c40d9e0.htm" />
+  <HelpKINode Title="IArithmetic interface">
+    <HelpKINode Title="IArithmetic Interface" Url="html/b93438f9-83a1-6a89-de95-8c74fe5a71ee.htm" />
+    <HelpKINode Title="about IArithmetic interface" Url="html/b93438f9-83a1-6a89-de95-8c74fe5a71ee.htm" />
+    <HelpKINode Title="events" Url="html/655f1a93-a991-d4a3-2202-2b6be7b4e44c.htm" />
+    <HelpKINode Title="methods" Url="html/0c42cb63-fc47-24f2-0567-8c8b224ba08c.htm" />
+    <HelpKINode Title="properties" Url="html/886e64c0-a07a-ffe6-abcd-817d0cb9e8fb.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IArithmetic.Fetch event" Url="html/a9e08e08-d922-ba5d-f2b4-a236adc970a0.htm" />
+  <HelpKINode Title="IArithmetic.Item property" Url="html/98e7d35c-93fb-019f-c4ad-b48fcde0d2c3.htm" />
+  <HelpKINode Title="IArithmetic.OwnerWeight property" Url="html/e7f01fe0-5494-fcb2-a01b-a6fd6604ba31.htm" />
+  <HelpKINode Title="IArithmetic.Unfetch event" Url="html/6bfaf27e-56d3-535c-ce2f-f6f066b86094.htm" />
+  <HelpKINode Title="Id property" Url="html/efc28e35-9359-b348-78d2-48dc96c8771e.htm" />
+  <HelpKINode Title="IDocument interface">
+    <HelpKINode Title="IDocument Interface" Url="html/c3a037f5-97ff-7f55-f060-1f548d21b978.htm" />
+    <HelpKINode Title="about IDocument interface" Url="html/c3a037f5-97ff-7f55-f060-1f548d21b978.htm" />
+    <HelpKINode Title="methods" Url="html/44d875f9-6f9d-d4dd-acbd-3078ed537069.htm" />
+    <HelpKINode Title="properties" Url="html/9d72d864-d12e-e25f-f0f8-4f647380b705.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IDocument.IsCalculable property" Url="html/a70af8a8-20a1-b0ed-4a87-da317ec1e623.htm" />
+  <HelpKINode Title="IDocument.ToString method" Url="html/2d0a2779-b9d4-783e-7bb6-d405779a66b2.htm" />
+  <HelpKINode Title="IDocument.ToTex method" Url="html/272d2946-77da-a81c-338e-8aa77efc4d0d.htm" />
+  <HelpKINode Title="IEquation interface">
+    <HelpKINode Title="IEquation Interface" Url="html/162ea3f9-6248-d603-4b69-6c983bae3d11.htm" />
+    <HelpKINode Title="about IEquation interface" Url="html/162ea3f9-6248-d603-4b69-6c983bae3d11.htm" />
+    <HelpKINode Title="methods" Url="html/aa226ee0-d449-d416-007f-2d132897a7df.htm" />
+    <HelpKINode Title="properties" Url="html/817ed23f-739d-24ab-36c1-8f5dd8fc4c9f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IEquation.AsRepresented method" Url="html/df0400bd-eab4-14d9-277c-125564a75f21.htm" />
+  <HelpKINode Title="IEquation.Calculate method" Url="html/ae866fa5-c7c4-266c-1bcd-41d9163cec1d.htm" />
+  <HelpKINode Title="IEquation.Coefficients property" Url="html/fd3dcbd4-5b9f-0fcd-9ad4-bb21f02ffe37.htm" />
+  <HelpKINode Title="IEquation.Constants property" Url="html/9daf28f2-3e87-7a60-11b8-3e3cd2ecf2ba.htm" />
+  <HelpKINode Title="IEquation.Develop method" Url="html/b355fe00-80a9-e27f-e1f9-494df16154ae.htm" />
+  <HelpKINode Title="IEquation.Equation property" Url="html/ade2361e-d535-1cd4-6dc7-9df5af9b4b70.htm" />
+  <HelpKINode Title="IEquation.Factorize method" Url="html/423bd958-0685-30d3-cde1-195a9c56d010.htm" />
+  <HelpKINode Title="IEquation.IsCalculable property" Url="html/f51dcbae-e0e5-940e-eab2-252a281723b9.htm" />
+  <HelpKINode Title="IEquation.Let method" Url="html/a7b63b9e-8173-9195-29f6-f3377e6d3e0b.htm" />
+  <HelpKINode Title="IEquation.MakeUnique method" Url="html/98b3c8c1-8366-65d7-2e1f-56437cf9f258.htm" />
+  <HelpKINode Title="IEquation.ToTex method" Url="html/bf92c84d-c67a-f048-9f80-5708b81aaca4.htm" />
+  <HelpKINode Title="IEquation.Transform method" Url="html/77be8117-0536-d3fd-3411-45995fa25b45.htm" />
+  <HelpKINode Title="IEquation.UnknownTerms property" Url="html/ca56e9af-df15-84a0-58c0-f0315031aa10.htm" />
+  <HelpKINode Title="Inequality operator" Url="html/a56fba3b-363a-7cef-9a12-aba6a469b3c6.htm" />
+  <HelpKINode Title="INeurone interface">
+    <HelpKINode Title="INeurone Interface" Url="html/bb2e2b44-ce05-ad21-7632-b7dcaea3569f.htm" />
+    <HelpKINode Title="about INeurone interface" Url="html/bb2e2b44-ce05-ad21-7632-b7dcaea3569f.htm" />
+    <HelpKINode Title="methods" Url="html/a2e165b3-4485-3735-6c51-313bbb05c260.htm" />
+    <HelpKINode Title="properties" Url="html/4f603a80-f609-2d32-d171-caadb237b45b.htm" />
+  </HelpKINode>
+  <HelpKINode Title="INeurone.Exec method" Url="html/91211542-ab49-7465-05b2-0d163b048918.htm" />
+  <HelpKINode Title="INeurone.Id property" Url="html/efc28e35-9359-b348-78d2-48dc96c8771e.htm" />
+  <HelpKINode Title="INeurone.Learn method" Url="html/5354808d-31d7-148b-b4ed-f1c4d3da9688.htm" />
+  <HelpKINode Title="INeurone.Name property" Url="html/df355833-2b25-eff3-4044-d863314e121c.htm" />
+  <HelpKINode Title="INeurone.Type property" Url="html/406beec6-7006-838e-95b5-b24976a84313.htm" />
+  <HelpKINode Title="INeuroneType enumeration" Url="html/593d8c97-ba27-8d16-1179-497b839446d7.htm" />
+  <HelpKINode Title="InitializeComponent method">
+    <HelpKINode Title="App.InitializeComponent Method " Url="html/537d2630-2df1-3b0e-b0e9-8ee36afc2eb1.htm" />
+    <HelpKINode Title="ClipBox.InitializeComponent Method " Url="html/bdd5c127-b535-bf7a-8de2-102bcfb97bb7.htm" />
+    <HelpKINode Title="MainWindow.InitializeComponent Method " Url="html/d1fed9fc-d2a6-ab5f-45c8-65a4408e64bd.htm" />
+    <HelpKINode Title="Tracer.InitializeComponent Method " Url="html/462cdce0-5c77-46ff-f7c0-3d6d8159aae5.htm" />
+    <HelpKINode Title="Tracer.InitializeComponent Method " Url="html/b6901bc9-a637-b10c-9a04-f961f126758d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="InnerOperand property">
+    <HelpKINode Title="Arithmetic.InnerOperand Property " Url="html/6da91c3d-3289-1cda-5736-817dc5c51084.htm" />
+    <HelpKINode Title="UnaryOperation.InnerOperand Property " Url="html/ae550582-5980-7586-114c-7c92be05549f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="innerOperandName field" Url="html/3641ac31-0663-1e04-dea0-be479ee556b2.htm" />
+  <HelpKINode Title="Interfaces namespace" Url="html/b8ae40cb-d140-bafe-1dca-324413ddd12e.htm" />
+  <HelpKINode Title="Interfaces.IArithmetic interface" Url="html/b93438f9-83a1-6a89-de95-8c74fe5a71ee.htm" />
+  <HelpKINode Title="Interfaces.IDocument interface" Url="html/c3a037f5-97ff-7f55-f060-1f548d21b978.htm" />
+  <HelpKINode Title="Interfaces.IEquation interface" Url="html/162ea3f9-6248-d603-4b69-6c983bae3d11.htm" />
+  <HelpKINode Title="Interfaces.INeurone interface" Url="html/bb2e2b44-ce05-ad21-7632-b7dcaea3569f.htm" />
+  <HelpKINode Title="Interfaces.INeuroneType enumeration" Url="html/593d8c97-ba27-8d16-1179-497b839446d7.htm" />
+  <HelpKINode Title="Interfaces.IVariable interface" Url="html/0b9ffd28-5182-391e-7ada-015a2e59ccf3.htm" />
+  <HelpKINode Title="Interfaces.IWeight interface" Url="html/dc2fb1a0-f179-8965-a3da-f9510caf4132.htm" />
+  <HelpKINode Title="Inverse class">
+    <HelpKINode Title="Inverse Class" Url="html/72b1780a-c049-9304-6bc9-9ef21bbb1cc1.htm" />
+    <HelpKINode Title="about Inverse class" Url="html/72b1780a-c049-9304-6bc9-9ef21bbb1cc1.htm" />
+    <HelpKINode Title="constructor" Url="html/92c786e4-59d3-8115-345d-641b1c518964.htm" />
+    <HelpKINode Title="events" Url="html/0b64662b-1064-2a4f-346b-0ded0d86defc.htm" />
+    <HelpKINode Title="fields" Url="html/9cf1511e-c0a3-a433-abaa-07508dac804b.htm" />
+    <HelpKINode Title="methods" Url="html/913d2c07-3d6b-4956-bf0e-1ebf85f2bd50.htm" />
+    <HelpKINode Title="properties" Url="html/e270511e-ceda-1fa3-ebf2-b0341120c916.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Inverse.Create method" Url="html/a4173010-43bc-0f63-3f4b-36fd301f6a59.htm" />
+  <HelpKINode Title="Inverse.Inverse constructor" Url="html/92c786e4-59d3-8115-345d-641b1c518964.htm" />
+  <HelpKINode Title="Inverse.ToTex method" Url="html/798fe9b9-8b78-46e2-d7a3-ffdc3bddf381.htm" />
+  <HelpKINode Title="IsBinaryOperator property">
+    <HelpKINode Title="Arithmetic.IsBinaryOperator Property " Url="html/7cf2da49-feb9-dd96-1d87-df861768e765.htm" />
+    <HelpKINode Title="BinaryOperation.IsBinaryOperator Property " Url="html/a79c6f8e-edd7-765c-47fd-94ac0e4b2c12.htm" />
+    <HelpKINode Title="Coefficient.IsBinaryOperator Property " Url="html/906ec94b-f29e-356f-17c4-beb7f0332562.htm" />
+    <HelpKINode Title="NumericValue.IsBinaryOperator Property " Url="html/c5ad4984-6bd5-4023-e6e3-9bd916b21700.htm" />
+    <HelpKINode Title="Product.IsBinaryOperator Property " Url="html/0382b583-847f-964a-40f6-328699e63da3.htm" />
+    <HelpKINode Title="Sum.IsBinaryOperator Property " Url="html/3ccfcabb-e3fb-240f-b94a-69a299cf72fe.htm" />
+    <HelpKINode Title="Term.IsBinaryOperator Property " Url="html/39a08127-ad9c-b923-4829-e20e8221c268.htm" />
+    <HelpKINode Title="UnaryOperation.IsBinaryOperator Property " Url="html/0d38fb33-df3d-04e9-87f2-48077e57929b.htm" />
+    <HelpKINode Title="UnknownTerm.IsBinaryOperator Property " Url="html/6169c4fc-aa73-4e39-a297-eaec3982e4e1.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsCalculable property">
+    <HelpKINode Title="Arithmetic.IsCalculable Property " Url="html/f0758a42-cdd2-8953-b85d-726fe4f20d9d.htm" />
+    <HelpKINode Title="IDocument.IsCalculable Property " Url="html/a70af8a8-20a1-b0ed-4a87-da317ec1e623.htm" />
+    <HelpKINode Title="IEquation.IsCalculable Property " Url="html/f51dcbae-e0e5-940e-eab2-252a281723b9.htm" />
+    <HelpKINode Title="MathematicEquation.IsCalculable Property " Url="html/3d936106-a012-9400-ec2a-6edce6b128bc.htm" />
+    <HelpKINode Title="Texte.IsCalculable Property " Url="html/bce74adc-500e-9e5b-1ffb-2042d6df8a79.htm" />
+    <HelpKINode Title="Verify.IsCalculable Property " Url="html/4305ff1f-703c-d281-d9cb-ea8f92de4d47.htm" />
+  </HelpKINode>
+  <HelpKINode Title="isCalculableName field" Url="html/257e5fdf-b7bf-7c75-b23b-b3981f49798b.htm" />
+  <HelpKINode Title="IsMultipleOperator property">
+    <HelpKINode Title="Arithmetic.IsMultipleOperator Property " Url="html/e0871f7f-8ab2-1d19-2828-4ec8b6678901.htm" />
+    <HelpKINode Title="BinaryOperation.IsMultipleOperator Property " Url="html/7d49ce99-87b6-8839-3c2b-0014bd830b9b.htm" />
+    <HelpKINode Title="Coefficient.IsMultipleOperator Property " Url="html/afef7f33-6884-6bdb-427a-b5e7b2c6fd9b.htm" />
+    <HelpKINode Title="NumericValue.IsMultipleOperator Property " Url="html/4ff700a2-c1eb-25c7-9f6c-4db9594dcafb.htm" />
+    <HelpKINode Title="Product.IsMultipleOperator Property " Url="html/3bb5a40c-cf36-6f59-f4f2-b7f3ab1c7d6b.htm" />
+    <HelpKINode Title="Sum.IsMultipleOperator Property " Url="html/6aed300c-6ad7-a102-6531-7cb47c269229.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsNotOperator property">
+    <HelpKINode Title="Arithmetic.IsNotOperator Property " Url="html/635b7ebb-2851-3ad0-1b0b-4e2849b5181d.htm" />
+    <HelpKINode Title="BinaryOperation.IsNotOperator Property " Url="html/4a11f5d1-3fa9-e9ba-b5e6-353b7c312653.htm" />
+    <HelpKINode Title="Coefficient.IsNotOperator Property " Url="html/e6246196-eaab-be64-047a-556b3a78c4ee.htm" />
+    <HelpKINode Title="NumericValue.IsNotOperator Property " Url="html/f341b680-a4e1-1605-c9b4-ab30ae75a351.htm" />
+    <HelpKINode Title="Product.IsNotOperator Property " Url="html/ed7b356f-1dd2-d526-53ea-fceb43df6ccd.htm" />
+    <HelpKINode Title="Sum.IsNotOperator Property " Url="html/d212b1c2-47b3-c08c-901d-deaf6ec66ffd.htm" />
+    <HelpKINode Title="Term.IsNotOperator Property " Url="html/a01bebe5-ca3e-dcf2-8192-1107c706805c.htm" />
+    <HelpKINode Title="UnaryOperation.IsNotOperator Property " Url="html/a3760a22-9962-7f28-ada0-d5496cbd9007.htm" />
+    <HelpKINode Title="UnknownTerm.IsNotOperator Property " Url="html/021414a8-3433-9e22-8c7b-28e8396a3f85.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsUnaryOperator property">
+    <HelpKINode Title="Arithmetic.IsUnaryOperator Property " Url="html/4a783e49-9715-8075-e22d-17786e594993.htm" />
+    <HelpKINode Title="BinaryOperation.IsUnaryOperator Property " Url="html/145c307c-ae14-a569-d4f3-edd21ea12b54.htm" />
+    <HelpKINode Title="Coefficient.IsUnaryOperator Property " Url="html/533dc186-6020-2505-d312-85be4173d645.htm" />
+    <HelpKINode Title="NumericValue.IsUnaryOperator Property " Url="html/ab6d692a-3509-fbb1-7358-5d90d7b7a25f.htm" />
+    <HelpKINode Title="Product.IsUnaryOperator Property " Url="html/c0dd35a0-72c8-5367-5fa9-f24b430b9b67.htm" />
+    <HelpKINode Title="Sum.IsUnaryOperator Property " Url="html/df2e22d1-394a-c337-1db6-30aecc3aed87.htm" />
+    <HelpKINode Title="Term.IsUnaryOperator Property " Url="html/7e3a8bb9-3cc9-f275-338c-f8b0ce42d3b8.htm" />
+    <HelpKINode Title="UnaryOperation.IsUnaryOperator Property " Url="html/38abd66f-c521-86e1-335e-9345cfec7e17.htm" />
+    <HelpKINode Title="UnknownTerm.IsUnaryOperator Property " Url="html/573fca87-ee39-e5ef-151b-55f94f8f7c3a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsValid method" Url="html/4e237da5-ec89-5f4f-8343-4acf0be5629e.htm" />
+  <HelpKINode Title="Item property">
+    <HelpKINode Title="Arithmetic.Item Property " Url="html/3ffd73a6-6960-2c84-c6e3-589c1d5e1bd3.htm" />
+    <HelpKINode Title="IArithmetic.Item Property " Url="html/98e7d35c-93fb-019f-c4ad-b48fcde0d2c3.htm" />
+    <HelpKINode Title="Weight.Item Property " Url="html/9a7780c9-69a6-5aa7-31ca-419d321deefd.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Items property">
+    <HelpKINode Title="Product.Items Property " Url="html/a6b1e113-b6c3-a03f-a17a-45ceadd9056c.htm" />
+    <HelpKINode Title="SequenceProof.Items Property " Url="html/e2e03f75-8f23-d9c2-bfb1-cbfbdc3db063.htm" />
+    <HelpKINode Title="Sum.Items Property " Url="html/81ed6533-69fc-2d18-3101-5f4b71b8fe97.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Iteration method" Url="html/df4de564-0a87-5b19-9f2d-f9f1fd5da538.htm" />
+  <HelpKINode Title="IVariable interface">
+    <HelpKINode Title="IVariable Interface" Url="html/0b9ffd28-5182-391e-7ada-015a2e59ccf3.htm" />
+    <HelpKINode Title="about IVariable interface" Url="html/0b9ffd28-5182-391e-7ada-015a2e59ccf3.htm" />
+    <HelpKINode Title="properties" Url="html/32402a16-235d-8c35-1cd6-f253cd6791f6.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IVariable.Name property" Url="html/27b0ce49-ee28-9689-a254-e6ab176745b5.htm" />
+  <HelpKINode Title="IVariable.Value property" Url="html/41b20e66-8c56-5cad-db17-580352081e9a.htm" />
+  <HelpKINode Title="IWeight interface">
+    <HelpKINode Title="IWeight Interface" Url="html/dc2fb1a0-f179-8965-a3da-f9510caf4132.htm" />
+    <HelpKINode Title="about IWeight interface" Url="html/dc2fb1a0-f179-8965-a3da-f9510caf4132.htm" />
+    <HelpKINode Title="properties" Url="html/1fcbc557-45c5-0ebe-5dee-39800a76de29.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IWeight.HashCode property" Url="html/29e684e5-f31c-78aa-5215-159c2427bb67.htm" />
+  <HelpKINode Title="Keys property" Url="html/f94ceab3-8c8e-0426-0eb5-4f70294d7e82.htm" />
+  <HelpKINode Title="Learn method" Url="html/5354808d-31d7-148b-b4ed-f1c4d3da9688.htm" />
+  <HelpKINode Title="Left property" Url="html/3643691f-4f09-f355-cda6-f91f41d3896f.htm" />
+  <HelpKINode Title="LeftOperand property">
+    <HelpKINode Title="Arithmetic.LeftOperand Property " Url="html/128f2ab2-2d6f-b6b1-27ee-985f39e860c6.htm" />
+    <HelpKINode Title="BinaryOperation.LeftOperand Property " Url="html/a22c2c11-fc7e-e2cf-3bdb-facfcb8079f3.htm" />
+  </HelpKINode>
+  <HelpKINode Title="leftTermName field" Url="html/3fc592d4-10b7-2c11-bce5-8e2e6e315adc.htm" />
+  <HelpKINode Title="Let method">
+    <HelpKINode Title="Arithmetic.Let Method " Url="html/0f512e74-08d8-f09c-d7a3-c8bab8579a8e.htm" />
+    <HelpKINode Title="IEquation.Let Method " Url="html/a7b63b9e-8173-9195-29f6-f3377e6d3e0b.htm" />
+    <HelpKINode Title="MathematicEquation.Let Method " Url="html/ffbc3919-eb9c-1f07-0a22-e95ddf7b12bd.htm" />
+  </HelpKINode>
+  <HelpKINode Title="letterName field" Url="html/bf8b44a8-1be9-6ffc-576d-4b5c2e9590f0.htm" />
+  <HelpKINode Title="Line class">
+    <HelpKINode Title="Line Class" Url="html/0a16b354-a967-3df1-6a87-598bc3de85d8.htm" />
+    <HelpKINode Title="about Line class" Url="html/0a16b354-a967-3df1-6a87-598bc3de85d8.htm" />
+    <HelpKINode Title="constructor" Url="html/8c529f63-2b8c-7cbf-f2b4-34e1f561a1ca.htm" />
+    <HelpKINode Title="methods" Url="html/8c00ad66-b372-44de-341f-9c81ab66b409.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Line.Calculate method" Url="html/00488795-e7a0-45a6-2bd8-d3ca287fbe3f.htm" />
+  <HelpKINode Title="Line.Iteration method" Url="html/df4de564-0a87-5b19-9f2d-f9f1fd5da538.htm" />
+  <HelpKINode Title="Line.Line constructor" Url="html/8c529f63-2b8c-7cbf-f2b4-34e1f561a1ca.htm" />
+  <HelpKINode Title="List property">
+    <HelpKINode Title="Product.List Property " Url="html/0942d57b-9a92-ae0b-bed3-c106a31d450d.htm" />
+    <HelpKINode Title="Sum.List Property " Url="html/ad17d33e-36d3-84c8-3d7d-be46965c7308.htm" />
+  </HelpKINode>
+  <HelpKINode Title="listName field" Url="html/b90238a4-52bf-0d9e-2c22-0d1dd6fa5eb5.htm" />
+  <HelpKINode Title="Load method">
+    <HelpKINode Title="PersistentDataObject.Load Method " Url="html/33a16045-3bbb-8a7c-4a0b-a772e1983a4f.htm" />
+    <HelpKINode Title="TopLevelArithmeticModel.Load Method " Url="html/e74d8d0f-86af-11bf-5d0e-7ed2c7c92c93.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Main method" Url="html/df878bac-1624-3055-c17d-f72788dc95ea.htm" />
+  <HelpKINode Title="MainWindow class">
+    <HelpKINode Title="MainWindow Class" Url="html/7f67c385-c05b-85a7-94ee-412f8fc1e269.htm" />
+    <HelpKINode Title="about MainWindow class" Url="html/7f67c385-c05b-85a7-94ee-412f8fc1e269.htm" />
+    <HelpKINode Title="constructor" Url="html/db81fe2d-84a4-28ef-bea5-cbfcce65598e.htm" />
+    <HelpKINode Title="events" Url="html/a6ce43d6-332a-ad47-991f-1f36f1f2564f.htm" />
+    <HelpKINode Title="methods" Url="html/21729b2d-3c04-8b64-db90-60d76e844d36.htm" />
+    <HelpKINode Title="properties" Url="html/653842de-1064-f394-2ee0-652d4dd9495c.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MainWindow.InitializeComponent method" Url="html/d1fed9fc-d2a6-ab5f-45c8-65a4408e64bd.htm" />
+  <HelpKINode Title="MainWindow.MainWindow constructor" Url="html/db81fe2d-84a4-28ef-bea5-cbfcce65598e.htm" />
+  <HelpKINode Title="MakeTransform method">
+    <HelpKINode Title="Addition.MakeTransform Method " Url="html/86aa0673-4325-67bf-08dd-7556617c4760.htm" />
+    <HelpKINode Title="Arithmetic.MakeTransform Method " Url="html/cde13944-4e93-f080-ed2b-4b343d1eaef8.htm" />
+    <HelpKINode Title="Multiplication.MakeTransform Method " Url="html/cf62d574-234d-edd2-2ecc-5a5f79fdb8ee.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MakeUnique method">
+    <HelpKINode Title="Arithmetic.MakeUnique Method " Url="html/df2fdd42-118a-6ce4-ecd2-6038939a7418.htm" />
+    <HelpKINode Title="IEquation.MakeUnique Method " Url="html/98b3c8c1-8366-65d7-2e1f-56437cf9f258.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MathematicEquation class">
+    <HelpKINode Title="MathematicEquation Class" Url="html/b332631d-fb7f-db39-a99f-f4e0abab17b9.htm" />
+    <HelpKINode Title="about MathematicEquation class" Url="html/b332631d-fb7f-db39-a99f-f4e0abab17b9.htm" />
+    <HelpKINode Title="constructor" Url="html/549c0adb-23cb-8cdb-2738-b5e243411df9.htm" />
+    <HelpKINode Title="fields" Url="html/41798cfb-d770-d371-0160-920d98a76f71.htm" />
+    <HelpKINode Title="methods" Url="html/1fdac7b9-ce66-b131-7664-b6f38a352687.htm" />
+    <HelpKINode Title="properties" Url="html/9b3e5707-e878-d866-6894-f495dc096d4b.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MathematicEquation.AsRepresented method" Url="html/7ba09ec4-a3c6-4261-7176-fecab3abf235.htm" />
+  <HelpKINode Title="MathematicEquation.Calculate method" Url="html/cf80db7a-2fcc-1221-739c-ff0df1da7ff0.htm" />
+  <HelpKINode Title="MathematicEquation.Coefficients property" Url="html/ef5821da-70db-b1c8-6db9-82dfe699a18a.htm" />
+  <HelpKINode Title="MathematicEquation.Constants property" Url="html/2abdd9fa-3624-d0bd-8d98-9cf7e25d1c89.htm" />
+  <HelpKINode Title="MathematicEquation.Develop method" Url="html/16a37140-9f25-e733-7645-d23963ba753c.htm" />
+  <HelpKINode Title="MathematicEquation.Equation property" Url="html/3f426ab4-3984-6469-3e6d-a198c41a7991.htm" />
+  <HelpKINode Title="MathematicEquation.Factorize method" Url="html/e9b406cd-108c-edfb-05b3-b4f1f5eb0612.htm" />
+  <HelpKINode Title="MathematicEquation.IsCalculable property" Url="html/3d936106-a012-9400-ec2a-6edce6b128bc.htm" />
+  <HelpKINode Title="MathematicEquation.Let method" Url="html/ffbc3919-eb9c-1f07-0a22-e95ddf7b12bd.htm" />
+  <HelpKINode Title="MathematicEquation.MathematicEquation constructor" Url="html/549c0adb-23cb-8cdb-2738-b5e243411df9.htm" />
+  <HelpKINode Title="MathematicEquation.OperatorAdd field" Url="html/f256824c-2e3c-8ca4-5021-2995d9d42d75.htm" />
+  <HelpKINode Title="MathematicEquation.OperatorDivide field" Url="html/c426f295-933c-5149-6222-b23ba4d6c7c6.htm" />
+  <HelpKINode Title="MathematicEquation.OperatorEqual field" Url="html/5c7d007d-872b-b828-20aa-3a627e1b9764.htm" />
+  <HelpKINode Title="MathematicEquation.OperatorInverse field" Url="html/5fd07ed4-9357-8857-93b4-b287a308c2bc.htm" />
+  <HelpKINode Title="MathematicEquation.OperatorMultipleAdd field" Url="html/e4d4f7e7-aa9f-718f-443d-b3f17bf4f046.htm" />
+  <HelpKINode Title="MathematicEquation.OperatorMultipleProduct field" Url="html/a9c0fa0a-e66c-eb0b-19c1-aef4a5a39c49.htm" />
+  <HelpKINode Title="MathematicEquation.OperatorNegative field" Url="html/01021ef1-1a23-416e-4255-0f12651f3572.htm" />
+  <HelpKINode Title="MathematicEquation.OperatorPositive field" Url="html/e9d6c61a-e68a-cc7b-0424-732a65cb889b.htm" />
+  <HelpKINode Title="MathematicEquation.OperatorPower field" Url="html/909b5a5b-c54d-9b86-8c93-02e19b3b554d.htm" />
+  <HelpKINode Title="MathematicEquation.OperatorProduct field" Url="html/390d7c59-3c36-6373-9e27-57811f1ef73c.htm" />
+  <HelpKINode Title="MathematicEquation.OperatorRoot field" Url="html/636e4740-31c2-bb8b-261d-70d7a4341eda.htm" />
+  <HelpKINode Title="MathematicEquation.OperatorSubstract field" Url="html/8bef9b28-aaa7-cb61-3d04-1d5db2a7c8c8.htm" />
+  <HelpKINode Title="MathematicEquation.ToTex method" Url="html/563e1724-dbbf-6342-2396-58a9652aa7b1.htm" />
+  <HelpKINode Title="MathematicEquation.Transform method" Url="html/46a7cecb-597e-2cef-4f00-95962ff84099.htm" />
+  <HelpKINode Title="MathematicEquation.UnknownTerms property" Url="html/a47fbf33-9e05-1c00-7363-964f6783629a.htm" />
+  <HelpKINode Title="Maths namespace" Url="html/b2c5f30d-3ff9-a0ce-03ad-1e32e3ffa9ce.htm" />
+  <HelpKINode Title="Maths.Answer class" Url="html/d6c64b33-2c36-1d15-123d-53a8788bd046.htm" />
+  <HelpKINode Title="Maths.Applicatifs class" Url="html/8c1e7b13-b9c5-7e8a-e6a0-dc48dfe01dd4.htm" />
+  <HelpKINode Title="Maths.ClipBox class" Url="html/31bcc1e5-3c9c-d5a1-3aff-c94930e4c6ef.htm" />
+  <HelpKINode Title="Maths.Coordinates class" Url="html/c49bdc9d-bf70-d4ab-0e04-883702e462ff.htm" />
+  <HelpKINode Title="Maths.CoordinateSystem class" Url="html/384d78fc-a6eb-7892-8ed0-3db11cb32d43.htm" />
+  <HelpKINode Title="Maths.DataTracer2D class" Url="html/e89aeadd-ac18-a491-4c87-74eb0969afd9.htm" />
+  <HelpKINode Title="Maths.Exercice class" Url="html/a097e3b4-4da5-e49d-5875-888b84124c9f.htm" />
+  <HelpKINode Title="Maths.Line class" Url="html/0a16b354-a967-3df1-6a87-598bc3de85d8.htm" />
+  <HelpKINode Title="Maths.MathematicEquation class" Url="html/b332631d-fb7f-db39-a99f-f4e0abab17b9.htm" />
+  <HelpKINode Title="Maths.MovingCoordinates class" Url="html/14b3e0a9-8fa5-905b-fda9-3ca816af5019.htm" />
+  <HelpKINode Title="Maths.MovingVector class" Url="html/07012756-5199-dfd5-6157-238742406a7a.htm" />
+  <HelpKINode Title="Maths.Plan class" Url="html/18539a4d-4aec-5d49-dfe9-54a4d093674a.htm" />
+  <HelpKINode Title="Maths.SequenceProof class" Url="html/79a6f366-7209-745d-8fed-b64db0e570b9.htm" />
+  <HelpKINode Title="Maths.TemplateTracer2D class" Url="html/08300ed0-e1b8-3b84-7d20-db8c7da72b4d.htm" />
+  <HelpKINode Title="Maths.TopLevelArithmeticModel class" Url="html/0101126a-c206-bd41-e98a-e2d7645e7429.htm" />
+  <HelpKINode Title="Maths.Tracer class" Url="html/e50fafe0-021e-250b-eb87-f4806465e3f4.htm" />
+  <HelpKINode Title="Maths.Vector class" Url="html/560427c4-d4f9-3afa-8759-197691d5e3b3.htm" />
+  <HelpKINode Title="Maths.Wording class" Url="html/11740717-3b79-1280-e3b0-484f12b793d9.htm" />
+  <HelpKINode Title="Menu method" Url="html/9f95e99d-be25-b735-6b5d-3c0722d384f9.htm" />
+  <HelpKINode Title="MovingCoordinates class">
+    <HelpKINode Title="MovingCoordinates Class" Url="html/14b3e0a9-8fa5-905b-fda9-3ca816af5019.htm" />
+    <HelpKINode Title="about MovingCoordinates class" Url="html/14b3e0a9-8fa5-905b-fda9-3ca816af5019.htm" />
+    <HelpKINode Title="constructor" Url="html/cb00723a-1439-158d-9cb3-e26f5242896d.htm" />
+    <HelpKINode Title="methods" Url="html/e4024358-cea4-e883-8b9e-1076016a09a2.htm" />
+    <HelpKINode Title="properties" Url="html/c7c42f94-042c-28c5-3d1e-aba178cf7cc7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MovingCoordinates.Floor method" Url="html/78a2bc1b-3a91-19e9-a14c-94c165f45afc.htm" />
+  <HelpKINode Title="MovingCoordinates.GenerateMove method" Url="html/eb32c9aa-a229-1a3e-f221-5fba381371f5.htm" />
+  <HelpKINode Title="MovingCoordinates.MovingCoordinates constructor" Url="html/cb00723a-1439-158d-9cb3-e26f5242896d.htm" />
+  <HelpKINode Title="MovingCoordinates.Steps property" Url="html/d2111001-fdf3-18ec-968c-31511d994171.htm" />
+  <HelpKINode Title="MovingCoordinates.Vector property" Url="html/9589e273-8d07-0946-fc03-dd8be772b632.htm" />
+  <HelpKINode Title="MovingVector class">
+    <HelpKINode Title="MovingVector Class" Url="html/07012756-5199-dfd5-6157-238742406a7a.htm" />
+    <HelpKINode Title="about MovingVector class" Url="html/07012756-5199-dfd5-6157-238742406a7a.htm" />
+    <HelpKINode Title="constructor" Url="html/cd807652-bd4c-b325-364f-823fe9e92540.htm" />
+    <HelpKINode Title="methods" Url="html/90103422-6528-a5d5-f83f-9c02c9ff55dc.htm" />
+    <HelpKINode Title="properties" Url="html/5085ce16-4242-f0de-003d-102325d3469e.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MovingVector.Add method" Url="html/e771bbf6-eccb-3f4f-5dca-84439f84144d.htm" />
+  <HelpKINode Title="MovingVector.Dimension property" Url="html/7f85412c-dc4d-4815-37d8-951d48c1ac28.htm" />
+  <HelpKINode Title="MovingVector.Euclidian property" Url="html/e42271a2-651e-d9b9-4bae-9bcafebeeb21.htm" />
+  <HelpKINode Title="MovingVector.MovingVector constructor" Url="html/cd807652-bd4c-b325-364f-823fe9e92540.htm" />
+  <HelpKINode Title="MovingVector.Values property" Url="html/d4ac0fd8-aafe-d4a6-9ffc-d2cec4b553f3.htm" />
+  <HelpKINode Title="MultipleOperationValueType field" Url="html/c1916966-d83e-504c-2551-25fe1963beea.htm" />
+  <HelpKINode Title="Multiplication class">
+    <HelpKINode Title="Multiplication Class" Url="html/c98d51ea-f920-29b1-d317-0c29732cee0a.htm" />
+    <HelpKINode Title="about Multiplication class" Url="html/c98d51ea-f920-29b1-d317-0c29732cee0a.htm" />
+    <HelpKINode Title="constructor" Url="html/b6b88c25-5aaa-c0e4-d4ca-5deefa100a82.htm" />
+    <HelpKINode Title="events" Url="html/7f4ebc39-dc57-5b31-fbd4-8d3faded97bd.htm" />
+    <HelpKINode Title="fields" Url="html/2582c3c5-f268-3852-41f7-26affcea556d.htm" />
+    <HelpKINode Title="methods" Url="html/32b9f7af-1573-aa6a-b111-26fbd81d9ca8.htm" />
+    <HelpKINode Title="properties" Url="html/62e2a2b6-9f07-a262-1973-70a66f5df75b.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Multiplication.Create method" Url="html/9109ea07-9a6e-ca13-9213-ee562c960c6c.htm" />
+  <HelpKINode Title="Multiplication.MakeTransform method" Url="html/cf62d574-234d-edd2-2ecc-5a5f79fdb8ee.htm" />
+  <HelpKINode Title="Multiplication.Multiplication constructor" Url="html/b6b88c25-5aaa-c0e4-d4ca-5deefa100a82.htm" />
+  <HelpKINode Title="Multiplication.ToProduct method" Url="html/415f139a-f6f3-19bf-166d-076d08a0ed1f.htm" />
+  <HelpKINode Title="Name property">
+    <HelpKINode Title="Coefficient.Name Property " Url="html/42dec4c5-8844-fde9-7d9e-285048dcb093.htm" />
+    <HelpKINode Title="INeurone.Name Property " Url="html/df355833-2b25-eff3-4044-d863314e121c.htm" />
+    <HelpKINode Title="IVariable.Name Property " Url="html/27b0ce49-ee28-9689-a254-e6ab176745b5.htm" />
+    <HelpKINode Title="UnknownTerm.Name Property " Url="html/7640800c-af07-cb62-da33-191dede35075.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Negative class">
+    <HelpKINode Title="Negative Class" Url="html/f74a739e-2374-772d-b58a-0c9c638030a5.htm" />
+    <HelpKINode Title="about Negative class" Url="html/f74a739e-2374-772d-b58a-0c9c638030a5.htm" />
+    <HelpKINode Title="constructor" Url="html/e1f6c4e7-f052-7cd1-2eba-9628da02da55.htm" />
+    <HelpKINode Title="events" Url="html/ba96b3f5-46f8-d935-425a-5bc37936a138.htm" />
+    <HelpKINode Title="fields" Url="html/19605660-b002-fe7e-f526-7bf2bb91d55d.htm" />
+    <HelpKINode Title="methods" Url="html/595890a2-827e-f3a0-c108-98db5a7028c5.htm" />
+    <HelpKINode Title="properties" Url="html/9999e572-e943-cfd7-fed7-b11347ad73a8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Negative.Create method" Url="html/e1045622-a117-7e84-ba3a-82e8dae2bbbb.htm" />
+  <HelpKINode Title="Negative.Negative constructor" Url="html/e1f6c4e7-f052-7cd1-2eba-9628da02da55.htm" />
+  <HelpKINode Title="Negative.Operator property" Url="html/cf519614-1972-1aad-862a-acbe6b23bc41.htm" />
+  <HelpKINode Title="NeuralMathematics namespace" Url="html/c18a3aa9-33fa-adac-379a-6e1c2711fbd9.htm" />
+  <HelpKINode Title="NeuralMathematics.App class" Url="html/6fed60de-f12f-3031-15d5-70ad7fb065fc.htm" />
+  <HelpKINode Title="NeuralMathematics.MainWindow class" Url="html/7f67c385-c05b-85a7-94ee-412f8fc1e269.htm" />
+  <HelpKINode Title="NeuralMathematics.Tracer class" Url="html/996dcaff-859f-3cdb-3aa3-75427a5034dd.htm" />
+  <HelpKINode Title="Newton method" Url="html/43d7a028-e1b5-9e4b-a727-91972c92384d.htm" />
+  <HelpKINode Title="NumericValue class">
+    <HelpKINode Title="NumericValue Class" Url="html/74112973-2e53-32bf-d311-04e3e1198a78.htm" />
+    <HelpKINode Title="about NumericValue class" Url="html/74112973-2e53-32bf-d311-04e3e1198a78.htm" />
+    <HelpKINode Title="constructor" Url="html/a0e4373d-3450-6a77-2b3e-4f0994cfa971.htm" />
+    <HelpKINode Title="events" Url="html/8ab37855-c451-822b-a64d-fcd4302cec42.htm" />
+    <HelpKINode Title="fields" Url="html/26bbd396-b97c-4f05-f449-b01e918343b2.htm" />
+    <HelpKINode Title="methods" Url="html/6cea41d5-dd9f-e84e-9ca9-642de443b237.htm" />
+    <HelpKINode Title="properties" Url="html/76d5816f-40da-3e72-2764-4f68137255f5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="NumericValue.Compute method" Url="html/3308fc2a-aa00-ccc6-54b0-d14e986db5fe.htm" />
+  <HelpKINode Title="NumericValue.ComputeOwnerWeight method" Url="html/f2c061fd-052e-8575-cf2f-0c674e529592.htm" />
+  <HelpKINode Title="NumericValue.Create method" Url="html/fe9f5d9d-7f6a-fc3a-a4c8-d0f9c156db85.htm" />
+  <HelpKINode Title="NumericValue.IsBinaryOperator property" Url="html/c5ad4984-6bd5-4023-e6e3-9bd916b21700.htm" />
+  <HelpKINode Title="NumericValue.IsMultipleOperator property" Url="html/4ff700a2-c1eb-25c7-9f6c-4db9594dcafb.htm" />
+  <HelpKINode Title="NumericValue.IsNotOperator property" Url="html/f341b680-a4e1-1605-c9b4-ab30ae75a351.htm" />
+  <HelpKINode Title="NumericValue.IsUnaryOperator property" Url="html/ab6d692a-3509-fbb1-7358-5d90d7b7a25f.htm" />
+  <HelpKINode Title="NumericValue.NumericValue constructor" Url="html/a0e4373d-3450-6a77-2b3e-4f0994cfa971.htm" />
+  <HelpKINode Title="NumericValue.Value property" Url="html/391f7a10-a3a6-e419-c3ff-f06e88ff29fc.htm" />
+  <HelpKINode Title="OnFetch method" Url="html/91c06747-a42d-7e7e-5903-57153d9e3a8e.htm" />
+  <HelpKINode Title="OnUnfetch method" Url="html/e648c037-12da-a08f-0f73-37fb5d8371cd.htm" />
+  <HelpKINode Title="Operator enumeration member" Url="html/593d8c97-ba27-8d16-1179-497b839446d7.htm" />
+  <HelpKINode Title="Operator property">
+    <HelpKINode Title="Arithmetic.Operator Property " Url="html/b747c0b3-a4b5-f1a1-493d-668697be89cb.htm" />
+    <HelpKINode Title="BinaryOperation.Operator Property " Url="html/d1190f0e-7ba2-5dd4-1d82-db71859f64a4.htm" />
+    <HelpKINode Title="Negative.Operator Property " Url="html/cf519614-1972-1aad-862a-acbe6b23bc41.htm" />
+    <HelpKINode Title="Positive.Operator Property " Url="html/dd02ec01-3e3e-f6a1-f9dc-23559f09abc4.htm" />
+    <HelpKINode Title="Product.Operator Property " Url="html/80036e39-9e95-d7dc-c13c-3aef4c4ba543.htm" />
+    <HelpKINode Title="Sum.Operator Property " Url="html/0e2a179a-bfce-5ea8-208f-b1840bb1f397.htm" />
+    <HelpKINode Title="Term.Operator Property " Url="html/4fd807d8-a6db-7a1a-064e-137bb5a84614.htm" />
+    <HelpKINode Title="UnaryOperation.Operator Property " Url="html/5f0a61f8-6a80-1bfe-2e53-d11569498556.htm" />
+    <HelpKINode Title="UnknownTerm.Operator Property " Url="html/f233cb17-a7d3-a95c-f751-fb40e7bbe4c8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="OperatorAdd field" Url="html/f256824c-2e3c-8ca4-5021-2995d9d42d75.htm" />
+  <HelpKINode Title="OperatorDivide field" Url="html/c426f295-933c-5149-6222-b23ba4d6c7c6.htm" />
+  <HelpKINode Title="OperatorEqual field" Url="html/5c7d007d-872b-b828-20aa-3a627e1b9764.htm" />
+  <HelpKINode Title="OperatorInverse field" Url="html/5fd07ed4-9357-8857-93b4-b287a308c2bc.htm" />
+  <HelpKINode Title="OperatorMultipleAdd field" Url="html/e4d4f7e7-aa9f-718f-443d-b3f17bf4f046.htm" />
+  <HelpKINode Title="OperatorMultipleProduct field" Url="html/a9c0fa0a-e66c-eb0b-19c1-aef4a5a39c49.htm" />
+  <HelpKINode Title="operatorName field" Url="html/cf658fff-3314-08e2-cf64-d392da3cb1a2.htm" />
+  <HelpKINode Title="OperatorNegative field" Url="html/01021ef1-1a23-416e-4255-0f12651f3572.htm" />
+  <HelpKINode Title="OperatorPositive field" Url="html/e9d6c61a-e68a-cc7b-0424-732a65cb889b.htm" />
+  <HelpKINode Title="OperatorPower field" Url="html/909b5a5b-c54d-9b86-8c93-02e19b3b554d.htm" />
+  <HelpKINode Title="OperatorProduct field" Url="html/390d7c59-3c36-6373-9e27-57811f1ef73c.htm" />
+  <HelpKINode Title="OperatorRoot field" Url="html/636e4740-31c2-bb8b-261d-70d7a4341eda.htm" />
+  <HelpKINode Title="OperatorSubstract field" Url="html/8bef9b28-aaa7-cb61-3d04-1d5db2a7c8c8.htm" />
+  <HelpKINode Title="OwnerObject property" Url="html/f2e3e8c4-85ae-c870-506e-0047b6e30d3f.htm" />
+  <HelpKINode Title="OwnerWeight property">
+    <HelpKINode Title="Arithmetic.OwnerWeight Property " Url="html/bb70d157-414f-a415-ff8c-8639a104da2d.htm" />
+    <HelpKINode Title="IArithmetic.OwnerWeight Property " Url="html/e7f01fe0-5494-fcb2-a01b-a6fd6604ba31.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PersistantModel namespace" Url="html/2f0e7559-0453-fcd5-2086-eb0c0863dce1.htm" />
+  <HelpKINode Title="PersistantModel.Addition class" Url="html/a37a0e84-9677-ccd6-2638-1ba94630e675.htm" />
+  <HelpKINode Title="PersistantModel.Arithmetic class" Url="html/240a2b41-910b-97b7-51f4-8ae90362af7a.htm" />
+  <HelpKINode Title="PersistantModel.BinaryOperation class" Url="html/de58b417-ba87-5359-ac01-d58b78288979.htm" />
+  <HelpKINode Title="PersistantModel.Coefficient class" Url="html/ab6234db-17fb-5366-024c-f48aa85cd0d3.htm" />
+  <HelpKINode Title="PersistantModel.Division class" Url="html/da9543d5-bd36-c313-e2cf-5ce1a13cebe0.htm" />
+  <HelpKINode Title="PersistantModel.Equal class" Url="html/86dc375f-3e4d-4520-b542-5afab2607a00.htm" />
+  <HelpKINode Title="PersistantModel.Gathering(Of T) class" Url="html/5e2b5fff-d117-430a-dd35-94ecda1dfad3.htm" />
+  <HelpKINode Title="PersistantModel.Gathering&lt;T&gt; class" Url="html/5e2b5fff-d117-430a-dd35-94ecda1dfad3.htm" />
+  <HelpKINode Title="PersistantModel.Inverse class" Url="html/72b1780a-c049-9304-6bc9-9ef21bbb1cc1.htm" />
+  <HelpKINode Title="PersistantModel.Multiplication class" Url="html/c98d51ea-f920-29b1-d317-0c29732cee0a.htm" />
+  <HelpKINode Title="PersistantModel.Negative class" Url="html/f74a739e-2374-772d-b58a-0c9c638030a5.htm" />
+  <HelpKINode Title="PersistantModel.NumericValue class" Url="html/74112973-2e53-32bf-d311-04e3e1198a78.htm" />
+  <HelpKINode Title="PersistantModel.PersistentDataObject class" Url="html/b4e30bef-95a3-70dc-1883-63fd47510953.htm" />
+  <HelpKINode Title="PersistantModel.Positive class" Url="html/06afceb7-a783-03cd-c484-cb6f943b7851.htm" />
+  <HelpKINode Title="PersistantModel.Power class" Url="html/2935397c-3627-0a2a-f62f-316b192c8a40.htm" />
+  <HelpKINode Title="PersistantModel.Product class" Url="html/4d3dd311-819a-e557-2c82-f9e972419a83.htm" />
+  <HelpKINode Title="PersistantModel.RecordZone(Of T) class" Url="html/6bb95ff0-86cf-5a72-cba8-d44d06b5742c.htm" />
+  <HelpKINode Title="PersistantModel.RecordZone&lt;T&gt; class" Url="html/6bb95ff0-86cf-5a72-cba8-d44d06b5742c.htm" />
+  <HelpKINode Title="PersistantModel.Root class" Url="html/954e97ad-19ed-b877-85eb-67fbf3ec9e4b.htm" />
+  <HelpKINode Title="PersistantModel.Soustraction class" Url="html/88636b8c-67f3-e46f-a234-eed2454ad2f8.htm" />
+  <HelpKINode Title="PersistantModel.Sum class" Url="html/0315c476-42a2-e76a-3dd3-9a7c9a4d83ad.htm" />
+  <HelpKINode Title="PersistantModel.Term class" Url="html/7fb49b5c-f1e1-738c-5441-e375bf6ac013.htm" />
+  <HelpKINode Title="PersistantModel.Texte class" Url="html/8c50476e-7c1f-91ad-73e9-82ba5aaf6a3a.htm" />
+  <HelpKINode Title="PersistantModel.UnaryOperation class" Url="html/8100fdd6-76e4-97b5-54f1-2581ab97f2ea.htm" />
+  <HelpKINode Title="PersistantModel.UnknownTerm class" Url="html/f773b7f5-19e4-4775-a3be-7ca20ac75898.htm" />
+  <HelpKINode Title="PersistantModel.Verify class" Url="html/f56ffc11-74d5-2717-60ca-162160c9d96b.htm" />
+  <HelpKINode Title="PersistantModel.Weight class" Url="html/b1c3b944-bf7a-bd3c-1bec-23aa080d4f55.htm" />
+  <HelpKINode Title="persistentData field" Url="html/5e0fec0a-71bc-7601-ef16-e0d32041e3df.htm" />
+  <HelpKINode Title="PersistentDataObject class">
+    <HelpKINode Title="PersistentDataObject Class" Url="html/b4e30bef-95a3-70dc-1883-63fd47510953.htm" />
+    <HelpKINode Title="about PersistentDataObject class" Url="html/b4e30bef-95a3-70dc-1883-63fd47510953.htm" />
+    <HelpKINode Title="constructor" Url="html/f603ec1d-628d-3e52-43fe-71a3402722ba.htm" />
+    <HelpKINode Title="methods" Url="html/38ea8005-fc96-bd6c-008f-43b899fa48c6.htm" />
+    <HelpKINode Title="properties" Url="html/d5951824-27ad-e86e-0afb-c83caeed9320.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PersistentDataObject.Data property" Url="html/eef7a995-4bb4-38fc-dd73-f1e2b22ad3a6.htm" />
+  <HelpKINode Title="PersistentDataObject.Exists method" Url="html/e912c7da-bf1e-62f4-b5b3-da8fcb76512b.htm" />
+  <HelpKINode Title="PersistentDataObject.Get method" Url="html/15003341-7104-4596-e63b-da807f167259.htm" />
+  <HelpKINode Title="PersistentDataObject.Keys property" Url="html/f94ceab3-8c8e-0426-0eb5-4f70294d7e82.htm" />
+  <HelpKINode Title="PersistentDataObject.Load method" Url="html/33a16045-3bbb-8a7c-4a0b-a772e1983a4f.htm" />
+  <HelpKINode Title="PersistentDataObject.PersistentDataObject constructor" Url="html/f603ec1d-628d-3e52-43fe-71a3402722ba.htm" />
+  <HelpKINode Title="PersistentDataObject.Remove method" Url="html/2f73c12f-2dce-fe6e-aa68-4209ee35f7c8.htm" />
+  <HelpKINode Title="PersistentDataObject.Save method" Url="html/ecbf93e8-b3b9-19d7-03df-bd1b6f76625e.htm" />
+  <HelpKINode Title="PersistentDataObject.Set method" Url="html/b3b2d5ea-0514-d8b1-8ebd-d9dc74a623ac.htm" />
+  <HelpKINode Title="Plan class">
+    <HelpKINode Title="Plan Class" Url="html/18539a4d-4aec-5d49-dfe9-54a4d093674a.htm" />
+    <HelpKINode Title="about Plan class" Url="html/18539a4d-4aec-5d49-dfe9-54a4d093674a.htm" />
+    <HelpKINode Title="constructor" Url="html/e71230e2-3fe5-161a-b74a-ed8831ae937e.htm" />
+    <HelpKINode Title="methods" Url="html/e06a3b65-3461-a2bb-c1c1-75765d7999f7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Plan.Plan constructor" Url="html/e71230e2-3fe5-161a-b74a-ed8831ae937e.htm" />
+  <HelpKINode Title="Polynome2Produit method" Url="html/65dc8ead-8368-2818-5997-909ba945a9a2.htm" />
+  <HelpKINode Title="Positive class">
+    <HelpKINode Title="Positive Class" Url="html/06afceb7-a783-03cd-c484-cb6f943b7851.htm" />
+    <HelpKINode Title="about Positive class" Url="html/06afceb7-a783-03cd-c484-cb6f943b7851.htm" />
+    <HelpKINode Title="constructor" Url="html/e8dcc7ad-fd4c-8044-5ed9-3f4d6f0941b2.htm" />
+    <HelpKINode Title="events" Url="html/f29c7eef-6732-a95e-12db-fd750dbbb077.htm" />
+    <HelpKINode Title="fields" Url="html/4887b6fd-f8df-c420-1287-fca49124912b.htm" />
+    <HelpKINode Title="methods" Url="html/c63ef3da-6ddc-9ffe-2d9a-c4b53cd05d52.htm" />
+    <HelpKINode Title="properties" Url="html/12226e16-c84a-e174-96b8-e7847f981635.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Positive.Create method" Url="html/784df4c6-e055-13b7-5023-d3d592cc200d.htm" />
+  <HelpKINode Title="Positive.Operator property" Url="html/dd02ec01-3e3e-f6a1-f9dc-23559f09abc4.htm" />
+  <HelpKINode Title="Positive.Positive constructor" Url="html/e8dcc7ad-fd4c-8044-5ed9-3f4d6f0941b2.htm" />
+  <HelpKINode Title="Power class">
+    <HelpKINode Title="Power Class" Url="html/2935397c-3627-0a2a-f62f-316b192c8a40.htm" />
+    <HelpKINode Title="about Power class" Url="html/2935397c-3627-0a2a-f62f-316b192c8a40.htm" />
+    <HelpKINode Title="constructor" Url="html/85e7c880-574b-8a6d-18af-0315616a86d8.htm" />
+    <HelpKINode Title="events" Url="html/ca56a476-2e1a-15bf-6461-f025f550e56a.htm" />
+    <HelpKINode Title="fields" Url="html/3e26b936-84cc-246d-ed1b-d5cbe6f08768.htm" />
+    <HelpKINode Title="methods" Url="html/d78453ff-82e6-883b-5b02-8705aa1c277f.htm" />
+    <HelpKINode Title="properties" Url="html/b1016809-142f-c86d-59f2-0493db773982.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Power.Create method" Url="html/1b4432b6-278e-5fe1-9c81-d26f76f60169.htm" />
+  <HelpKINode Title="Power.Power constructor" Url="html/85e7c880-574b-8a6d-18af-0315616a86d8.htm" />
+  <HelpKINode Title="Power.ToString method" Url="html/533ec04a-5d35-790f-9c77-3c65a5c24e72.htm" />
+  <HelpKINode Title="Power.ToTex method" Url="html/da4044f0-ea31-a5f4-5d02-3bc816e409f4.htm" />
+  <HelpKINode Title="Product class">
+    <HelpKINode Title="Product Class" Url="html/4d3dd311-819a-e557-2c82-f9e972419a83.htm" />
+    <HelpKINode Title="about Product class" Url="html/4d3dd311-819a-e557-2c82-f9e972419a83.htm" />
+    <HelpKINode Title="constructor" Url="html/13ea8f80-9c5a-65b6-b46a-e7e49f39b89f.htm" />
+    <HelpKINode Title="events" Url="html/4efeb74d-e351-972c-4eed-f5e7af23018c.htm" />
+    <HelpKINode Title="fields" Url="html/61fd3d6c-caff-5f98-4f5a-1515d3255423.htm" />
+    <HelpKINode Title="methods" Url="html/bc3f29db-85e7-7ed8-facf-f153db389aba.htm" />
+    <HelpKINode Title="properties" Url="html/8b72ccb4-b53d-ef20-3070-5a9bc96d8166.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Product.Add method" Url="html/b1808dca-aa10-449c-9241-f5ef948950c1.htm" />
+  <HelpKINode Title="Product.Compute method" Url="html/13f88757-330a-c360-7aba-11a4d89fcd32.htm" />
+  <HelpKINode Title="Product.ComputeOwnerWeight method" Url="html/601f0b37-4f82-a15a-6073-08f82b5a035f.htm" />
+  <HelpKINode Title="Product.Create method" Url="html/3e8884b7-41ea-14ad-09b4-d033f695eff2.htm" />
+  <HelpKINode Title="Product.IsBinaryOperator property" Url="html/0382b583-847f-964a-40f6-328699e63da3.htm" />
+  <HelpKINode Title="Product.IsMultipleOperator property" Url="html/3bb5a40c-cf36-6f59-f4f2-b7f3ab1c7d6b.htm" />
+  <HelpKINode Title="Product.IsNotOperator property" Url="html/ed7b356f-1dd2-d526-53ea-fceb43df6ccd.htm" />
+  <HelpKINode Title="Product.IsUnaryOperator property" Url="html/c0dd35a0-72c8-5367-5fa9-f24b430b9b67.htm" />
+  <HelpKINode Title="Product.Items property" Url="html/a6b1e113-b6c3-a03f-a17a-45ceadd9056c.htm" />
+  <HelpKINode Title="Product.List property" Url="html/0942d57b-9a92-ae0b-bed3-c106a31d450d.htm" />
+  <HelpKINode Title="Product.Operator property" Url="html/80036e39-9e95-d7dc-c13c-3aef4c4ba543.htm" />
+  <HelpKINode Title="Product.Product constructor" Url="html/13ea8f80-9c5a-65b6-b46a-e7e49f39b89f.htm" />
+  <HelpKINode Title="Product.Replace method" Url="html/069299c3-6895-0dc4-7c97-c01f4dfc4f59.htm" />
+  <HelpKINode Title="Product.ToString method" Url="html/255c5563-2b2b-fbb6-64f0-8b61e9823015.htm" />
+  <HelpKINode Title="Product.ToTex method" Url="html/7947b4b2-ced6-7d25-827b-abd5e17dd2e2.htm" />
+  <HelpKINode Title="Product.Transition method" Url="html/19f03ebd-8e00-a061-0bff-5de2f7dae96c.htm" />
+  <HelpKINode Title="Records property">
+    <HelpKINode Title="Arithmetic.Records Property " Url="html/bc40a6bb-8472-675b-3e61-27bb89e2091b.htm" />
+    <HelpKINode Title="RecordZone(T).Records Property " Url="html/e4d4772f-9a18-baa8-b262-04cf04b7d3a1.htm" />
+  </HelpKINode>
+  <HelpKINode Title="recordZone field" Url="html/134d3561-cb37-1505-0392-afcd09afcfc2.htm" />
+  <HelpKINode Title="RecordZone(Of T) class">
+    <HelpKINode Title="RecordZone(T) Class" Url="html/6bb95ff0-86cf-5a72-cba8-d44d06b5742c.htm" />
+    <HelpKINode Title="about RecordZone(Of T) class" Url="html/6bb95ff0-86cf-5a72-cba8-d44d06b5742c.htm" />
+    <HelpKINode Title="constructor" Url="html/5c58eb47-f59f-b88b-b250-44e282645533.htm" />
+    <HelpKINode Title="methods" Url="html/51443622-87ee-5733-fbe3-d87cf06dc5f3.htm" />
+    <HelpKINode Title="properties" Url="html/3150e473-3a78-0d62-a1de-4e1c0f788ba2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RecordZone(Of T).Add method" Url="html/a1432be4-f718-66c8-f90f-7125f0189749.htm" />
+  <HelpKINode Title="RecordZone(Of T).Ask method" Url="html/d986ce82-d25b-390d-0c99-3ac5247bf76e.htm" />
+  <HelpKINode Title="RecordZone(Of T).Exists method" Url="html/0b26fc4a-d7e1-1c00-5f8e-75ce5f9a0da0.htm" />
+  <HelpKINode Title="RecordZone(Of T).Records property" Url="html/e4d4772f-9a18-baa8-b262-04cf04b7d3a1.htm" />
+  <HelpKINode Title="RecordZone(Of T).RecordZone constructor" Url="html/5c58eb47-f59f-b88b-b250-44e282645533.htm" />
+  <HelpKINode Title="RecordZone&lt;T&gt; class">
+    <HelpKINode Title="RecordZone(T) Class" Url="html/6bb95ff0-86cf-5a72-cba8-d44d06b5742c.htm" />
+    <HelpKINode Title="about RecordZone&lt;T&gt; class" Url="html/6bb95ff0-86cf-5a72-cba8-d44d06b5742c.htm" />
+    <HelpKINode Title="constructor" Url="html/5c58eb47-f59f-b88b-b250-44e282645533.htm" />
+    <HelpKINode Title="methods" Url="html/51443622-87ee-5733-fbe3-d87cf06dc5f3.htm" />
+    <HelpKINode Title="properties" Url="html/3150e473-3a78-0d62-a1de-4e1c0f788ba2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RecordZone&lt;T&gt;.Add method" Url="html/a1432be4-f718-66c8-f90f-7125f0189749.htm" />
+  <HelpKINode Title="RecordZone&lt;T&gt;.Ask method" Url="html/d986ce82-d25b-390d-0c99-3ac5247bf76e.htm" />
+  <HelpKINode Title="RecordZone&lt;T&gt;.Exists method" Url="html/0b26fc4a-d7e1-1c00-5f8e-75ce5f9a0da0.htm" />
+  <HelpKINode Title="RecordZone&lt;T&gt;.Records property" Url="html/e4d4772f-9a18-baa8-b262-04cf04b7d3a1.htm" />
+  <HelpKINode Title="RecordZone&lt;T&gt;.RecordZone constructor" Url="html/5c58eb47-f59f-b88b-b250-44e282645533.htm" />
+  <HelpKINode Title="ReloadNewton method" Url="html/b6955450-0171-764f-83f1-993889e09501.htm" />
+  <HelpKINode Title="Remove method" Url="html/2f73c12f-2dce-fe6e-aa68-4209ee35f7c8.htm" />
+  <HelpKINode Title="Replace method">
+    <HelpKINode Title="Product.Replace Method " Url="html/069299c3-6895-0dc4-7c97-c01f4dfc4f59.htm" />
+    <HelpKINode Title="Sum.Replace Method " Url="html/77b7bda3-aa8c-8fa9-bb7b-c5bf1009e505.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ResolutionPolynome2Difference method" Url="html/35875ed8-131e-944e-2483-b78167e18a7e.htm" />
+  <HelpKINode Title="ResolutionPolynome2Somme method" Url="html/c4b223a4-fa4a-d710-f5a7-54993b34a039.htm" />
+  <HelpKINode Title="ResolutionPolynome3 method" Url="html/aacdf4da-991d-bb07-63c9-b093908b0609.htm" />
+  <HelpKINode Title="Revision property" Url="html/84f71e18-fab2-145c-ca1d-fa51dcb79970.htm" />
+  <HelpKINode Title="Right property" Url="html/5b33556b-b5eb-dd00-5953-4b8f7bd912d0.htm" />
+  <HelpKINode Title="RightOperand property">
+    <HelpKINode Title="Arithmetic.RightOperand Property " Url="html/687f7381-30d9-24c5-f1c1-bbae0307372c.htm" />
+    <HelpKINode Title="BinaryOperation.RightOperand Property " Url="html/2f6b6ff2-ac7f-baef-d0cd-fc9a019217b2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="rightTermName field" Url="html/6c5e2d6c-1330-d0fb-0d12-e1cf16bf345e.htm" />
+  <HelpKINode Title="Root class">
+    <HelpKINode Title="Root Class" Url="html/954e97ad-19ed-b877-85eb-67fbf3ec9e4b.htm" />
+    <HelpKINode Title="about Root class" Url="html/954e97ad-19ed-b877-85eb-67fbf3ec9e4b.htm" />
+    <HelpKINode Title="constructor" Url="html/0f99bc12-e579-48ef-68f6-9ad246952ea8.htm" />
+    <HelpKINode Title="events" Url="html/3def7a57-553d-411f-44f2-4a866b70759f.htm" />
+    <HelpKINode Title="fields" Url="html/2dff76c1-7945-8e55-d18b-d21e3701e9f0.htm" />
+    <HelpKINode Title="methods" Url="html/3c990fb8-deff-637c-370e-6f66dec7a98a.htm" />
+    <HelpKINode Title="properties" Url="html/f1d07361-2429-98d7-e816-f7b2c234fad9.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Root.Create method" Url="html/cd9c2f83-33b7-9942-54fc-424163b28d8c.htm" />
+  <HelpKINode Title="Root.Root constructor" Url="html/0f99bc12-e579-48ef-68f6-9ad246952ea8.htm" />
+  <HelpKINode Title="Root.ToTex method" Url="html/61574fdc-76b2-454f-17ee-e884615cfaaf.htm" />
+  <HelpKINode Title="Save method">
+    <HelpKINode Title="PersistentDataObject.Save Method " Url="html/ecbf93e8-b3b9-19d7-03df-bd1b6f76625e.htm" />
+    <HelpKINode Title="TopLevelArithmeticModel.Save Method " Url="html/315dbb65-f4ac-4843-d79c-a22e64765940.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ScaleXProperty field" Url="html/c5f7757c-9e51-cd3d-1509-6fb227308d2f.htm" />
+  <HelpKINode Title="ScaleYProperty field" Url="html/58844b63-58b9-2ef5-bd7a-4b1c8460c810.htm" />
+  <HelpKINode Title="SelectCoefficients property" Url="html/6a97813d-64ae-07fa-97a6-78dcdea96b69.htm" />
+  <HelpKINode Title="SelectUnknownTerms property" Url="html/fdb82402-285a-cb32-ff45-a75a5e235edd.htm" />
+  <HelpKINode Title="SequenceProof class">
+    <HelpKINode Title="SequenceProof Class" Url="html/79a6f366-7209-745d-8fed-b64db0e570b9.htm" />
+    <HelpKINode Title="about SequenceProof class" Url="html/79a6f366-7209-745d-8fed-b64db0e570b9.htm" />
+    <HelpKINode Title="constructor" Url="html/075cf541-a875-3a8e-37a1-536dfa3f04b8.htm" />
+    <HelpKINode Title="methods" Url="html/bcda27b7-4305-83fc-b1a0-d8e9637d274c.htm" />
+    <HelpKINode Title="properties" Url="html/561f761d-9f8b-6853-d2df-5f96f4d41267.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SequenceProof.Add method" Url="html/e5598034-2629-97be-8090-b29194cb9c07.htm" />
+  <HelpKINode Title="SequenceProof.Items property" Url="html/e2e03f75-8f23-d9c2-bfb1-cbfbdc3db063.htm" />
+  <HelpKINode Title="SequenceProof.SequenceProof constructor" Url="html/075cf541-a875-3a8e-37a1-536dfa3f04b8.htm" />
+  <HelpKINode Title="SequenceProof.ToDocument method" Url="html/3e91ff86-9223-b6c4-ebd7-680da1b636be.htm" />
+  <HelpKINode Title="SequenceProof.ToString method" Url="html/15db7d57-9693-5296-52fc-0ea7e0a491da.htm" />
+  <HelpKINode Title="Set method">
+    <HelpKINode Title="Arithmetic.Set Method " Url="html/a40b5c31-ecca-9dcd-cb27-9bb0ee87fb2a.htm" />
+    <HelpKINode Title="PersistentDataObject.Set Method " Url="html/b3b2d5ea-0514-d8b1-8ebd-d9dc74a623ac.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Soustraction class">
+    <HelpKINode Title="Soustraction Class" Url="html/88636b8c-67f3-e46f-a234-eed2454ad2f8.htm" />
+    <HelpKINode Title="about Soustraction class" Url="html/88636b8c-67f3-e46f-a234-eed2454ad2f8.htm" />
+    <HelpKINode Title="constructor" Url="html/6c980c3a-f4f7-a1b2-2ce7-1bca00354146.htm" />
+    <HelpKINode Title="events" Url="html/c0eb7e82-e4d7-77d8-499f-159222a15044.htm" />
+    <HelpKINode Title="fields" Url="html/f720f0f2-1ba8-ad18-46a1-8ac632b22ee1.htm" />
+    <HelpKINode Title="methods" Url="html/eccaefe0-4171-2a8f-72a2-235fb30f2514.htm" />
+    <HelpKINode Title="properties" Url="html/8ee3b631-af78-c88e-3a76-774a331343da.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Soustraction.Create method" Url="html/68d9d796-7569-64e2-af47-ce545a7ea39c.htm" />
+  <HelpKINode Title="Soustraction.Soustraction constructor" Url="html/6c980c3a-f4f7-a1b2-2ce7-1bca00354146.htm" />
+  <HelpKINode Title="Soustraction.ToSum method" Url="html/cf519aa2-229c-be6c-897b-c9ebc8ae548d.htm" />
+  <HelpKINode Title="Steps property" Url="html/d2111001-fdf3-18ec-968c-31511d994171.htm" />
+  <HelpKINode Title="StringValueType field" Url="html/ca7878ee-75b4-4893-334e-0b14bb41144e.htm" />
+  <HelpKINode Title="Sum class">
+    <HelpKINode Title="Sum Class" Url="html/0315c476-42a2-e76a-3dd3-9a7c9a4d83ad.htm" />
+    <HelpKINode Title="about Sum class" Url="html/0315c476-42a2-e76a-3dd3-9a7c9a4d83ad.htm" />
+    <HelpKINode Title="constructor" Url="html/d61b9d2e-e9bd-10e8-eddb-c5244b0d1ef9.htm" />
+    <HelpKINode Title="events" Url="html/d6a6d3b1-ac6e-6f96-f58b-e37046c97600.htm" />
+    <HelpKINode Title="fields" Url="html/4e055f7d-1735-1625-fc32-eee01b7fdab5.htm" />
+    <HelpKINode Title="methods" Url="html/fbe3c8f4-4eba-bc25-9ca2-1c3d01ccbefc.htm" />
+    <HelpKINode Title="properties" Url="html/95a4b4f8-7801-db54-116a-0ff36b92b6e6.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Sum.Add method" Url="html/242d8325-5775-80ac-7f24-770ff908238a.htm" />
+  <HelpKINode Title="Sum.Compute method" Url="html/c3e95f89-cd9f-de9d-016a-6d81273c2b29.htm" />
+  <HelpKINode Title="Sum.ComputeOwnerWeight method" Url="html/463732b0-3641-8b99-7617-088dcd3c4cde.htm" />
+  <HelpKINode Title="Sum.Create method" Url="html/569fec2e-b0ab-cc51-1729-0be9f399fd0f.htm" />
+  <HelpKINode Title="Sum.IsBinaryOperator property" Url="html/3ccfcabb-e3fb-240f-b94a-69a299cf72fe.htm" />
+  <HelpKINode Title="Sum.IsMultipleOperator property" Url="html/6aed300c-6ad7-a102-6531-7cb47c269229.htm" />
+  <HelpKINode Title="Sum.IsNotOperator property" Url="html/d212b1c2-47b3-c08c-901d-deaf6ec66ffd.htm" />
+  <HelpKINode Title="Sum.IsUnaryOperator property" Url="html/df2e22d1-394a-c337-1db6-30aecc3aed87.htm" />
+  <HelpKINode Title="Sum.Items property" Url="html/81ed6533-69fc-2d18-3101-5f4b71b8fe97.htm" />
+  <HelpKINode Title="Sum.List property" Url="html/ad17d33e-36d3-84c8-3d7d-be46965c7308.htm" />
+  <HelpKINode Title="Sum.Operator property" Url="html/0e2a179a-bfce-5ea8-208f-b1840bb1f397.htm" />
+  <HelpKINode Title="Sum.Replace method" Url="html/77b7bda3-aa8c-8fa9-bb7b-c5bf1009e505.htm" />
+  <HelpKINode Title="Sum.Sum constructor" Url="html/d61b9d2e-e9bd-10e8-eddb-c5244b0d1ef9.htm" />
+  <HelpKINode Title="Sum.ToString method" Url="html/02cd30f2-ef19-47b5-1c84-413661e7aba1.htm" />
+  <HelpKINode Title="Sum.ToTex method" Url="html/7538d11d-9c95-93dd-b135-7f53f822f088.htm" />
+  <HelpKINode Title="Sum.Transition method" Url="html/c60b4ae1-762c-97a2-27dd-831890e427a3.htm" />
+  <HelpKINode Title="TemplateTracer2D class">
+    <HelpKINode Title="TemplateTracer2D Class" Url="html/08300ed0-e1b8-3b84-7d20-db8c7da72b4d.htm" />
+    <HelpKINode Title="about TemplateTracer2D class" Url="html/08300ed0-e1b8-3b84-7d20-db8c7da72b4d.htm" />
+    <HelpKINode Title="constructor" Url="html/b1a21af9-2bf5-47f6-c8bb-73dbb9f7c49b.htm" />
+    <HelpKINode Title="methods" Url="html/17245bcd-5df8-4ffe-960a-9c6007983271.htm" />
+    <HelpKINode Title="properties" Url="html/0e4da5a7-8d9d-afa5-fd68-a387bc364f63.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TemplateTracer2D.TemplateTracer2D constructor" Url="html/b1a21af9-2bf5-47f6-c8bb-73dbb9f7c49b.htm" />
+  <HelpKINode Title="Term class">
+    <HelpKINode Title="Term Class" Url="html/7fb49b5c-f1e1-738c-5441-e375bf6ac013.htm" />
+    <HelpKINode Title="about Term class" Url="html/7fb49b5c-f1e1-738c-5441-e375bf6ac013.htm" />
+    <HelpKINode Title="constructor" Url="html/ce5b7f93-857c-437a-dad9-7106de09fa6a.htm" />
+    <HelpKINode Title="events" Url="html/99dcb98d-171b-dce0-cd31-c5e52275dce3.htm" />
+    <HelpKINode Title="fields" Url="html/ead4021e-4cf5-b606-6318-696cd2d559c2.htm" />
+    <HelpKINode Title="methods" Url="html/f0f5b5c2-784e-56a4-c991-3ea54cc52fc8.htm" />
+    <HelpKINode Title="properties" Url="html/68cb7e61-0cc0-427d-100f-470d869c8462.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Term.Coefficient property" Url="html/1355a1af-f7e1-7aa1-9194-d4598d1c87ee.htm" />
+  <HelpKINode Title="Term.Constant property" Url="html/df1e15c4-ca98-5768-c21c-8d8014a17bbd.htm" />
+  <HelpKINode Title="Term.Create method" Url="html/e3674a85-046f-b227-1a83-97127a683f5e.htm" />
+  <HelpKINode Title="Term.IsBinaryOperator property" Url="html/39a08127-ad9c-b923-4829-e20e8221c268.htm" />
+  <HelpKINode Title="Term.IsNotOperator property" Url="html/a01bebe5-ca3e-dcf2-8192-1107c706805c.htm" />
+  <HelpKINode Title="Term.IsUnaryOperator property" Url="html/7e3a8bb9-3cc9-f275-338c-f8b0ce42d3b8.htm" />
+  <HelpKINode Title="Term.Operator property" Url="html/4fd807d8-a6db-7a1a-064e-137bb5a84614.htm" />
+  <HelpKINode Title="Term.Term constructor" Url="html/ce5b7f93-857c-437a-dad9-7106de09fa6a.htm" />
+  <HelpKINode Title="Term.Unknown property" Url="html/5b67616a-c59e-f258-b9be-2ecde4af16a0.htm" />
+  <HelpKINode Title="Texte class">
+    <HelpKINode Title="Texte Class" Url="html/8c50476e-7c1f-91ad-73e9-82ba5aaf6a3a.htm" />
+    <HelpKINode Title="about Texte class" Url="html/8c50476e-7c1f-91ad-73e9-82ba5aaf6a3a.htm" />
+    <HelpKINode Title="constructor" Url="html/4b043e05-e9e3-e95d-2b77-f8b036149dd5.htm" />
+    <HelpKINode Title="methods" Url="html/43321249-11da-5336-0fec-a6f02efbd5c3.htm" />
+    <HelpKINode Title="properties" Url="html/d399a9af-85a9-c92d-635a-73aa6d7fd17d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Texte.Content property" Url="html/d943bd0c-28e1-9575-8208-5e24b873f1d2.htm" />
+  <HelpKINode Title="Texte.IsCalculable property" Url="html/bce74adc-500e-9e5b-1ffb-2042d6df8a79.htm" />
+  <HelpKINode Title="Texte.Texte constructor" Url="html/4b043e05-e9e3-e95d-2b77-f8b036149dd5.htm" />
+  <HelpKINode Title="Texte.ToString method" Url="html/631105b6-bfcc-b9bb-d93e-6e4b06bb2da4.htm" />
+  <HelpKINode Title="Texte.ToTex method" Url="html/505e37f6-3aff-86bf-8d2c-99e2203be5c3.htm" />
+  <HelpKINode Title="Title property" Url="html/06036e6c-42ed-47ab-e7a8-30649dc9b9fb.htm" />
+  <HelpKINode Title="ToDocument method">
+    <HelpKINode Title="Answer.ToDocument Method " Url="html/034a1b83-edb6-09c2-4402-c38a3736e6e5.htm" />
+    <HelpKINode Title="Exercice.ToDocument Method " Url="html/9d03656c-995b-cdbf-dcc6-5790a608ea8e.htm" />
+    <HelpKINode Title="SequenceProof.ToDocument Method " Url="html/3e91ff86-9223-b6c4-ebd7-680da1b636be.htm" />
+    <HelpKINode Title="Wording.ToDocument Method " Url="html/e3ae70d1-b024-195b-36c3-43eb4ae15053.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TopLevelArithmeticModel class">
+    <HelpKINode Title="TopLevelArithmeticModel Class" Url="html/0101126a-c206-bd41-e98a-e2d7645e7429.htm" />
+    <HelpKINode Title="about TopLevelArithmeticModel class" Url="html/0101126a-c206-bd41-e98a-e2d7645e7429.htm" />
+    <HelpKINode Title="constructor" Url="html/680ca2f8-1cbd-0f8c-ab43-8a7c04ea0cac.htm" />
+    <HelpKINode Title="methods" Url="html/d7554643-393d-f7fe-fdcc-b174db0096ec.htm" />
+    <HelpKINode Title="properties" Url="html/6dc87959-87a0-d39a-3a31-5eafa2485c3c.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TopLevelArithmeticModel.Create method" Url="html/eae104ca-475e-cfe5-ee88-906798e88c94.htm" />
+  <HelpKINode Title="TopLevelArithmeticModel.Load method" Url="html/e74d8d0f-86af-11bf-5d0e-7ed2c7c92c93.htm" />
+  <HelpKINode Title="TopLevelArithmeticModel.Revision property" Url="html/84f71e18-fab2-145c-ca1d-fa51dcb79970.htm" />
+  <HelpKINode Title="TopLevelArithmeticModel.Save method" Url="html/315dbb65-f4ac-4843-d79c-a22e64765940.htm" />
+  <HelpKINode Title="TopLevelArithmeticModel.Title property" Url="html/06036e6c-42ed-47ab-e7a8-30649dc9b9fb.htm" />
+  <HelpKINode Title="TopLevelArithmeticModel.TopLevelArithmeticModel constructor" Url="html/680ca2f8-1cbd-0f8c-ab43-8a7c04ea0cac.htm" />
+  <HelpKINode Title="TopLevelArithmeticModel.Version property" Url="html/5e7c795e-c5a4-e055-872f-68282b1c4044.htm" />
+  <HelpKINode Title="TopLevelArithmeticModel.WordingList property" Url="html/3056787a-ca39-8a35-7ce2-998740143329.htm" />
+  <HelpKINode Title="ToProduct method">
+    <HelpKINode Title="Division.ToProduct Method " Url="html/105f9c88-804d-a1d1-8c2b-b37c440d340f.htm" />
+    <HelpKINode Title="Multiplication.ToProduct Method " Url="html/415f139a-f6f3-19bf-166d-076d08a0ed1f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ToString method">
+    <HelpKINode Title="Answer.ToString Method " Url="html/1c1f7b87-5e2d-adb5-54d9-0636d2cdb7d8.htm" />
+    <HelpKINode Title="Arithmetic.ToString Method " Url="html/38ed9480-de5a-018e-4387-6ab097c359f0.htm" />
+    <HelpKINode Title="Equal.ToString Method " Url="html/487c5426-b1e9-4733-037e-615afb0b9d23.htm" />
+    <HelpKINode Title="Exercice.ToString Method " Url="html/cc473379-a3ac-06cb-e546-2565535ad170.htm" />
+    <HelpKINode Title="IDocument.ToString Method " Url="html/2d0a2779-b9d4-783e-7bb6-d405779a66b2.htm" />
+    <HelpKINode Title="Power.ToString Method " Url="html/533ec04a-5d35-790f-9c77-3c65a5c24e72.htm" />
+    <HelpKINode Title="Product.ToString Method " Url="html/255c5563-2b2b-fbb6-64f0-8b61e9823015.htm" />
+    <HelpKINode Title="SequenceProof.ToString Method " Url="html/15db7d57-9693-5296-52fc-0ea7e0a491da.htm" />
+    <HelpKINode Title="Sum.ToString Method " Url="html/02cd30f2-ef19-47b5-1c84-413661e7aba1.htm" />
+    <HelpKINode Title="Texte.ToString Method " Url="html/631105b6-bfcc-b9bb-d93e-6e4b06bb2da4.htm" />
+    <HelpKINode Title="Weight.ToString Method " Url="html/5255ee07-40d7-4124-4415-f7b2ba64064a.htm" />
+    <HelpKINode Title="Wording.ToString Method " Url="html/7809f3a7-b680-6bbb-6525-1f7710d47baa.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ToSum method">
+    <HelpKINode Title="Addition.ToSum Method " Url="html/568f1b53-d91d-c30c-0e33-072c4e0f03ad.htm" />
+    <HelpKINode Title="Soustraction.ToSum Method " Url="html/cf519aa2-229c-be6c-897b-c9ebc8ae548d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ToTex method">
+    <HelpKINode Title="Arithmetic.ToTex Method " Url="html/7f780919-597f-ff8c-703f-57ec53ef30e5.htm" />
+    <HelpKINode Title="Division.ToTex Method " Url="html/3adddfc4-d245-9e75-0c21-67c992f4ab0d.htm" />
+    <HelpKINode Title="Equal.ToTex Method " Url="html/123f7003-facb-992a-1a2b-50bbc00256f3.htm" />
+    <HelpKINode Title="IDocument.ToTex Method " Url="html/272d2946-77da-a81c-338e-8aa77efc4d0d.htm" />
+    <HelpKINode Title="IEquation.ToTex Method " Url="html/bf92c84d-c67a-f048-9f80-5708b81aaca4.htm" />
+    <HelpKINode Title="Inverse.ToTex Method " Url="html/798fe9b9-8b78-46e2-d7a3-ffdc3bddf381.htm" />
+    <HelpKINode Title="MathematicEquation.ToTex Method " Url="html/563e1724-dbbf-6342-2396-58a9652aa7b1.htm" />
+    <HelpKINode Title="Power.ToTex Method " Url="html/da4044f0-ea31-a5f4-5d02-3bc816e409f4.htm" />
+    <HelpKINode Title="Product.ToTex Method " Url="html/7947b4b2-ced6-7d25-827b-abd5e17dd2e2.htm" />
+    <HelpKINode Title="Root.ToTex Method " Url="html/61574fdc-76b2-454f-17ee-e884615cfaaf.htm" />
+    <HelpKINode Title="Sum.ToTex Method " Url="html/7538d11d-9c95-93dd-b135-7f53f822f088.htm" />
+    <HelpKINode Title="Texte.ToTex Method " Url="html/505e37f6-3aff-86bf-8d2c-99e2203be5c3.htm" />
+    <HelpKINode Title="Verify.ToTex Method " Url="html/dc2c0ddd-ccfc-e7a4-84c8-f2ecb3aad343.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Tracer class">
+    <HelpKINode Title="Tracer Class" Url="html/e50fafe0-021e-250b-eb87-f4806465e3f4.htm" />
+    <HelpKINode Title="Tracer Class" Url="html/996dcaff-859f-3cdb-3aa3-75427a5034dd.htm" />
+    <HelpKINode Title="about Tracer class" Url="html/996dcaff-859f-3cdb-3aa3-75427a5034dd.htm" />
+    <HelpKINode Title="about Tracer class" Url="html/e50fafe0-021e-250b-eb87-f4806465e3f4.htm" />
+    <HelpKINode Title="constructor" Url="html/56930049-d4b1-1960-bc6e-f35ee2448054.htm" />
+    <HelpKINode Title="constructor" Url="html/40233f5c-6aa7-d987-c800-56b9c9980085.htm" />
+    <HelpKINode Title="events" Url="html/417adbc7-8e82-ee04-18ef-397ab891b452.htm" />
+    <HelpKINode Title="events" Url="html/d59addea-3832-9a0c-8cfb-484b536a3711.htm" />
+    <HelpKINode Title="methods" Url="html/66c8ce01-b5b3-d995-0955-369d5f5ea65f.htm" />
+    <HelpKINode Title="methods" Url="html/9a2d587a-90bf-aeb7-5bbd-a9a4ac9cad83.htm" />
+    <HelpKINode Title="properties" Url="html/57c9d0fc-e7ac-cae7-0e8d-bb3af18d31fc.htm" />
+    <HelpKINode Title="properties" Url="html/4bc0beb7-91cc-9811-8bd4-5b4475b88cc5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Tracer.InitializeComponent method">
+    <HelpKINode Title="Tracer.InitializeComponent Method " Url="html/b6901bc9-a637-b10c-9a04-f961f126758d.htm" />
+    <HelpKINode Title="Tracer.InitializeComponent Method " Url="html/462cdce0-5c77-46ff-f7c0-3d6d8159aae5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Tracer.Tracer constructor">
+    <HelpKINode Title="Tracer Constructor " Url="html/40233f5c-6aa7-d987-c800-56b9c9980085.htm" />
+    <HelpKINode Title="Tracer Constructor " Url="html/56930049-d4b1-1960-bc6e-f35ee2448054.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Transform method">
+    <HelpKINode Title="Arithmetic.Transform Method " Url="html/d3c2bb71-3ac7-e7cc-75bc-bc3e10ab42c6.htm" />
+    <HelpKINode Title="IEquation.Transform Method " Url="html/77be8117-0536-d3fd-3411-45995fa25b45.htm" />
+    <HelpKINode Title="MathematicEquation.Transform Method " Url="html/46a7cecb-597e-2cef-4f00-95962ff84099.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Transition method">
+    <HelpKINode Title="Product.Transition Method " Url="html/19f03ebd-8e00-a061-0bff-5de2f7dae96c.htm" />
+    <HelpKINode Title="Sum.Transition Method " Url="html/c60b4ae1-762c-97a2-27dd-831890e427a3.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TranslateXProperty field" Url="html/391f4421-ea72-4ee7-7a75-ebc31076d6c9.htm" />
+  <HelpKINode Title="TranslateYProperty field" Url="html/1c3beba2-a05b-f58b-2a83-32c14aa48469.htm" />
+  <HelpKINode Title="Type property" Url="html/406beec6-7006-838e-95b5-b24976a84313.htm" />
+  <HelpKINode Title="UnaryOperation class">
+    <HelpKINode Title="UnaryOperation Class" Url="html/8100fdd6-76e4-97b5-54f1-2581ab97f2ea.htm" />
+    <HelpKINode Title="about UnaryOperation class" Url="html/8100fdd6-76e4-97b5-54f1-2581ab97f2ea.htm" />
+    <HelpKINode Title="constructor" Url="html/b49499f7-ac6b-8a34-f2ab-eb76ebd24cc9.htm" />
+    <HelpKINode Title="events" Url="html/67962967-bcbb-c46d-902c-89ca84b1468f.htm" />
+    <HelpKINode Title="fields" Url="html/33aa087b-1451-1841-d2e7-5eb965dd29e7.htm" />
+    <HelpKINode Title="methods" Url="html/2ad2a113-ec46-e50c-dfe4-82948944488a.htm" />
+    <HelpKINode Title="properties" Url="html/80999b99-e395-f9ad-a2fb-b8cbdac17b02.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UnaryOperation.ComputeOwnerWeight method" Url="html/f8bfabd3-9685-5e6f-5d16-4f848d33c931.htm" />
+  <HelpKINode Title="UnaryOperation.Create method" Url="html/aee5a3cb-192e-6975-71eb-4a784566e715.htm" />
+  <HelpKINode Title="UnaryOperation.InnerOperand property" Url="html/ae550582-5980-7586-114c-7c92be05549f.htm" />
+  <HelpKINode Title="UnaryOperation.IsBinaryOperator property" Url="html/0d38fb33-df3d-04e9-87f2-48077e57929b.htm" />
+  <HelpKINode Title="UnaryOperation.IsNotOperator property" Url="html/a3760a22-9962-7f28-ada0-d5496cbd9007.htm" />
+  <HelpKINode Title="UnaryOperation.IsUnaryOperator property" Url="html/38abd66f-c521-86e1-335e-9345cfec7e17.htm" />
+  <HelpKINode Title="UnaryOperation.Operator property" Url="html/5f0a61f8-6a80-1bfe-2e53-d11569498556.htm" />
+  <HelpKINode Title="UnaryOperation.UnaryOperation constructor" Url="html/b49499f7-ac6b-8a34-f2ab-eb76ebd24cc9.htm" />
+  <HelpKINode Title="UnaryOperatorValueType field" Url="html/d22a2137-cb88-b853-2a25-52ed88e02e26.htm" />
+  <HelpKINode Title="uncalculatedValueName field" Url="html/9d9319db-6a58-3141-ee63-a718f40518a3.htm" />
+  <HelpKINode Title="Unfetch event">
+    <HelpKINode Title="Arithmetic.Unfetch Event" Url="html/e5b2dd46-2bc7-fc34-80ee-88293de2a48f.htm" />
+    <HelpKINode Title="IArithmetic.Unfetch Event" Url="html/6bfaf27e-56d3-535c-ce2f-f6f066b86094.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Unknown property" Url="html/5b67616a-c59e-f258-b9be-2ecde4af16a0.htm" />
+  <HelpKINode Title="unknownName field" Url="html/8ce90273-4a4a-0bd2-dafb-dd082c116998.htm" />
+  <HelpKINode Title="UnknownTerm class">
+    <HelpKINode Title="UnknownTerm Class" Url="html/f773b7f5-19e4-4775-a3be-7ca20ac75898.htm" />
+    <HelpKINode Title="about UnknownTerm class" Url="html/f773b7f5-19e4-4775-a3be-7ca20ac75898.htm" />
+    <HelpKINode Title="constructor" Url="html/0227ff67-a34f-a1bb-da30-74e1a0c31b29.htm" />
+    <HelpKINode Title="events" Url="html/2fb54804-60c6-a1bf-d5fd-bfe89e20370f.htm" />
+    <HelpKINode Title="fields" Url="html/7eb7e828-e128-cf52-a6f4-b2f3b599019b.htm" />
+    <HelpKINode Title="methods" Url="html/678d50be-119e-3bbc-5a10-bbd029ac9743.htm" />
+    <HelpKINode Title="properties" Url="html/82975ea9-70fe-bba3-b1c3-87b04d69c287.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UnknownTerm.Compute method" Url="html/7bdf8dd8-db69-a4ea-7317-4579da317043.htm" />
+  <HelpKINode Title="UnknownTerm.ComputeOwnerWeight method" Url="html/c29d6ed9-6920-7ce5-81c2-a55254693a8a.htm" />
+  <HelpKINode Title="UnknownTerm.Content property" Url="html/c35d2f27-3b24-3659-5e9a-f1433882d775.htm" />
+  <HelpKINode Title="UnknownTerm.Create method" Url="html/898bbb91-3076-2ba6-369a-98f4b821e290.htm" />
+  <HelpKINode Title="UnknownTerm.IsBinaryOperator property" Url="html/6169c4fc-aa73-4e39-a297-eaec3982e4e1.htm" />
+  <HelpKINode Title="UnknownTerm.IsNotOperator property" Url="html/021414a8-3433-9e22-8c7b-28e8396a3f85.htm" />
+  <HelpKINode Title="UnknownTerm.IsUnaryOperator property" Url="html/573fca87-ee39-e5ef-151b-55f94f8f7c3a.htm" />
+  <HelpKINode Title="UnknownTerm.Name property" Url="html/7640800c-af07-cb62-da33-191dede35075.htm" />
+  <HelpKINode Title="UnknownTerm.Operator property" Url="html/f233cb17-a7d3-a95c-f751-fb40e7bbe4c8.htm" />
+  <HelpKINode Title="UnknownTerm.UnknownTerm constructor" Url="html/0227ff67-a34f-a1bb-da30-74e1a0c31b29.htm" />
+  <HelpKINode Title="UnknownTerm.Value property" Url="html/5a90b3eb-ef48-eac0-7d5f-84b012b3d2d8.htm" />
+  <HelpKINode Title="UnknownTerms property">
+    <HelpKINode Title="Arithmetic.UnknownTerms Property " Url="html/517988e0-a7d5-7430-1aac-1800571b66ce.htm" />
+    <HelpKINode Title="IEquation.UnknownTerms Property " Url="html/ca56e9af-df15-84a0-58c0-f0315031aa10.htm" />
+    <HelpKINode Title="MathematicEquation.UnknownTerms Property " Url="html/a47fbf33-9e05-1c00-7363-964f6783629a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UnknownTermValueType field" Url="html/cba7543d-57ae-1c47-e2c5-c607ca47c415.htm" />
+  <HelpKINode Title="Value property">
+    <HelpKINode Title="Coefficient.Value Property " Url="html/4d30eed1-6e0e-787c-c859-3dcb7402ff5a.htm" />
+    <HelpKINode Title="Coordinates.Value Property " Url="html/1877ce29-fb1d-1e5f-6ccc-c2490dfe94c8.htm" />
+    <HelpKINode Title="IVariable.Value Property " Url="html/41b20e66-8c56-5cad-db17-580352081e9a.htm" />
+    <HelpKINode Title="NumericValue.Value Property " Url="html/391f7a10-a3a6-e419-c3ff-f06e88ff29fc.htm" />
+    <HelpKINode Title="UnknownTerm.Value Property " Url="html/5a90b3eb-ef48-eac0-7d5f-84b012b3d2d8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="valueName field" Url="html/095ecb9d-065b-6ceb-e460-796e7c86a8d0.htm" />
+  <HelpKINode Title="Values property" Url="html/d4ac0fd8-aafe-d4a6-9ffc-d2cec4b553f3.htm" />
+  <HelpKINode Title="Variable enumeration member" Url="html/593d8c97-ba27-8d16-1179-497b839446d7.htm" />
+  <HelpKINode Title="Variables property" Url="html/53a1ab0e-5000-be78-c5db-ee8d0e1f2763.htm" />
+  <HelpKINode Title="Vector class">
+    <HelpKINode Title="Vector Class" Url="html/560427c4-d4f9-3afa-8759-197691d5e3b3.htm" />
+    <HelpKINode Title="about Vector class" Url="html/560427c4-d4f9-3afa-8759-197691d5e3b3.htm" />
+    <HelpKINode Title="constructor" Url="html/0b20f184-a79d-209d-3d0a-fa785c294c5b.htm" />
+    <HelpKINode Title="methods" Url="html/a5285bbf-f5a5-1437-fb48-ed6bbe3ed701.htm" />
+    <HelpKINode Title="properties" Url="html/0309b871-7691-bbb9-f0d5-d98b8ea5bfd8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Vector property" Url="html/9589e273-8d07-0946-fc03-dd8be772b632.htm" />
+  <HelpKINode Title="Vector.Euclidian property" Url="html/6b16eda0-f0a0-ab68-1e69-5bfe1b044581.htm" />
+  <HelpKINode Title="Vector.Left property" Url="html/3643691f-4f09-f355-cda6-f91f41d3896f.htm" />
+  <HelpKINode Title="Vector.Right property" Url="html/5b33556b-b5eb-dd00-5953-4b8f7bd912d0.htm" />
+  <HelpKINode Title="Vector.Vector constructor" Url="html/0b20f184-a79d-209d-3d0a-fa785c294c5b.htm" />
+  <HelpKINode Title="Verify class">
+    <HelpKINode Title="Verify Class" Url="html/f56ffc11-74d5-2717-60ca-162160c9d96b.htm" />
+    <HelpKINode Title="about Verify class" Url="html/f56ffc11-74d5-2717-60ca-162160c9d96b.htm" />
+    <HelpKINode Title="constructor" Url="html/bbb46192-fe53-bce0-a9fa-46a7056c3e7e.htm" />
+    <HelpKINode Title="methods" Url="html/cc57a454-9e5b-2e4b-010f-58891e710201.htm" />
+    <HelpKINode Title="properties" Url="html/382a4b83-3123-d34d-9314-80a1a47cf6ec.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Verify.Elements property" Url="html/e4ed54b4-793d-e255-5c69-6c0ba0a64c44.htm" />
+  <HelpKINode Title="Verify.IsCalculable property" Url="html/4305ff1f-703c-d281-d9cb-ea8f92de4d47.htm" />
+  <HelpKINode Title="Verify.IsValid method" Url="html/4e237da5-ec89-5f4f-8343-4acf0be5629e.htm" />
+  <HelpKINode Title="Verify.ToTex method" Url="html/dc2c0ddd-ccfc-e7a4-84c8-f2ecb3aad343.htm" />
+  <HelpKINode Title="Verify.Variables property" Url="html/53a1ab0e-5000-be78-c5db-ee8d0e1f2763.htm" />
+  <HelpKINode Title="Verify.Verify constructor" Url="html/bbb46192-fe53-bce0-a9fa-46a7056c3e7e.htm" />
+  <HelpKINode Title="Version property" Url="html/5e7c795e-c5a4-e055-872f-68282b1c4044.htm" />
+  <HelpKINode Title="Weight class">
+    <HelpKINode Title="Weight Class" Url="html/b1c3b944-bf7a-bd3c-1bec-23aa080d4f55.htm" />
+    <HelpKINode Title="about Weight class" Url="html/b1c3b944-bf7a-bd3c-1bec-23aa080d4f55.htm" />
+    <HelpKINode Title="constructor" Url="html/3b018e13-8f54-b08f-a9e3-c74b4e89bb79.htm" />
+    <HelpKINode Title="fields" Url="html/6da0782c-0348-95ea-9363-bc1c87ac33be.htm" />
+    <HelpKINode Title="methods" Url="html/69c9b846-7039-27f4-9803-4b4fd8aa4d1b.htm" />
+    <HelpKINode Title="operators" Url="html/a47cb68b-4217-8878-91b9-3a7b1a05d7a2.htm" />
+    <HelpKINode Title="properties" Url="html/e8c3f205-aa21-d378-d00d-e97420fcc749.htm" />
+  </HelpKINode>
+  <HelpKINode Title="weight field" Url="html/e348752b-3f82-ce40-38f5-c8a0208a55c8.htm" />
+  <HelpKINode Title="Weight.BinaryOperatorValueType field" Url="html/bac43334-a1d8-7271-011c-33d394ca27c0.htm" />
+  <HelpKINode Title="Weight.CoefficientValueType field" Url="html/0faaa6f0-f8c0-0eec-2314-07ae7daac2bc.htm" />
+  <HelpKINode Title="Weight.ComputeWeight method" Url="html/a2d9ef67-1764-44d8-6633-3857e23c15e4.htm" />
+  <HelpKINode Title="Weight.ConstantValueType field" Url="html/60b83841-9346-7559-2194-c5674454f96b.htm" />
+  <HelpKINode Title="Weight.Construct method" Url="html/92f39346-5362-d53b-b257-0323c8e568da.htm" />
+  <HelpKINode Title="Weight.DoubleValueType field" Url="html/1ab0987e-ab80-bae6-6fc5-cd84ce90b8fc.htm" />
+  <HelpKINode Title="Weight.Equality operator" Url="html/e7a188f2-c81a-eded-bbf1-1230b1070b17.htm" />
+  <HelpKINode Title="Weight.Equals method" Url="html/afc1708a-94e9-5704-c30d-e85e4ba135e8.htm" />
+  <HelpKINode Title="Weight.GetHashCode method" Url="html/ce58005f-2a15-24b7-ce8b-4514bbb98713.htm" />
+  <HelpKINode Title="Weight.HashCode property" Url="html/de961787-dbf2-71c2-6f16-20a39b696285.htm" />
+  <HelpKINode Title="Weight.Inequality operator" Url="html/a56fba3b-363a-7cef-9a12-aba6a469b3c6.htm" />
+  <HelpKINode Title="Weight.Item property" Url="html/9a7780c9-69a6-5aa7-31ca-419d321deefd.htm" />
+  <HelpKINode Title="Weight.MultipleOperationValueType field" Url="html/c1916966-d83e-504c-2551-25fe1963beea.htm" />
+  <HelpKINode Title="Weight.OwnerObject property" Url="html/f2e3e8c4-85ae-c870-506e-0047b6e30d3f.htm" />
+  <HelpKINode Title="Weight.StringValueType field" Url="html/ca7878ee-75b4-4893-334e-0b14bb41144e.htm" />
+  <HelpKINode Title="Weight.ToString method" Url="html/5255ee07-40d7-4124-4415-f7b2ba64064a.htm" />
+  <HelpKINode Title="Weight.UnaryOperatorValueType field" Url="html/d22a2137-cb88-b853-2a25-52ed88e02e26.htm" />
+  <HelpKINode Title="Weight.UnknownTermValueType field" Url="html/cba7543d-57ae-1c47-e2c5-c607ca47c415.htm" />
+  <HelpKINode Title="Weight.Weight constructor" Url="html/3b018e13-8f54-b08f-a9e3-c74b4e89bb79.htm" />
+  <HelpKINode Title="Wording class">
+    <HelpKINode Title="Wording Class" Url="html/11740717-3b79-1280-e3b0-484f12b793d9.htm" />
+    <HelpKINode Title="about Wording class" Url="html/11740717-3b79-1280-e3b0-484f12b793d9.htm" />
+    <HelpKINode Title="constructor" Url="html/e66c43b5-420f-6db1-9964-5aae9969410c.htm" />
+    <HelpKINode Title="methods" Url="html/f8108ad2-233e-b572-2686-493b3c3b2a91.htm" />
+    <HelpKINode Title="properties" Url="html/ce9f028a-a6ba-77c3-9907-fd36af8d2243.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Wording.Add method" Url="html/e3945345-93ab-60df-3e76-f7a009c5e2be.htm" />
+  <HelpKINode Title="Wording.ToDocument method" Url="html/e3ae70d1-b024-195b-36c3-43eb4ae15053.htm" />
+  <HelpKINode Title="Wording.ToString method" Url="html/7809f3a7-b680-6bbb-6525-1f7710d47baa.htm" />
+  <HelpKINode Title="Wording.Wording constructor" Url="html/e66c43b5-420f-6db1-9964-5aae9969410c.htm" />
+  <HelpKINode Title="WordingList property" Url="html/3056787a-ca39-8a35-7ce2-998740143329.htm" />
+</HelpKI>

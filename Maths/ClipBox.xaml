@@ -4,32 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Maths"
-             mc:Ignorable="d" 
-             Height="100" Width="100" Name="w" Loaded="w_Loaded">
-    <Grid Focusable="False" ForceCursor="True" Cursor="Arrow">
+             mc:Ignorable="d" Loaded="w_Loaded">
+    <Grid Focusable="False" HorizontalAlignment="Left" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="25"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="26"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <DockPanel Panel.ZIndex="1" Grid.Row="0" HorizontalAlignment="Right" Grid.ColumnSpan="2" Width="37">
-            <RepeatButton IsTabStop="False" Name="increaseZoom" Width="14" Height="14" Click="increaseZoom_Click" ClickMode="Press" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
+        <DockPanel Panel.ZIndex="1" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="50" Height="50">
+            <RepeatButton IsTabStop="False" Name="increaseZoom" Width="20" Height="20" Click="increaseZoom_Click" ClickMode="Press" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
                 <Image Source="add.png"/>
             </RepeatButton>
-            <RepeatButton IsTabStop="False" Name="decreaseZoom" Width="14" Height="14" Click="decreaseZoom_Click" ClickMode="Press" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
+            <RepeatButton IsTabStop="False" Name="decreaseZoom" Width="20" Height="20" Click="decreaseZoom_Click" ClickMode="Press" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
                 <Image Source="sub.png"/>
             </RepeatButton>
         </DockPanel>
-        <Border ClipToBounds="True" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="GreenYellow" BorderThickness="1">
-            <Image Name="t" Source="icones-gratuites.png"/>
+        <Border ClipToBounds="True" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3">
+            <Image Name="t" Source="icones-gratuites.png" Width="300" Height="190"/>
         </Border>
-        <DockPanel HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0, 4, 0, 0">
-            <Button IsTabStop="False" Name="moveLeft" Width="20" Margin="0, 0, 10, 0" Content="-&gt;" Click="moveLeft_Click"></Button>
-            <Button IsTabStop="False" Name="moveRight" Width="20" Content="&lt;-" Click="moveRight_Click"></Button>
-        </DockPanel>
     </Grid>
 </UserControl>

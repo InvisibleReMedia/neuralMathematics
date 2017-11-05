@@ -767,6 +767,8 @@ namespace PersistantModel
         /// <summary>
         /// Generates a new arithmetic object
         /// that's handle by a unique record zone
+        /// This is a protected virtual method
+        /// to be used by inherited classes
         /// </summary>
         protected virtual void MakeUnique(Arithmetic parent)
         {

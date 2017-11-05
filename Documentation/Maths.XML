@@ -103,6 +103,102 @@
             ClipBox
             </summary>
         </member>
+        <member name="F:Maths.ClipBox.TranslateXProperty">
+            <summary>
+            Translation on x axis to show a partial of picture
+            </summary>
+        </member>
+        <member name="F:Maths.ClipBox.TranslateYProperty">
+            <summary>
+            Translation on y axis to show a partial of picture
+            </summary>
+        </member>
+        <member name="F:Maths.ClipBox.ScaleXProperty">
+            <summary>
+            Scale on x axis to zoom into picture
+            </summary>
+        </member>
+        <member name="F:Maths.ClipBox.ScaleYProperty">
+            <summary>
+            Scale on y axis to zoom into picture
+            </summary>
+        </member>
+        <member name="F:Maths.ClipBox.startedMousePosition">
+            <summary>
+            Point where starting mouse moving arround
+            </summary>
+        </member>
+        <member name="F:Maths.ClipBox.duringMove">
+            <summary>
+            Enable mouse moving control
+            </summary>
+        </member>
+        <member name="M:Maths.ClipBox.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Maths.ClipBox.mouseLeave(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            mouse leave event
+            </summary>
+            <param name="sender">ui origin</param>
+            <param name="e">mouse args</param>
+        </member>
+        <member name="M:Maths.ClipBox.mouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            mouse move arround control
+            </summary>
+            <param name="sender">ui origin</param>
+            <param name="e">mouse args</param>
+        </member>
+        <member name="M:Maths.ClipBox.mouseButtonUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            When the mouse button was pressed up
+            </summary>
+            <param name="sender">ui origin</param>
+            <param name="e">mouse args</param>
+        </member>
+        <member name="M:Maths.ClipBox.mouseButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            When the mouse button was pressed down
+            </summary>
+            <param name="sender">ui origin</param>
+            <param name="e">mouse args</param>
+        </member>
+        <member name="M:Maths.ClipBox.increaseZoom_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            When the zoom value increases
+            </summary>
+            <param name="sender">ui origin</param>
+            <param name="e">args</param>
+        </member>
+        <member name="M:Maths.ClipBox.decreaseZoom_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            When the zoom value decreases
+            </summary>
+            <param name="sender">ui origin</param>
+            <param name="e">args</param>
+        </member>
+        <member name="M:Maths.ClipBox.moveLeft_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Maths.ClipBox.w_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            When ui was loaded
+            </summary>
+            <param name="sender">ui origin</param>
+            <param name="e">args</param>
+        </member>
+        <member name="M:Maths.ClipBox.update">
+            <summary>
+            When ui has to be updated (zoom or moving changes)
+            </summary>
+        </member>
         <member name="M:Maths.ClipBox.InitializeComponent">
             <summary>
             InitializeComponent
@@ -903,9 +999,54 @@
             Système de coordonnées
             </summary>
         </member>
+        <member name="F:Maths.DataTracer2D.from">
+            <summary>
+            bornes limites à gauche et à droite
+            </summary>
+        </member>
+        <member name="F:Maths.DataTracer2D.to">
+            <summary>
+            bornes limites à gauche et à droite
+            </summary>
+        </member>
+        <member name="F:Maths.DataTracer2D.intervals">
+            <summary>
+            Série d'intervalles
+            </summary>
+        </member>
+        <member name="F:Maths.DataTracer2D.function">
+            <summary>
+            arithmetic function
+            </summary>
+        </member>
+        <member name="F:Maths.DataTracer2D.drawer">
+            <summary>
+            To draw
+            </summary>
+        </member>
         <member name="M:Maths.DataTracer2D.#ctor">
             <summary>
             Constructor as a coordinate system
+            </summary>
+        </member>
+        <member name="M:Maths.DataTracer2D.DrawLines(Maths.Coordinates,Maths.Coordinates,Maths.Coordinates,System.Windows.Media.DrawingContext,System.Windows.Media.Pen)">
+            <summary>
+            Draw lines
+            </summary>
+            <param name="start">first point</param>
+            <param name="end">last point</param>
+            <param name="interval">interval between two points</param>
+            <param name="dc">drawing context</param>
+            <param name="p">pen for the draw</param>
+        </member>
+        <member name="M:Maths.DataTracer2D.DrawGrad">
+            <summary>
+            Dessine la graduation
+            </summary>
+        </member>
+        <member name="M:Maths.DataTracer2D.DrawCurve">
+            <summary>
+            Draw the curve
             </summary>
         </member>
         <member name="T:Maths.Wording">
@@ -954,36 +1095,6 @@
             Transforms equation object into a string representation
             </summary>
             <returns>string representation</returns>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
-            </summary>
         </member>
     </members>
 </doc>

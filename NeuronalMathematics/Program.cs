@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace NeuronalMathematics
 {
+    /// <summary>
+    /// Console program
+    /// </summary>
     class Program
     {
         static void Main(string[] args)
