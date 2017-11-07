@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/// <summary>
-/// Interfaces globales de la solution
-/// </summary>
 namespace Interfaces
 {
     /// <summary>

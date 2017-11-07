@@ -12,6 +12,11 @@
             Tracer
             </summary>
         </member>
+        <member name="M:NeuralMathematics.Tracer.#ctor">
+            <summary>
+            Construction de la logique d'un tracer
+            </summary>
+        </member>
         <member name="M:NeuralMathematics.Tracer.InitializeComponent">
             <summary>
             InitializeComponent

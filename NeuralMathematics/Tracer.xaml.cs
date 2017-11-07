@@ -11,10 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Maths;
 
-/// <summary>
-/// Application principale
-/// </summary>
 namespace NeuralMathematics
 {
     /// <summary>
@@ -22,9 +20,20 @@ namespace NeuralMathematics
     /// </summary>
     public partial class Tracer : Window
     {
+        /// <summary>
+        /// Construction de la logique d'un tracer
+        /// </summary>
         public Tracer()
         {
             InitializeComponent();
+            Coordinates[] bornes = new Coordinates[2];
+            bornes[0] = new Coordinates(-10.0d, -10.0d);
+            bornes[1] = new Coordinates(10.0d, 10.0d);
+            Maths.Vector v = new Maths.Vector(bornes[0], bornes[1]);
+            Coordinates s = new Coordinates(0.1d, 0.1d);
+            MovingCoordinates mc = new MovingCoordinates(v, s);
+            DistributedTracer2D d = new DistributedTracer2D(mc, 5, 5, 3, new Size(2.0d, 2.0d));
+            this.c.Tracer = d;
         }
     }
 }

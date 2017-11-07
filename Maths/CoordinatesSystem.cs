@@ -59,26 +59,6 @@ namespace Maths
         /// Constructor with each value at each dimension
         /// </summary>
         /// <param name="positions">values</param>
-        public Coordinates(params double[] positions)
-        {
-            if (positions.Count() > 1)
-            {
-                this.dim = Convert.ToUInt32(positions.Count());
-                this.value = positions[0];
-                this.position = new Coordinates(positions.Skip(1));
-            }
-            else
-            {
-                this.dim = 1;
-                this.value = positions[0];
-                this.position = null;
-            }
-        }
-
-        /// <summary>
-        /// Constructor with each value at each dimension
-        /// </summary>
-        /// <param name="positions">values</param>
         public Coordinates(IEnumerable<double> positions)
         {
             if (positions.Count() > 1)
@@ -93,6 +73,14 @@ namespace Maths
                 this.value = positions.ElementAt(0);
                 this.position = null;
             }
+        }
+
+        /// <summary>
+        /// Constructor with each value at each dimension
+        /// </summary>
+        /// <param name="positions">values</param>
+        public Coordinates(params double[] positions) : this(positions.AsEnumerable())
+        {
         }
 
         #endregion
@@ -196,9 +184,9 @@ namespace Maths
         }
 
         /// <summary>
-        /// Gets the left coordinate
+        /// Gets the start of coordinate
         /// </summary>
-        public Coordinates Left
+        public Coordinates From
         {
             get
             {
@@ -207,9 +195,9 @@ namespace Maths
         }
 
         /// <summary>
-        /// Gets the right coordinate
+        /// Gets the end of coordinate
         /// </summary>
-        public Coordinates Right
+        public Coordinates To
         {
             get
             {
@@ -458,9 +446,9 @@ namespace Maths
             Coordinates currentStep = this.steps;
             while (src != null)
             {
-                if (src.Value >= v.Left.Value && src.Value <= v.Right.Value)
+                if (src.Value >= v.From.Value && src.Value <= v.To.Value)
                 {
-                    current.Value = v.Left.Value + Math.Ceiling((src.Value - v.Left.Value) / currentStep.Value) * currentStep.Value;
+                    current.Value = v.From.Value + Math.Ceiling((src.Value - v.From.Value) / currentStep.Value) * currentStep.Value;
                     current = current.Euclidian;
                     src = src.Euclidian;
                     currentStep = currentStep.Euclidian;
@@ -578,8 +566,8 @@ namespace Maths
             {
                 this.dim = Convert.ToUInt32(move.Steps.Dimension);
                 this.values = new List<double>();
-                double start = move.Vector.Left.Value;
-                double end = move.Vector.Right.Value;
+                double start = move.Vector.From.Value;
+                double end = move.Vector.To.Value;
                 double step = move.Steps.Value;
                 for (double v = start; v <= end; v += step)
                 {
@@ -592,8 +580,8 @@ namespace Maths
             {
                 this.dim = 1;
                 this.values = new List<double>();
-                double start = move.Vector.Left.Value;
-                double end = move.Vector.Right.Value;
+                double start = move.Vector.From.Value;
+                double end = move.Vector.To.Value;
                 double step = move.Steps.Value;
                 for (double v = start; v <= end; v += step)
                 {

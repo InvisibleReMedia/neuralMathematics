@@ -32,6 +32,11 @@ namespace Maths
         public static DependencyProperty TranslateYProperty = DependencyProperty.Register("TranslateY", typeof(Nullable<double>), typeof(ClipBox));
 
         /// <summary>
+        /// Scale on x and y axis to zoom into picture
+        /// </summary>
+        public static DependencyProperty ScaleProperty = DependencyProperty.Register("Scale", typeof(Nullable<double>), typeof(ClipBox));
+
+        /// <summary>
         /// Scale on x axis to zoom into picture
         /// </summary>
         public static DependencyProperty ScaleXProperty = DependencyProperty.Register("ScaleX", typeof(Nullable<double>), typeof(ClipBox));
@@ -40,6 +45,11 @@ namespace Maths
         /// Scale on y axis to zoom into picture
         /// </summary>
         public static DependencyProperty ScaleYProperty = DependencyProperty.Register("ScaleY", typeof(Nullable<double>), typeof(ClipBox));
+
+        /// <summary>
+        /// Scale on y axis to zoom into picture
+        /// </summary>
+        public static DependencyProperty TracerProperty = DependencyProperty.Register("Tracer", typeof(DistributedTracer2D), typeof(ClipBox));
 
         /// <summary>
         /// Point where starting mouse moving arround
@@ -56,12 +66,26 @@ namespace Maths
         public ClipBox()
         {
             InitializeComponent();
-            this.t.MouseDown += mouseButtonDown;
-            this.t.MouseUp += mouseButtonUp;
-            this.t.MouseMove += mouseMove;
-            this.t.MouseLeave += mouseLeave;
-            this.Width = this.t.Source.Width;
-            this.Height = this.t.Source.Height;
+            this.tracer.MouseDown += mouseButtonDown;
+            this.tracer.MouseUp += mouseButtonUp;
+            this.tracer.MouseMove += mouseMove;
+            this.tracer.MouseLeave += mouseLeave;
+        }
+
+        /// <summary>
+        /// Gets or sets the tracer object
+        /// </summary>
+        public DistributedTracer2D Tracer
+        {
+            get
+            {
+                return this.tracer.Tracer;
+            }
+            set
+            {
+                this.tracer.Tracer = value;
+                this.w_Loaded(this, new RoutedEventArgs());
+            }
         }
 
         /// <summary>
@@ -84,14 +108,14 @@ namespace Maths
         {
             if (this.duringMove)
             {
-                Point p = e.GetPosition(this.t);
+                Point p = e.GetPosition(this.tracer);
                 double dx = this.startedMousePosition.X - p.X;
                 double dy = this.startedMousePosition.Y - p.Y;
                 Nullable<double> d = this.GetValue(TranslateXProperty) as Nullable<double>;
-                if (d.HasValue && -(d - dx) < (this.t.Width - this.Width) && (d - dx) < 0)
+                if (d.HasValue && -(d - dx) < (this.tracer.Width - this.Width) && (d - dx) < 0)
                     this.SetValue(TranslateXProperty, d - dx);
                 d = this.GetValue(TranslateYProperty) as Nullable<double>;
-                if (d.HasValue && -(d - dy) < (this.t.Height - this.Height) && (d - dy) < 0)
+                if (d.HasValue && -(d - dy) < (this.tracer.Height - this.Height) && (d - dy) < 0)
                     this.SetValue(TranslateYProperty, d - dy);
                 this.update();
             }
@@ -115,7 +139,7 @@ namespace Maths
         /// <param name="e">mouse args</param>
         private void mouseButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.startedMousePosition = e.GetPosition(this.t);
+            this.startedMousePosition = e.GetPosition(this.tracer);
             this.duringMove = true;
             this.Cursor = Cursors.ScrollAll;
         }
@@ -130,18 +154,18 @@ namespace Maths
             Nullable<double> dx = this.GetValue(ScaleXProperty) as Nullable<double>;
             if (dx.HasValue)
             {
-                if (dx.Value < this.t.Width * 4.0d)
+                if (dx.Value < this.tracer.MaxWidth)
                     this.SetValue(ScaleXProperty, dx.Value + 5);
                 else
-                    this.SetValue(ScaleXProperty, this.t.Width * 4.0d);
+                    this.SetValue(ScaleXProperty, this.tracer.MaxWidth);
             }
             Nullable<double> dy = this.GetValue(ScaleYProperty) as Nullable<double>;
             if (dy.HasValue)
             {
-                if (dy.Value < this.t.Height * 4.0d)
+                if (dy.Value < this.tracer.MaxHeight)
                     this.SetValue(ScaleYProperty, dy.Value + 5);
                 else
-                    this.SetValue(ScaleYProperty, this.t.Height * 4.0d);
+                    this.SetValue(ScaleYProperty, this.tracer.MaxHeight);
             }
             this.update();
         }
@@ -156,41 +180,37 @@ namespace Maths
             Nullable<double> dx = this.GetValue(ScaleXProperty) as Nullable<double>;
             if (dx.HasValue)
             {
-                if (dx.Value > this.t.Width * 2.0d)
+                if (dx.Value > this.tracer.MinWidth)
                 {
                     this.SetValue(ScaleXProperty, dx.Value - 5);
-                    this.update();
                     Nullable<double> d = this.GetValue(TranslateXProperty) as Nullable<double>;
-                    if (d.HasValue && -d >= (this.t.Width - this.Width))
-                        this.SetValue(TranslateXProperty, -(this.t.Width - this.Width));
+                    if (d.HasValue && -d >= (this.tracer.Width - this.Width))
+                        this.SetValue(TranslateXProperty, -(this.tracer.Width - this.Width));
                 }
                 else
                 {
-                    this.SetValue(ScaleXProperty, this.t.Width * 2.0d);
-                    this.update();
+                    this.SetValue(ScaleXProperty, this.tracer.MinWidth);
                     Nullable<double> d = this.GetValue(TranslateXProperty) as Nullable<double>;
-                    if (d.HasValue && -d >= (this.t.Width - this.Width))
-                        this.SetValue(TranslateXProperty, -(this.t.Width - this.Width));
+                    if (d.HasValue && -d >= (this.tracer.Width - this.Width))
+                        this.SetValue(TranslateXProperty, -(this.tracer.Width - this.Width));
                 }
             }
             Nullable<double> dy = this.GetValue(ScaleYProperty) as Nullable<double>;
             if (dy.HasValue)
             {
-                if (dy.Value > this.t.Height * 2.0d)
+                if (dy.Value > this.tracer.MinHeight)
                 {
                     this.SetValue(ScaleYProperty, dy.Value - 5);
-                    this.update();
                     Nullable<double> d = this.GetValue(TranslateYProperty) as Nullable<double>;
-                    if (d.HasValue && -d >= (this.t.Height - this.Height))
-                        this.SetValue(TranslateYProperty, -(this.t.Height - this.Height));
+                    if (d.HasValue && -d >= (this.tracer.Height - this.Height))
+                        this.SetValue(TranslateYProperty, -(this.tracer.Height - this.Height));
                 }
                 else
                 {
-                    this.SetValue(ScaleYProperty, this.t.Height * 2.0d);
-                    this.update();
+                    this.SetValue(ScaleYProperty, this.tracer.MinHeight);
                     Nullable<double> d = this.GetValue(TranslateYProperty) as Nullable<double>;
-                    if (d.HasValue && -d >= (this.t.Height - this.Height))
-                        this.SetValue(TranslateYProperty, -(this.t.Height - this.Height));
+                    if (d.HasValue && -d >= (this.tracer.Height - this.Height))
+                        this.SetValue(TranslateYProperty, -(this.tracer.Height - this.Height));
                 }
             }
             this.update();
@@ -204,7 +224,7 @@ namespace Maths
         private void moveLeft_Click(object sender, RoutedEventArgs e)
         {
             Nullable<double> d = this.GetValue(TranslateXProperty) as Nullable<double>;
-            if (d.HasValue && -d < this.t.Width)
+            if (d.HasValue && -d < this.tracer.Width)
                 this.SetValue(TranslateXProperty, d - 10);
             this.update();
         }
@@ -224,10 +244,17 @@ namespace Maths
         /// <param name="e">args</param>
         private void w_Loaded(object sender, RoutedEventArgs e)
         {
+            this.Width = this.tracer.Tracer.VisualSize.Width;
+            this.Height = this.tracer.Tracer.VisualSize.Height;
+            this.tracer.MinWidth = this.Width;
+            this.tracer.MaxWidth = this.Width * 3.0d;
+            this.tracer.MinHeight = this.Height;
+            this.tracer.MaxHeight = this.Height * 3.0d;
             this.SetValue(TranslateXProperty, 0.0d);
             this.SetValue(TranslateYProperty, 0.0d);
             this.SetValue(ScaleXProperty, this.Width * 2.0d);
             this.SetValue(ScaleYProperty, this.Height * 2.0d);
+            this.UpdateLayout();
             this.update();
         }
 
@@ -239,13 +266,13 @@ namespace Maths
             Nullable<double> ix = this.GetValue(TranslateXProperty) as Nullable<double>;
             Nullable<double> iy = this.GetValue(TranslateYProperty) as Nullable<double>;
             if (ix.HasValue && iy.HasValue)
-                this.t.Margin = new Thickness(ix.Value, iy.Value, 0, 0);
+                this.tracer.Margin = new Thickness(ix.Value, iy.Value, 0, 0);
             Nullable<double> dx = this.GetValue(ScaleXProperty) as Nullable<double>;
             Nullable<double> dy = this.GetValue(ScaleYProperty) as Nullable<double>;
             if (dx.HasValue)
-                this.t.Width = dx.Value;
+                this.tracer.Width = dx.Value;
             if (dy.HasValue)
-                this.t.Height = dy.Value;
+                this.tracer.Height = dy.Value;
         }
 
     }

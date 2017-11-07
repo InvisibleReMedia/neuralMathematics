@@ -83,6 +83,10 @@ namespace NeuralMathematics
                     this.doc.Document = Applicatifs.Menu();
                     this.doc.UpdateLayout();
                     break;
+                case "Image":
+                    this.doc.Document = Applicatifs.ComputeImageSize();
+                    this.doc.UpdateLayout();
+                    break;
                 case "Close":
                     this.Close();
                     break;

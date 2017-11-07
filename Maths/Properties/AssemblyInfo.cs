@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 [assembly: AssemblyTitle("Maths")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Mathematics Library for Neural Mathematics")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("Maths")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
+[assembly: AssemblyCompany("InvisibleMedia")]
+[assembly: AssemblyProduct("Neural Mathematics Software")]
+[assembly: AssemblyCopyright("Copyright © InvisibleMedia 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

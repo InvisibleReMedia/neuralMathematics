@@ -8,11 +8,11 @@ using System.Windows;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 [assembly: AssemblyTitle("NeuralMathematics")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Neural Mathematics Software")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("NeuralMathematics")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2017")]
+[assembly: AssemblyCompany("InvisibleMedia")]
+[assembly: AssemblyProduct("Neural Mathematics Software")]
+[assembly: AssemblyCopyright("Copyright © InvisibleMedia 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

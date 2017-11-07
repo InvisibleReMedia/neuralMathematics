@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Maths
 {
@@ -50,6 +51,7 @@ namespace Maths
             t.Columns.Add(new TableColumn());
             t.Columns.Add(new TableColumn());
             t.Columns.Add(new TableColumn());
+            t.Columns.Add(new TableColumn());
             TableRowGroup trg = new TableRowGroup();
             TableRow tr = new TableRow();
             Button b1 = new Button();
@@ -72,16 +74,23 @@ namespace Maths
             b4.Content = "Polynôme d'ordre 2 - Produit";
             b4.Click += Button_Click;
             SetButtonStyle(b4);
+            Button b6 = new Button();
+            b6.Name = "Image";
+            b6.Content = "Calcul de la taille de l'image";
+            b6.Click += Button_Click;
+            SetButtonStyle(b6);
             TableCell tc = new TableCell(new BlockUIContainer(b1));
             tr.Cells.Add(tc);
             tc = new TableCell(new BlockUIContainer(b2));
             tr.Cells.Add(tc);
             tc = new TableCell(new BlockUIContainer(b3));
             tr.Cells.Add(tc);
+            tc = new TableCell(new BlockUIContainer(b6));
+            tr.Cells.Add(tc);
             trg.Rows.Add(tr);
             tr = new TableRow();
             tc = new TableCell(new BlockUIContainer(b4));
-            tc.ColumnSpan = 3;
+            tc.ColumnSpan = 4;
             tr.Cells.Add(tc);
             trg.Rows.Add(tr);
             tr = new TableRow();
@@ -91,7 +100,7 @@ namespace Maths
             b5.Click += Button_Click;
             SetButtonStyle(b5);
             tc = new TableCell(new BlockUIContainer(b5));
-            tc.ColumnSpan = 3;
+            tc.ColumnSpan = 4;
             tr.Cells.Add(tc);
             trg.Rows.Add(tr);
             t.RowGroups.Add(trg);
@@ -471,5 +480,50 @@ namespace Maths
             return fd;
         }
 
+        /// <summary>
+        /// Computes image size
+        /// </summary>
+        /// <returns></returns>
+        public static FlowDocument ComputeImageSize()
+        {
+            FlowDocument fd = new FlowDocument();
+            Coordinates[] bornes = new Coordinates[2];
+            bornes[0] = new Coordinates(-10.0d, -10.0d);
+            bornes[1] = new Coordinates(10.0d, 10.0d);
+            Vector v = new Vector(bornes[0], bornes[1]);
+            Coordinates s = new Coordinates(0.1d, 0.1d);
+            MovingCoordinates mc = new MovingCoordinates(v, s);
+            DistributedTracer2D d = new DistributedTracer2D(mc, 5, 5, 3, new Size(2.0d,2.0d));
+            Paragraph p = new Paragraph();
+            p.Inlines.Add(new Run("Taille en pixels:" + d.ImageSize.Width + ";" + d.ImageSize.Height));
+
+            Size[,] areas = d.Areas;
+            Table t = new Table();
+            for(int x = 0; x < areas.GetLength(0); ++x)
+            {
+                t.Columns.Add(new TableColumn());
+            }
+            TableRowGroup g = new TableRowGroup();
+            for (int y = 0; y < areas.GetLength(0); ++y)
+            {
+                TableRow tr = new TableRow();
+                for (int x = 0; x < areas.GetLength(1); ++x)
+                {
+                    Paragraph b = new Paragraph();
+                    b.Inlines.Add(new Run(areas[y, x].Width + ";" + areas[x, y].Height));
+                    TableCell tc = new TableCell(b);
+                    tr.Cells.Add(tc);
+                }
+                g.Rows.Add(tr);
+            }
+            t.RowGroups.Add(g);
+
+            fd.Blocks.Add(p);
+            fd.Blocks.Add(t);
+            ClipBox cb = new ClipBox();
+            cb.Tracer = d;
+            fd.Blocks.Add(new BlockUIContainer(cb));
+            return fd;
+        }
     }
 }

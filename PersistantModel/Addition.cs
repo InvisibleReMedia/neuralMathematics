@@ -5,9 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/// <summary>
-/// Modèle persistant des données
-/// </summary>
 namespace PersistantModel
 {
     /// <summary>

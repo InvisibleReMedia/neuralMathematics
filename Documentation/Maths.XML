@@ -95,6 +95,12 @@
             Résolution polynôme ordre 2
             </summary>
         </member>
+        <member name="M:Maths.Applicatifs.ComputeImageSize">
+            <summary>
+            Computes image size
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Maths.ClipBox">
             <summary>
             Logique d'interaction pour ClipBox.xaml
@@ -113,12 +119,22 @@
             Translation on y axis to show a partial of picture
             </summary>
         </member>
+        <member name="F:Maths.ClipBox.ScaleProperty">
+            <summary>
+            Scale on x and y axis to zoom into picture
+            </summary>
+        </member>
         <member name="F:Maths.ClipBox.ScaleXProperty">
             <summary>
             Scale on x axis to zoom into picture
             </summary>
         </member>
         <member name="F:Maths.ClipBox.ScaleYProperty">
+            <summary>
+            Scale on y axis to zoom into picture
+            </summary>
+        </member>
+        <member name="F:Maths.ClipBox.TracerProperty">
             <summary>
             Scale on y axis to zoom into picture
             </summary>
@@ -136,6 +152,11 @@
         <member name="M:Maths.ClipBox.#ctor">
             <summary>
             Default constructor
+            </summary>
+        </member>
+        <member name="P:Maths.ClipBox.Tracer">
+            <summary>
+            Gets or sets the tracer object
             </summary>
         </member>
         <member name="M:Maths.ClipBox.mouseLeave(System.Object,System.Windows.Input.MouseEventArgs)">
@@ -231,13 +252,13 @@
             </summary>
             <param name="dimension">dimension</param>
         </member>
-        <member name="M:Maths.Coordinates.#ctor(System.Double[])">
+        <member name="M:Maths.Coordinates.#ctor(System.Collections.Generic.IEnumerable{System.Double})">
             <summary>
             Constructor with each value at each dimension
             </summary>
             <param name="positions">values</param>
         </member>
-        <member name="M:Maths.Coordinates.#ctor(System.Collections.Generic.IEnumerable{System.Double})">
+        <member name="M:Maths.Coordinates.#ctor(System.Double[])">
             <summary>
             Constructor with each value at each dimension
             </summary>
@@ -294,14 +315,14 @@
             Gets the euclidian sub-vector
             </summary>
         </member>
-        <member name="P:Maths.Vector.Left">
+        <member name="P:Maths.Vector.From">
             <summary>
-            Gets the left coordinate
+            Gets the start of coordinate
             </summary>
         </member>
-        <member name="P:Maths.Vector.Right">
+        <member name="P:Maths.Vector.To">
             <summary>
-            Gets the right coordinate
+            Gets the end of coordinate
             </summary>
         </member>
         <member name="T:Maths.CoordinateSystem">
@@ -572,14 +593,140 @@
             at least 2 or more dimension
             </summary>
         </member>
+        <member name="T:Maths.DistributedTracer2D">
+            <summary>
+            Distributed Tracer
+            Distribute squares parts to
+            multiple tasks
+            Each task traces points
+            </summary>
+        </member>
+        <member name="F:Maths.DistributedTracer2D.depth">
+            <summary>
+            profondeur de tâches
+            </summary>
+        </member>
+        <member name="F:Maths.DistributedTracer2D.bounds">
+            <summary>
+            Bounds of coordinates
+            </summary>
+        </member>
+        <member name="F:Maths.DistributedTracer2D.columnSize">
+            <summary>
+            Number of columns
+            </summary>
+        </member>
+        <member name="F:Maths.DistributedTracer2D.rowSize">
+            <summary>
+            Number of lines
+            </summary>
+        </member>
+        <member name="F:Maths.DistributedTracer2D.pixels">
+            <summary>
+            Pixelization on graphics
+            </summary>
+        </member>
+        <member name="F:Maths.DistributedTracer2D.imageSize">
+            <summary>
+            Size of the resulting image
+            </summary>
+        </member>
+        <member name="F:Maths.DistributedTracer2D.visualSize">
+            <summary>
+            Taille du visual
+            </summary>
+        </member>
+        <member name="F:Maths.DistributedTracer2D.areas">
+            <summary>
+            Areas of each image part
+            </summary>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.#ctor(Maths.MovingCoordinates,System.UInt32,System.UInt32,System.UInt32,System.Windows.Size)">
+            <summary>
+            Default Constructor
+            </summary>
+            <param name="mc">Moving Coordinates</param>
+            <param name="column">column size</param>
+            <param name="row">row size</param>
+            <param name="depth">depth</param>
+            <param name="p">pixels size</param>
+        </member>
+        <member name="P:Maths.DistributedTracer2D.ImageSize">
+            <summary>
+            Taille de l'image (en nombre de pixels)
+            </summary>
+        </member>
+        <member name="P:Maths.DistributedTracer2D.Areas">
+            <summary>
+            Gets area set
+            </summary>
+        </member>
+        <member name="P:Maths.DistributedTracer2D.VisualSize">
+            <summary>
+            Gets or sets visual size
+            </summary>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.ComputeImageHeight(System.UInt32)">
+            <summary>
+            Function to compute the height of image
+            </summary>
+            <param name="depth">depth image definition</param>
+            <returns>total height of image</returns>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.ComputeImageWidth(System.UInt32)">
+            <summary>
+            Function to compute the width of image
+            </summary>
+            <param name="depth">depth image definition</param>
+            <returns>total width of image</returns>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.ComputeImageSize">
+            <summary>
+            Computes the size of image
+            </summary>
+            <returns>total size of image</returns>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.ComputeHeightSteps">
+            <summary>
+            Compute the exact height of the total image height in pixels
+            </summary>
+            <returns>image height in pixels</returns>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.ComputeWidthSteps">
+            <summary>
+            Compute the exact height of the total image height in pixels
+            </summary>
+            <returns>image height in pixels</returns>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.ComputeCuttedHeightAreas">
+            <summary>
+            Compute each area size for recursive image uniform height
+            </summary>
+            <returns>list of area</returns>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.ComputeCuttedWidthAreas">
+            <summary>
+            Compute each area size for recursive image uniform width
+            </summary>
+            <returns>list of area</returns>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.ComputeCuttedAreas">
+            <summary>
+            Compute a list of areas
+            </summary>
+            <returns>size of each area</returns>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.ThumbnailImage(System.Double,System.Double)">
+            <summary>
+            A l'aide de la taille de l'image,
+            du nombre de colonnes et du nombres de lignes,
+            des bornes de la graduation et de
+            la fonction mathématique, créer une image
+            </summary>
+        </member>
         <member name="T:Maths.TemplateTracer2D">
             <summary>
             Tracer en deux dimensions
-            </summary>
-        </member>
-        <member name="F:Maths.TemplateTracer2D.sys">
-            <summary>
-            Système de coordonnées
             </summary>
         </member>
         <member name="M:Maths.TemplateTracer2D.#ctor">
@@ -1049,6 +1196,34 @@
             Draw the curve
             </summary>
         </member>
+        <member name="T:Maths.Tracer2D">
+            <summary>
+            Logique d'interaction pour Tracer2D.xaml
+            </summary>
+            <summary>
+            Tracer2D
+            </summary>
+        </member>
+        <member name="F:Maths.Tracer2D.DistributedTracerProperty">
+            <summary>
+            Property to set the graphical tracer algorithm
+            </summary>
+        </member>
+        <member name="M:Maths.Tracer2D.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:Maths.Tracer2D.Tracer">
+            <summary>
+            Gets or sets the tracer object
+            </summary>
+        </member>
+        <member name="M:Maths.Tracer2D.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:Maths.Wording">
             <summary>
             Classe de description d'un énonçé
@@ -1095,6 +1270,36 @@
             Transforms equation object into a string representation
             </summary>
             <returns>string representation</returns>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>

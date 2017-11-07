@@ -9,10 +9,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-
-/// <summary>
-/// Fonctionnalités mathématiques
-/// </summary>
 namespace Maths
 {
     /// <summary>

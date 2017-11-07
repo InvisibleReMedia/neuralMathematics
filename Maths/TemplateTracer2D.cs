@@ -17,11 +17,6 @@ namespace Maths
 
         #region Fields
 
-        /// <summary>
-        /// Système de coordonnées
-        /// </summary>
-        private CoordinateSystem sys;
-
         #endregion
 
         #region Constructors

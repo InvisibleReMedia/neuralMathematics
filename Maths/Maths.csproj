@@ -74,6 +74,7 @@
       <DependentUpon>ClipBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="CoordinatesSystem.cs" />
+    <Compile Include="DistributedTracer2D.cs" />
     <Compile Include="TemplateTracer2D.cs" />
     <Compile Include="MathematicEquation.cs" />
     <Compile Include="GenericNeurone.cs" />
@@ -85,6 +86,9 @@
       <DependentUpon>Tracer.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataTracer2D.cs" />
+    <Compile Include="Tracer2D.xaml.cs">
+      <DependentUpon>Tracer2D.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wording.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +110,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tracer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tracer2D.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -134,6 +142,10 @@
     <Resource Include="top.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="left-right.png" />
+    <Content Include="top-bottom.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

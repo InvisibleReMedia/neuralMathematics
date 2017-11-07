@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 [assembly: AssemblyTitle("Interfaces")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Global interfaces for Neural Mathematics")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("Interfaces")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
+[assembly: AssemblyCompany("InvisibleMedia")]
+[assembly: AssemblyProduct("Neural Mathematics Software")]
+[assembly: AssemblyCopyright("Copyright © InvisibleMedia 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
