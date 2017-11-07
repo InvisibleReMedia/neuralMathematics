@@ -716,7 +716,7 @@
             </summary>
             <returns>size of each area</returns>
         </member>
-        <member name="M:Maths.DistributedTracer2D.ThumbnailImage(System.Double,System.Double)">
+        <member name="M:Maths.DistributedTracer2D.ThumbnailImage">
             <summary>
             A l'aide de la taille de l'image,
             du nombre de colonnes et du nombres de lignes,

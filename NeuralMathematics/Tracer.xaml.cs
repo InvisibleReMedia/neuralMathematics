@@ -35,5 +35,6 @@ namespace NeuralMathematics
             DistributedTracer2D d = new DistributedTracer2D(mc, 5, 5, 3, new Size(2.0d, 2.0d));
             this.c.Tracer = d;
         }
+
     }
 }

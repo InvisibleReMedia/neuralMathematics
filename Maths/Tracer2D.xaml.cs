@@ -45,12 +45,8 @@ namespace Maths
             set
             {
                 this.SetValue(DistributedTracerProperty, value);
-                Window p = Window.GetWindow(this);
-                this.AddChild(value.ThumbnailImage(p.Width, p.Height));
+                this.AddChild(value.ThumbnailImage());
             }
         }
-
-
-
     }
 }

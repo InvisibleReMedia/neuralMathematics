@@ -268,7 +268,7 @@ namespace Maths
         /// des bornes de la graduation et de
         /// la fonction mathématique, créer une image
         /// </summary>
-        public Grid ThumbnailImage(double desiredWidth, double desiredHeight)
+        public Grid ThumbnailImage()
         {
             Size first = this.ComputeCuttedAreas()[0, 0];
             Grid grid = new Grid();
@@ -315,9 +315,6 @@ namespace Maths
                     grid.Children.Add(r);
                 }
             }
-            this.visualSize.Width = desiredWidth;
-            this.visualSize.Height = desiredHeight;
-            grid.RenderTransform = new ScaleTransform(this.ImageSize.Width / grid.Width, this.ImageSize.Height / grid.Height);
             return grid;
             
         }

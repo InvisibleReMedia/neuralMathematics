@@ -112,10 +112,10 @@ namespace Maths
                 double dx = this.startedMousePosition.X - p.X;
                 double dy = this.startedMousePosition.Y - p.Y;
                 Nullable<double> d = this.GetValue(TranslateXProperty) as Nullable<double>;
-                if (d.HasValue && -(d - dx) < (this.tracer.Width - this.Width) && (d - dx) < 0)
+                if (d.HasValue && -(d - dx) < (this.tracer.Width - this.container.Width) && (d - dx) < 0)
                     this.SetValue(TranslateXProperty, d - dx);
                 d = this.GetValue(TranslateYProperty) as Nullable<double>;
-                if (d.HasValue && -(d - dy) < (this.tracer.Height - this.Height) && (d - dy) < 0)
+                if (d.HasValue && -(d - dy) < (this.tracer.Height - this.container.Height) && (d - dy) < 0)
                     this.SetValue(TranslateYProperty, d - dy);
                 this.update();
             }
@@ -184,15 +184,15 @@ namespace Maths
                 {
                     this.SetValue(ScaleXProperty, dx.Value - 5);
                     Nullable<double> d = this.GetValue(TranslateXProperty) as Nullable<double>;
-                    if (d.HasValue && -d >= (this.tracer.Width - this.Width))
-                        this.SetValue(TranslateXProperty, -(this.tracer.Width - this.Width));
+                    if (d.HasValue && -d >= (this.tracer.Width - this.container.Width))
+                        this.SetValue(TranslateXProperty, -(this.tracer.Width - this.container.Width));
                 }
                 else
                 {
                     this.SetValue(ScaleXProperty, this.tracer.MinWidth);
                     Nullable<double> d = this.GetValue(TranslateXProperty) as Nullable<double>;
-                    if (d.HasValue && -d >= (this.tracer.Width - this.Width))
-                        this.SetValue(TranslateXProperty, -(this.tracer.Width - this.Width));
+                    if (d.HasValue && -d >= (this.tracer.Width - this.container.Width))
+                        this.SetValue(TranslateXProperty, -(this.tracer.Width - this.container.Width));
                 }
             }
             Nullable<double> dy = this.GetValue(ScaleYProperty) as Nullable<double>;
@@ -202,15 +202,15 @@ namespace Maths
                 {
                     this.SetValue(ScaleYProperty, dy.Value - 5);
                     Nullable<double> d = this.GetValue(TranslateYProperty) as Nullable<double>;
-                    if (d.HasValue && -d >= (this.tracer.Height - this.Height))
-                        this.SetValue(TranslateYProperty, -(this.tracer.Height - this.Height));
+                    if (d.HasValue && -d >= (this.tracer.Height - this.container.Height))
+                        this.SetValue(TranslateYProperty, -(this.tracer.Height - this.container.Height));
                 }
                 else
                 {
                     this.SetValue(ScaleYProperty, this.tracer.MinHeight);
                     Nullable<double> d = this.GetValue(TranslateYProperty) as Nullable<double>;
-                    if (d.HasValue && -d >= (this.tracer.Height - this.Height))
-                        this.SetValue(TranslateYProperty, -(this.tracer.Height - this.Height));
+                    if (d.HasValue && -d >= (this.tracer.Height - this.container.Height))
+                        this.SetValue(TranslateYProperty, -(this.tracer.Height - this.container.Height));
                 }
             }
             this.update();
@@ -244,18 +244,21 @@ namespace Maths
         /// <param name="e">args</param>
         private void w_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Width = this.tracer.Tracer.VisualSize.Width;
-            this.Height = this.tracer.Tracer.VisualSize.Height;
-            this.tracer.MinWidth = this.Width;
-            this.tracer.MaxWidth = this.Width * 3.0d;
-            this.tracer.MinHeight = this.Height;
-            this.tracer.MaxHeight = this.Height * 3.0d;
-            this.SetValue(TranslateXProperty, 0.0d);
-            this.SetValue(TranslateYProperty, 0.0d);
-            this.SetValue(ScaleXProperty, this.Width * 2.0d);
-            this.SetValue(ScaleYProperty, this.Height * 2.0d);
-            this.UpdateLayout();
-            this.update();
+            if (this.tracer.Tracer != null)
+            {
+                this.container.Width = this.tracer.Tracer.VisualSize.Width;
+                this.container.Height = this.tracer.Tracer.VisualSize.Height;
+                this.tracer.MinWidth = this.container.Width;
+                this.tracer.MaxWidth = this.container.Width * 3.0d;
+                this.tracer.MinHeight = this.container.Height;
+                this.tracer.MaxHeight = this.container.Height * 3.0d;
+                this.SetValue(TranslateXProperty, 0.0d);
+                this.SetValue(TranslateYProperty, 0.0d);
+                this.SetValue(ScaleXProperty, this.container.Width * 2.0d);
+                this.SetValue(ScaleYProperty, this.container.Height * 2.0d);
+                this.UpdateLayout();
+                this.update();
+            }
         }
 
         /// <summary>
@@ -274,6 +277,5 @@ namespace Maths
             if (dy.HasValue)
                 this.tracer.Height = dy.Value;
         }
-
     }
 }
