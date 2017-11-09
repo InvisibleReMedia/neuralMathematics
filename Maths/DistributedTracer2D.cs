@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Maths
 {
@@ -52,19 +54,41 @@ namespace Maths
         private Size imageSize;
 
         /// <summary>
+        /// Position
+        /// </summary>
+        private Point visualLocation;
+
+        /// <summary>
         /// Taille du visual
         /// </summary>
         private Size visualSize;
+
+        /// <summary>
+        /// scale for zooming
+        /// </summary>
+        private double visualScale;
 
         /// <summary>
         /// Areas of each image part
         /// </summary>
         private Size[,] areas;
 
+        /// <summary>
+        /// Random numbers
+        /// </summary>
         private Random ra;
 
-        #endregion
+        /// <summary>
+        /// if bounds has changed
+        /// </summary>
+        private bool boundsChanged;
 
+        /// <summary>
+        /// Drawing object to handle the curve
+        /// </summary>
+        private DrawingGroup drawing;
+
+        #endregion
 
         #region Constructors
 
@@ -79,19 +103,32 @@ namespace Maths
         public DistributedTracer2D(MovingCoordinates mc, uint column, uint row, uint depth, Size p)
         {
             this.bounds = mc;
+            this.boundsChanged = true;
             this.columnSize = column;
             this.rowSize = row;
             this.depth = depth;
             this.pixels = p;
+            this.visualLocation = new Point(0.0d, 0.0d);
+            this.visualSize = new Size(200.0d, 200.0d);
             this.imageSize = this.ComputeImageSize();
             this.areas = this.ComputeCuttedAreas();
-            this.visualSize = new Size(200.0d, 200.0d);
             ra = new Random();
         }
 
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Position de l'image (en nombre de pixels)
+        /// </summary>
+        public Point VisualLocation
+        {
+            get
+            {
+                return this.visualLocation;
+            }
+        }
 
         /// <summary>
         /// Taille de l'image (en nombre de pixels)
@@ -124,9 +161,16 @@ namespace Maths
             {
                 return this.visualSize;
             }
-            set
+        }
+
+        /// <summary>
+        /// Gets or sets visual scale
+        /// </summary>
+        public double VisualScale
+        {
+            get
             {
-                this.visualSize = value;
+                return this.visualScale;
             }
         }
 
@@ -268,55 +312,76 @@ namespace Maths
         /// des bornes de la graduation et de
         /// la fonction mathématique, créer une image
         /// </summary>
-        public Grid ThumbnailImage()
+        public DrawingGroup Draw()
         {
+            DrawingGroup dg = new DrawingGroup();
+            DrawingContext dc = dg.Open();
+
             Size first = this.ComputeCuttedAreas()[0, 0];
-            Grid grid = new Grid();
-            grid.Width = first.Width * this.columnSize;
-            grid.Height = first.Height * this.rowSize;
-            grid.Background = Brushes.Green;
-            for(int indexRow = 0; indexRow < this.rowSize; ++indexRow)
-            {
-                RowDefinition rd = new RowDefinition();
-                rd.Height = new GridLength(first.Height);
-                grid.RowDefinitions.Add(rd);
-            }
-            for (int indexColumn = 0; indexColumn < this.columnSize; ++indexColumn)
-            {
-                ColumnDefinition cd = new ColumnDefinition();
-                cd.Width = new GridLength(first.Width);
-                grid.ColumnDefinitions.Add(cd);
-            }
+            // Background
+            dc.DrawRectangle(Brushes.GreenYellow, new Pen(Brushes.Black, 1), new Rect(0, 0, first.Width * this.columnSize, first.Height * this.rowSize));
+
             for (int indexRow = 0; indexRow < this.rowSize; ++indexRow)
             {
                 for (int indexColumn = 0; indexColumn < this.columnSize; ++indexColumn)
                 {
-                    Rectangle r = new Rectangle();
-                    Grid.SetRow(r, indexRow);
-                    Grid.SetColumn(r, indexColumn);
-                    r.Width = first.Width;
-                    r.Height = first.Height;
-                    DrawingBrush db = new DrawingBrush();
-                    db.Stretch = Stretch.Fill;
-                    LineGeometry[] lines = new LineGeometry[2];
-
-                    lines[0] = new LineGeometry(new Point(first.Width / 2.0d, 0.0d), new Point(first.Width / 2.0d, first.Height));
-                    lines[1] = new LineGeometry(new Point(0.0d, first.Height / 2.0d), new Point(first.Width, first.Height / 2.0d));
-
-                    GeometryGroup g = new GeometryGroup();
-                    for(int i = 0; i < 2; ++i) g.Children.Add(lines[i]);
-                    GeometryDrawing gd = new GeometryDrawing();
-                    gd.Geometry = g;
-                    gd.Pen = new Pen(Brushes.Red, 1.0d);
-                    db.Drawing = gd;
-                    r.Fill = new SolidColorBrush(Color.FromArgb(255, Convert.ToByte(ra.Next(255)),
+                    dc.DrawRectangle(new SolidColorBrush(Color.FromArgb(255, Convert.ToByte(ra.Next(255)),
                                                                 Convert.ToByte(ra.Next(255)),
-                                                                Convert.ToByte(ra.Next(255))));
-                    grid.Children.Add(r);
+                                                                Convert.ToByte(ra.Next(255)))),
+                                                         new Pen(Brushes.Black, 1.0),
+                                                         new Rect(first.Width * (double)indexColumn, first.Height * (double)indexRow, first.Width, first.Height));
+                    //DrawingBrush db = new DrawingBrush();
+                    //db.Stretch = Stretch.Fill;
+                    //LineGeometry[] lines = new LineGeometry[2];
+
+                    //lines[0] = new LineGeometry(new Point(first.Width / 2.0d, 0.0d), new Point(first.Width / 2.0d, first.Height));
+                    //lines[1] = new LineGeometry(new Point(0.0d, first.Height / 2.0d), new Point(first.Width, first.Height / 2.0d));
+
+                    //GeometryGroup g = new GeometryGroup();
+                    //for(int i = 0; i < 2; ++i) g.Children.Add(lines[i]);
+                    //GeometryDrawing gd = new GeometryDrawing();
+                    //gd.Geometry = g;
+                    //gd.Pen = new Pen(Brushes.Red, 1.0d);
+                    //db.Drawing = gd;
                 }
             }
-            return grid;
+            dc.Close();
+            return dg;
             
+        }
+
+        /// <summary>
+        /// Récupère une image du visual créé
+        /// </summary>
+        /// <param name="left">translation horizontale</param>
+        /// <param name="right">translation verticale</param>
+        /// <param name="desiredWidth">largeur demandée</param>
+        /// <param name="desiredHeight">hauteur demandée</param>
+        /// <param name="scale">scale value</param>
+        /// <param name="attach">container</param>
+        public void GetThumbnail(double left, double right, double desiredWidth, double desiredHeight, double scale, ContentControl attach)
+        {
+            this.visualLocation = new Point(left, right);
+            this.visualSize = new Size(desiredWidth, desiredHeight);
+            this.visualScale = scale;
+            Dispatcher owner = Dispatcher.CurrentDispatcher;
+            Task.Factory.StartNew(() =>
+            {
+                owner.Invoke(() => {
+                    if (this.boundsChanged)
+                    {
+                        this.drawing = this.Draw();
+                        Rectangle r = new Rectangle();
+                        r.RenderSize = this.drawing.Bounds.Size;
+                        r.Fill = new DrawingBrush(this.drawing);
+                        attach.Content = r;
+                        this.boundsChanged = false;
+                    }
+                    else
+                    {
+                    }
+                });
+            });
         }
 
         #endregion

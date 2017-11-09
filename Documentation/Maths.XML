@@ -124,16 +124,6 @@
             Scale on x and y axis to zoom into picture
             </summary>
         </member>
-        <member name="F:Maths.ClipBox.ScaleXProperty">
-            <summary>
-            Scale on x axis to zoom into picture
-            </summary>
-        </member>
-        <member name="F:Maths.ClipBox.ScaleYProperty">
-            <summary>
-            Scale on y axis to zoom into picture
-            </summary>
-        </member>
         <member name="F:Maths.ClipBox.TracerProperty">
             <summary>
             Scale on y axis to zoom into picture
@@ -201,24 +191,12 @@
             <param name="sender">ui origin</param>
             <param name="e">args</param>
         </member>
-        <member name="M:Maths.ClipBox.moveLeft_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
         <member name="M:Maths.ClipBox.w_Loaded(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             When ui was loaded
             </summary>
             <param name="sender">ui origin</param>
             <param name="e">args</param>
-        </member>
-        <member name="M:Maths.ClipBox.update">
-            <summary>
-            When ui has to be updated (zoom or moving changes)
-            </summary>
         </member>
         <member name="M:Maths.ClipBox.InitializeComponent">
             <summary>
@@ -631,14 +609,39 @@
             Size of the resulting image
             </summary>
         </member>
+        <member name="F:Maths.DistributedTracer2D.visualLocation">
+            <summary>
+            Position
+            </summary>
+        </member>
         <member name="F:Maths.DistributedTracer2D.visualSize">
             <summary>
             Taille du visual
             </summary>
         </member>
+        <member name="F:Maths.DistributedTracer2D.visualScale">
+            <summary>
+            scale for zooming
+            </summary>
+        </member>
         <member name="F:Maths.DistributedTracer2D.areas">
             <summary>
             Areas of each image part
+            </summary>
+        </member>
+        <member name="F:Maths.DistributedTracer2D.ra">
+            <summary>
+            Random numbers
+            </summary>
+        </member>
+        <member name="F:Maths.DistributedTracer2D.boundsChanged">
+            <summary>
+            if bounds has changed
+            </summary>
+        </member>
+        <member name="F:Maths.DistributedTracer2D.drawing">
+            <summary>
+            Drawing object to handle the curve
             </summary>
         </member>
         <member name="M:Maths.DistributedTracer2D.#ctor(Maths.MovingCoordinates,System.UInt32,System.UInt32,System.UInt32,System.Windows.Size)">
@@ -650,6 +653,11 @@
             <param name="row">row size</param>
             <param name="depth">depth</param>
             <param name="p">pixels size</param>
+        </member>
+        <member name="P:Maths.DistributedTracer2D.VisualLocation">
+            <summary>
+            Position de l'image (en nombre de pixels)
+            </summary>
         </member>
         <member name="P:Maths.DistributedTracer2D.ImageSize">
             <summary>
@@ -664,6 +672,11 @@
         <member name="P:Maths.DistributedTracer2D.VisualSize">
             <summary>
             Gets or sets visual size
+            </summary>
+        </member>
+        <member name="P:Maths.DistributedTracer2D.VisualScale">
+            <summary>
+            Gets or sets visual scale
             </summary>
         </member>
         <member name="M:Maths.DistributedTracer2D.ComputeImageHeight(System.UInt32)">
@@ -716,13 +729,24 @@
             </summary>
             <returns>size of each area</returns>
         </member>
-        <member name="M:Maths.DistributedTracer2D.ThumbnailImage">
+        <member name="M:Maths.DistributedTracer2D.Draw">
             <summary>
             A l'aide de la taille de l'image,
             du nombre de colonnes et du nombres de lignes,
             des bornes de la graduation et de
             la fonction mathématique, créer une image
             </summary>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.GetThumbnail(System.Double,System.Double,System.Double,System.Double,System.Double,System.Windows.Controls.ContentControl)">
+            <summary>
+            Récupère une image du visual créé
+            </summary>
+            <param name="left">translation horizontale</param>
+            <param name="right">translation verticale</param>
+            <param name="desiredWidth">largeur demandée</param>
+            <param name="desiredHeight">hauteur demandée</param>
+            <param name="scale">scale value</param>
+            <param name="attach">container</param>
         </member>
         <member name="T:Maths.TemplateTracer2D">
             <summary>
@@ -1217,6 +1241,26 @@
         <member name="P:Maths.Tracer2D.Tracer">
             <summary>
             Gets or sets the tracer object
+            </summary>
+        </member>
+        <member name="M:Maths.Tracer2D.Translate(System.Double,System.Double)">
+            <summary>
+            Translation
+            </summary>
+            <param name="dx">x move</param>
+            <param name="dy">y move</param>
+            <returns>true if done</returns>
+        </member>
+        <member name="M:Maths.Tracer2D.Scale(System.Double)">
+            <summary>
+            Scale image
+            </summary>
+            <param name="d">number &lt; 1.0</param>
+            <returns>true if done</returns>
+        </member>
+        <member name="M:Maths.Tracer2D.Update(System.Windows.Point,System.Windows.Size,System.Double)">
+            <summary>
+            Mise à jour de la taille du tracé
             </summary>
         </member>
         <member name="M:Maths.Tracer2D.InitializeComponent">

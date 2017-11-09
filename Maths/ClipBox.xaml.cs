@@ -24,27 +24,17 @@ namespace Maths
         /// <summary>
         /// Translation on x axis to show a partial of picture
         /// </summary>
-        public static DependencyProperty TranslateXProperty = DependencyProperty.Register("TranslateX", typeof(Nullable<double>), typeof(ClipBox));
+        public static DependencyProperty TranslateXProperty = DependencyProperty.Register("TranslateX", typeof(double), typeof(ClipBox));
 
         /// <summary>
         /// Translation on y axis to show a partial of picture
         /// </summary>
-        public static DependencyProperty TranslateYProperty = DependencyProperty.Register("TranslateY", typeof(Nullable<double>), typeof(ClipBox));
+        public static DependencyProperty TranslateYProperty = DependencyProperty.Register("TranslateY", typeof(double), typeof(ClipBox));
 
         /// <summary>
         /// Scale on x and y axis to zoom into picture
         /// </summary>
-        public static DependencyProperty ScaleProperty = DependencyProperty.Register("Scale", typeof(Nullable<double>), typeof(ClipBox));
-
-        /// <summary>
-        /// Scale on x axis to zoom into picture
-        /// </summary>
-        public static DependencyProperty ScaleXProperty = DependencyProperty.Register("ScaleX", typeof(Nullable<double>), typeof(ClipBox));
-
-        /// <summary>
-        /// Scale on y axis to zoom into picture
-        /// </summary>
-        public static DependencyProperty ScaleYProperty = DependencyProperty.Register("ScaleY", typeof(Nullable<double>), typeof(ClipBox));
+        public static DependencyProperty ScaleProperty = DependencyProperty.Register("Scale", typeof(double), typeof(ClipBox));
 
         /// <summary>
         /// Scale on y axis to zoom into picture
@@ -106,18 +96,19 @@ namespace Maths
         /// <param name="e">mouse args</param>
         private void mouseMove(object sender, MouseEventArgs e)
         {
-            if (this.duringMove)
+            if (this.duringMove && this.Tracer != null)
             {
                 Point p = e.GetPosition(this.tracer);
                 double dx = this.startedMousePosition.X - p.X;
                 double dy = this.startedMousePosition.Y - p.Y;
-                Nullable<double> d = this.GetValue(TranslateXProperty) as Nullable<double>;
-                if (d.HasValue && -(d - dx) < (this.tracer.Width - this.container.Width) && (d - dx) < 0)
-                    this.SetValue(TranslateXProperty, d - dx);
-                d = this.GetValue(TranslateYProperty) as Nullable<double>;
-                if (d.HasValue && -(d - dy) < (this.tracer.Height - this.container.Height) && (d - dy) < 0)
-                    this.SetValue(TranslateYProperty, d - dy);
-                this.update();
+                double x = (double)this.GetValue(TranslateXProperty);
+                double y = (double)this.GetValue(TranslateYProperty);
+                if (this.tracer.Translate(x + dx, y + dy))
+                {
+                    this.SetValue(TranslateXProperty, x + dx);
+                    this.SetValue(TranslateYProperty, y + dy);
+                }
+
             }
         }
 
@@ -151,23 +142,9 @@ namespace Maths
         /// <param name="e">args</param>
         private void increaseZoom_Click(object sender, RoutedEventArgs e)
         {
-            Nullable<double> dx = this.GetValue(ScaleXProperty) as Nullable<double>;
-            if (dx.HasValue)
-            {
-                if (dx.Value < this.tracer.MaxWidth)
-                    this.SetValue(ScaleXProperty, dx.Value + 5);
-                else
-                    this.SetValue(ScaleXProperty, this.tracer.MaxWidth);
-            }
-            Nullable<double> dy = this.GetValue(ScaleYProperty) as Nullable<double>;
-            if (dy.HasValue)
-            {
-                if (dy.Value < this.tracer.MaxHeight)
-                    this.SetValue(ScaleYProperty, dy.Value + 5);
-                else
-                    this.SetValue(ScaleYProperty, this.tracer.MaxHeight);
-            }
-            this.update();
+            double d = (double)this.GetValue(ScaleProperty);
+            if (this.tracer.Scale(d + 0.001))
+                this.SetValue(ScaleProperty, d + 0.001);
         }
 
         /// <summary>
@@ -177,64 +154,9 @@ namespace Maths
         /// <param name="e">args</param>
         private void decreaseZoom_Click(object sender, RoutedEventArgs e)
         {
-            Nullable<double> dx = this.GetValue(ScaleXProperty) as Nullable<double>;
-            if (dx.HasValue)
-            {
-                if (dx.Value > this.tracer.MinWidth)
-                {
-                    this.SetValue(ScaleXProperty, dx.Value - 5);
-                    Nullable<double> d = this.GetValue(TranslateXProperty) as Nullable<double>;
-                    if (d.HasValue && -d >= (this.tracer.Width - this.container.Width))
-                        this.SetValue(TranslateXProperty, -(this.tracer.Width - this.container.Width));
-                }
-                else
-                {
-                    this.SetValue(ScaleXProperty, this.tracer.MinWidth);
-                    Nullable<double> d = this.GetValue(TranslateXProperty) as Nullable<double>;
-                    if (d.HasValue && -d >= (this.tracer.Width - this.container.Width))
-                        this.SetValue(TranslateXProperty, -(this.tracer.Width - this.container.Width));
-                }
-            }
-            Nullable<double> dy = this.GetValue(ScaleYProperty) as Nullable<double>;
-            if (dy.HasValue)
-            {
-                if (dy.Value > this.tracer.MinHeight)
-                {
-                    this.SetValue(ScaleYProperty, dy.Value - 5);
-                    Nullable<double> d = this.GetValue(TranslateYProperty) as Nullable<double>;
-                    if (d.HasValue && -d >= (this.tracer.Height - this.container.Height))
-                        this.SetValue(TranslateYProperty, -(this.tracer.Height - this.container.Height));
-                }
-                else
-                {
-                    this.SetValue(ScaleYProperty, this.tracer.MinHeight);
-                    Nullable<double> d = this.GetValue(TranslateYProperty) as Nullable<double>;
-                    if (d.HasValue && -d >= (this.tracer.Height - this.container.Height))
-                        this.SetValue(TranslateYProperty, -(this.tracer.Height - this.container.Height));
-                }
-            }
-            this.update();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void moveLeft_Click(object sender, RoutedEventArgs e)
-        {
-            Nullable<double> d = this.GetValue(TranslateXProperty) as Nullable<double>;
-            if (d.HasValue && -d < this.tracer.Width)
-                this.SetValue(TranslateXProperty, d - 10);
-            this.update();
-        }
-
-        private void moveRight_Click(object sender, RoutedEventArgs e)
-        {
-            Nullable<double> d = this.GetValue(TranslateXProperty) as Nullable<double>;
-            if (d.HasValue && d < 0)
-                this.SetValue(TranslateXProperty, d + 10);
-            this.update();
+            double d = (double)this.GetValue(ScaleProperty);
+            if (this.tracer.Scale(d - 0.001))
+                this.SetValue(ScaleProperty, d - 0.001);
         }
 
         /// <summary>
@@ -244,38 +166,15 @@ namespace Maths
         /// <param name="e">args</param>
         private void w_Loaded(object sender, RoutedEventArgs e)
         {
-            if (this.tracer.Tracer != null)
-            {
-                this.container.Width = this.tracer.Tracer.VisualSize.Width;
-                this.container.Height = this.tracer.Tracer.VisualSize.Height;
-                this.tracer.MinWidth = this.container.Width;
-                this.tracer.MaxWidth = this.container.Width * 3.0d;
-                this.tracer.MinHeight = this.container.Height;
-                this.tracer.MaxHeight = this.container.Height * 3.0d;
-                this.SetValue(TranslateXProperty, 0.0d);
-                this.SetValue(TranslateYProperty, 0.0d);
-                this.SetValue(ScaleXProperty, this.container.Width * 2.0d);
-                this.SetValue(ScaleYProperty, this.container.Height * 2.0d);
-                this.UpdateLayout();
-                this.update();
-            }
+            this.SetValue(TranslateXProperty, 0.0d);
+            this.SetValue(TranslateYProperty, 0.0d);
+            this.SetValue(ScaleProperty, 1.0d);
         }
 
-        /// <summary>
-        /// When ui has to be updated (zoom or moving changes)
-        /// </summary>
-        private void update()
+        private void tracer_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Nullable<double> ix = this.GetValue(TranslateXProperty) as Nullable<double>;
-            Nullable<double> iy = this.GetValue(TranslateYProperty) as Nullable<double>;
-            if (ix.HasValue && iy.HasValue)
-                this.tracer.Margin = new Thickness(ix.Value, iy.Value, 0, 0);
-            Nullable<double> dx = this.GetValue(ScaleXProperty) as Nullable<double>;
-            Nullable<double> dy = this.GetValue(ScaleYProperty) as Nullable<double>;
-            if (dx.HasValue)
-                this.tracer.Width = dx.Value;
-            if (dy.HasValue)
-                this.tracer.Height = dy.Value;
+            if (this.Tracer != null)
+                this.tracer.Update(this.Tracer.VisualLocation, e.NewSize, this.Tracer.VisualScale);
         }
     }
 }
