@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Maths"
-             mc:Ignorable="d" x:Name="w">
-    <Grid Focusable="False">
+             mc:Ignorable="d" x:Name="w" SizeChanged="w_SizeChanged">
+    <Grid Focusable="False" ClipToBounds="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="60"/>
@@ -22,8 +22,8 @@
                 <Image Source="sub.png"/>
             </RepeatButton>
         </DockPanel>
-        <Border SnapsToDevicePixels="False" BorderBrush="Black" BorderThickness="2" Name="container" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2">
+        <ScrollViewer Name="container" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Background="Black" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <local:Tracer2D x:Name="tracer"/>
-        </Border>
+        </ScrollViewer>
     </Grid>
 </UserControl>

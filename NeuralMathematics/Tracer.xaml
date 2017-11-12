@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NeuralMathematics"
         xmlns:Maths="clr-namespace:Maths;assembly=Maths" x:Class="NeuralMathematics.Tracer" mc:Ignorable="d" Name="w" Title="Tracer" Width="320" Height="200">
-    <Border BorderBrush="GreenYellow" BorderThickness="3" SnapsToDevicePixels="False">
+    <Border BorderBrush="GreenYellow" BorderThickness="3">
         <Maths:ClipBox Name="c"/>
     </Border>
 </Window>

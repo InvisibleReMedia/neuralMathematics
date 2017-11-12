@@ -110,8 +110,8 @@ namespace Maths
             this.pixels = p;
             this.visualLocation = new Point(0.0d, 0.0d);
             this.visualSize = new Size(200.0d, 200.0d);
-            this.imageSize = this.ComputeImageSize();
             this.areas = this.ComputeCuttedAreas();
+            this.imageSize = new Size(this.areas[0, 0].Width * this.columnSize, this.areas[0, 0].Height * this.rowSize);
             ra = new Random();
         }
 
@@ -219,7 +219,7 @@ namespace Maths
         /// <returns>total size of image</returns>
         protected Size ComputeImageSize()
         {
-            return new Size(this.ComputeImageWidth(this.depth), this.ComputeImageHeight(this.depth));
+            return new Size(this.ComputeImageWidth(this.depth + 1), this.ComputeImageHeight(this.depth + 1));
         }
 
         /// <summary>
@@ -317,32 +317,23 @@ namespace Maths
             DrawingGroup dg = new DrawingGroup();
             DrawingContext dc = dg.Open();
 
-            Size first = this.ComputeCuttedAreas()[0, 0];
-            // Background
-            dc.DrawRectangle(Brushes.GreenYellow, new Pen(Brushes.Black, 1), new Rect(0, 0, first.Width * this.columnSize, first.Height * this.rowSize));
+            Size first = this.areas[0, 0];
+
+            dc.DrawRectangle(new SolidColorBrush(Colors.Beige),
+                             null,
+                             new Rect(0, 0, first.Width * this.columnSize, first.Height * this.rowSize));
+            Point up, bottom, left, right;
+            up = new Point(first.Width / 2.0d, 0.0d);
+            bottom = new Point(first.Width / 2.0d, first.Height);
+            left = new Point(0.0d, first.Height / 2.0d);
+            right = new Point(first.Width, first.Height / 2.0d);
 
             for (int indexRow = 0; indexRow < this.rowSize; ++indexRow)
             {
                 for (int indexColumn = 0; indexColumn < this.columnSize; ++indexColumn)
                 {
-                    dc.DrawRectangle(new SolidColorBrush(Color.FromArgb(255, Convert.ToByte(ra.Next(255)),
-                                                                Convert.ToByte(ra.Next(255)),
-                                                                Convert.ToByte(ra.Next(255)))),
-                                                         new Pen(Brushes.Black, 1.0),
-                                                         new Rect(first.Width * (double)indexColumn, first.Height * (double)indexRow, first.Width, first.Height));
-                    //DrawingBrush db = new DrawingBrush();
-                    //db.Stretch = Stretch.Fill;
-                    //LineGeometry[] lines = new LineGeometry[2];
-
-                    //lines[0] = new LineGeometry(new Point(first.Width / 2.0d, 0.0d), new Point(first.Width / 2.0d, first.Height));
-                    //lines[1] = new LineGeometry(new Point(0.0d, first.Height / 2.0d), new Point(first.Width, first.Height / 2.0d));
-
-                    //GeometryGroup g = new GeometryGroup();
-                    //for(int i = 0; i < 2; ++i) g.Children.Add(lines[i]);
-                    //GeometryDrawing gd = new GeometryDrawing();
-                    //gd.Geometry = g;
-                    //gd.Pen = new Pen(Brushes.Red, 1.0d);
-                    //db.Drawing = gd;
+                    dc.DrawLine(new Pen(Brushes.Red, 1.0d), up, bottom);
+                    dc.DrawLine(new Pen(Brushes.Red, 1.0d), left, right);
                 }
             }
             dc.Close();
@@ -368,18 +359,26 @@ namespace Maths
             Task.Factory.StartNew(() =>
             {
                 owner.Invoke(() => {
+
                     if (this.boundsChanged)
                     {
                         this.drawing = this.Draw();
                         Rectangle r = new Rectangle();
-                        r.RenderSize = this.drawing.Bounds.Size;
+                        r.Width = this.imageSize.Width;
+                        r.Height = this.imageSize.Height;
                         r.Fill = new DrawingBrush(this.drawing);
+                        r.CacheMode = new BitmapCache();
                         attach.Content = r;
                         this.boundsChanged = false;
                     }
-                    else
-                    {
-                    }
+                    Rectangle re = attach.Content as Rectangle;
+                    re.RenderSize = this.imageSize;
+                    TransformGroup tg = new TransformGroup();
+                    ScaleTransform s = new ScaleTransform(scale, scale);
+                    TranslateTransform t = new TranslateTransform(left, right);
+                    tg.Children.Add(s);
+                    tg.Children.Add(t);
+                    re.LayoutTransform = tg;
                 });
             });
         }
