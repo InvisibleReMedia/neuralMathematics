@@ -109,15 +109,76 @@
             ClipBox
             </summary>
         </member>
+        <member name="F:Maths.ClipBox.TranslateXProperty">
+            <summary>
+            Translation on x axis to show a partial of picture
+            </summary>
+        </member>
+        <member name="F:Maths.ClipBox.TranslateYProperty">
+            <summary>
+            Translation on y axis to show a partial of picture
+            </summary>
+        </member>
         <member name="F:Maths.ClipBox.ScaleProperty">
             <summary>
             Scale on x and y axis to zoom into picture
+            </summary>
+        </member>
+        <member name="F:Maths.ClipBox.startedMousePosition">
+            <summary>
+            Point where starting mouse moving arround
+            </summary>
+        </member>
+        <member name="F:Maths.ClipBox.currentTranslation">
+            <summary>
+            Point where translation has started
+            </summary>
+        </member>
+        <member name="F:Maths.ClipBox.duringMove">
+            <summary>
+            Enable mouse moving control
             </summary>
         </member>
         <member name="M:Maths.ClipBox.#ctor">
             <summary>
             Default constructor
             </summary>
+        </member>
+        <member name="M:Maths.ClipBox.mouseOff(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            mouse leave event
+            </summary>
+            <param name="sender">ui origin</param>
+            <param name="e">mouse args</param>
+        </member>
+        <member name="M:Maths.ClipBox.mouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            mouse move arround control
+            </summary>
+            <param name="sender">ui origin</param>
+            <param name="e">mouse args</param>
+        </member>
+        <member name="M:Maths.ClipBox.Translate(System.Double,System.Double)">
+            <summary>
+            Translation on x and y axis
+            </summary>
+            <param name="dx">x move</param>
+            <param name="dy">y move</param>
+            <returns>true if not out of bounds</returns>
+        </member>
+        <member name="M:Maths.ClipBox.mouseOn(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            When the mouse button was pressed down
+            </summary>
+            <param name="sender">ui origin</param>
+            <param name="e">mouse args</param>
+        </member>
+        <member name="M:Maths.ClipBox.Scale(System.Double)">
+            <summary>
+            Scale image
+            </summary>
+            <param name="d">number &gt; 0.0</param>
+            <returns>true if not out of bounds</returns>
         </member>
         <member name="M:Maths.ClipBox.increaseZoom_Click(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
@@ -1182,71 +1243,15 @@
             Tracer2D
             </summary>
         </member>
-        <member name="F:Maths.Tracer2D.TranslateXProperty">
-            <summary>
-            Translation on x axis to show a partial of picture
-            </summary>
-        </member>
-        <member name="F:Maths.Tracer2D.TranslateYProperty">
-            <summary>
-            Translation on y axis to show a partial of picture
-            </summary>
-        </member>
         <member name="F:Maths.Tracer2D.DistributedTracerProperty">
             <summary>
             Property to set the graphical tracer algorithm
-            </summary>
-        </member>
-        <member name="F:Maths.Tracer2D.startedMousePosition">
-            <summary>
-            Point where starting mouse moving arround
-            </summary>
-        </member>
-        <member name="F:Maths.Tracer2D.duringMove">
-            <summary>
-            Enable mouse moving control
             </summary>
         </member>
         <member name="M:Maths.Tracer2D.#ctor">
             <summary>
             Default constructor
             </summary>
-        </member>
-        <member name="M:Maths.Tracer2D.mouseOff(System.Object,System.Windows.Input.MouseEventArgs)">
-            <summary>
-            mouse leave event
-            </summary>
-            <param name="sender">ui origin</param>
-            <param name="e">mouse args</param>
-        </member>
-        <member name="M:Maths.Tracer2D.mouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
-            <summary>
-            mouse move arround control
-            </summary>
-            <param name="sender">ui origin</param>
-            <param name="e">mouse args</param>
-        </member>
-        <member name="M:Maths.Tracer2D.mouseOn(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <summary>
-            When the mouse button was pressed down
-            </summary>
-            <param name="sender">ui origin</param>
-            <param name="e">mouse args</param>
-        </member>
-        <member name="M:Maths.Tracer2D.Translate(System.Double,System.Double)">
-            <summary>
-            Translation
-            </summary>
-            <param name="dx">x move</param>
-            <param name="dy">y move</param>
-            <returns>true if done</returns>
-        </member>
-        <member name="M:Maths.Tracer2D.Scale(System.Double)">
-            <summary>
-            Scale image
-            </summary>
-            <param name="d">number &lt; 1.0</param>
-            <returns>true if done</returns>
         </member>
         <member name="M:Maths.Tracer2D.Update(System.Windows.Point,System.Windows.Size,System.Double)">
             <summary>

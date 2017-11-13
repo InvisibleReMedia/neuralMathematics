@@ -334,7 +334,19 @@ namespace Maths
                 {
                     dc.DrawLine(new Pen(Brushes.Red, 1.0d), up, bottom);
                     dc.DrawLine(new Pen(Brushes.Red, 1.0d), left, right);
+                    up.X += first.Width;
+                    bottom.X += first.Width;
+                    left.X += first.Width;
+                    right.X += first.Width;
                 }
+                up.Y += first.Height;
+                bottom.Y += first.Height;
+                left.Y += first.Height;
+                right.Y += first.Height;
+                up.X = first.Width / 2.0d;
+                bottom.X = first.Width / 2.0d;
+                left.X = 0.0d;
+                right.X = first.Width;
             }
             dc.Close();
             return dg;
@@ -375,9 +387,7 @@ namespace Maths
                     re.RenderSize = this.imageSize;
                     TransformGroup tg = new TransformGroup();
                     ScaleTransform s = new ScaleTransform(scale, scale);
-                    TranslateTransform t = new TranslateTransform(left, right);
                     tg.Children.Add(s);
-                    tg.Children.Add(t);
                     re.LayoutTransform = tg;
                 });
             });
