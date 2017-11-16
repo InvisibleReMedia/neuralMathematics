@@ -32,7 +32,7 @@ namespace NeuralMathematics
             Maths.Vector v = new Maths.Vector(bornes[0], bornes[1]);
             Coordinates s = new Coordinates(0.1d, 0.1d);
             MovingCoordinates mc = new MovingCoordinates(v, s);
-            DistributedTracer2D d = new DistributedTracer2D(mc, 2, 2, 1, new Size(1.0d, 1.0d));
+            DistributedTracer2D d = new DistributedTracer2D(mc, 2, 2, 3, new Size(1.0d, 1.0d));
             this.c.Tracer = d;
         }
 

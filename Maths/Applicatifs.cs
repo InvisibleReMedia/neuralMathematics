@@ -480,6 +480,17 @@ namespace Maths
             return fd;
         }
 
+        public static FlowDocument ComputeTransformationCoefficientPolynome2()
+        {
+
+            FlowDocument fd = new FlowDocument();
+            Wording w = new Wording("Transformation du coefficient b dans un polynôme d'ordre 2", "Calcul des solutions de l'équation du polynôme d'ordre 2");
+
+            Texte t1 = new Texte("");
+            SequenceProof sp2 = new SequenceProof(t2, eq2);
+            return fd;
+        }
+
         /// <summary>
         /// Computes image size
         /// </summary>

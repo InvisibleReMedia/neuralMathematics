@@ -307,47 +307,55 @@ namespace Maths
         }
 
         /// <summary>
+        /// Draw grid
+        /// </summary>
+        /// <param name="dc">drawing context</param>
+        /// <param name="depth">depth</param>
+        /// <param name="start">starting point</param>
+        private void Draw(DrawingContext dc, uint depth, Point start)
+        {
+
+            if (depth < this.areas.GetLength(0))
+            {
+                int level = Convert.ToInt32(depth);
+                Size first = this.areas[level, level];
+
+
+                Point current = new Point(start.X + first.Width / 2.0d, start.Y + first.Height / 2.0d);
+                Point w = new Point(current.X, current.Y);
+                Point h = new Point(current.X, current.Y);
+                Size dw = new Size(0.0d, first.Height * this.rowSize);
+                Size dh = new Size(first.Width * this.columnSize, 0.0d);
+
+                for (int indexRow = 0; indexRow < this.rowSize; ++indexRow)
+                {
+                    for (int indexColumn = 0; indexColumn < this.columnSize; ++indexColumn)
+                    {
+                        dc.DrawLine(new Pen(Brushes.Red, 1.0d), new Point(w.X, w.Y), new Point(w.X + dw.Width, w.Y + dw.Height));
+                        dc.DrawLine(new Pen(Brushes.Red, 1.0d), new Point(h.X, h.Y), new Point(h.X + dh.Width, h.Y + dh.Height));
+                        //this.Draw(dc, depth + 1, new Point(start.X + first.Width * indexColumn, start.Y + first.Height * indexRow));
+                        w.X += first.Width;
+                    }
+                    w.X = current.X;
+                    h.Y += first.Height;
+                }
+            }
+
+        }
+
+        /// <summary>
         /// A l'aide de la taille de l'image,
         /// du nombre de colonnes et du nombres de lignes,
         /// des bornes de la graduation et de
-        /// la fonction mathématique, créer une image
+        /// la fonction mathématique, dessiner le graphique
         /// </summary>
         public DrawingGroup Draw()
         {
             DrawingGroup dg = new DrawingGroup();
             DrawingContext dc = dg.Open();
 
-            Size first = this.areas[0, 0];
+            this.Draw(dc, 1, new Point(0.0d, 0.0d));
 
-            dc.DrawRectangle(new SolidColorBrush(Colors.Beige),
-                             null,
-                             new Rect(0, 0, first.Width * this.columnSize, first.Height * this.rowSize));
-            Point up, bottom, left, right;
-            up = new Point(first.Width / 2.0d, 0.0d);
-            bottom = new Point(first.Width / 2.0d, first.Height);
-            left = new Point(0.0d, first.Height / 2.0d);
-            right = new Point(first.Width, first.Height / 2.0d);
-
-            for (int indexRow = 0; indexRow < this.rowSize; ++indexRow)
-            {
-                for (int indexColumn = 0; indexColumn < this.columnSize; ++indexColumn)
-                {
-                    dc.DrawLine(new Pen(Brushes.Red, 1.0d), up, bottom);
-                    dc.DrawLine(new Pen(Brushes.Red, 1.0d), left, right);
-                    up.X += first.Width;
-                    bottom.X += first.Width;
-                    left.X += first.Width;
-                    right.X += first.Width;
-                }
-                up.Y += first.Height;
-                bottom.Y += first.Height;
-                left.Y += first.Height;
-                right.Y += first.Height;
-                up.X = first.Width / 2.0d;
-                bottom.X = first.Width / 2.0d;
-                left.X = 0.0d;
-                right.X = first.Width;
-            }
             dc.Close();
             return dg;
             
