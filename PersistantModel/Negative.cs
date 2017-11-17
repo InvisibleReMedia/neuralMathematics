@@ -62,6 +62,18 @@ namespace PersistantModel
         #region Methods
 
         /// <summary>
+        /// Transforms equation object into a tex representation
+        /// </summary>
+        /// <returns>tex representation</returns>
+        public override string ToTex()
+        {
+            string output = string.Empty;
+            if (this.InnerOperand != null)
+                output = @"{\left[-\left(" + this.InnerOperand.ToTex() + @"\right)\right]}";
+            return output;
+        }
+
+        /// <summary>
         /// Create a new addition class
         /// </summary>
         protected override IArithmetic Create()

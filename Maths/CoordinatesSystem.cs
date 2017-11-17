@@ -460,6 +460,31 @@ namespace Maths
             return dest;
         }
 
+        /// <summary>
+        /// Place a point onto image
+        /// </summary>
+        /// <param name="c">current coordinates</param>
+        /// <param name="desiredSize">desired size</param>
+        /// <returns>a point</returns>
+        public Coordinates Place(Coordinates c, params double[] desiredSize)
+        {
+            Coordinates src = c;
+            Coordinates dest = new Coordinates(c.Dimension);
+            Coordinates currentStep = this.steps;
+            Coordinates current = dest;
+            Coordinates from = this.limit.From;
+            System.Collections.IEnumerator e = desiredSize.GetEnumerator();
+            while (src != null && e.MoveNext())
+            {
+                current.Value = ((src.Value - from.Value) / currentStep.Value) * ((double)e.Current);
+                from = from.Euclidian;
+                currentStep = currentStep.Euclidian;
+                current = current.Euclidian;
+                src = src.Euclidian;
+            }
+            return dest;
+        }
+
         #endregion
 
     }

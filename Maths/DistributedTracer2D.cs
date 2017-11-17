@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersistantModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,17 @@ namespace Maths
         /// <summary>
         /// profondeur de tâches
         /// </summary>
-        private uint depth;
+        private uint maxDepth;
+
+        /// <summary>
+        /// y = Function(x)
+        /// </summary>
+        private Arithmetic function;
+
+        /// <summary>
+        /// x = Function(y)
+        /// </summary>
+        private Arithmetic[] inverted;
 
         /// <summary>
         /// Bounds of coordinates
@@ -106,7 +117,7 @@ namespace Maths
             this.boundsChanged = true;
             this.columnSize = column;
             this.rowSize = row;
-            this.depth = depth;
+            this.maxDepth = depth;
             this.pixels = p;
             this.visualLocation = new Point(0.0d, 0.0d);
             this.visualSize = new Size(200.0d, 200.0d);
@@ -219,7 +230,7 @@ namespace Maths
         /// <returns>total size of image</returns>
         protected Size ComputeImageSize()
         {
-            return new Size(this.ComputeImageWidth(this.depth + 1), this.ComputeImageHeight(this.depth + 1));
+            return new Size(this.ComputeImageWidth(this.maxDepth + 1), this.ComputeImageHeight(this.maxDepth + 1));
         }
 
         /// <summary>
@@ -259,7 +270,7 @@ namespace Maths
             double height = this.ComputeHeightSteps();
             double dividedHeight = height;
             List<double> dividedList = new List<double>();
-            for(uint indexDepth = depth; indexDepth > 0; --indexDepth)
+            for(uint indexDepth = maxDepth; indexDepth > 0; --indexDepth)
             {
                 dividedList.Add(dividedHeight);
                 dividedHeight = dividedHeight / (double)this.rowSize;
@@ -276,7 +287,7 @@ namespace Maths
             double width = this.ComputeWidthSteps();
             double dividedWidth = width;
             List<double> dividedList = new List<double>();
-            for (uint indexDepth = depth; indexDepth > 0; --indexDepth)
+            for (uint indexDepth = maxDepth; indexDepth > 0; --indexDepth)
             {
                 dividedList.Add(dividedWidth);
                 dividedWidth = dividedWidth / (double)this.columnSize;
@@ -290,7 +301,7 @@ namespace Maths
         /// <returns>size of each area</returns>
         protected Size[,] ComputeCuttedAreas()
         {
-            int depth = Convert.ToInt32(this.depth);
+            int depth = Convert.ToInt32(this.maxDepth);
             Size[,] tab = new Size[depth, depth];
             IEnumerable<double> widthAreas = this.ComputeCuttedWidthAreas();
             IEnumerable<double> heightAreas = this.ComputeCuttedHeightAreas();
@@ -309,38 +320,73 @@ namespace Maths
         /// <summary>
         /// Draw grid
         /// </summary>
-        /// <param name="dc">drawing context</param>
+        /// <param name="owner">dispatcher</param>
+        /// <param name="container">content control</param>
+        /// <param name="dg">drawing group</param>
         /// <param name="depth">depth</param>
         /// <param name="start">starting point</param>
-        private void Draw(DrawingContext dc, uint depth, Point start)
+        private void DrawGrid(Dispatcher owner, ContentControl container, DrawingGroup dg, uint depth, Point start)
         {
 
-            if (depth < this.areas.GetLength(0))
+            int level = Convert.ToInt32(depth + 1);
+
+            DrawingContext dc = dg.Append();
+            double size = (3 - level) / 3.0d;
+            Size first = this.areas[depth, depth];
+
+
+            Point current = new Point(start.X + first.Width / 2.0d, start.Y + first.Height / 2.0d);
+            Point w = new Point(current.X, start.Y);
+            Point h = new Point(start.X, current.Y);
+            Size dw = new Size(0.0d, first.Height * (double)this.rowSize);
+            Size dh = new Size(first.Width * (double)this.columnSize, 0.0d);
+
+            for (int indexRow = 0; indexRow < this.rowSize; ++indexRow)
             {
-                int level = Convert.ToInt32(depth);
-                Size first = this.areas[level, level];
-
-
-                Point current = new Point(start.X + first.Width / 2.0d, start.Y + first.Height / 2.0d);
-                Point w = new Point(current.X, current.Y);
-                Point h = new Point(current.X, current.Y);
-                Size dw = new Size(0.0d, first.Height * this.rowSize);
-                Size dh = new Size(first.Width * this.columnSize, 0.0d);
-
-                for (int indexRow = 0; indexRow < this.rowSize; ++indexRow)
+                for (int indexColumn = 0; indexColumn < this.columnSize; ++indexColumn)
                 {
-                    for (int indexColumn = 0; indexColumn < this.columnSize; ++indexColumn)
-                    {
-                        dc.DrawLine(new Pen(Brushes.Red, 1.0d), new Point(w.X, w.Y), new Point(w.X + dw.Width, w.Y + dw.Height));
-                        dc.DrawLine(new Pen(Brushes.Red, 1.0d), new Point(h.X, h.Y), new Point(h.X + dh.Width, h.Y + dh.Height));
-                        //this.Draw(dc, depth + 1, new Point(start.X + first.Width * indexColumn, start.Y + first.Height * indexRow));
-                        w.X += first.Width;
-                    }
-                    w.X = current.X;
-                    h.Y += first.Height;
+                    dc.DrawLine(new Pen(Brushes.Red, size), new Point(w.X, w.Y), new Point(w.X + dw.Width, w.Y + dw.Height));
+                    dc.DrawLine(new Pen(Brushes.Red, size), new Point(h.X, h.Y), new Point(h.X + dh.Width, h.Y + dh.Height));
+                    if (level < 2)
+                        this.TaskDrawGrid(owner, container, dg, depth + 1, new Point(start.X + first.Width * indexColumn, start.Y + first.Height * indexRow));
+                    w.X += first.Width;
                 }
+                w.X = current.X;
+                h.Y += first.Height;
             }
+            dc.Close();
 
+        }
+
+        /// <summary>
+        /// Task Draw grid
+        /// </summary>
+        /// <param name="owner">owner dispatcher</param>
+        /// <param name="container">container</param>
+        /// <param name="dg">drawing group</param>
+        /// <param name="depth">depth</param>
+        /// <param name="start">starting point</param>
+        private void TaskDrawGrid(Dispatcher owner, ContentControl container, DrawingGroup dg, uint depth, Point start)
+        {
+            try
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    owner.Invoke(() =>
+                    {
+                        this.DrawGrid(owner, container, dg, depth, start);
+                    });
+
+                }).ContinueWith(t =>
+                {
+                    owner.Invoke(() =>
+                    {
+                        Rectangle re = container.Content as Rectangle;
+                        re.Fill = new DrawingBrush(this.drawing);
+                    });
+                });
+            }
+            catch (System.Threading.ThreadInterruptedException) { }
         }
 
         /// <summary>
@@ -349,16 +395,95 @@ namespace Maths
         /// des bornes de la graduation et de
         /// la fonction mathématique, dessiner le graphique
         /// </summary>
-        public DrawingGroup Draw()
+        /// <param name="attach">content control</param>
+        private DrawingGroup Draw(ContentControl attach)
         {
             DrawingGroup dg = new DrawingGroup();
+
             DrawingContext dc = dg.Open();
-
-            this.Draw(dc, 1, new Point(0.0d, 0.0d));
-
+            dc.DrawRectangle(Brushes.Beige, new Pen(Brushes.Red, 1.0), new Rect(0, 0, this.imageSize.Width, this.imageSize.Height));
             dc.Close();
+
+            this.TaskDrawGrid(Dispatcher.CurrentDispatcher, attach, dg, 0, new Point(0.0d, 0.0d));
+            this.TaskDrawPoints(Dispatcher.CurrentDispatcher, attach, dg);
+
             return dg;
             
+        }
+
+        /// <summary>
+        /// Draw a point onto an image
+        /// </summary>
+        /// <param name="dg">drawing group</param>
+        /// <param name="x">x axis</param>
+        /// <param name="y">y axis</param>
+        private void DrawPoint(DrawingGroup dg, double x, double y)
+        {
+            DrawingContext dc = dg.Append();
+            dc.DrawRectangle(Brushes.OrangeRed, null, new Rect(x, y, this.pixels.Width, this.pixels.Height));
+            dc.Close();
+        }
+
+        /// <summary>
+        /// Task to draw points
+        /// </summary>
+        /// <param name="owner">owner ui</param>
+        /// <param name="container">container</param>
+        /// <param name="dg">drawing group</param>
+        private void TaskDrawPoints(Dispatcher owner, ContentControl container, DrawingGroup dg)
+        {
+            if (this.function != null)
+            {
+                try
+                {
+                    Task.Factory.StartNew(() =>
+                    {
+                        try
+                        {
+                            MovingVector mv = this.bounds.GenerateMove();
+                            foreach (double d in mv.Values)
+                            {
+                                this.function.Let("x", d);
+                                double y = Convert.ToDouble(this.function.Calculate(true));
+                                if (y >= this.bounds.Vector.From.Euclidian.Value && y <= this.bounds.Vector.To.Euclidian.Value)
+                                {
+                                    Coordinates p = this.bounds.Floor(new Coordinates(d, y));
+                                    p = this.bounds.Place(p, this.imageSize.Width, this.imageSize.Height);
+                                    owner.Invoke(() =>
+                                    {
+                                        this.DrawPoint(dg, p.Value, p.Euclidian.Value);
+                                    });
+                                }
+                            }
+                        }
+                        catch (FormatException) { }
+
+                    }).ContinueWith(t =>
+                    {
+                        owner.Invoke(() =>
+                        {
+                            Rectangle re = container.Content as Rectangle;
+                            re.Fill = new DrawingBrush(this.drawing);
+                        });
+                    });
+                }
+                catch (System.Threading.ThreadInterruptedException) { }
+            }
+        }
+
+        /// <summary>
+        /// Set function(x) and rec(f)
+        /// </summary>
+        /// <param name="f">arithmetic function</param>
+        /// <param name="inv">inverted</param>
+        public void SetFunction(Arithmetic f, params Arithmetic[] inv)
+        {
+            this.function = f.Clone() as Arithmetic;
+            this.inverted = new Arithmetic[inv.Length];
+            for(int index = 0; index < inv.Length; ++index)
+            {
+                this.inverted[index] = inv[index].Clone() as Arithmetic;
+            }
         }
 
         /// <summary>
@@ -382,17 +507,17 @@ namespace Maths
 
                     if (this.boundsChanged)
                     {
-                        this.drawing = this.Draw();
+                        this.drawing = this.Draw(attach);
                         Rectangle r = new Rectangle();
+                        r.Fill = new DrawingBrush(this.drawing);
                         r.Width = this.imageSize.Width;
                         r.Height = this.imageSize.Height;
-                        r.Fill = new DrawingBrush(this.drawing);
+                        r.RenderSize = this.imageSize;
                         r.CacheMode = new BitmapCache();
                         attach.Content = r;
                         this.boundsChanged = false;
                     }
                     Rectangle re = attach.Content as Rectangle;
-                    re.RenderSize = this.imageSize;
                     TransformGroup tg = new TransformGroup();
                     ScaleTransform s = new ScaleTransform(scale, scale);
                     tg.Children.Add(s);

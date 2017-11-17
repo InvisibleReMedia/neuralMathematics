@@ -83,8 +83,8 @@ namespace NeuralMathematics
                     this.doc.Document = Applicatifs.Menu();
                     this.doc.UpdateLayout();
                     break;
-                case "Image":
-                    this.doc.Document = Applicatifs.ComputeImageSize();
+                case "ComputeTransformationCoefficientPolynome2":
+                    this.doc.Document = Applicatifs.ComputeTransformationCoefficientPolynome2();
                     this.doc.UpdateLayout();
                     break;
                 case "Close":

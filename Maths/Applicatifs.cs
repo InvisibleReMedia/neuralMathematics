@@ -75,8 +75,8 @@ namespace Maths
             b4.Click += Button_Click;
             SetButtonStyle(b4);
             Button b6 = new Button();
-            b6.Name = "Image";
-            b6.Content = "Calcul de la taille de l'image";
+            b6.Name = "ComputeTransformationCoefficientPolynome2";
+            b6.Content = "Solutions d'un polynôme d'ordre 2 par transformation du coefficient";
             b6.Click += Button_Click;
             SetButtonStyle(b6);
             TableCell tc = new TableCell(new BlockUIContainer(b1));
@@ -480,14 +480,55 @@ namespace Maths
             return fd;
         }
 
+        /// <summary>
+        /// Compute a transformation of the coefficient named as b to resolve 2-polynomial
+        /// </summary>
+        /// <returns></returns>
         public static FlowDocument ComputeTransformationCoefficientPolynome2()
         {
 
-            FlowDocument fd = new FlowDocument();
             Wording w = new Wording("Transformation du coefficient b dans un polynôme d'ordre 2", "Calcul des solutions de l'équation du polynôme d'ordre 2");
 
-            Texte t1 = new Texte("");
+            Texte t1 = new Texte("Quelque soit un réel x");
+            Equal eq1 = new Equal(new UnknownTerm("y"), new Sum(new Multiplication(new Coefficient("a"), new Power(new UnknownTerm("x"), new NumericValue(2.0d))),
+                                                                new Multiplication(new Coefficient("b"), new UnknownTerm("x")),
+                                                                new Coefficient("c")));
+            Texte t2 = new Texte("Multiplier et diviser par 2 sur le coefficient b de l'équation du polynôme d'ordre 2");
+            Equal eq2 = new Equal(new UnknownTerm("y"), new Sum(new Multiplication(new Coefficient("a"), new Power(new UnknownTerm("x"), new NumericValue(2.0d))),
+                                                                new Product(new NumericValue(2.0d),
+                                                                            new Division(new Coefficient("b"), new NumericValue(2.0d)), new UnknownTerm("x")),
+                                                                new Coefficient("c")));
+            Texte t3 = new Texte("Ajouter et retrancher le terme constant b/2 élevé au carré");
+            Equal eq3 = new Equal(new UnknownTerm("y"), new Sum(new Multiplication(new Coefficient("a"), new Power(new UnknownTerm("x"), new NumericValue(2.0d))),
+                                                                new Product(new NumericValue(2.0d),
+                                                                            new Division(new Coefficient("b"), new NumericValue(2.0d)), new UnknownTerm("x")),
+                                                                new Coefficient("c"), new Division(new Power(new Coefficient("b"), new NumericValue(2.0d)), new NumericValue(4.0d)), new Negative(new Division(new Power(new Coefficient("b"), new NumericValue(2.0d)), new NumericValue(4.0d)))));
+            SequenceProof sp1 = new SequenceProof(t1, eq1);
             SequenceProof sp2 = new SequenceProof(t2, eq2);
+            SequenceProof sp3 = new SequenceProof(t3, eq3);
+
+
+            Answer a1 = new Answer("Equation du polynôme d'ordre 2", sp1);
+            Answer a2 = new Answer("Multiplication par 2", sp2);
+            Answer a3 = new Answer("Ajout d'un terme constant", sp3);
+
+            Exercice e1 = new Exercice(1, "Ecrire l'équation d'un polynôme d'ordre 2", "Choisissez les lettres x pour l'abscisse et y pour l'ordonnée", a1);
+            Exercice e2 = new Exercice(2, "Multiplier par 2 le terme b et diviser par 2", "le nombre 2 s'annule", a2);
+            Exercice e3 = new Exercice(3, "Ajouter et retrancher le carré de b/2", "le nombre 2 forme une équation solution", a3);
+            w.Add(e1);
+            w.Add(e2);
+            w.Add(e3);
+
+            FlowDocument fd = new FlowDocument();
+
+            Button but = new Button();
+            but.Name = "GoBack";
+            but.Content = "Retour";
+            but.Click += Button_Click;
+            SetButtonStyle(but);
+            fd.Blocks.Add(new BlockUIContainer(but));
+
+            w.ToDocument(fd);
             return fd;
         }
 

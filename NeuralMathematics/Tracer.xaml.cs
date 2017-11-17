@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Maths;
+using PersistantModel;
 
 namespace NeuralMathematics
 {
@@ -32,7 +33,11 @@ namespace NeuralMathematics
             Maths.Vector v = new Maths.Vector(bornes[0], bornes[1]);
             Coordinates s = new Coordinates(0.1d, 0.1d);
             MovingCoordinates mc = new MovingCoordinates(v, s);
-            DistributedTracer2D d = new DistributedTracer2D(mc, 2, 2, 3, new Size(1.0d, 1.0d));
+            DistributedTracer2D d = new DistributedTracer2D(mc, 4, 4, 6, new Size(1.0d, 1.0d));
+            Addition a = new Addition(new Multiplication(new Coefficient("a"), new UnknownTerm("x")), new Coefficient("b"));
+            a.Let("a", 2.0d);
+            a.Let("b", 1.0d);
+            d.SetFunction(a);
             this.c.Tracer = d;
         }
 

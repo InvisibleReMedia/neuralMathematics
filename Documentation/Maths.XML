@@ -33,6 +33,16 @@
             Fonctions qui implémentent les documents (FlowDocument)
             </summary>
         </member>
+        <member name="E:Maths.Applicatifs.onButtonClick">
+            <summary>
+            Evenement sur click des boutons
+            </summary>
+        </member>
+        <member name="E:Maths.Applicatifs.ButtonClicked">
+            <summary>
+            Event handler for clicked button
+            </summary>
+        </member>
         <member name="M:Maths.Applicatifs.Menu">
             <summary>
             Fonction de menu
@@ -85,21 +95,17 @@
             Résolution polynôme ordre 2
             </summary>
         </member>
+        <member name="M:Maths.Applicatifs.ComputeTransformationCoefficientPolynome2">
+            <summary>
+            Compute a transformation of the coefficient named as b to resolve 2-polynomial
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Maths.Applicatifs.ComputeImageSize">
             <summary>
             Computes image size
             </summary>
             <returns></returns>
-        </member>
-        <member name="E:Maths.Applicatifs.onButtonClick">
-            <summary>
-            Evenement sur click des boutons
-            </summary>
-        </member>
-        <member name="E:Maths.Applicatifs.ButtonClicked">
-            <summary>
-            Event handler for clicked button
-            </summary>
         </member>
         <member name="T:Maths.ClipBox">
             <summary>
@@ -142,6 +148,11 @@
         <member name="M:Maths.ClipBox.#ctor">
             <summary>
             Default constructor
+            </summary>
+        </member>
+        <member name="P:Maths.ClipBox.Tracer">
+            <summary>
+            Gets or sets the tracer object
             </summary>
         </member>
         <member name="M:Maths.ClipBox.mouseOff(System.Object,System.Windows.Input.MouseEventArgs)">
@@ -211,11 +222,6 @@
         <member name="M:Maths.ClipBox.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="P:Maths.ClipBox.Tracer">
-            <summary>
-            Gets or sets the tracer object
             </summary>
         </member>
         <member name="T:Maths.Coordinates">
@@ -350,6 +356,16 @@
             </summary>
             <param name="m">move</param>
         </member>
+        <member name="P:Maths.CoordinateSystem.Dimension">
+            <summary>
+            Gets the dimension of this system
+            </summary>
+        </member>
+        <member name="P:Maths.CoordinateSystem.Coordinates">
+            <summary>
+            Gets all coordinates
+            </summary>
+        </member>
         <member name="M:Maths.CoordinateSystem.Add(System.Double[])">
             <summary>
             Add a new coordinates into this system
@@ -376,16 +392,6 @@
             <param name="nameTerms">terms identified by name and ordered as same to coords</param>
             <param name="coords">coordinate</param>
         </member>
-        <member name="P:Maths.CoordinateSystem.Dimension">
-            <summary>
-            Gets the dimension of this system
-            </summary>
-        </member>
-        <member name="P:Maths.CoordinateSystem.Coordinates">
-            <summary>
-            Gets all coordinates
-            </summary>
-        </member>
         <member name="T:Maths.MovingCoordinates">
             <summary>
             A movement
@@ -408,6 +414,16 @@
             <param name="v">vector limit</param>
             <param name="s">steps</param>
         </member>
+        <member name="P:Maths.MovingCoordinates.Vector">
+            <summary>
+            Gets the vector limit
+            </summary>
+        </member>
+        <member name="P:Maths.MovingCoordinates.Steps">
+            <summary>
+            Gets the steps for each dimension
+            </summary>
+        </member>
         <member name="M:Maths.MovingCoordinates.GenerateMove">
             <summary>
             Generates move steps
@@ -421,15 +437,13 @@
             <param name="c">coordinate</param>
             <returns>floor coordinate</returns>
         </member>
-        <member name="P:Maths.MovingCoordinates.Vector">
+        <member name="M:Maths.MovingCoordinates.Place(Maths.Coordinates,System.Double[])">
             <summary>
-            Gets the vector limit
+            Place a point onto image
             </summary>
-        </member>
-        <member name="P:Maths.MovingCoordinates.Steps">
-            <summary>
-            Gets the steps for each dimension
-            </summary>
+            <param name="c">current coordinates</param>
+            <param name="desiredSize">desired size</param>
+            <returns>a point</returns>
         </member>
         <member name="T:Maths.MovingVector">
             <summary>
@@ -476,6 +490,21 @@
             </summary>
             <param name="move">move</param>
         </member>
+        <member name="P:Maths.MovingVector.Dimension">
+            <summary>
+            Gets the dimension
+            </summary>
+        </member>
+        <member name="P:Maths.MovingVector.Values">
+            <summary>
+            List of each values as the movement
+            </summary>
+        </member>
+        <member name="P:Maths.MovingVector.Euclidian">
+            <summary>
+            Gets the euclidian sub-vector
+            </summary>
+        </member>
         <member name="M:Maths.MovingVector.Add(System.Double)">
             <summary>
             Add just one value on the first dimension
@@ -493,21 +522,6 @@
             Add multi-values of moving at each dimension
             </summary>
             <param name="positions">position list</param>
-        </member>
-        <member name="P:Maths.MovingVector.Dimension">
-            <summary>
-            Gets the dimension
-            </summary>
-        </member>
-        <member name="P:Maths.MovingVector.Values">
-            <summary>
-            List of each values as the movement
-            </summary>
-        </member>
-        <member name="P:Maths.MovingVector.Euclidian">
-            <summary>
-            Gets the euclidian sub-vector
-            </summary>
         </member>
         <member name="T:Maths.Line">
             <summary>
@@ -594,9 +608,19 @@
             Each task traces points
             </summary>
         </member>
-        <member name="F:Maths.DistributedTracer2D.depth">
+        <member name="F:Maths.DistributedTracer2D.maxDepth">
             <summary>
             profondeur de tâches
+            </summary>
+        </member>
+        <member name="F:Maths.DistributedTracer2D.function">
+            <summary>
+            y = Function(x)
+            </summary>
+        </member>
+        <member name="F:Maths.DistributedTracer2D.inverted">
+            <summary>
+            x = Function(y)
             </summary>
         </member>
         <member name="F:Maths.DistributedTracer2D.bounds">
@@ -669,6 +693,31 @@
             <param name="depth">depth</param>
             <param name="p">pixels size</param>
         </member>
+        <member name="P:Maths.DistributedTracer2D.VisualLocation">
+            <summary>
+            Position de l'image (en nombre de pixels)
+            </summary>
+        </member>
+        <member name="P:Maths.DistributedTracer2D.ImageSize">
+            <summary>
+            Taille de l'image (en nombre de pixels)
+            </summary>
+        </member>
+        <member name="P:Maths.DistributedTracer2D.Areas">
+            <summary>
+            Gets area set
+            </summary>
+        </member>
+        <member name="P:Maths.DistributedTracer2D.VisualSize">
+            <summary>
+            Gets or sets visual size
+            </summary>
+        </member>
+        <member name="P:Maths.DistributedTracer2D.VisualScale">
+            <summary>
+            Gets or sets visual scale
+            </summary>
+        </member>
         <member name="M:Maths.DistributedTracer2D.ComputeImageHeight(System.UInt32)">
             <summary>
             Function to compute the height of image
@@ -719,21 +768,57 @@
             </summary>
             <returns>size of each area</returns>
         </member>
-        <member name="M:Maths.DistributedTracer2D.Draw(System.Windows.Media.DrawingContext,System.UInt32,System.Windows.Point)">
+        <member name="M:Maths.DistributedTracer2D.DrawGrid(System.Windows.Threading.Dispatcher,System.Windows.Controls.ContentControl,System.Windows.Media.DrawingGroup,System.UInt32,System.Windows.Point)">
             <summary>
             Draw grid
             </summary>
-            <param name="dc">drawing context</param>
+            <param name="owner">dispatcher</param>
+            <param name="container">content control</param>
+            <param name="dg">drawing group</param>
             <param name="depth">depth</param>
             <param name="start">starting point</param>
         </member>
-        <member name="M:Maths.DistributedTracer2D.Draw">
+        <member name="M:Maths.DistributedTracer2D.TaskDrawGrid(System.Windows.Threading.Dispatcher,System.Windows.Controls.ContentControl,System.Windows.Media.DrawingGroup,System.UInt32,System.Windows.Point)">
+            <summary>
+            Task Draw grid
+            </summary>
+            <param name="owner">owner dispatcher</param>
+            <param name="container">container</param>
+            <param name="dg">drawing group</param>
+            <param name="depth">depth</param>
+            <param name="start">starting point</param>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.Draw(System.Windows.Controls.ContentControl)">
             <summary>
             A l'aide de la taille de l'image,
             du nombre de colonnes et du nombres de lignes,
             des bornes de la graduation et de
             la fonction mathématique, dessiner le graphique
             </summary>
+            <param name="attach">content control</param>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.DrawPoint(System.Windows.Media.DrawingGroup,System.Double,System.Double)">
+            <summary>
+            Draw a point onto an image
+            </summary>
+            <param name="dg">drawing group</param>
+            <param name="x">x axis</param>
+            <param name="y">y axis</param>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.TaskDrawPoints(System.Windows.Threading.Dispatcher,System.Windows.Controls.ContentControl,System.Windows.Media.DrawingGroup)">
+            <summary>
+            Task to draw points
+            </summary>
+            <param name="owner">owner ui</param>
+            <param name="container">container</param>
+            <param name="dg">drawing group</param>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.SetFunction(PersistantModel.Arithmetic,PersistantModel.Arithmetic[])">
+            <summary>
+            Set function(x) and rec(f)
+            </summary>
+            <param name="f">arithmetic function</param>
+            <param name="inv">inverted</param>
         </member>
         <member name="M:Maths.DistributedTracer2D.GetThumbnail(System.Double,System.Double,System.Double,System.Double,System.Double,System.Windows.Controls.ContentControl)">
             <summary>
@@ -745,31 +830,6 @@
             <param name="desiredHeight">hauteur demandée</param>
             <param name="scale">scale value</param>
             <param name="attach">container</param>
-        </member>
-        <member name="P:Maths.DistributedTracer2D.VisualLocation">
-            <summary>
-            Position de l'image (en nombre de pixels)
-            </summary>
-        </member>
-        <member name="P:Maths.DistributedTracer2D.ImageSize">
-            <summary>
-            Taille de l'image (en nombre de pixels)
-            </summary>
-        </member>
-        <member name="P:Maths.DistributedTracer2D.Areas">
-            <summary>
-            Gets area set
-            </summary>
-        </member>
-        <member name="P:Maths.DistributedTracer2D.VisualSize">
-            <summary>
-            Gets or sets visual size
-            </summary>
-        </member>
-        <member name="P:Maths.DistributedTracer2D.VisualScale">
-            <summary>
-            Gets or sets visual scale
-            </summary>
         </member>
         <member name="T:Maths.TemplateTracer2D">
             <summary>
@@ -905,6 +965,31 @@
             <param name="coef">coefficient equation</param>
             <param name="x">equation</param>
         </member>
+        <member name="P:Maths.MathematicEquation.IsCalculable">
+            <summary>
+            Gets true if equation is calculable
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.Coefficients">
+            <summary>
+            Gets all coefficients terms
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.Constants">
+            <summary>
+            Gets all constant values
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.UnknownTerms">
+            <summary>
+            Gets all unknown terms
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.Equation">
+            <summary>
+            Gets the underlying arithmetic operation
+            </summary>
+        </member>
         <member name="M:Maths.MathematicEquation.AsRepresented(System.String)">
             <summary>
             String representation of the algebraic equation
@@ -962,42 +1047,6 @@
             </summary>
             <returns>transformed equation</returns>
         </member>
-        <member name="P:Maths.MathematicEquation.IsCalculable">
-            <summary>
-            Gets true if equation is calculable
-            </summary>
-        </member>
-        <member name="P:Maths.MathematicEquation.Coefficients">
-            <summary>
-            Gets all coefficients terms
-            </summary>
-        </member>
-        <member name="P:Maths.MathematicEquation.Constants">
-            <summary>
-            Gets all constant values
-            </summary>
-        </member>
-        <member name="P:Maths.MathematicEquation.UnknownTerms">
-            <summary>
-            Gets all unknown terms
-            </summary>
-        </member>
-        <member name="P:Maths.MathematicEquation.Equation">
-            <summary>
-            Gets the underlying arithmetic operation
-            </summary>
-        </member>
-        <member name="M:Maths.GenericNeurone.Exec">
-            <summary>
-            Exécute le travail du neurone
-            </summary>
-        </member>
-        <member name="M:Maths.GenericNeurone.Learn">
-            <summary>
-            Apprentissage pour la construction
-            des neurones
-            </summary>
-        </member>
         <member name="P:Maths.GenericNeurone.Id">
             <summary>
             Identifiant unique
@@ -1011,6 +1060,17 @@
         <member name="P:Maths.GenericNeurone.Type">
             <summary>
             Type du neurone
+            </summary>
+        </member>
+        <member name="M:Maths.GenericNeurone.Exec">
+            <summary>
+            Exécute le travail du neurone
+            </summary>
+        </member>
+        <member name="M:Maths.GenericNeurone.Learn">
+            <summary>
+            Apprentissage pour la construction
+            des neurones
             </summary>
         </member>
         <member name="T:Maths.Exercice">
@@ -1065,6 +1125,11 @@
             </summary>
             <param name="eq">document element</param>
         </member>
+        <member name="P:Maths.SequenceProof.Items">
+            <summary>
+            Gets all items
+            </summary>
+        </member>
         <member name="M:Maths.SequenceProof.Add(Interfaces.IDocument[])">
             <summary>
             Ajout d'éléments dans la liste
@@ -1082,11 +1147,6 @@
             Transforms equation object into a string representation
             </summary>
             <returns>string representation</returns>
-        </member>
-        <member name="P:Maths.SequenceProof.Items">
-            <summary>
-            Gets all items
-            </summary>
         </member>
         <member name="T:Maths.TopLevelArithmeticModel">
             <summary>
@@ -1124,6 +1184,26 @@
             Default constructor
             </summary>
         </member>
+        <member name="P:Maths.TopLevelArithmeticModel.WordingList">
+            <summary>
+            Gets equation list
+            </summary>
+        </member>
+        <member name="P:Maths.TopLevelArithmeticModel.Version">
+            <summary>
+            Gets or sets version number
+            </summary>
+        </member>
+        <member name="P:Maths.TopLevelArithmeticModel.Title">
+            <summary>
+            Gets or sets the title
+            </summary>
+        </member>
+        <member name="P:Maths.TopLevelArithmeticModel.Revision">
+            <summary>
+            Gets or sets the revision number
+            </summary>
+        </member>
         <member name="M:Maths.TopLevelArithmeticModel.Create(System.String)">
             <summary>
             Create a new top level class
@@ -1144,26 +1224,6 @@
             </summary>
             <param name="fi">file info to take</param>
             <returns>object deserialized</returns>
-        </member>
-        <member name="P:Maths.TopLevelArithmeticModel.WordingList">
-            <summary>
-            Gets equation list
-            </summary>
-        </member>
-        <member name="P:Maths.TopLevelArithmeticModel.Version">
-            <summary>
-            Gets or sets version number
-            </summary>
-        </member>
-        <member name="P:Maths.TopLevelArithmeticModel.Title">
-            <summary>
-            Gets or sets the title
-            </summary>
-        </member>
-        <member name="P:Maths.TopLevelArithmeticModel.Revision">
-            <summary>
-            Gets or sets the revision number
-            </summary>
         </member>
         <member name="T:Maths.Tracer">
             <summary>
@@ -1261,6 +1321,11 @@
             Default constructor
             </summary>
         </member>
+        <member name="P:Maths.Tracer2D.Tracer">
+            <summary>
+            Gets or sets the tracer object
+            </summary>
+        </member>
         <member name="M:Maths.Tracer2D.Update(System.Windows.Point,System.Windows.Size,System.Double)">
             <summary>
             Mise à jour de la taille du tracé
@@ -1269,11 +1334,6 @@
         <member name="M:Maths.Tracer2D.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="P:Maths.Tracer2D.Tracer">
-            <summary>
-            Gets or sets the tracer object
             </summary>
         </member>
         <member name="T:Maths.Wording">
