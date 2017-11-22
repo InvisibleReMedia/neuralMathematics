@@ -45,6 +45,11 @@ namespace Maths
         private MovingCoordinates bounds;
 
         /// <summary>
+        /// Points
+        /// </summary>
+        private MovingVector points;
+
+        /// <summary>
         /// Number of columns
         /// </summary>
         private uint columnSize;
@@ -318,6 +323,38 @@ namespace Maths
         }
 
         /// <summary>
+        /// Draw point
+        /// </summary>
+        /// <param name="owner">dispatcher</param>
+        /// <param name="container">content control</param>
+        /// <param name="dg">drawing group</param>
+        private void DrawPoints(Dispatcher owner, ContentControl container, DrawingGroup dg)
+        {
+            owner.Invoke(() =>
+            {
+                DrawingContext dc = dg.Append();
+                Size size = this.areas[2, 2];
+                this.points = this.bounds.GenerateMove();
+                foreach (double w in this.points.Values)
+                {
+                    try
+                    {
+                        this.function.Let("x", w);
+                        double y = Convert.ToDouble(this.function.Calculate(true));
+                        Coordinates p = new Coordinates(w, y);
+                        if (p.Euclidian.Value >= this.bounds.Vector.From.Euclidian.Value && p.Euclidian.Value < this.bounds.Vector.To.Euclidian.Value)
+                        {
+                            p = this.bounds.Place(p, this.imageSize.Width, this.imageSize.Height);
+                            this.DrawPoint(dc, p.Value, p.Euclidian.Value, size.Width, size.Height);
+                        }
+                    }
+                    catch (FormatException) { }
+                }
+                dc.Close();
+            });
+        }
+
+        /// <summary>
         /// Draw grid
         /// </summary>
         /// <param name="owner">dispatcher</param>
@@ -334,12 +371,13 @@ namespace Maths
             double size = (3 - level) / 3.0d;
             Size first = this.areas[depth, depth];
 
-
             Point current = new Point(start.X + first.Width / 2.0d, start.Y + first.Height / 2.0d);
             Point w = new Point(current.X, start.Y);
             Point h = new Point(start.X, current.Y);
             Size dw = new Size(0.0d, first.Height * (double)this.rowSize);
             Size dh = new Size(first.Width * (double)this.columnSize, 0.0d);
+
+            //dc.DrawRectangle(Brushes.Beige, null, new Rect(start.X, start.Y, first.Width, first.Height));
 
             for (int indexRow = 0; indexRow < this.rowSize; ++indexRow)
             {
@@ -364,29 +402,65 @@ namespace Maths
         /// <param name="owner">owner dispatcher</param>
         /// <param name="container">container</param>
         /// <param name="dg">drawing group</param>
-        /// <param name="depth">depth</param>
-        /// <param name="start">starting point</param>
-        private void TaskDrawGrid(Dispatcher owner, ContentControl container, DrawingGroup dg, uint depth, Point start)
+        private void TaskDrawPoints(Dispatcher owner, ContentControl container, DrawingGroup dg)
         {
-            try
+            Task.Factory.StartNew(() =>
             {
-                Task.Factory.StartNew(() =>
+                try
                 {
-                    owner.Invoke(() =>
-                    {
-                        this.DrawGrid(owner, container, dg, depth, start);
-                    });
+                    this.DrawPoints(owner, container, dg);
+                }
+                catch (System.Threading.Tasks.TaskCanceledException) { }
 
-                }).ContinueWith(t =>
+            }).ContinueWith(t =>
+            {
+                try
                 {
                     owner.Invoke(() =>
                     {
                         Rectangle re = container.Content as Rectangle;
                         re.Fill = new DrawingBrush(this.drawing);
                     });
-                });
-            }
-            catch (System.Threading.ThreadInterruptedException) { }
+
+                }
+                catch (System.Threading.Tasks.TaskCanceledException) { }
+            });
+        }
+
+        /// <summary>
+        /// Task Draw grid
+        /// </summary>
+        /// <param name="owner">owner dispatcher</param>
+        /// <param name="container">container</param>
+        /// <param name="dg">drawing group</param>
+        /// <param name="depth">depth</param>
+        /// <param name="start">starting point</param>
+        private void TaskDrawGrid(Dispatcher owner, ContentControl container, DrawingGroup dg, uint depth, Point start)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    owner.Invoke(() =>
+                    {
+                        this.DrawGrid(owner, container, dg, depth, start);
+                    });
+                }
+                catch (System.Threading.Tasks.TaskCanceledException) { }
+
+            }).ContinueWith(t =>
+            {
+                try
+                {
+                    owner.Invoke(() =>
+                    {
+                        Rectangle re = container.Content as Rectangle;
+                        re.Fill = new DrawingBrush(this.drawing);
+                    });
+
+                }
+                catch (System.Threading.Tasks.TaskCanceledException) { }
+            });
         }
 
         /// <summary>
@@ -414,61 +488,14 @@ namespace Maths
         /// <summary>
         /// Draw a point onto an image
         /// </summary>
-        /// <param name="dg">drawing group</param>
+        /// <param name="dc">drawing context</param>
         /// <param name="x">x axis</param>
         /// <param name="y">y axis</param>
-        private void DrawPoint(DrawingGroup dg, double x, double y)
+        /// <param name="pixelWidth">pixel width</param>
+        /// <param name="pixelHeight">pixel height</param>
+        private void DrawPoint(DrawingContext dc, double x, double y, double pixelWidth, double pixelHeight)
         {
-            DrawingContext dc = dg.Append();
-            dc.DrawRectangle(Brushes.OrangeRed, null, new Rect(x, y, this.pixels.Width, this.pixels.Height));
-            dc.Close();
-        }
-
-        /// <summary>
-        /// Task to draw points
-        /// </summary>
-        /// <param name="owner">owner ui</param>
-        /// <param name="container">container</param>
-        /// <param name="dg">drawing group</param>
-        private void TaskDrawPoints(Dispatcher owner, ContentControl container, DrawingGroup dg)
-        {
-            if (this.function != null)
-            {
-                try
-                {
-                    Task.Factory.StartNew(() =>
-                    {
-                        try
-                        {
-                            MovingVector mv = this.bounds.GenerateMove();
-                            foreach (double d in mv.Values)
-                            {
-                                this.function.Let("x", d);
-                                double y = Convert.ToDouble(this.function.Calculate(true));
-                                if (y >= this.bounds.Vector.From.Euclidian.Value && y <= this.bounds.Vector.To.Euclidian.Value)
-                                {
-                                    Coordinates p = this.bounds.Floor(new Coordinates(d, y));
-                                    p = this.bounds.Place(p, this.imageSize.Width, this.imageSize.Height);
-                                    owner.Invoke(() =>
-                                    {
-                                        this.DrawPoint(dg, p.Value, p.Euclidian.Value);
-                                    });
-                                }
-                            }
-                        }
-                        catch (FormatException) { }
-
-                    }).ContinueWith(t =>
-                    {
-                        owner.Invoke(() =>
-                        {
-                            Rectangle re = container.Content as Rectangle;
-                            re.Fill = new DrawingBrush(this.drawing);
-                        });
-                    });
-                }
-                catch (System.Threading.ThreadInterruptedException) { }
-            }
+            dc.DrawRectangle(Brushes.OrangeRed, null, new Rect(x, this.imageSize.Height - y - pixelHeight, pixelWidth, pixelHeight));
         }
 
         /// <summary>

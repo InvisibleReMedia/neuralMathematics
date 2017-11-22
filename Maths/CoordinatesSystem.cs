@@ -473,11 +473,13 @@ namespace Maths
             Coordinates currentStep = this.steps;
             Coordinates current = dest;
             Coordinates from = this.limit.From;
+            Coordinates to = this.limit.To;
             System.Collections.IEnumerator e = desiredSize.GetEnumerator();
             while (src != null && e.MoveNext())
             {
-                current.Value = ((src.Value - from.Value) / currentStep.Value) * ((double)e.Current);
+                current.Value = ((src.Value - from.Value) / (to.Value - from.Value)) * ((double)e.Current);
                 from = from.Euclidian;
+                to = to.Euclidian;
                 currentStep = currentStep.Euclidian;
                 current = current.Euclidian;
                 src = src.Euclidian;
@@ -594,7 +596,7 @@ namespace Maths
                 double start = move.Vector.From.Value;
                 double end = move.Vector.To.Value;
                 double step = move.Steps.Value;
-                for (double v = start; v <= end; v += step)
+                for (double v = start; v < end; v += step)
                 {
                     this.values.Add(v);
                 }
@@ -608,7 +610,7 @@ namespace Maths
                 double start = move.Vector.From.Value;
                 double end = move.Vector.To.Value;
                 double step = move.Steps.Value;
-                for (double v = start; v <= end; v += step)
+                for (double v = start; v < end; v += step)
                 {
                     this.values.Add(v);
                 }

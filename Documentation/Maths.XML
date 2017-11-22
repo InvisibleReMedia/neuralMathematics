@@ -628,6 +628,11 @@
             Bounds of coordinates
             </summary>
         </member>
+        <member name="F:Maths.DistributedTracer2D.points">
+            <summary>
+            Points
+            </summary>
+        </member>
         <member name="F:Maths.DistributedTracer2D.columnSize">
             <summary>
             Number of columns
@@ -768,6 +773,14 @@
             </summary>
             <returns>size of each area</returns>
         </member>
+        <member name="M:Maths.DistributedTracer2D.DrawPoints(System.Windows.Threading.Dispatcher,System.Windows.Controls.ContentControl,System.Windows.Media.DrawingGroup)">
+            <summary>
+            Draw point
+            </summary>
+            <param name="owner">dispatcher</param>
+            <param name="container">content control</param>
+            <param name="dg">drawing group</param>
+        </member>
         <member name="M:Maths.DistributedTracer2D.DrawGrid(System.Windows.Threading.Dispatcher,System.Windows.Controls.ContentControl,System.Windows.Media.DrawingGroup,System.UInt32,System.Windows.Point)">
             <summary>
             Draw grid
@@ -777,6 +790,14 @@
             <param name="dg">drawing group</param>
             <param name="depth">depth</param>
             <param name="start">starting point</param>
+        </member>
+        <member name="M:Maths.DistributedTracer2D.TaskDrawPoints(System.Windows.Threading.Dispatcher,System.Windows.Controls.ContentControl,System.Windows.Media.DrawingGroup)">
+            <summary>
+            Task Draw grid
+            </summary>
+            <param name="owner">owner dispatcher</param>
+            <param name="container">container</param>
+            <param name="dg">drawing group</param>
         </member>
         <member name="M:Maths.DistributedTracer2D.TaskDrawGrid(System.Windows.Threading.Dispatcher,System.Windows.Controls.ContentControl,System.Windows.Media.DrawingGroup,System.UInt32,System.Windows.Point)">
             <summary>
@@ -797,21 +818,15 @@
             </summary>
             <param name="attach">content control</param>
         </member>
-        <member name="M:Maths.DistributedTracer2D.DrawPoint(System.Windows.Media.DrawingGroup,System.Double,System.Double)">
+        <member name="M:Maths.DistributedTracer2D.DrawPoint(System.Windows.Media.DrawingContext,System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Draw a point onto an image
             </summary>
-            <param name="dg">drawing group</param>
+            <param name="dc">drawing context</param>
             <param name="x">x axis</param>
             <param name="y">y axis</param>
-        </member>
-        <member name="M:Maths.DistributedTracer2D.TaskDrawPoints(System.Windows.Threading.Dispatcher,System.Windows.Controls.ContentControl,System.Windows.Media.DrawingGroup)">
-            <summary>
-            Task to draw points
-            </summary>
-            <param name="owner">owner ui</param>
-            <param name="container">container</param>
-            <param name="dg">drawing group</param>
+            <param name="pixelWidth">pixel width</param>
+            <param name="pixelHeight">pixel height</param>
         </member>
         <member name="M:Maths.DistributedTracer2D.SetFunction(PersistantModel.Arithmetic,PersistantModel.Arithmetic[])">
             <summary>
