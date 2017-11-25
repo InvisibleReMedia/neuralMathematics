@@ -12,9 +12,9 @@ namespace Interfaces
     public interface IDocument
     {
         /// <summary>
-        /// Gets true if equation is calculable
+        /// Gets or sets the tex mode
         /// </summary>
-        bool IsCalculable { get; }
+        bool IsTexMode { get; set; }
         /// <summary>
         /// Transforms equation object into a string representation
         /// </summary>
@@ -25,5 +25,10 @@ namespace Interfaces
         /// </summary>
         /// <returns>tex representation</returns>
         string ToTex();
+        /// <summary>
+        /// Insert text element into document list
+        /// </summary>
+        /// <param name="list">container</param>
+        void InsertIntoDocument(System.Windows.Documents.List list);
     }
 }

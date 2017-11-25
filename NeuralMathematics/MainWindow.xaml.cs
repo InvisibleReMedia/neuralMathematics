@@ -42,8 +42,8 @@ namespace NeuralMathematics
         {
             try
             {
-                Applicatifs.ButtonClicked += Applicatifs_ButtonClicked;
-                this.doc.Document = Applicatifs.Menu();
+                Applicatif.ButtonClicked += Applicatifs_ButtonClicked;
+                this.doc.Document = Applicatif.Menu();
                 this.doc.UpdateLayout();
                 this.WindowState = WindowState.Maximized;
             }
@@ -64,27 +64,27 @@ namespace NeuralMathematics
             switch(b.Name)
             {
                 case "Polynome2Somme":
-                    this.doc.Document = Applicatifs.ResolutionPolynome2Somme();
+                    this.doc.Document = Applicatif.ResolutionPolynome2Somme();
                     this.doc.UpdateLayout();
                     break;
                 case "Polynome2Difference":
-                    this.doc.Document = Applicatifs.ResolutionPolynome2Difference();
+                    this.doc.Document = Applicatif.ResolutionPolynome2Difference();
                     this.doc.UpdateLayout();
                     break;
                 case "Polynome2Produit":
-                    this.doc.Document = Applicatifs.Polynome2Produit();
+                    this.doc.Document = Applicatif.Polynome2Produit();
                     this.doc.UpdateLayout();
                     break;
                 case "Newton":
-                    this.doc.Document = Applicatifs.Newton();
+                    this.doc.Document = Applicatif.Newton();
                     this.doc.UpdateLayout();
                     break;
                 case "GoBack":
-                    this.doc.Document = Applicatifs.Menu();
+                    this.doc.Document = Applicatif.Menu();
                     this.doc.UpdateLayout();
                     break;
                 case "ComputeTransformationCoefficientPolynome2":
-                    this.doc.Document = Applicatifs.ComputeTransformationCoefficientPolynome2();
+                    this.doc.Document = Applicatif.ComputeTransformationCoefficientPolynome2();
                     this.doc.UpdateLayout();
                     break;
                 case "Close":

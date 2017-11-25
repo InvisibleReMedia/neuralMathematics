@@ -44,6 +44,17 @@ namespace PersistantModel
         {
         }
 
+        /// <summary>
+        /// Constructor
+        /// given a constant t2 power of t1
+        /// </summary>
+        /// <param name="t1">left term</param>
+        /// <param name="t2">right term</param>
+        public Power(IArithmetic t1, double t2)
+            : base('^', t1, new NumericValue(t2))
+        {
+        }
+
         #endregion
 
         #region Methods

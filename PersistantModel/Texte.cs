@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Interfaces;
+using System.Windows.Documents;
+using System.Windows;
 
 namespace PersistantModel
 {
@@ -16,8 +18,14 @@ namespace PersistantModel
     {
 
         #region Fields
-
+        /// <summary>
+        /// Index name for text
+        /// </summary>
         private static readonly string textName = "text";
+        /// <summary>
+        /// Index name for mode
+        /// </summary>
+        private static readonly string texModeName = "mode";
 
         #endregion
 
@@ -37,25 +45,25 @@ namespace PersistantModel
         /// given a specific text
         /// </summary>
         /// <param name="t">text</param>
-        public Texte(string t)
+        public Texte(string t) : this(t, false)
+        {
+        }
+
+        /// <summary>
+        /// Constructor
+        /// given a text to be written in tex mode
+        /// </summary>
+        /// <param name="t">text</param>
+        /// <param name="tex">mode</param>
+        public Texte(string t, bool tex)
         {
             this.Set(textName, t);
+            this.Set(texModeName, tex);
         }
 
         #endregion
 
         #region Properties
-
-        /// <summary>
-        /// Test if calculable
-        /// </summary>
-        public bool IsCalculable
-        {
-            get
-            {
-                return false;
-            }
-        }
 
         /// <summary>
         /// Gets or sets the content
@@ -72,6 +80,21 @@ namespace PersistantModel
             }
         }
 
+        /// <summary>
+        /// Gets or sets the mode
+        /// </summary>
+        public bool IsTexMode
+        {
+            get
+            {
+                return this.Get(texModeName);
+            }
+            set
+            {
+                this.Set(texModeName, value);
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -79,7 +102,7 @@ namespace PersistantModel
         /// <summary>
         /// Converts content to tex
         /// </summary>
-        /// <returns></returns>
+        /// <returns>tex mode representation</returns>
         public string ToTex()
         {
             return this.Content;
@@ -91,9 +114,36 @@ namespace PersistantModel
         /// <returns>contenu du texte</returns>
         public override string ToString()
         {
-            return this.Get(textName);
+            return this.Content;
+        }
+
+        /// <summary>
+        /// Insert text elements into a list
+        /// </summary>
+        /// <param name="list"></param>
+        public void InsertIntoDocument(List list)
+        {
+            Paragraph p = new Paragraph();
+            System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex(@"(\{[^\}]*\})");
+            foreach (string s in r.Split(this.Content))
+            {
+                if (s.StartsWith("{") && s.EndsWith("}"))
+                {
+                    string tex = s.Substring(1, s.Length - 2);
+                    WpfMath.Controls.FormulaControl fc = new WpfMath.Controls.FormulaControl();
+                    fc.Formula = tex;
+                    p.Inlines.Add(new InlineUIContainer(fc));
+                }
+                else
+                {
+                    p.Inlines.Add(new Run(s));
+                }
+            }
+            ListItem li = new ListItem(p);
+            list.ListItems.Add(li);
         }
 
         #endregion
+
     }
 }

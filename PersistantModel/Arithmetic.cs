@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Interfaces;
+using System.Windows.Documents;
+using WpfMath.Controls;
 
 namespace PersistantModel
 {
@@ -78,6 +80,10 @@ namespace PersistantModel
         /// Index name to store list
         /// </summary>
         protected static readonly string listName = "list";
+        /// <summary>
+        /// Index name for tex mode
+        /// </summary>
+        protected static readonly string texModeName = "texMode";
 
         /// <summary>
         /// Computed weight
@@ -109,6 +115,7 @@ namespace PersistantModel
         protected Arithmetic()
         {
             this.persistentData = new Dictionary<string, dynamic>();
+            
         }
 
         #endregion
@@ -295,6 +302,21 @@ namespace PersistantModel
         }
 
         /// <summary>
+        /// Gets or sets the tex mode
+        /// </summary>
+        public bool IsTexMode
+        {
+            get
+            {
+                return this.Get(texModeName);
+            }
+            set
+            {
+                this.Set(texModeName, value);
+            }
+        }
+
+        /// <summary>
         /// Gets all unknown terms
         /// </summary>
         protected IEnumerable<IArithmetic> SelectUnknownTerms
@@ -346,7 +368,12 @@ namespace PersistantModel
         {
             get
             {
-                return this.SelectUnknownTerms.Cast<UnknownTerm>().ToDictionary(x => x.Name, x => x as IArithmetic);
+                Dictionary<string, IArithmetic> d = new Dictionary<string,IArithmetic>();
+                IEnumerable<UnknownTerm> terms = this.SelectUnknownTerms.Cast<UnknownTerm>();
+                foreach(string name in terms.Select(x => x.Name).Distinct()) {
+                    d.Add(name, terms.First(x => x.Name == name));
+                }
+                return d;
             }
         }
 
@@ -402,7 +429,13 @@ namespace PersistantModel
         {
             get
             {
-                return this.SelectCoefficients.Cast<Coefficient>().ToDictionary(x => x.Name, x => x as IArithmetic);
+                Dictionary<string, IArithmetic> d = new Dictionary<string, IArithmetic>();
+                IEnumerable<Coefficient> terms = this.SelectCoefficients.Cast<Coefficient>();
+                foreach (string name in terms.Select(x => x.Name).Distinct())
+                {
+                    d.Add(name, terms.First(x => x.Name == name));
+                }
+                return d;
             }
         }
 
@@ -987,11 +1020,11 @@ namespace PersistantModel
         /// <param name="value">numeric value</param>
         public void Let(string letter, double value)
         {
-            foreach(Coefficient c in this.Coefficients.Values)
+            foreach(Coefficient c in this.SelectCoefficients)
             {
                 if (c.Name == letter) c.Value = value;
             }
-            foreach(UnknownTerm x in this.UnknownTerms.Values)
+            foreach(UnknownTerm x in this.SelectUnknownTerms)
             {
                 if (x.Name == letter) (x as IVariable).Value = new NumericValue(value);
             }
@@ -1078,6 +1111,20 @@ namespace PersistantModel
                 }
                 return res;
             }
+        }
+
+        /// <summary>
+        /// Insert text elements into a list
+        /// </summary>
+        /// <param name="list"></param>
+        public void InsertIntoDocument(List list)
+        {
+            ListItem li = new ListItem();
+            li.TextAlignment = System.Windows.TextAlignment.Center;
+            FormulaControl fc = new FormulaControl();
+            fc.Formula = this.ToTex();
+            li.Blocks.Add(new BlockUIContainer(fc));
+            list.ListItems.Add(li);
         }
 
         /// <summary>

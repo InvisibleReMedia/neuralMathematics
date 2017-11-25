@@ -4,6 +4,85 @@
         <name>NeuralMathematics</name>
     </assembly>
     <members>
+        <member name="T:NeuralMathematics.Applicatif">
+            <summary>
+            Fonctions qui implémentent les documents (FlowDocument)
+            </summary>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.Menu">
+            <summary>
+            Fonction de menu
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.Button_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            When click on button 1
+            </summary>
+            <param name="sender">source window</param>
+            <param name="e">args</param>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.SetButtonStyle(System.Windows.Controls.Button)">
+            <summary>
+            Set the button style
+            </summary>
+            <param name="b">button</param>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.Newton">
+            <summary>
+            Développement polynôme
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.ReloadNewton">
+            <summary>
+            Lecture fichier
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.ResolutionPolynome2Somme">
+            <summary>
+            Résolution polynôme ordre 2
+            </summary>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.ResolutionPolynome2Difference">
+            <summary>
+            Résolution polynôme ordre 2
+            </summary>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.Polynome2Produit">
+            <summary>
+            Résolution polynôme ordre 2 par produit
+            </summary>
+            <returns>document</returns>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.ResolutionPolynome3">
+            <summary>
+            Résolution polynôme ordre 2
+            </summary>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.ComputeTransformationCoefficientPolynome2">
+            <summary>
+            Compute a transformation of the coefficient named as b to resolve 2-polynomial
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.ComputeImageSize">
+            <summary>
+            Computes image size
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:NeuralMathematics.Applicatif.onButtonClick">
+            <summary>
+            Evenement sur click des boutons
+            </summary>
+        </member>
+        <member name="E:NeuralMathematics.Applicatif.ButtonClicked">
+            <summary>
+            Event handler for clicked button
+            </summary>
+        </member>
         <member name="T:NeuralMathematics.Tracer">
             <summary>
             Logique d'interaction pour Window1.xaml

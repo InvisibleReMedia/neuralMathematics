@@ -87,8 +87,16 @@ namespace Maths
             {
                 if (a is Texte)
                 {
-                    ListItem li = new ListItem(new Paragraph(new Run(a.ToString())));
-                    l.ListItems.Add(li);
+                    Texte t = a as Texte;
+                    if (t.IsTexMode)
+                    {
+                        t.InsertIntoDocument(l);
+                    }
+                    else
+                    {
+                        ListItem li = new ListItem(new Paragraph(new Run(t.ToString())));
+                        l.ListItems.Add(li);
+                    }
                 }
                 else
                 {

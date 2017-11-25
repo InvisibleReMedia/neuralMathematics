@@ -69,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Answer.cs" />
-    <Compile Include="Applicatifs.cs" />
     <Compile Include="ClipBox.xaml.cs">
       <DependentUpon>ClipBox.xaml</DependentUpon>
     </Compile>

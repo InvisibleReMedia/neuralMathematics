@@ -34,7 +34,8 @@ namespace NeuralMathematics
             Coordinates s = new Coordinates(0.1d, 0.1d);
             MovingCoordinates mc = new MovingCoordinates(v, s);
             DistributedTracer2D d = new DistributedTracer2D(mc, 4, 4, 6, new Size(1.0d, 1.0d));
-            Addition a = new Addition(new Multiplication(new Coefficient("a"), new UnknownTerm("x")), new Coefficient("b"));
+            Addition a = new Addition(new Multiplication(new Coefficient("a"), new Power(new UnknownTerm("x"), new NumericValue(2.0d))),
+                                      new Multiplication(new Coefficient("b"), new UnknownTerm("x")));
             a.Let("a", 1.0d);
             a.Let("b", 0.0d);
             d.SetFunction(a);

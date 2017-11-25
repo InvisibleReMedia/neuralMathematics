@@ -12,13 +12,14 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Maths;
 
-namespace Maths
+namespace NeuralMathematics
 {
     /// <summary>
     /// Fonctions qui implémentent les documents (FlowDocument)
     /// </summary>
-    public static class Applicatifs
+    public static class Applicatif
     {
         /// <summary>
         /// Evenement sur click des boutons
@@ -107,8 +108,6 @@ namespace Maths
 
             FlowDocument fd = new FlowDocument(t);
             Paragraph p = new Paragraph();
-            ClipBox cb = new ClipBox();
-            p.Inlines.Add(cb);
             fd.Blocks.Add(p);
             return fd;
         }
@@ -243,14 +242,24 @@ namespace Maths
         /// </summary>
         public static FlowDocument ResolutionPolynome2Somme()
         {
-            Wording w = new Wording("Résolution du polynôme d'ordre 2", "Considérons la somme de deux carrés");
+            Wording w = new Wording("Résoudre un polynôme d'ordre 2", "Considérons la somme de deux carrés");
+            w.Content.Add(new Texte("La somme de deux carrés s'écrit"),
+                          new Addition(new Power(new UnknownTerm("u"), new NumericValue(2.0d)), new Power(new UnknownTerm("v"), new NumericValue(2.0d))));
+            w.Content.Add(new Texte("Une équation polynôme de second degré s'écrit"),
+                          new Equal(new UnknownTerm("y"), new Sum(new Multiplication(new Coefficient("a"), new Power(new UnknownTerm("x"), new NumericValue(2.0d))),
+                                    new Multiplication(new Coefficient("b"), new UnknownTerm("x")),
+                                    new Coefficient("c"))),
+                          new Texte("Je factorise le terme {a}, puis le terme {x}, puis je place le coefficient {c} de l'autre côté de l'égalité", true),
+                          new Equal(new Division(new Soustraction(new UnknownTerm("y"), new Coefficient("c")), new Coefficient("a")),
+                                    new Multiplication(new UnknownTerm("x"), new Addition(new UnknownTerm("x"), new Division(new UnknownTerm("b"), new Coefficient("a"))))),
+                          new Texte("J'obtiens un premier indice de la forme algébrique de l'équation du second degré permettant de résoudre"));
 
-            Texte t1 = new Texte("Quelque soit u et v, deux nombres réels");
+            Texte t1 = new Texte("Quelque soient deux nombres réels {u} et {v}", true);
             Sum eq1 = new Sum(new Power(new UnknownTerm("u"), new NumericValue(2.0d)), 
                                         new Power(new UnknownTerm("v"), new NumericValue(2.0d)));
             SequenceProof sp1 = new SequenceProof(t1, eq1);
 
-            Texte t2 = new Texte("Quelque soit u et v, deux nombres réels");
+            Texte t2 = new Texte("Quelque soient deux nombres réels {u} et {v}", true);
             Equal eq2 = new Equal(eq1, new Soustraction(new Power(new Addition(new UnknownTerm("u"), new UnknownTerm("v")), new NumericValue(2.0d)),
                                                         new Product(new NumericValue(2.0d), new UnknownTerm("u"), new UnknownTerm("v"))));
             SequenceProof sp2 = new SequenceProof(t2, eq2);
@@ -258,33 +267,59 @@ namespace Maths
             Equal eq3 = new Equal(new Sum(new Power(new UnknownTerm("u"), new NumericValue(2.0d)), new Product(new NumericValue(2.0d), new UnknownTerm("u"), new UnknownTerm("v"))),
                                   new Soustraction(new Power(new Addition(new UnknownTerm("u"), new UnknownTerm("v")), new NumericValue(2.0d)), new Power(new UnknownTerm("v"), new NumericValue(2.0d))));
 
-            Texte t3 = new Texte("Puis, appliquer la résolution du polynôme d'ordre 2 dans le cas d'une différence de deux carrés");
+            SequenceProof sp3 = new SequenceProof(eq3);
 
-            SequenceProof sp3 = new SequenceProof(eq3, t3);
-
-            Texte t4 = new Texte("Quelque soit x0 et x");
+            Texte t4 = new Texte("Quelque soit {x_0} et {x}, deux nombres réels", true);
             Equal eq4u = new Equal(new UnknownTerm("u"), new UnknownTerm("x"));
             Equal eq4v = new Equal(new UnknownTerm("v"), new UnknownTerm("x_0"));
 
             Equal eq41 = new Equal(new Sum(new Power(new UnknownTerm("x"), new NumericValue(2.0d)), new Product(new NumericValue(2.0d), new UnknownTerm("x"), new UnknownTerm("x_0"))),
                                   new Soustraction(new Power(new Addition(new UnknownTerm("x"), new UnknownTerm("x_0")), new NumericValue(2.0d)), new Power(new UnknownTerm("x_0"), new NumericValue(2.0d))));
 
-            SequenceProof sp4 = new SequenceProof(t4, eq4u, eq4v, eq41);
+            Texte t41 = new Texte("Je factorise le terme {x}", true);
+            Equal eq42 = new Equal(new Product(new UnknownTerm("x"), new Sum(new UnknownTerm("x"), new Multiplication(new NumericValue(2.0d), new UnknownTerm("x_0")))),
+                                  new Soustraction(new Power(new Addition(new UnknownTerm("x"), new UnknownTerm("x_0")), new NumericValue(2.0d)), new Power(new UnknownTerm("x_0"), new NumericValue(2.0d))));
+            Texte t42 = new Texte("C'est le produit du terme {x} et de la somme de {x} avec le coefficient {b = 2 * x_0}. Il s'agit donc bien d'un polynôme d'ordre 2.", true);
+
+            SequenceProof sp4 = new SequenceProof(t4, eq4u, eq4v, eq41, t41, eq42, t42);
+
+            Texte t5 = new Texte("Soit l'équation complète avec l'inconnu {x} et le résultat {y}", true);
+            Equal eq51 = new Equal(new UnknownTerm("y"), eq42.LeftOperand);
+            Texte t51 = new Texte("Le terme {b = 2 * x_0} gêne la résolution simple. Si {x_0=0} alors l'équation devient", true);
+            Equal eq52 = new Equal(new UnknownTerm("y"), new Power(new UnknownTerm("x"), new NumericValue(2.0d)));
+            Texte t52 = new Texte("Et aussi lorsque {x_0 = b} alors l'équation devient", true);
+            Equal eq53 = new Equal(new UnknownTerm("y"), new Addition(new Power(new UnknownTerm("x"), new NumericValue(2.0d)), new Term(2.0d, "b", "x")));
+
+            Texte t53 = new Texte("Avec un peu d'effort, on reconnait qu'il existe un unique nombre {x_0 = b/2} qui obtiendra exactement {y}", true);
+            Equal eq54 = new Equal(new UnknownTerm("y"), new Addition(new Power(new UnknownTerm("x"), new NumericValue(2.0d)), new Multiplication(new Coefficient("b"), new UnknownTerm("x"))));
+
+            
+            SequenceProof sp5 = new SequenceProof(t5, eq51, t51, eq52, t52, eq53, t53, eq54);
+
+            SequenceProof sp6 = new SequenceProof();
 
             Answer a1 = new Answer("Somme de deux carrés", sp1);
             Answer a2 = new Answer("Identité remarquable", sp2);
             Answer a3 = new Answer("Calcul du plus proche carré d'un nombre", sp3);
-            Answer a4 = new Answer("Expression de x0 et x", sp4);
+            Answer a4 = new Answer("Je recherche une équation pour {u} et {v} tel que {x} et {x_0} sont obtenus selon un polynôme d'ordre 2.", true, sp4);
+            Answer a5 = new Answer("Recherche de la solution avec une équation de {x_0}", true, sp5);
+            Answer a6 = new Answer("Résolution", true, sp6);
 
-            Exercice e1 = new Exercice(1, "Poser la somme de deux carrés", "Choisissez les lettres u et v", a1);
-            Exercice e2 = new Exercice(2, "Utilisez l'identité remarquable connue pour exprimer la somme de deux carrés", "Utilisez la formule du binôme de Newton à l'ordre 2", a2);
+
+
+
+            Exercice e1 = new Exercice(1, "Poser la somme de deux carrés", "Choisissez les lettres {u} et {v}", true, a1);
+            Exercice e2 = new Exercice(2, "Utilisez une identité remarquable connue pour transformer l'équation en un produit", "Utilisez la formule du binôme de Newton à l'ordre 2", a2);
             Exercice e3 = new Exercice(3, "Rapporter une différence en inversant les termes", "Cela permet de trouver le plus proche carré d'un nombre", a3);
-            Exercice e4 = new Exercice(4, "Retrouver l'équation du produit égale au produit d'un polynôme d'ordre 2", "Poser x0 et x", a4);
+            Exercice e4 = new Exercice(4, "Retrouver l'équation du produit d'un polynôme d'ordre 2", "Poser {x0} et {x}", true, a4);
+            Exercice e5 = new Exercice(5, "Trouvez une équation de {x_0} pour éliminer le terme {b = 2 * x_0} gênant", "Chercher pourquoi élimiter ce terme", true, a5);
+            Exercice e6 = new Exercice(5, "En déduire les équations solutions du polynôme d'ordre 2", "Trouver, au mieux, deux équations solutions", true, a6);
             w.Add(e1);
             w.Add(e2);
             w.Add(e3);
             w.Add(e4);
-
+            w.Add(e5);
+            w.Add(e6);
             FlowDocument fd = new FlowDocument();
 
             Button but = new Button();
@@ -539,39 +574,27 @@ namespace Maths
         public static FlowDocument ComputeImageSize()
         {
             FlowDocument fd = new FlowDocument();
+
+            Button but = new Button();
+            but.Name = "GoBack";
+            but.Content = "Retour";
+            but.Click += Button_Click;
+            SetButtonStyle(but);
+            fd.Blocks.Add(new BlockUIContainer(but));
+
             Coordinates[] bornes = new Coordinates[2];
-            bornes[0] = new Coordinates(-10.0d, -10.0d);
-            bornes[1] = new Coordinates(10.0d, 10.0d);
-            Vector v = new Vector(bornes[0], bornes[1]);
+            bornes[0] = new Coordinates(-5.0d, -5.0d);
+            bornes[1] = new Coordinates(5.0d, 5.0d);
+            Maths.Vector v = new Maths.Vector(bornes[0], bornes[1]);
             Coordinates s = new Coordinates(0.1d, 0.1d);
             MovingCoordinates mc = new MovingCoordinates(v, s);
-            DistributedTracer2D d = new DistributedTracer2D(mc, 5, 5, 3, new Size(2.0d,2.0d));
-            Paragraph p = new Paragraph();
-            p.Inlines.Add(new Run("Taille en pixels:" + d.ImageSize.Width + ";" + d.ImageSize.Height));
+            DistributedTracer2D d = new DistributedTracer2D(mc, 4, 4, 6, new Size(1.0d, 1.0d));
+            Addition a = new Addition(new Multiplication(new Coefficient("a"), new Power(new UnknownTerm("x"), new NumericValue(2.0d))),
+                                      new Multiplication(new Coefficient("b"), new UnknownTerm("x")));
+            a.Let("a", 1.0d);
+            a.Let("b", 0.0d);
+            d.SetFunction(a);
 
-            Size[,] areas = d.Areas;
-            Table t = new Table();
-            for(int x = 0; x < areas.GetLength(0); ++x)
-            {
-                t.Columns.Add(new TableColumn());
-            }
-            TableRowGroup g = new TableRowGroup();
-            for (int y = 0; y < areas.GetLength(0); ++y)
-            {
-                TableRow tr = new TableRow();
-                for (int x = 0; x < areas.GetLength(1); ++x)
-                {
-                    Paragraph b = new Paragraph();
-                    b.Inlines.Add(new Run(areas[y, x].Width + ";" + areas[x, y].Height));
-                    TableCell tc = new TableCell(b);
-                    tr.Cells.Add(tc);
-                }
-                g.Rows.Add(tr);
-            }
-            t.RowGroups.Add(g);
-
-            fd.Blocks.Add(p);
-            fd.Blocks.Add(t);
             ClipBox cb = new ClipBox();
             cb.Tracer = d;
             fd.Blocks.Add(new BlockUIContainer(cb));
