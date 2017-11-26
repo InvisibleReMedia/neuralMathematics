@@ -4,6 +4,39 @@
         <name>PersistantModel</name>
     </assembly>
     <members>
+        <member name="T:PersistantModel.Extensions">
+            <summary>
+            Extensions
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Extensions.ExtractTexCode(System.String,System.Char,System.Char,System.Int32@)">
+            <summary>
+            Extension to extract a tex content from a string
+            </summary>
+            <param name="s">owner</param>
+            <param name="delimOn">delimiter on</param>
+            <param name="delimOff">deliiter off</param>
+            <param name="startingPoint">starting indice</param>
+            <returns>tex code</returns>
+        </member>
+        <member name="M:PersistantModel.Extensions.SplitForTex(System.String,System.Char,System.Char)">
+            <summary>
+            Split each part between each tex part of a string
+            </summary>
+            <param name="s">owner</param>
+            <param name="delimOn">delim on</param>
+            <param name="delimOff">delim off</param>
+            <returns>string list</returns>
+        </member>
+        <member name="M:PersistantModel.Extensions.InsertIntoDocument(System.String,System.Char,System.Char,System.Windows.Documents.Paragraph)">
+            <summary>
+            Insert text elements into a list
+            </summary>
+            <param name="s">owner</param>
+            <param name="delimOn">delimiter on</param>
+            <param name="delimOff">deliiter off</param>
+            <param name="p">paragraph</param>
+        </member>
         <member name="T:PersistantModel.Gathering`1">
             <summary>
             Class to gather all records
@@ -315,6 +348,166 @@
             <param name="obj">obj</param>
             <returns>hash code</returns>
         </member>
+        <member name="M:PersistantModel.Arithmetic.op_Addition(PersistantModel.Arithmetic,PersistantModel.Arithmetic)">
+            <summary>
+            Addition
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>addition</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Subtraction(PersistantModel.Arithmetic,PersistantModel.Arithmetic)">
+            <summary>
+            Soustraction
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>soustractio</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Multiply(PersistantModel.Arithmetic,PersistantModel.Arithmetic)">
+            <summary>
+            Multiplication
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>multiplication</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Division(PersistantModel.Arithmetic,PersistantModel.Arithmetic)">
+            <summary>
+            Division
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>division</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_ExclusiveOr(PersistantModel.Arithmetic,PersistantModel.Arithmetic)">
+            <summary>
+            Power
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>power</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Addition(PersistantModel.Arithmetic,System.Double)">
+            <summary>
+            Addition
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>addition</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Subtraction(PersistantModel.Arithmetic,System.Double)">
+            <summary>
+            Soustraction
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>soustractio</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Multiply(PersistantModel.Arithmetic,System.Double)">
+            <summary>
+            Multiplication
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>multiplication</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Division(PersistantModel.Arithmetic,System.Double)">
+            <summary>
+            Division
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>division</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_ExclusiveOr(PersistantModel.Arithmetic,System.Double)">
+            <summary>
+            Power
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>power</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Addition(PersistantModel.Arithmetic,System.String)">
+            <summary>
+            Addition
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>addition</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Subtraction(PersistantModel.Arithmetic,System.String)">
+            <summary>
+            Soustraction
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>soustractio</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Multiply(PersistantModel.Arithmetic,System.String)">
+            <summary>
+            Multiplication
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>multiplication</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Division(PersistantModel.Arithmetic,System.String)">
+            <summary>
+            Division
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>division</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_ExclusiveOr(PersistantModel.Arithmetic,System.String)">
+            <summary>
+            Power
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>power</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Addition(PersistantModel.Arithmetic,System.Char)">
+            <summary>
+            Addition
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>addition</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Subtraction(PersistantModel.Arithmetic,System.Char)">
+            <summary>
+            Soustraction
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>soustractio</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Multiply(PersistantModel.Arithmetic,System.Char)">
+            <summary>
+            Multiplication
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>multiplication</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Division(PersistantModel.Arithmetic,System.Char)">
+            <summary>
+            Division
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>division</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_ExclusiveOr(PersistantModel.Arithmetic,System.Char)">
+            <summary>
+            Power
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>power</returns>
+        </member>
         <member name="E:PersistantModel.Arithmetic.eventFetch">
             <summary>
             Events
@@ -593,6 +786,16 @@
             Index name for mode
             </summary>
         </member>
+        <member name="F:PersistantModel.Texte.leftDelimiterName">
+            <summary>
+            Index name for the left delimiter
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Texte.rightDelimiterName">
+            <summary>
+            Index name for the right delimiter
+            </summary>
+        </member>
         <member name="M:PersistantModel.Texte.#ctor">
             <summary>
             Default constructor
@@ -613,6 +816,16 @@
             </summary>
             <param name="t">text</param>
             <param name="tex">mode</param>
+        </member>
+        <member name="M:PersistantModel.Texte.#ctor(System.String,System.Boolean,System.Char,System.Char)">
+            <summary>
+            Constructor
+            given a text to be written in tex mode
+            </summary>
+            <param name="t">text</param>
+            <param name="tex">mode</param>
+            <param name="don">left delimiter</param>
+            <param name="doff">right delimiter</param>
         </member>
         <member name="M:PersistantModel.Texte.ToTex">
             <summary>
@@ -640,6 +853,16 @@
         <member name="P:PersistantModel.Texte.IsTexMode">
             <summary>
             Gets or sets the mode
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Texte.DelimiterLeft">
+            <summary>
+            Gets or sets the delimiter
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Texte.DelimiterRight">
+            <summary>
+            Gets or sets the delimiter
             </summary>
         </member>
         <member name="T:PersistantModel.UnaryOperation">

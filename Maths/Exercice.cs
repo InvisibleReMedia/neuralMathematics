@@ -39,6 +39,14 @@ namespace Maths
         /// Index name for tex switch
         /// </summary>
         private static readonly string texModeName = "texMode";
+        /// <summary>
+        /// Index name for the left delimiter
+        /// </summary>
+        private static readonly string leftDelimiterName = "delimOn";
+        /// <summary>
+        /// Index name for the right delimiter
+        /// </summary>
+        private static readonly string rightDelimiterName = "delimOff";
 
         #endregion
 
@@ -52,7 +60,22 @@ namespace Maths
         /// <param name="q">question</param>
         /// <param name="note">notice</param>
         /// <param name="a">answer</param>
-        public Exercice(uint numero, string q, string note, Answer a) : this(numero, q, note, false, a)
+        public Exercice(uint numero, string q, string note, Answer a)
+            : this(numero, q, note, false, '{', '}', a)
+        {
+        }
+
+        /// <summary>
+        /// constructor for tex mode
+        /// given a number, the question phrase and a short notice
+        /// </summary>
+        /// <param name="numero">number</param>
+        /// <param name="q">question</param>
+        /// <param name="note">notice</param>
+        /// <param name="mode">tex mode switch</param>
+        /// <param name="a">answer</param>
+        public Exercice(uint numero, string q, string note, bool mode, Answer a)
+            : this(numero, q, note, mode, '{', '}', a)
         {
         }
 
@@ -65,14 +88,18 @@ namespace Maths
         /// <param name="q">question</param>
         /// <param name="note">notice</param>
         /// <param name="mode">mode</param>
+        /// <param name="don">delimiter on</param>
+        /// <param name="doff">delimiter off</param>
         /// <param name="a">answer</param>
-        public Exercice(uint numero, string q, string note, bool mode, Answer a)
+        public Exercice(uint numero, string q, string note, bool mode, char don, char doff, Answer a)
         {
             this.Set(idName, numero);
             this.Set(questionName, q);
             this.Set(indiceName, note);
             this.Set(answerName, a);
             this.Set(texModeName, mode);
+            this.Set(leftDelimiterName, don);
+            this.Set(rightDelimiterName, doff);
         }
 
         #endregion
@@ -94,6 +121,35 @@ namespace Maths
             }
         }
 
+        /// <summary>
+        /// Gets or sets the delimiter
+        /// </summary>
+        public char DelimiterLeft
+        {
+            get
+            {
+                return this.Get(leftDelimiterName);
+            }
+            set
+            {
+                this.Set(leftDelimiterName, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the delimiter
+        /// </summary>
+        public char DelimiterRight
+        {
+            get
+            {
+                return this.Get(rightDelimiterName);
+            }
+            set
+            {
+                this.Set(rightDelimiterName, value);
+            }
+        }
 
         #endregion
 
@@ -165,10 +221,9 @@ namespace Maths
         /// <param name="underlined">true if underlined</param>
         private void InsertPhraseIntoDocument(Paragraph p, string phrase, System.Windows.Media.Brush foreground, bool underlined = false)
         {
-            System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex(@"(\{[^\}]*\})");
-            foreach (string s in r.Split(phrase))
+            foreach (string s in phrase.SplitForTex(this.DelimiterLeft, this.DelimiterRight))
             {
-                if (s.StartsWith("{") && s.EndsWith("}"))
+                if (s.StartsWith(this.DelimiterLeft.ToString()) && s.EndsWith(this.DelimiterRight.ToString()))
                 {
                     string tex = s.Substring(1, s.Length - 2);
                     WpfMath.Controls.FormulaControl fc = new WpfMath.Controls.FormulaControl();

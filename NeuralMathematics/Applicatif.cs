@@ -142,16 +142,16 @@ namespace NeuralMathematics
             Wording w = new Wording("Résolution des polynômes", "La résolution des polynômes est un sujet encore mathématiquement non élucidé");
             SequenceProof s1 = new SequenceProof();
             Texte t1 = new Texte("Degré 2");
-            Equal eq1 = new Equal(new Power(new Addition(new Coefficient("a"), new Coefficient("b")), new NumericValue(2.0d)),
-                                        new Sum(new Power(new Coefficient("a"), new NumericValue(2.0d)), new Product(new NumericValue(2.0d), new Coefficient("a"), new Coefficient("b")), new Power(new Coefficient("b"), new NumericValue(2.0d))));
+            Equal eq1 = new Equal((new Coefficient("a") + new Coefficient("b")) ^ 2.0d,
+                                   (new Coefficient("a") ^ 2.0d) + new NumericValue(2.0d) * new Coefficient("a") * new Coefficient("b") + (new Coefficient("b") ^ 2.0d));
             eq1 = eq1.MakeUnique() as Equal;
 
             Texte t2 = new Texte("Degré 3");
-            Equal eq2 = new Equal(new Power(new Addition(new Coefficient("a"), new Coefficient("b")), new NumericValue(3.0d)),
-                                        new Sum(new Power(new Coefficient("a"), new NumericValue(3.0d)),
-                                        new Product(new NumericValue(3.0d), new Power(new Coefficient("a"), new NumericValue(2.0d)), new Coefficient("b")),
-                                        new Product(new NumericValue(3.0d), new Coefficient("a"), new Power(new Coefficient("b"), new NumericValue(2.0d))),
-                                        new Power(new Coefficient("b"), new NumericValue(3.0d))));
+            Equal eq2 = new Equal((new Coefficient("a") + new Coefficient("b")) ^ 3.0d,
+                                        new Sum(new Coefficient("a") ^ 3.0d,
+                                        new NumericValue(3.0d) * (new Coefficient("a") ^2.0d) * new Coefficient("b"),
+                                        new NumericValue(3.0d) * (new Coefficient("b") ^ 2.0d) * new Coefficient("a"),
+                                        new Coefficient("b") ^ 3.0d));
             eq2 = eq2.MakeUnique() as Equal;
             s1.Add(t1);
             s1.Add(eq1);
@@ -159,8 +159,8 @@ namespace NeuralMathematics
             s1.Add(eq2);
             SequenceProof s2 = new SequenceProof();
             Texte tex2 = new Texte("Quelque soit x un nombre réel");
-            Equal eqEx1 = new Equal(new UnknownTerm("y"), new Sum(new Multiplication(new Coefficient("a"), new Power(new UnknownTerm("x"), new NumericValue(2.0d))),
-                                                                  new Multiplication(new Coefficient("b"), new UnknownTerm("x")),
+            Equal eqEx1 = new Equal(new UnknownTerm("y"), new Sum(new Coefficient("a") * (new UnknownTerm("x") ^ 2.0d),
+                                                                  new Coefficient("b") * "x",
                                                                   new Coefficient("c")));
             eqEx1 = eqEx1.MakeUnique() as Equal;
             s2.Add(tex2);
@@ -168,25 +168,23 @@ namespace NeuralMathematics
 
             SequenceProof s3 = new SequenceProof();
             Texte tex3 = new Texte("Quelque soit x un nombre réel");
-            Equal eqEx3 = new Equal(new Division(new UnknownTerm("y"),
-                new Coefficient("a")), new Sum(new Power(new UnknownTerm("x"), new NumericValue(2.0d)),
-                new Multiplication(new Division(new Coefficient("b"), new Coefficient("a")), new UnknownTerm("x")),
-                new Division(new Coefficient("c"), new Coefficient("a"))));
+            Equal eqEx3 = new Equal(new UnknownTerm("y") / 'a',
+                                    new Sum(new UnknownTerm("x") ^ 2.0d, (new Coefficient("b") / 'a') * "x",
+                                    new Coefficient("c") / 'a'));
             s3.Add(tex3, eqEx3);
 
             SequenceProof s4 = new SequenceProof();
             Texte tex4 = new Texte("Quelque soit x un nombre réel");
-            Equal eqEx4 = new Equal(new Division(new UnknownTerm("y"),
-                new Coefficient("a")), new Sum(new Product(new UnknownTerm("x"),
-                    new Addition(new UnknownTerm("x"), new Division(new Coefficient("b"), new Coefficient("a")))),
-                new Division(new Coefficient("c"), new Coefficient("a"))));
+
+            Equal eqEx4 = new Equal(new UnknownTerm("y") / 'a',
+                                    new Sum(new UnknownTerm("x") * (new UnknownTerm("x") + (new Coefficient("b") / 'a')),
+                                    new Coefficient("c") / 'a'));
             s4.Add(tex4, eqEx4);
 
             SequenceProof s5 = new SequenceProof();
             Texte tex5 = new Texte("Forme algébrique somme-produit");
-            Equal eqEx5 = new Equal(new Division(new Soustraction(new UnknownTerm("y"), new Coefficient("c")),
-                new Coefficient("a")), new Product(new UnknownTerm("x"),
-                    new Addition(new UnknownTerm("x"), new Division(new Coefficient("b"), new Coefficient("a")))));
+            Equal eqEx5 = new Equal((new UnknownTerm("y") - 'c') / 'a',
+                                    new Sum(new UnknownTerm("x") * (new UnknownTerm("x") + (new Coefficient("b") / 'a'))));
             Texte tex6 = new Texte("L'équation obtenue montre une façon de résoudre l'équation avec la formule de Newton. Le résultat obtenu est une différence de deux carrés.");
             s5.Add(tex5, eqEx5, tex6);
 
@@ -244,34 +242,36 @@ namespace NeuralMathematics
         {
             Wording w = new Wording("Résoudre un polynôme d'ordre 2", "Considérons la somme de deux carrés");
             w.Content.Add(new Texte("La somme de deux carrés s'écrit"),
-                          new Addition(new Power(new UnknownTerm("u"), new NumericValue(2.0d)), new Power(new UnknownTerm("v"), new NumericValue(2.0d))));
+                          (new UnknownTerm("u") ^ 2.0d) + (new UnknownTerm("v") ^ 2.0d));
             w.Content.Add(new Texte("Une équation polynôme de second degré s'écrit"),
-                          new Equal(new UnknownTerm("y"), new Sum(new Multiplication(new Coefficient("a"), new Power(new UnknownTerm("x"), new NumericValue(2.0d))),
-                                    new Multiplication(new Coefficient("b"), new UnknownTerm("x")),
-                                    new Coefficient("c"))),
+                          new Equal(new UnknownTerm("y"), 
+                              new Sum(new Coefficient("a") * new UnknownTerm("x") ^ 2.0d,
+                                      new Coefficient("b") * "x",
+                                      new Coefficient("c"))),
                           new Texte("Je factorise le terme {a}, puis le terme {x}, puis je place le coefficient {c} de l'autre côté de l'égalité", true),
-                          new Equal(new Division(new Soustraction(new UnknownTerm("y"), new Coefficient("c")), new Coefficient("a")),
-                                    new Multiplication(new UnknownTerm("x"), new Addition(new UnknownTerm("x"), new Division(new UnknownTerm("b"), new Coefficient("a"))))),
+                          new Equal(new UnknownTerm("y") / 'a',
+                                    new Sum(new UnknownTerm("x") ^ 2.0d,
+                                            new Coefficient("b") / 'a' * "x",
+                                            new Coefficient("c") / 'a')),
                           new Texte("J'obtiens un premier indice de la forme algébrique de l'équation du second degré permettant de résoudre"));
 
             Texte t1 = new Texte("Quelque soient deux nombres réels {u} et {v}", true);
-            Sum eq1 = new Sum(new Power(new UnknownTerm("u"), new NumericValue(2.0d)), 
-                                        new Power(new UnknownTerm("v"), new NumericValue(2.0d)));
+            Sum eq1 = new Sum((new UnknownTerm("u") ^ 2.0d),
+                              (new UnknownTerm("v") ^ 2.0d));
             SequenceProof sp1 = new SequenceProof(t1, eq1);
 
             Texte t2 = new Texte("Quelque soient deux nombres réels {u} et {v}", true);
-            Equal eq2 = new Equal(eq1, new Soustraction(new Power(new Addition(new UnknownTerm("u"), new UnknownTerm("v")), new NumericValue(2.0d)),
-                                                        new Product(new NumericValue(2.0d), new UnknownTerm("u"), new UnknownTerm("v"))));
+            Equal eq2 = new Equal(eq1, ((new UnknownTerm("u") + new UnknownTerm("v")) ^ 2.0d) - new NumericValue(2.0d) * new UnknownTerm("u") * new UnknownTerm("v"));
             SequenceProof sp2 = new SequenceProof(t2, eq2);
 
-            Equal eq3 = new Equal(new Sum(new Power(new UnknownTerm("u"), new NumericValue(2.0d)), new Product(new NumericValue(2.0d), new UnknownTerm("u"), new UnknownTerm("v"))),
-                                  new Soustraction(new Power(new Addition(new UnknownTerm("u"), new UnknownTerm("v")), new NumericValue(2.0d)), new Power(new UnknownTerm("v"), new NumericValue(2.0d))));
+            Equal eq3 = new Equal(eq1 - (new UnknownTerm("v") ^ 2.0d), (new UnknownTerm("u") ^ 2.0d) + new NumericValue(2.0d) * new UnknownTerm("u") * new UnknownTerm("v"));
 
             SequenceProof sp3 = new SequenceProof(eq3);
 
             Texte t4 = new Texte("Quelque soit {x_0} et {x}, deux nombres réels", true);
             Equal eq4u = new Equal(new UnknownTerm("u"), new UnknownTerm("x"));
             Equal eq4v = new Equal(new UnknownTerm("v"), new UnknownTerm("x_0"));
+            Texte t40 = new Texte("Je remplace les termes {u} et {v} par leurs équations respectives", true);
 
             Equal eq41 = new Equal(new Sum(new Power(new UnknownTerm("x"), new NumericValue(2.0d)), new Product(new NumericValue(2.0d), new UnknownTerm("x"), new UnknownTerm("x_0"))),
                                   new Soustraction(new Power(new Addition(new UnknownTerm("x"), new UnknownTerm("x_0")), new NumericValue(2.0d)), new Power(new UnknownTerm("x_0"), new NumericValue(2.0d))));
@@ -281,7 +281,7 @@ namespace NeuralMathematics
                                   new Soustraction(new Power(new Addition(new UnknownTerm("x"), new UnknownTerm("x_0")), new NumericValue(2.0d)), new Power(new UnknownTerm("x_0"), new NumericValue(2.0d))));
             Texte t42 = new Texte("C'est le produit du terme {x} et de la somme de {x} avec le coefficient {b = 2 * x_0}. Il s'agit donc bien d'un polynôme d'ordre 2.", true);
 
-            SequenceProof sp4 = new SequenceProof(t4, eq4u, eq4v, eq41, t41, eq42, t42);
+            SequenceProof sp4 = new SequenceProof(t4, eq4u, eq4v, t40, eq41, t41, eq42, t42);
 
             Texte t5 = new Texte("Soit l'équation complète avec l'inconnu {x} et le résultat {y}", true);
             Equal eq51 = new Equal(new UnknownTerm("y"), eq42.LeftOperand);
@@ -290,10 +290,10 @@ namespace NeuralMathematics
             Texte t52 = new Texte("Et aussi lorsque {x_0 = b} alors l'équation devient", true);
             Equal eq53 = new Equal(new UnknownTerm("y"), new Addition(new Power(new UnknownTerm("x"), new NumericValue(2.0d)), new Term(2.0d, "b", "x")));
 
-            Texte t53 = new Texte("Avec un peu d'effort, on reconnait qu'il existe un unique nombre {x_0 = b/2} qui obtiendra exactement {y}", true);
+            Texte t53 = new Texte("Avec un peu d'effort, on reconnait qu'il existe un unique nombre {x_0 = b/2} qui donne exactement {y}", true);
             Equal eq54 = new Equal(new UnknownTerm("y"), new Addition(new Power(new UnknownTerm("x"), new NumericValue(2.0d)), new Multiplication(new Coefficient("b"), new UnknownTerm("x"))));
 
-            
+
             SequenceProof sp5 = new SequenceProof(t5, eq51, t51, eq52, t52, eq53, t53, eq54);
 
             SequenceProof sp6 = new SequenceProof();
@@ -435,7 +435,7 @@ namespace NeuralMathematics
             but.Click += Button_Click;
             SetButtonStyle(but);
             fd.Blocks.Add(new BlockUIContainer(but));
-            
+
             w.ToDocument(fd);
 
             return fd;
@@ -456,7 +456,7 @@ namespace NeuralMathematics
             Texte t2 = new Texte("Quelque soit u et v, deux nombres réels");
             Equal eq2 = new Equal(eq1, new Product(new Soustraction(new UnknownTerm("u"), new UnknownTerm("v")),
                                        new Sum(new Power(new UnknownTerm("u"), new NumericValue(2.0d)),
-                                               new Multiplication(new UnknownTerm("u"), new UnknownTerm("v")), 
+                                               new Multiplication(new UnknownTerm("u"), new UnknownTerm("v")),
                                                new Power(new UnknownTerm("v"), new NumericValue(2.0d))).Transition()));
             SequenceProof sp2 = new SequenceProof(t2, eq2);
 
@@ -522,22 +522,43 @@ namespace NeuralMathematics
         public static FlowDocument ComputeTransformationCoefficientPolynome2()
         {
 
-            Wording w = new Wording("Transformation du coefficient b dans un polynôme d'ordre 2", "Calcul des solutions de l'équation du polynôme d'ordre 2");
+            Wording w = new Wording("Transformation du coefficient {b} dans un polynôme d'ordre 2", "Calcul des solutions de l'équation du polynôme d'ordre 2", true);
+            w.Content.Add(new Texte("Une équation polynôme de second degré s'écrit"),
+                new Equal(new UnknownTerm("y"), new Sum(new Multiplication(new Coefficient("a"), new Power(new UnknownTerm("x"), new NumericValue(2.0d))),
+                        new Multiplication(new Coefficient("b"), new UnknownTerm("x")),
+                        new Coefficient("c"))),
+                new Texte("Je factorise le terme {a}, puis le terme {x}, puis je place le coefficient {c} de l'autre côté de l'égalité", true),
+                new Equal(new Division(new Soustraction(new UnknownTerm("y"), new Coefficient("c")), new Coefficient("a")),
+                        new Multiplication(new UnknownTerm("x"), new Addition(new UnknownTerm("x"), new Division(new UnknownTerm("b"), new Coefficient("a"))))),
+                new Texte("J'obtiens un premier indice de la forme algébrique de l'équation du second degré permettant de résoudre"));
 
-            Texte t1 = new Texte("Quelque soit un réel x");
-            Equal eq1 = new Equal(new UnknownTerm("y"), new Sum(new Multiplication(new Coefficient("a"), new Power(new UnknownTerm("x"), new NumericValue(2.0d))),
-                                                                new Multiplication(new Coefficient("b"), new UnknownTerm("x")),
-                                                                new Coefficient("c")));
-            Texte t2 = new Texte("Multiplier et diviser par 2 sur le coefficient b de l'équation du polynôme d'ordre 2");
-            Equal eq2 = new Equal(new UnknownTerm("y"), new Sum(new Multiplication(new Coefficient("a"), new Power(new UnknownTerm("x"), new NumericValue(2.0d))),
-                                                                new Product(new NumericValue(2.0d),
-                                                                            new Division(new Coefficient("b"), new NumericValue(2.0d)), new UnknownTerm("x")),
-                                                                new Coefficient("c")));
-            Texte t3 = new Texte("Ajouter et retrancher le terme constant b/2 élevé au carré");
-            Equal eq3 = new Equal(new UnknownTerm("y"), new Sum(new Multiplication(new Coefficient("a"), new Power(new UnknownTerm("x"), new NumericValue(2.0d))),
-                                                                new Product(new NumericValue(2.0d),
-                                                                            new Division(new Coefficient("b"), new NumericValue(2.0d)), new UnknownTerm("x")),
-                                                                new Coefficient("c"), new Division(new Power(new Coefficient("b"), new NumericValue(2.0d)), new NumericValue(4.0d)), new Negative(new Division(new Power(new Coefficient("b"), new NumericValue(2.0d)), new NumericValue(4.0d)))));
+            Texte t1 = new Texte("Quelque soit un réel {x}", true);
+            Equal eq1 = new Equal(new Division(new Soustraction(new UnknownTerm("y"), new Coefficient("c")), new Coefficient("a")),
+                                  new Sum(new Power(new UnknownTerm("x"), new NumericValue(2.0d)),
+                                          new Multiplication(new Coefficient("b"), new UnknownTerm("x"))));
+
+            Texte t2 = new Texte("Multiplier et diviser par 2 sur le coefficient {b} de l'équation du polynôme d'ordre 2", true);
+
+            Equal eq2 = new Equal(new Division(new Soustraction(new UnknownTerm("y"), new Coefficient("c")), new Coefficient("a")),
+                                  new Sum(new Power(new UnknownTerm("x"), new NumericValue(2.0d)),
+                                          new Multiplication(new Division(new Multiplication(new NumericValue(2.0d), new Coefficient("b")), new NumericValue(2.0d)), new UnknownTerm("x"))));
+
+            Texte t3 = new Texte(@"Ajouter et retrancher le terme constant '{\frac{b}{2}}^2'", true, '\'', '\'');
+
+            Equal eq3 = new Equal(new Division(new Soustraction(new UnknownTerm("y"), new Coefficient("c")), new Coefficient("a")),
+                                  new Sum(new Power(new UnknownTerm("x"), new NumericValue(2.0d)),
+                                          new Multiplication(new Division(new Multiplication(new NumericValue(2.0d), new Coefficient("b")), new NumericValue(2.0d)), new UnknownTerm("x")),
+                                          new Division(new Power(new Coefficient("b"), new NumericValue(2.0d)), new NumericValue(4.0d)),
+                                          new Negative(new Division(new Power(new Coefficient("b"), new NumericValue(2.0d)), new NumericValue(4.0d)))));
+
+            Texte t31 = new Texte("L'équation obtenue permet de tirer la soustraction de deux carrés");
+
+            Equal eq31 = new Equal(new Division(new Soustraction(new UnknownTerm("y"), new Coefficient("c")), new Coefficient("a")),
+                                  new Sum(new Power(new Addition(new UnknownTerm("x"), new Division(new Coefficient("b"), new NumericValue(2.0d))), new NumericValue(2.0d)),
+                                          new Multiplication(new Division(new Multiplication(new NumericValue(2.0d), new Coefficient("b")), new NumericValue(2.0d)), new UnknownTerm("x")),
+                                          new Division(new Power(new Coefficient("b"), new NumericValue(2.0d)), new NumericValue(4.0d)),
+                                          new Negative(new Division(new Power(new Coefficient("b"), new NumericValue(2.0d)), new NumericValue(4.0d)))));
+
             SequenceProof sp1 = new SequenceProof(t1, eq1);
             SequenceProof sp2 = new SequenceProof(t2, eq2);
             SequenceProof sp3 = new SequenceProof(t3, eq3);
@@ -547,9 +568,9 @@ namespace NeuralMathematics
             Answer a2 = new Answer("Multiplication par 2", sp2);
             Answer a3 = new Answer("Ajout d'un terme constant", sp3);
 
-            Exercice e1 = new Exercice(1, "Ecrire l'équation d'un polynôme d'ordre 2", "Choisissez les lettres x pour l'abscisse et y pour l'ordonnée", a1);
-            Exercice e2 = new Exercice(2, "Multiplier par 2 le terme b et diviser par 2", "le nombre 2 s'annule", a2);
-            Exercice e3 = new Exercice(3, "Ajouter et retrancher le carré de b/2", "le nombre 2 forme une équation solution", a3);
+            Exercice e1 = new Exercice(1, "Ecrire l'équation d'un polynôme d'ordre 2", "Choisir les lettres {x} pour l'abscisse et {y} pour l'ordonnée", true, a1);
+            Exercice e2 = new Exercice(2, "Multiplier par 2 le terme {b} et diviser par 2", "le nombre 2 s'annule", true, a2);
+            Exercice e3 = new Exercice(3, @"Ajouter et retrancher '{\frac{b}{2}}^2'", "le nombre 2 permet de factoriser l'équation", true, '\'', '\'', a3);
             w.Add(e1);
             w.Add(e2);
             w.Add(e3);

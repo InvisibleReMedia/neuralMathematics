@@ -40,6 +40,14 @@ namespace Maths
         /// Index name pour le mode
         /// </summary>
         private static readonly string texModeName = "texMode";
+        /// <summary>
+        /// Index name for the left delimiter
+        /// </summary>
+        private static readonly string leftDelimiterName = "delimOn";
+        /// <summary>
+        /// Index name for the right delimiter
+        /// </summary>
+        private static readonly string rightDelimiterName = "delimOff";
 
         #endregion
 
@@ -50,15 +58,10 @@ namespace Maths
         /// </summary>
         /// <param name="title">titre</param>
         /// <param name="desc">description</param>
-        /// <param name="mode">mode</param>
         /// <param name="ex">exercices</param>
-        public Wording(string title, string desc, bool mode, params Exercice[] ex)
+        public Wording(string title, string desc, params Exercice[] ex)
+            : this(title, desc, false, '{', '}', ex)
         {
-            this.Set(titleName, title);
-            this.Set(descName, desc);
-            this.Set(exercicesName, ex.ToList());
-            this.Set(contentName, new SequenceProof());
-            this.Set(texModeName, mode);
         }
 
         /// <summary>
@@ -66,9 +69,31 @@ namespace Maths
         /// </summary>
         /// <param name="title">titre</param>
         /// <param name="desc">description</param>
+        /// <param name="mode">mode</param>
         /// <param name="ex">exercices</param>
-        public Wording(string title, string desc, params Exercice[] ex) : this(title, desc, false, ex)
+        public Wording(string title, string desc, bool mode, params Exercice[] ex)
+            : this(title, desc, mode, '{', '}', ex)
         {
+        }
+
+        /// <summary>
+        /// General constructor
+        /// </summary>
+        /// <param name="title">titre</param>
+        /// <param name="desc">description</param>
+        /// <param name="mode">mode</param>
+        /// <param name="don">delimiter on</param>
+        /// <param name="doff">delimiter off</param>
+        /// <param name="ex">exercices</param>
+        public Wording(string title, string desc, bool mode, char don, char doff, params Exercice[] ex)
+        {
+            this.Set(titleName, title);
+            this.Set(descName, desc);
+            this.Set(exercicesName, ex.ToList());
+            this.Set(contentName, new SequenceProof());
+            this.Set(texModeName, mode);
+            this.Set(leftDelimiterName, don);
+            this.Set(rightDelimiterName, doff);
         }
 
         #endregion
@@ -98,6 +123,36 @@ namespace Maths
             get
             {
                 return this.Get(contentName) as SequenceProof;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the delimiter
+        /// </summary>
+        public char DelimiterLeft
+        {
+            get
+            {
+                return this.Get(leftDelimiterName);
+            }
+            set
+            {
+                this.Set(leftDelimiterName, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the delimiter
+        /// </summary>
+        public char DelimiterRight
+        {
+            get
+            {
+                return this.Get(rightDelimiterName);
+            }
+            set
+            {
+                this.Set(rightDelimiterName, value);
             }
         }
 
@@ -136,16 +191,16 @@ namespace Maths
                 p.Inlines.Add(new Run(this.Get(descName)));
                 p.Inlines.Add(new LineBreak());
                 f.Blocks.Add(p);
-                this.Content.ToDocument(f.Blocks);
-
-                List l = new List();
-                l.MarkerStyle = System.Windows.TextMarkerStyle.Decimal;
-                foreach (Exercice e in this.Get(exercicesName))
-                {
-                    e.ToDocument(l);
-                }
-                f.Blocks.Add(l);
             }
+            this.Content.ToDocument(f.Blocks);
+
+            List l = new List();
+            l.MarkerStyle = System.Windows.TextMarkerStyle.Decimal;
+            foreach (Exercice e in this.Get(exercicesName))
+            {
+                e.ToDocument(l);
+            }
+            f.Blocks.Add(l);
         }
 
         /// <summary>
@@ -186,10 +241,9 @@ namespace Maths
         /// <param name="phrase">text</param>
         private void InsertPhraseIntoDocument(Paragraph p, string phrase)
         {
-            System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex(@"(\{[^\}]*\})");
-            foreach (string s in r.Split(phrase))
+            foreach (string s in phrase.SplitForTex(this.DelimiterLeft, this.DelimiterRight))
             {
-                if (s.StartsWith("{") && s.EndsWith("}"))
+                if (s.StartsWith(this.DelimiterLeft.ToString()) && s.EndsWith(this.DelimiterRight.ToString()))
                 {
                     string tex = s.Substring(1, s.Length - 2);
                     WpfMath.Controls.FormulaControl fc = new WpfMath.Controls.FormulaControl();

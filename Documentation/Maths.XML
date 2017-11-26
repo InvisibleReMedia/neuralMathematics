@@ -24,6 +24,16 @@
             Tex mode
             </summary>
         </member>
+        <member name="F:Maths.Answer.leftDelimiterName">
+            <summary>
+            Index name for the left delimiter
+            </summary>
+        </member>
+        <member name="F:Maths.Answer.rightDelimiterName">
+            <summary>
+            Index name for the right delimiter
+            </summary>
+        </member>
         <member name="M:Maths.Answer.#ctor(System.String,Maths.SequenceProof)">
             <summary>
             Default constructor
@@ -33,10 +43,20 @@
         </member>
         <member name="M:Maths.Answer.#ctor(System.String,System.Boolean,Maths.SequenceProof)">
             <summary>
+            Default constructor
+            </summary>
+            <param name="p">proposal</param>
+            <param name="mode">tex mode switch</param>
+            <param name="s">sequence</param>
+        </member>
+        <member name="M:Maths.Answer.#ctor(System.String,System.Boolean,System.Char,System.Char,Maths.SequenceProof)">
+            <summary>
             General constructor
             </summary>
             <param name="p">proposal</param>
             <param name="mode">tex mode</param>
+            <param name="don">delimiter on</param>
+            <param name="doff">delimiter off</param>
             <param name="s">sequence</param>
         </member>
         <member name="M:Maths.Answer.ToDocument(System.Windows.Documents.BlockCollection)">
@@ -74,6 +94,16 @@
         <member name="P:Maths.Answer.IsTexMode">
             <summary>
             Gets or sets the tex mode
+            </summary>
+        </member>
+        <member name="P:Maths.Answer.DelimiterLeft">
+            <summary>
+            Gets or sets the delimiter
+            </summary>
+        </member>
+        <member name="P:Maths.Answer.DelimiterRight">
+            <summary>
+            Gets or sets the delimiter
             </summary>
         </member>
         <member name="T:Maths.ClipBox">
@@ -1088,6 +1118,16 @@
             Index name for tex switch
             </summary>
         </member>
+        <member name="F:Maths.Exercice.leftDelimiterName">
+            <summary>
+            Index name for the left delimiter
+            </summary>
+        </member>
+        <member name="F:Maths.Exercice.rightDelimiterName">
+            <summary>
+            Index name for the right delimiter
+            </summary>
+        </member>
         <member name="M:Maths.Exercice.#ctor(System.UInt32,System.String,System.String,Maths.Answer)">
             <summary>
             Default constructor
@@ -1100,6 +1140,17 @@
         </member>
         <member name="M:Maths.Exercice.#ctor(System.UInt32,System.String,System.String,System.Boolean,Maths.Answer)">
             <summary>
+            constructor for tex mode
+            given a number, the question phrase and a short notice
+            </summary>
+            <param name="numero">number</param>
+            <param name="q">question</param>
+            <param name="note">notice</param>
+            <param name="mode">tex mode switch</param>
+            <param name="a">answer</param>
+        </member>
+        <member name="M:Maths.Exercice.#ctor(System.UInt32,System.String,System.String,System.Boolean,System.Char,System.Char,Maths.Answer)">
+            <summary>
             General constructor
             given a number, the question phrase and a short notice
             mode is true if something contains equations
@@ -1108,6 +1159,8 @@
             <param name="q">question</param>
             <param name="note">notice</param>
             <param name="mode">mode</param>
+            <param name="don">delimiter on</param>
+            <param name="doff">delimiter off</param>
             <param name="a">answer</param>
         </member>
         <member name="M:Maths.Exercice.ToDocument(System.Windows.Documents.List)">
@@ -1146,6 +1199,16 @@
         <member name="P:Maths.Exercice.IsTexMode">
             <summary>
             Gets or sets the tex mode
+            </summary>
+        </member>
+        <member name="P:Maths.Exercice.DelimiterLeft">
+            <summary>
+            Gets or sets the delimiter
+            </summary>
+        </member>
+        <member name="P:Maths.Exercice.DelimiterRight">
+            <summary>
+            Gets or sets the delimiter
             </summary>
         </member>
         <member name="T:Maths.SequenceProof">
@@ -1409,21 +1472,42 @@
             Index name pour le mode
             </summary>
         </member>
-        <member name="M:Maths.Wording.#ctor(System.String,System.String,System.Boolean,Maths.Exercice[])">
+        <member name="F:Maths.Wording.leftDelimiterName">
+            <summary>
+            Index name for the left delimiter
+            </summary>
+        </member>
+        <member name="F:Maths.Wording.rightDelimiterName">
+            <summary>
+            Index name for the right delimiter
+            </summary>
+        </member>
+        <member name="M:Maths.Wording.#ctor(System.String,System.String,Maths.Exercice[])">
             <summary>
             Default constructor
+            </summary>
+            <param name="title">titre</param>
+            <param name="desc">description</param>
+            <param name="ex">exercices</param>
+        </member>
+        <member name="M:Maths.Wording.#ctor(System.String,System.String,System.Boolean,Maths.Exercice[])">
+            <summary>
+            General constructor
             </summary>
             <param name="title">titre</param>
             <param name="desc">description</param>
             <param name="mode">mode</param>
             <param name="ex">exercices</param>
         </member>
-        <member name="M:Maths.Wording.#ctor(System.String,System.String,Maths.Exercice[])">
+        <member name="M:Maths.Wording.#ctor(System.String,System.String,System.Boolean,System.Char,System.Char,Maths.Exercice[])">
             <summary>
             General constructor
             </summary>
             <param name="title">titre</param>
             <param name="desc">description</param>
+            <param name="mode">mode</param>
+            <param name="don">delimiter on</param>
+            <param name="doff">delimiter off</param>
             <param name="ex">exercices</param>
         </member>
         <member name="M:Maths.Wording.Add(Maths.Exercice)">
@@ -1471,6 +1555,16 @@
         <member name="P:Maths.Wording.Content">
             <summary>
             Gets Sequence proof
+            </summary>
+        </member>
+        <member name="P:Maths.Wording.DelimiterLeft">
+            <summary>
+            Gets or sets the delimiter
+            </summary>
+        </member>
+        <member name="P:Maths.Wording.DelimiterRight">
+            <summary>
+            Gets or sets the delimiter
             </summary>
         </member>
     </members>

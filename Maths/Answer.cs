@@ -30,6 +30,14 @@ namespace Maths
         /// Tex mode
         /// </summary>
         private static readonly string texModeName = "texMode";
+        /// <summary>
+        /// Index name for the left delimiter
+        /// </summary>
+        private static readonly string leftDelimiterName = "delimOn";
+        /// <summary>
+        /// Index name for the right delimiter
+        /// </summary>
+        private static readonly string rightDelimiterName = "delimOff";
 
         #endregion
 
@@ -40,7 +48,19 @@ namespace Maths
         /// </summary>
         /// <param name="p">proposal</param>
         /// <param name="s">sequence</param>
-        public Answer(string p, SequenceProof s) : this(p, false, s)
+        public Answer(string p, SequenceProof s)
+            : this(p, false, '{', '}', s)
+        {
+        }
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="p">proposal</param>
+        /// <param name="mode">tex mode switch</param>
+        /// <param name="s">sequence</param>
+        public Answer(string p, bool mode, SequenceProof s)
+            : this(p, mode, '{', '}', s)
         {
         }
 
@@ -49,12 +69,16 @@ namespace Maths
         /// </summary>
         /// <param name="p">proposal</param>
         /// <param name="mode">tex mode</param>
+        /// <param name="don">delimiter on</param>
+        /// <param name="doff">delimiter off</param>
         /// <param name="s">sequence</param>
-        public Answer(string p, bool mode, SequenceProof s)
+        public Answer(string p, bool mode, char don, char doff, SequenceProof s)
         {
             this.Set(proposalName, p);
             this.Set(texModeName, mode);
             this.Set(showName, s);
+            this.Set(leftDelimiterName, don);
+            this.Set(rightDelimiterName, doff);
         }
 
         #endregion
@@ -73,6 +97,36 @@ namespace Maths
             set
             {
                 this.Set(texModeName, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the delimiter
+        /// </summary>
+        public char DelimiterLeft
+        {
+            get
+            {
+                return this.Get(leftDelimiterName);
+            }
+            set
+            {
+                this.Set(leftDelimiterName, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the delimiter
+        /// </summary>
+        public char DelimiterRight
+        {
+            get
+            {
+                return this.Get(rightDelimiterName);
+            }
+            set
+            {
+                this.Set(rightDelimiterName, value);
             }
         }
 
@@ -131,8 +185,7 @@ namespace Maths
         /// <param name="foreground">foreground color</param>
         private void InsertPhraseIntoDocument(Paragraph p, string phrase, System.Windows.Media.Brush foreground)
         {
-            System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex(@"(\{[^\}]*\})");
-            foreach (string s in r.Split(phrase))
+            foreach (string s in phrase.SplitForTex('{', '}'))
             {
                 if (s.StartsWith("{") && s.EndsWith("}"))
                 {
