@@ -428,6 +428,46 @@
             <param name="b">right</param>
             <returns>power</returns>
         </member>
+        <member name="M:PersistantModel.Arithmetic.op_Addition(System.Double,PersistantModel.Arithmetic)">
+            <summary>
+            Addition
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>addition</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Subtraction(System.Double,PersistantModel.Arithmetic)">
+            <summary>
+            Soustraction
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>soustractio</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Multiply(System.Double,PersistantModel.Arithmetic)">
+            <summary>
+            Multiplication
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>multiplication</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Division(System.Double,PersistantModel.Arithmetic)">
+            <summary>
+            Division
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>division</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_ExclusiveOr(System.Double,PersistantModel.Arithmetic)">
+            <summary>
+            Power
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>power</returns>
+        </member>
         <member name="M:PersistantModel.Arithmetic.op_Addition(PersistantModel.Arithmetic,System.String)">
             <summary>
             Addition
@@ -468,6 +508,46 @@
             <param name="b">right</param>
             <returns>power</returns>
         </member>
+        <member name="M:PersistantModel.Arithmetic.op_Addition(System.String,PersistantModel.Arithmetic)">
+            <summary>
+            Addition
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>addition</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Subtraction(System.String,PersistantModel.Arithmetic)">
+            <summary>
+            Soustraction
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>soustractio</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Multiply(System.String,PersistantModel.Arithmetic)">
+            <summary>
+            Multiplication
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>multiplication</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Division(System.String,PersistantModel.Arithmetic)">
+            <summary>
+            Division
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>division</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_ExclusiveOr(System.String,PersistantModel.Arithmetic)">
+            <summary>
+            Power
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>power</returns>
+        </member>
         <member name="M:PersistantModel.Arithmetic.op_Addition(PersistantModel.Arithmetic,System.Char)">
             <summary>
             Addition
@@ -501,6 +581,46 @@
             <returns>division</returns>
         </member>
         <member name="M:PersistantModel.Arithmetic.op_ExclusiveOr(PersistantModel.Arithmetic,System.Char)">
+            <summary>
+            Power
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>power</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Addition(System.Char,PersistantModel.Arithmetic)">
+            <summary>
+            Addition
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>addition</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Subtraction(System.Char,PersistantModel.Arithmetic)">
+            <summary>
+            Soustraction
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>soustractio</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Multiply(System.Char,PersistantModel.Arithmetic)">
+            <summary>
+            Multiplication
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>multiplication</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_Division(System.Char,PersistantModel.Arithmetic)">
+            <summary>
+            Division
+            </summary>
+            <param name="a">left</param>
+            <param name="b">right</param>
+            <returns>division</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.op_ExclusiveOr(System.Char,PersistantModel.Arithmetic)">
             <summary>
             Power
             </summary>

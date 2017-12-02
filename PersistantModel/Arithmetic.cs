@@ -1187,7 +1187,8 @@ namespace PersistantModel
         /// <param name="a">left</param>
         /// <param name="b">right</param>
         /// <returns>addition</returns>
-        public static Arithmetic operator+(Arithmetic a, Arithmetic b) {
+        public static Arithmetic operator +(Arithmetic a, Arithmetic b)
+        {
             return new Addition(a, b);
         }
 
@@ -1296,6 +1297,61 @@ namespace PersistantModel
         /// <param name="a">left</param>
         /// <param name="b">right</param>
         /// <returns>addition</returns>
+        public static Arithmetic operator +(double a, Arithmetic b)
+        {
+            return new Addition(b, new NumericValue(a));
+        }
+
+        /// <summary>
+        /// Soustraction
+        /// </summary>
+        /// <param name="a">left</param>
+        /// <param name="b">right</param>
+        /// <returns>soustractio</returns>
+        public static Arithmetic operator -(double a, Arithmetic b)
+        {
+            return new Soustraction(b, new NumericValue(a));
+        }
+
+        /// <summary>
+        /// Multiplication
+        /// </summary>
+        /// <param name="a">left</param>
+        /// <param name="b">right</param>
+        /// <returns>multiplication</returns>
+        public static Arithmetic operator *(double a, Arithmetic b)
+        {
+            return new Multiplication(b, new NumericValue(a));
+        }
+
+        /// <summary>
+        /// Division
+        /// </summary>
+        /// <param name="a">left</param>
+        /// <param name="b">right</param>
+        /// <returns>division</returns>
+        public static Arithmetic operator /(double a, Arithmetic b)
+        {
+            return new Division(b, new NumericValue(a));
+        }
+
+        /// <summary>
+        /// Power
+        /// </summary>
+        /// <param name="a">left</param>
+        /// <param name="b">right</param>
+        /// <returns>power</returns>
+        public static Arithmetic operator ^(double a, Arithmetic b)
+        {
+            return new Power(b, new NumericValue(a));
+        }
+
+        /// <summary>
+        /// Addition
+        /// </summary>
+        /// <param name="a">left</param>
+        /// <param name="b">right</param>
+        /// <returns>addition</returns>
         public static Arithmetic operator +(Arithmetic a, string b)
         {
             return new Addition(a, new UnknownTerm(b));
@@ -1351,9 +1407,64 @@ namespace PersistantModel
         /// <param name="a">left</param>
         /// <param name="b">right</param>
         /// <returns>addition</returns>
+        public static Arithmetic operator +(string a, Arithmetic b)
+        {
+            return new Addition(b, new UnknownTerm(a));
+        }
+
+        /// <summary>
+        /// Soustraction
+        /// </summary>
+        /// <param name="a">left</param>
+        /// <param name="b">right</param>
+        /// <returns>soustractio</returns>
+        public static Arithmetic operator -(string a, Arithmetic b)
+        {
+            return new Soustraction(b, new UnknownTerm(a));
+        }
+
+        /// <summary>
+        /// Multiplication
+        /// </summary>
+        /// <param name="a">left</param>
+        /// <param name="b">right</param>
+        /// <returns>multiplication</returns>
+        public static Arithmetic operator *(string a, Arithmetic b)
+        {
+            return new Multiplication(b, new UnknownTerm(a));
+        }
+
+        /// <summary>
+        /// Division
+        /// </summary>
+        /// <param name="a">left</param>
+        /// <param name="b">right</param>
+        /// <returns>division</returns>
+        public static Arithmetic operator /(string a, Arithmetic b)
+        {
+            return new Division(b, new UnknownTerm(a));
+        }
+
+        /// <summary>
+        /// Power
+        /// </summary>
+        /// <param name="a">left</param>
+        /// <param name="b">right</param>
+        /// <returns>power</returns>
+        public static Arithmetic operator ^(string a, Arithmetic b)
+        {
+            return new Power(b, new UnknownTerm(a));
+        }
+
+        /// <summary>
+        /// Addition
+        /// </summary>
+        /// <param name="a">left</param>
+        /// <param name="b">right</param>
+        /// <returns>addition</returns>
         public static Arithmetic operator +(Arithmetic a, char b)
         {
-            return new Addition(a, new NumericValue(b));
+            return new Addition(a, new Coefficient(b.ToString()));
         }
 
         /// <summary>
@@ -1398,6 +1509,61 @@ namespace PersistantModel
         public static Arithmetic operator ^(Arithmetic a, char b)
         {
             return new Power(a, new Coefficient(b.ToString()));
+        }
+
+        /// <summary>
+        /// Addition
+        /// </summary>
+        /// <param name="a">left</param>
+        /// <param name="b">right</param>
+        /// <returns>addition</returns>
+        public static Arithmetic operator +(char a, Arithmetic b)
+        {
+            return new Addition(b, new Coefficient(a.ToString()));
+        }
+
+        /// <summary>
+        /// Soustraction
+        /// </summary>
+        /// <param name="a">left</param>
+        /// <param name="b">right</param>
+        /// <returns>soustractio</returns>
+        public static Arithmetic operator -(char a, Arithmetic b)
+        {
+            return new Soustraction(b, new Coefficient(a.ToString()));
+        }
+
+        /// <summary>
+        /// Multiplication
+        /// </summary>
+        /// <param name="a">left</param>
+        /// <param name="b">right</param>
+        /// <returns>multiplication</returns>
+        public static Arithmetic operator *(char a, Arithmetic b)
+        {
+            return new Multiplication(b, new Coefficient(a.ToString()));
+        }
+
+        /// <summary>
+        /// Division
+        /// </summary>
+        /// <param name="a">left</param>
+        /// <param name="b">right</param>
+        /// <returns>division</returns>
+        public static Arithmetic operator /(char a, Arithmetic b)
+        {
+            return new Division(b, new Coefficient(a.ToString()));
+        }
+
+        /// <summary>
+        /// Power
+        /// </summary>
+        /// <param name="a">left</param>
+        /// <param name="b">right</param>
+        /// <returns>power</returns>
+        public static Arithmetic operator ^(char a, Arithmetic b)
+        {
+            return new Power(b, new Coefficient(a.ToString()));
         }
 
         #endregion

@@ -134,6 +134,36 @@ namespace NeuralMathematics
         }
 
         /// <summary>
+        /// Converts double into Arithmetic
+        /// </summary>
+        /// <param name="d">d</param>
+        /// <returns>pbject</returns>
+        private static Arithmetic C(double d)
+        {
+            return new NumericValue(d);
+        }
+
+        /// <summary>
+        /// Converts term into Arithmetic
+        /// </summary>
+        /// <param name="s">term</param>
+        /// <returns>pbject</returns>
+        private static Arithmetic C(string s)
+        {
+            return new UnknownTerm(s);
+        }
+
+        /// <summary>
+        /// Converts coefficient into Arithmetic
+        /// </summary>
+        /// <param name="c">coefficient</param>
+        /// <returns>pbject</returns>
+        private static Arithmetic C(char c)
+        {
+            return new Coefficient(c.ToString());
+        }
+
+        /// <summary>
         /// Développement polynôme
         /// </summary>
         /// <returns></returns>
@@ -142,49 +172,49 @@ namespace NeuralMathematics
             Wording w = new Wording("Résolution des polynômes", "La résolution des polynômes est un sujet encore mathématiquement non élucidé");
             SequenceProof s1 = new SequenceProof();
             Texte t1 = new Texte("Degré 2");
-            Equal eq1 = new Equal((new Coefficient("a") + new Coefficient("b")) ^ 2.0d,
-                                   (new Coefficient("a") ^ 2.0d) + new NumericValue(2.0d) * new Coefficient("a") * new Coefficient("b") + (new Coefficient("b") ^ 2.0d));
-            eq1 = eq1.MakeUnique() as Equal;
+            Equal eq1 = new Equal((C('a') + 'b') ^ 2.0d,
+                                  new Sum(C('a') ^ 2.0d, C(2.0d) * 'a' * 'b', C('b') ^ 2.0d));
 
             Texte t2 = new Texte("Degré 3");
-            Equal eq2 = new Equal((new Coefficient("a") + new Coefficient("b")) ^ 3.0d,
-                                        new Sum(new Coefficient("a") ^ 3.0d,
-                                        new NumericValue(3.0d) * (new Coefficient("a") ^2.0d) * new Coefficient("b"),
-                                        new NumericValue(3.0d) * (new Coefficient("b") ^ 2.0d) * new Coefficient("a"),
-                                        new Coefficient("b") ^ 3.0d));
-            eq2 = eq2.MakeUnique() as Equal;
+            Equal eq2 = new Equal((C('a') + 'b') ^ 3.0d,
+                                  new Sum(C('a') ^ 3.0d,
+                                          C(3.0d) * (C('a') ^ 2.0d) * 'b',
+                                          C(3.0d) * (C('b') ^ 2.0d) * 'a',
+                                          C('b') ^ 3.0d));
+
             s1.Add(t1);
             s1.Add(eq1);
             s1.Add(t2);
             s1.Add(eq2);
             SequenceProof s2 = new SequenceProof();
             Texte tex2 = new Texte("Quelque soit x un nombre réel");
-            Equal eqEx1 = new Equal(new UnknownTerm("y"), new Sum(new Coefficient("a") * (new UnknownTerm("x") ^ 2.0d),
-                                                                  new Coefficient("b") * "x",
-                                                                  new Coefficient("c")));
-            eqEx1 = eqEx1.MakeUnique() as Equal;
+            Equal eqEx1 = new Equal(C("y"),
+                                    new Sum(C('a') * (C("x") ^ 2.0d),
+                                            C('b') * "x",
+                                            C('c')));
             s2.Add(tex2);
             s2.Add(eqEx1);
 
             SequenceProof s3 = new SequenceProof();
             Texte tex3 = new Texte("Quelque soit x un nombre réel");
-            Equal eqEx3 = new Equal(new UnknownTerm("y") / 'a',
-                                    new Sum(new UnknownTerm("x") ^ 2.0d, (new Coefficient("b") / 'a') * "x",
-                                    new Coefficient("c") / 'a'));
+            Equal eqEx3 = new Equal(C("y") / 'a',
+                                    new Sum(C("x") ^ 2.0d,
+                                            (C('b') / 'a') * "x",
+                                            C('c') / 'a'));
             s3.Add(tex3, eqEx3);
 
             SequenceProof s4 = new SequenceProof();
             Texte tex4 = new Texte("Quelque soit x un nombre réel");
 
-            Equal eqEx4 = new Equal(new UnknownTerm("y") / 'a',
-                                    new Sum(new UnknownTerm("x") * (new UnknownTerm("x") + (new Coefficient("b") / 'a')),
-                                    new Coefficient("c") / 'a'));
+            Equal eqEx4 = new Equal(C("y") / 'a',
+                                    new Sum(C("x") * (C("x") + (C("b") / 'a')),
+                                    C("c") / 'a'));
             s4.Add(tex4, eqEx4);
 
             SequenceProof s5 = new SequenceProof();
             Texte tex5 = new Texte("Forme algébrique somme-produit");
-            Equal eqEx5 = new Equal((new UnknownTerm("y") - 'c') / 'a',
-                                    new Sum(new UnknownTerm("x") * (new UnknownTerm("x") + (new Coefficient("b") / 'a'))));
+            Equal eqEx5 = new Equal((C("y") - 'c') / 'a',
+                                    new Sum(C("x") * (C("x") + (C("b") / 'a'))));
             Texte tex6 = new Texte("L'équation obtenue montre une façon de résoudre l'équation avec la formule de Newton. Le résultat obtenu est une différence de deux carrés.");
             s5.Add(tex5, eqEx5, tex6);
 

@@ -28,6 +28,27 @@
             </summary>
             <param name="b">button</param>
         </member>
+        <member name="M:NeuralMathematics.Applicatif.C(System.Double)">
+            <summary>
+            Converts double into Arithmetic
+            </summary>
+            <param name="d">d</param>
+            <returns>pbject</returns>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.C(System.String)">
+            <summary>
+            Converts term into Arithmetic
+            </summary>
+            <param name="s">term</param>
+            <returns>pbject</returns>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.C(System.Char)">
+            <summary>
+            Converts coefficient into Arithmetic
+            </summary>
+            <param name="c">coefficient</param>
+            <returns>pbject</returns>
+        </member>
         <member name="M:NeuralMathematics.Applicatif.Newton">
             <summary>
             Développement polynôme
