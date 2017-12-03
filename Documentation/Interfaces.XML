@@ -9,9 +9,86 @@
             Interface d'objets arithmetiques
             </summary>
         </member>
+        <member name="E:Interfaces.IArithmetic.Fetch">
+            <summary>
+            Event to fetch all data into
+            a unique list of unique records
+            </summary>
+        </member>
+        <member name="E:Interfaces.IArithmetic.Unfetch">
+            <summary>
+            Event to unfetch all data into
+            a unique list of unique records
+            </summary>
+        </member>
+        <member name="P:Interfaces.IArithmetic.OwnerWeight">
+            <summary>
+            Gets the unique content
+            </summary>
+        </member>
+        <member name="P:Interfaces.IArithmetic.Item(System.String)">
+            <summary>
+            Gets an object from a serialized dictionary content
+            </summary>
+            <param name="name">key name</param>
+            <returns>dynamix object (all data type is possible)</returns>
+        </member>
+        <member name="T:Interfaces.IDocument">
+            <summary>
+            Concerns a document
+            </summary>
+        </member>
+        <member name="P:Interfaces.IDocument.IsTexMode">
+            <summary>
+            Gets or sets the tex mode
+            </summary>
+        </member>
+        <member name="M:Interfaces.IDocument.ToString">
+            <summary>
+            Transforms equation object into a string representation
+            </summary>
+            <returns>string representation</returns>
+        </member>
+        <member name="M:Interfaces.IDocument.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:Interfaces.IDocument.InsertIntoDocument(System.Windows.Documents.List)">
+            <summary>
+            Insert text element into document list
+            </summary>
+            <param name="list">container</param>
+        </member>
         <member name="T:Interfaces.IEquation">
             <summary>
             Interface for an equation
+            </summary>
+        </member>
+        <member name="P:Interfaces.IEquation.IsCalculable">
+            <summary>
+            Gets true if an equation is calculable
+            </summary>
+        </member>
+        <member name="P:Interfaces.IEquation.UnknownTerms">
+            <summary>
+            Gets all unknown terms
+            </summary>
+        </member>
+        <member name="P:Interfaces.IEquation.Coefficients">
+            <summary>
+            Gets all coefficients terms
+            </summary>
+        </member>
+        <member name="P:Interfaces.IEquation.Constants">
+            <summary>
+            Gets all constant values
+            </summary>
+        </member>
+        <member name="P:Interfaces.IEquation.Equation">
+            <summary>
+            Gets the underlying arithmetic operation
             </summary>
         </member>
         <member name="M:Interfaces.IEquation.MakeUnique">
@@ -77,98 +154,10 @@
             </summary>
             <returns>tex representation</returns>
         </member>
-        <member name="P:Interfaces.IEquation.IsCalculable">
-            <summary>
-            Gets true if an equation is calculable
-            </summary>
-        </member>
-        <member name="P:Interfaces.IEquation.UnknownTerms">
-            <summary>
-            Gets all unknown terms
-            </summary>
-        </member>
-        <member name="P:Interfaces.IEquation.Coefficients">
-            <summary>
-            Gets all coefficients terms
-            </summary>
-        </member>
-        <member name="P:Interfaces.IEquation.Constants">
-            <summary>
-            Gets all constant values
-            </summary>
-        </member>
-        <member name="P:Interfaces.IEquation.Equation">
-            <summary>
-            Gets the underlying arithmetic operation
-            </summary>
-        </member>
-        <member name="E:Interfaces.IArithmetic.Fetch">
-            <summary>
-            Event to fetch all data into
-            a unique list of unique records
-            </summary>
-        </member>
-        <member name="E:Interfaces.IArithmetic.Unfetch">
-            <summary>
-            Event to unfetch all data into
-            a unique list of unique records
-            </summary>
-        </member>
-        <member name="P:Interfaces.IArithmetic.OwnerWeight">
-            <summary>
-            Gets the unique content
-            </summary>
-        </member>
-        <member name="P:Interfaces.IArithmetic.Item(System.String)">
-            <summary>
-            Gets an object from a serialized dictionary content
-            </summary>
-            <param name="name">key name</param>
-            <returns>dynamix object (all data type is possible)</returns>
-        </member>
-        <member name="T:Interfaces.IDocument">
-            <summary>
-            Concerns a document
-            </summary>
-        </member>
-        <member name="M:Interfaces.IDocument.ToString">
-            <summary>
-            Transforms equation object into a string representation
-            </summary>
-            <returns>string representation</returns>
-        </member>
-        <member name="M:Interfaces.IDocument.ToTex">
-            <summary>
-            Transforms equation object into a tex representation
-            </summary>
-            <returns>tex representation</returns>
-        </member>
-        <member name="M:Interfaces.IDocument.InsertIntoDocument(System.Windows.Documents.List)">
-            <summary>
-            Insert text element into document list
-            </summary>
-            <param name="list">container</param>
-        </member>
-        <member name="P:Interfaces.IDocument.IsTexMode">
-            <summary>
-            Gets or sets the tex mode
-            </summary>
-        </member>
         <member name="T:Interfaces.INeurone">
             <summary>
             Neurone interface declaration
             Déclare une interface commune à tous les neurones
-            </summary>
-        </member>
-        <member name="M:Interfaces.INeurone.Exec">
-            <summary>
-            Exécute le travail du neurone
-            </summary>
-        </member>
-        <member name="M:Interfaces.INeurone.Learn">
-            <summary>
-            Apprentissage pour la construction
-            des neurones
             </summary>
         </member>
         <member name="P:Interfaces.INeurone.Name">
@@ -184,6 +173,17 @@
         <member name="P:Interfaces.INeurone.Type">
             <summary>
             Type du neurone
+            </summary>
+        </member>
+        <member name="M:Interfaces.INeurone.Exec">
+            <summary>
+            Exécute le travail du neurone
+            </summary>
+        </member>
+        <member name="M:Interfaces.INeurone.Learn">
+            <summary>
+            Apprentissage pour la construction
+            des neurones
             </summary>
         </member>
         <member name="T:Interfaces.INeuroneType">

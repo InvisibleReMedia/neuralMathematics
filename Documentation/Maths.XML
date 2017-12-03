@@ -59,6 +59,21 @@
             <param name="doff">delimiter off</param>
             <param name="s">sequence</param>
         </member>
+        <member name="P:Maths.Answer.IsTexMode">
+            <summary>
+            Gets or sets the tex mode
+            </summary>
+        </member>
+        <member name="P:Maths.Answer.DelimiterLeft">
+            <summary>
+            Gets or sets the delimiter
+            </summary>
+        </member>
+        <member name="P:Maths.Answer.DelimiterRight">
+            <summary>
+            Gets or sets the delimiter
+            </summary>
+        </member>
         <member name="M:Maths.Answer.ToDocument(System.Windows.Documents.BlockCollection)">
             <summary>
             Transforms equation object into a tex representation
@@ -90,21 +105,6 @@
             Insert text element into document list
             </summary>
             <param name="list">container</param>
-        </member>
-        <member name="P:Maths.Answer.IsTexMode">
-            <summary>
-            Gets or sets the tex mode
-            </summary>
-        </member>
-        <member name="P:Maths.Answer.DelimiterLeft">
-            <summary>
-            Gets or sets the delimiter
-            </summary>
-        </member>
-        <member name="P:Maths.Answer.DelimiterRight">
-            <summary>
-            Gets or sets the delimiter
-            </summary>
         </member>
         <member name="T:Maths.ClipBox">
             <summary>
@@ -147,6 +147,11 @@
         <member name="M:Maths.ClipBox.#ctor">
             <summary>
             Default constructor
+            </summary>
+        </member>
+        <member name="P:Maths.ClipBox.Tracer">
+            <summary>
+            Gets or sets the tracer object
             </summary>
         </member>
         <member name="M:Maths.ClipBox.mouseOff(System.Object,System.Windows.Input.MouseEventArgs)">
@@ -216,11 +221,6 @@
         <member name="M:Maths.ClipBox.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="P:Maths.ClipBox.Tracer">
-            <summary>
-            Gets or sets the tracer object
             </summary>
         </member>
         <member name="T:Maths.Coordinates">
@@ -355,6 +355,16 @@
             </summary>
             <param name="m">move</param>
         </member>
+        <member name="P:Maths.CoordinateSystem.Dimension">
+            <summary>
+            Gets the dimension of this system
+            </summary>
+        </member>
+        <member name="P:Maths.CoordinateSystem.Coordinates">
+            <summary>
+            Gets all coordinates
+            </summary>
+        </member>
         <member name="M:Maths.CoordinateSystem.Add(System.Double[])">
             <summary>
             Add a new coordinates into this system
@@ -381,16 +391,6 @@
             <param name="nameTerms">terms identified by name and ordered as same to coords</param>
             <param name="coords">coordinate</param>
         </member>
-        <member name="P:Maths.CoordinateSystem.Dimension">
-            <summary>
-            Gets the dimension of this system
-            </summary>
-        </member>
-        <member name="P:Maths.CoordinateSystem.Coordinates">
-            <summary>
-            Gets all coordinates
-            </summary>
-        </member>
         <member name="T:Maths.MovingCoordinates">
             <summary>
             A movement
@@ -413,6 +413,16 @@
             <param name="v">vector limit</param>
             <param name="s">steps</param>
         </member>
+        <member name="P:Maths.MovingCoordinates.Vector">
+            <summary>
+            Gets the vector limit
+            </summary>
+        </member>
+        <member name="P:Maths.MovingCoordinates.Steps">
+            <summary>
+            Gets the steps for each dimension
+            </summary>
+        </member>
         <member name="M:Maths.MovingCoordinates.GenerateMove">
             <summary>
             Generates move steps
@@ -433,16 +443,6 @@
             <param name="c">current coordinates</param>
             <param name="desiredSize">desired size</param>
             <returns>a point</returns>
-        </member>
-        <member name="P:Maths.MovingCoordinates.Vector">
-            <summary>
-            Gets the vector limit
-            </summary>
-        </member>
-        <member name="P:Maths.MovingCoordinates.Steps">
-            <summary>
-            Gets the steps for each dimension
-            </summary>
         </member>
         <member name="T:Maths.MovingVector">
             <summary>
@@ -489,6 +489,21 @@
             </summary>
             <param name="move">move</param>
         </member>
+        <member name="P:Maths.MovingVector.Dimension">
+            <summary>
+            Gets the dimension
+            </summary>
+        </member>
+        <member name="P:Maths.MovingVector.Values">
+            <summary>
+            List of each values as the movement
+            </summary>
+        </member>
+        <member name="P:Maths.MovingVector.Euclidian">
+            <summary>
+            Gets the euclidian sub-vector
+            </summary>
+        </member>
         <member name="M:Maths.MovingVector.Add(System.Double)">
             <summary>
             Add just one value on the first dimension
@@ -506,21 +521,6 @@
             Add multi-values of moving at each dimension
             </summary>
             <param name="positions">position list</param>
-        </member>
-        <member name="P:Maths.MovingVector.Dimension">
-            <summary>
-            Gets the dimension
-            </summary>
-        </member>
-        <member name="P:Maths.MovingVector.Values">
-            <summary>
-            List of each values as the movement
-            </summary>
-        </member>
-        <member name="P:Maths.MovingVector.Euclidian">
-            <summary>
-            Gets the euclidian sub-vector
-            </summary>
         </member>
         <member name="T:Maths.Line">
             <summary>
@@ -697,6 +697,31 @@
             <param name="depth">depth</param>
             <param name="p">pixels size</param>
         </member>
+        <member name="P:Maths.DistributedTracer2D.VisualLocation">
+            <summary>
+            Position de l'image (en nombre de pixels)
+            </summary>
+        </member>
+        <member name="P:Maths.DistributedTracer2D.ImageSize">
+            <summary>
+            Taille de l'image (en nombre de pixels)
+            </summary>
+        </member>
+        <member name="P:Maths.DistributedTracer2D.Areas">
+            <summary>
+            Gets area set
+            </summary>
+        </member>
+        <member name="P:Maths.DistributedTracer2D.VisualSize">
+            <summary>
+            Gets or sets visual size
+            </summary>
+        </member>
+        <member name="P:Maths.DistributedTracer2D.VisualScale">
+            <summary>
+            Gets or sets visual scale
+            </summary>
+        </member>
         <member name="M:Maths.DistributedTracer2D.ComputeImageHeight(System.UInt32)">
             <summary>
             Function to compute the height of image
@@ -819,31 +844,6 @@
             <param name="desiredHeight">hauteur demandée</param>
             <param name="scale">scale value</param>
             <param name="attach">container</param>
-        </member>
-        <member name="P:Maths.DistributedTracer2D.VisualLocation">
-            <summary>
-            Position de l'image (en nombre de pixels)
-            </summary>
-        </member>
-        <member name="P:Maths.DistributedTracer2D.ImageSize">
-            <summary>
-            Taille de l'image (en nombre de pixels)
-            </summary>
-        </member>
-        <member name="P:Maths.DistributedTracer2D.Areas">
-            <summary>
-            Gets area set
-            </summary>
-        </member>
-        <member name="P:Maths.DistributedTracer2D.VisualSize">
-            <summary>
-            Gets or sets visual size
-            </summary>
-        </member>
-        <member name="P:Maths.DistributedTracer2D.VisualScale">
-            <summary>
-            Gets or sets visual scale
-            </summary>
         </member>
         <member name="T:Maths.TemplateTracer2D">
             <summary>
@@ -979,6 +979,31 @@
             <param name="coef">coefficient equation</param>
             <param name="x">equation</param>
         </member>
+        <member name="P:Maths.MathematicEquation.IsCalculable">
+            <summary>
+            Gets true if equation is calculable
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.Coefficients">
+            <summary>
+            Gets all coefficients terms
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.Constants">
+            <summary>
+            Gets all constant values
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.UnknownTerms">
+            <summary>
+            Gets all unknown terms
+            </summary>
+        </member>
+        <member name="P:Maths.MathematicEquation.Equation">
+            <summary>
+            Gets the underlying arithmetic operation
+            </summary>
+        </member>
         <member name="M:Maths.MathematicEquation.AsRepresented(System.String)">
             <summary>
             String representation of the algebraic equation
@@ -1036,42 +1061,6 @@
             </summary>
             <returns>transformed equation</returns>
         </member>
-        <member name="P:Maths.MathematicEquation.IsCalculable">
-            <summary>
-            Gets true if equation is calculable
-            </summary>
-        </member>
-        <member name="P:Maths.MathematicEquation.Coefficients">
-            <summary>
-            Gets all coefficients terms
-            </summary>
-        </member>
-        <member name="P:Maths.MathematicEquation.Constants">
-            <summary>
-            Gets all constant values
-            </summary>
-        </member>
-        <member name="P:Maths.MathematicEquation.UnknownTerms">
-            <summary>
-            Gets all unknown terms
-            </summary>
-        </member>
-        <member name="P:Maths.MathematicEquation.Equation">
-            <summary>
-            Gets the underlying arithmetic operation
-            </summary>
-        </member>
-        <member name="M:Maths.GenericNeurone.Exec">
-            <summary>
-            Exécute le travail du neurone
-            </summary>
-        </member>
-        <member name="M:Maths.GenericNeurone.Learn">
-            <summary>
-            Apprentissage pour la construction
-            des neurones
-            </summary>
-        </member>
         <member name="P:Maths.GenericNeurone.Id">
             <summary>
             Identifiant unique
@@ -1085,6 +1074,17 @@
         <member name="P:Maths.GenericNeurone.Type">
             <summary>
             Type du neurone
+            </summary>
+        </member>
+        <member name="M:Maths.GenericNeurone.Exec">
+            <summary>
+            Exécute le travail du neurone
+            </summary>
+        </member>
+        <member name="M:Maths.GenericNeurone.Learn">
+            <summary>
+            Apprentissage pour la construction
+            des neurones
             </summary>
         </member>
         <member name="T:Maths.Exercice">
@@ -1163,6 +1163,21 @@
             <param name="doff">delimiter off</param>
             <param name="a">answer</param>
         </member>
+        <member name="P:Maths.Exercice.IsTexMode">
+            <summary>
+            Gets or sets the tex mode
+            </summary>
+        </member>
+        <member name="P:Maths.Exercice.DelimiterLeft">
+            <summary>
+            Gets or sets the delimiter
+            </summary>
+        </member>
+        <member name="P:Maths.Exercice.DelimiterRight">
+            <summary>
+            Gets or sets the delimiter
+            </summary>
+        </member>
         <member name="M:Maths.Exercice.ToDocument(System.Windows.Documents.List)">
             <summary>
             Transforms equation object into a tex representation
@@ -1196,21 +1211,6 @@
             </summary>
             <param name="list">container</param>
         </member>
-        <member name="P:Maths.Exercice.IsTexMode">
-            <summary>
-            Gets or sets the tex mode
-            </summary>
-        </member>
-        <member name="P:Maths.Exercice.DelimiterLeft">
-            <summary>
-            Gets or sets the delimiter
-            </summary>
-        </member>
-        <member name="P:Maths.Exercice.DelimiterRight">
-            <summary>
-            Gets or sets the delimiter
-            </summary>
-        </member>
         <member name="T:Maths.SequenceProof">
             <summary>
             Une séquence pour prouver un résultat
@@ -1230,6 +1230,11 @@
             </summary>
             <param name="eq">document element</param>
         </member>
+        <member name="P:Maths.SequenceProof.Items">
+            <summary>
+            Gets all items
+            </summary>
+        </member>
         <member name="M:Maths.SequenceProof.Add(Interfaces.IDocument[])">
             <summary>
             Ajout d'éléments dans la liste
@@ -1247,11 +1252,6 @@
             Transforms equation object into a string representation
             </summary>
             <returns>string representation</returns>
-        </member>
-        <member name="P:Maths.SequenceProof.Items">
-            <summary>
-            Gets all items
-            </summary>
         </member>
         <member name="T:Maths.TopLevelArithmeticModel">
             <summary>
@@ -1289,27 +1289,6 @@
             Default constructor
             </summary>
         </member>
-        <member name="M:Maths.TopLevelArithmeticModel.Create(System.String)">
-            <summary>
-            Create a new top level class
-            </summary>
-        </member>
-        <member name="M:Maths.TopLevelArithmeticModel.Load(System.IO.FileInfo)">
-            <summary>
-            Load a top level arithmetic model
-            from an existing file
-            </summary>
-            <param name="fi">file info to take</param>
-            <returns>object deserialized</returns>
-        </member>
-        <member name="M:Maths.TopLevelArithmeticModel.Save(System.IO.FileInfo)">
-            <summary>
-            Load a top level arithmetic model
-            from an existing file
-            </summary>
-            <param name="fi">file info to take</param>
-            <returns>object deserialized</returns>
-        </member>
         <member name="P:Maths.TopLevelArithmeticModel.WordingList">
             <summary>
             Gets equation list
@@ -1330,23 +1309,26 @@
             Gets or sets the revision number
             </summary>
         </member>
-        <member name="T:Maths.Tracer">
+        <member name="M:Maths.TopLevelArithmeticModel.Create(System.String)">
             <summary>
-            Logique d'interaction pour Tracer.xaml
-            </summary>
-            <summary>
-            Tracer
+            Create a new top level class
             </summary>
         </member>
-        <member name="M:Maths.Tracer.#ctor">
+        <member name="M:Maths.TopLevelArithmeticModel.Load(System.IO.FileInfo)">
             <summary>
-            Tracer
+            Load a top level arithmetic model
+            from an existing file
             </summary>
+            <param name="fi">file info to take</param>
+            <returns>object deserialized</returns>
         </member>
-        <member name="M:Maths.Tracer.InitializeComponent">
+        <member name="M:Maths.TopLevelArithmeticModel.Save(System.IO.FileInfo)">
             <summary>
-            InitializeComponent
+            Load a top level arithmetic model
+            from an existing file
             </summary>
+            <param name="fi">file info to take</param>
+            <returns>object deserialized</returns>
         </member>
         <member name="T:Maths.DataTracer2D">
             <summary>
@@ -1426,6 +1408,11 @@
             Default constructor
             </summary>
         </member>
+        <member name="P:Maths.Tracer2D.Tracer">
+            <summary>
+            Gets or sets the tracer object
+            </summary>
+        </member>
         <member name="M:Maths.Tracer2D.Update(System.Windows.Point,System.Windows.Size,System.Double)">
             <summary>
             Mise à jour de la taille du tracé
@@ -1434,11 +1421,6 @@
         <member name="M:Maths.Tracer2D.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="P:Maths.Tracer2D.Tracer">
-            <summary>
-            Gets or sets the tracer object
             </summary>
         </member>
         <member name="T:Maths.Wording">
@@ -1510,6 +1492,26 @@
             <param name="doff">delimiter off</param>
             <param name="ex">exercices</param>
         </member>
+        <member name="P:Maths.Wording.IsTexMode">
+            <summary>
+            Gets or sets the tex mode
+            </summary>
+        </member>
+        <member name="P:Maths.Wording.Content">
+            <summary>
+            Gets Sequence proof
+            </summary>
+        </member>
+        <member name="P:Maths.Wording.DelimiterLeft">
+            <summary>
+            Gets or sets the delimiter
+            </summary>
+        </member>
+        <member name="P:Maths.Wording.DelimiterRight">
+            <summary>
+            Gets or sets the delimiter
+            </summary>
+        </member>
         <member name="M:Maths.Wording.Add(Maths.Exercice)">
             <summary>
             Add a new exercice
@@ -1547,24 +1549,34 @@
             </summary>
             <param name="list">container</param>
         </member>
-        <member name="P:Maths.Wording.IsTexMode">
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
             <summary>
-            Gets or sets the tex mode
+            GeneratedInternalTypeHelper
             </summary>
         </member>
-        <member name="P:Maths.Wording.Content">
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
             <summary>
-            Gets Sequence proof
+            CreateInstance
             </summary>
         </member>
-        <member name="P:Maths.Wording.DelimiterLeft">
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
             <summary>
-            Gets or sets the delimiter
+            GetPropertyValue
             </summary>
         </member>
-        <member name="P:Maths.Wording.DelimiterRight">
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
             <summary>
-            Gets or sets the delimiter
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>

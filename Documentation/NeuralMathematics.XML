@@ -9,6 +9,16 @@
             Fonctions qui implémentent les documents (FlowDocument)
             </summary>
         </member>
+        <member name="E:NeuralMathematics.Applicatif.onButtonClick">
+            <summary>
+            Evenement sur click des boutons
+            </summary>
+        </member>
+        <member name="E:NeuralMathematics.Applicatif.ButtonClicked">
+            <summary>
+            Event handler for clicked button
+            </summary>
+        </member>
         <member name="M:NeuralMathematics.Applicatif.Menu">
             <summary>
             Fonction de menu
@@ -49,59 +59,57 @@
             <param name="c">coefficient</param>
             <returns>pbject</returns>
         </member>
-        <member name="M:NeuralMathematics.Applicatif.Newton">
-            <summary>
-            Développement polynôme
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NeuralMathematics.Applicatif.ReloadNewton">
-            <summary>
-            Lecture fichier
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NeuralMathematics.Applicatif.ResolutionPolynome2Somme">
-            <summary>
-            Résolution polynôme ordre 2
-            </summary>
-        </member>
-        <member name="M:NeuralMathematics.Applicatif.ResolutionPolynome2Difference">
-            <summary>
-            Résolution polynôme ordre 2
-            </summary>
-        </member>
-        <member name="M:NeuralMathematics.Applicatif.Polynome2Produit">
-            <summary>
-            Résolution polynôme ordre 2 par produit
-            </summary>
-            <returns>document</returns>
-        </member>
-        <member name="M:NeuralMathematics.Applicatif.ResolutionPolynome3">
-            <summary>
-            Résolution polynôme ordre 2
-            </summary>
-        </member>
-        <member name="M:NeuralMathematics.Applicatif.ComputeTransformationCoefficientPolynome2">
-            <summary>
-            Compute a transformation of the coefficient named as b to resolve 2-polynomial
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NeuralMathematics.Applicatif.ComputeImageSize">
+        <member name="M:NeuralMathematics.Applicatif.SolvePolynome2">
             <summary>
             Computes image size
             </summary>
             <returns></returns>
         </member>
-        <member name="E:NeuralMathematics.Applicatif.onButtonClick">
+        <member name="T:NeuralMathematics.Graphique">
             <summary>
-            Evenement sur click des boutons
+            Logique d'interaction pour Tracer.xaml
+            </summary>
+            <summary>
+            Graphique
             </summary>
         </member>
-        <member name="E:NeuralMathematics.Applicatif.ButtonClicked">
+        <member name="F:NeuralMathematics.Graphique.tracingFunction">
             <summary>
-            Event handler for clicked button
+            Tracing function
+            </summary>
+        </member>
+        <member name="M:NeuralMathematics.Graphique.#ctor(System.Func{Maths.DistributedTracer2D})">
+            <summary>
+            Tracer
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Graphique.IsTexMode">
+            <summary>
+            Gets the tex mode
+            </summary>
+        </member>
+        <member name="M:NeuralMathematics.Graphique.InsertIntoDocument(System.Windows.Documents.List)">
+            <summary>
+            Insert text element into document list
+            </summary>
+            <param name="list">container</param>
+        </member>
+        <member name="M:NeuralMathematics.Graphique.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:NeuralMathematics.Graphique.Create(System.Func{Maths.DistributedTracer2D})">
+            <summary>
+            Creates a new graphics tuner
+            </summary>
+            <param name="init">init function</param>
+            <returns>graphic button</returns>
+        </member>
+        <member name="M:NeuralMathematics.Graphique.InitializeComponent">
+            <summary>
+            InitializeComponent
             </summary>
         </member>
         <member name="T:NeuralMathematics.Tracer">
@@ -112,7 +120,7 @@
             Tracer
             </summary>
         </member>
-        <member name="M:NeuralMathematics.Tracer.#ctor">
+        <member name="M:NeuralMathematics.Tracer.#ctor(Maths.DistributedTracer2D)">
             <summary>
             Construction de la logique d'un tracer
             </summary>

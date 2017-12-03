@@ -81,9 +81,6 @@
     <Compile Include="Exercice.cs" />
     <Compile Include="SequenceProof.cs" />
     <Compile Include="TopLevelArithmeticModel.cs" />
-    <Compile Include="Tracer.xaml.cs">
-      <DependentUpon>Tracer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DataTracer2D.cs" />
     <Compile Include="Tracer2D.xaml.cs">
       <DependentUpon>Tracer2D.xaml</DependentUpon>
@@ -105,10 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="ClipBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Tracer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

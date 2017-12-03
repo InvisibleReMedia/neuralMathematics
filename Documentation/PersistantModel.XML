@@ -44,6 +44,735 @@
             </summary>
             <typeparam name="T">Persistent object</typeparam>
         </member>
+        <member name="F:PersistantModel.Gathering`1.records">
+            <summary>
+            Records
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Gathering`1.opened">
+            <summary>
+            List of terms not visited and already visited
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Gathering`1.closed">
+            <summary>
+            List of terms not visited and already visited
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Gathering`1.#ctor(PersistantModel.RecordZone{`0},`0)">
+            <summary>
+            Default constructor
+            </summary>
+            <param name="r">records</param>
+            <param name="start">start</param>
+        </member>
+        <member name="T:PersistantModel.RecordZone`1">
+            <summary>
+            Recording zone to handle objects
+            </summary>
+        </member>
+        <member name="F:PersistantModel.RecordZone`1.objectListName">
+            <summary>
+            Store objects
+            </summary>
+        </member>
+        <member name="M:PersistantModel.RecordZone`1.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:PersistantModel.RecordZone`1.#ctor(System.Collections.Generic.KeyValuePair{System.Int32,`0}[])">
+            <summary>
+            Constructor
+            given an existing dictionary of objects
+            </summary>
+            <param name="keys"></param>
+        </member>
+        <member name="P:PersistantModel.RecordZone`1.Records">
+            <summary>
+            Gets all records
+            </summary>
+        </member>
+        <member name="M:PersistantModel.RecordZone`1.Add(System.Int32,`0)">
+            <summary>
+            Register a new object into records
+            </summary>
+            <param name="h">hash code</param>
+            <param name="obj">object to register</param>
+            <returns>true if registered</returns>
+        </member>
+        <member name="M:PersistantModel.RecordZone`1.Ask(System.Int32)">
+            <summary>
+            Ask to get a recorded object
+            identified by a hash code
+            </summary>
+            <param name="hashCode">hash code</param>
+            <returns>object</returns>
+        </member>
+        <member name="M:PersistantModel.RecordZone`1.Exists(System.Int32)">
+            <summary>
+            Test if a specific hash code already exists
+            </summary>
+            <param name="hashCode">hash code</param>
+            <returns>true if already exists</returns>
+        </member>
+        <member name="T:PersistantModel.Texte">
+            <summary>
+            Classe supportant un texte
+            ou un document rtf
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Texte.textName">
+            <summary>
+            Index name for text
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Texte.texModeName">
+            <summary>
+            Index name for mode
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Texte.leftDelimiterName">
+            <summary>
+            Index name for the left delimiter
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Texte.rightDelimiterName">
+            <summary>
+            Index name for the right delimiter
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Texte.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Texte.#ctor(System.String)">
+            <summary>
+            Constructor
+            given a specific text
+            </summary>
+            <param name="t">text</param>
+        </member>
+        <member name="M:PersistantModel.Texte.#ctor(System.String,System.Boolean)">
+            <summary>
+            Constructor
+            given a text to be written in tex mode
+            </summary>
+            <param name="t">text</param>
+            <param name="tex">mode</param>
+        </member>
+        <member name="M:PersistantModel.Texte.#ctor(System.String,System.Boolean,System.Char,System.Char)">
+            <summary>
+            Constructor
+            given a text to be written in tex mode
+            </summary>
+            <param name="t">text</param>
+            <param name="tex">mode</param>
+            <param name="don">left delimiter</param>
+            <param name="doff">right delimiter</param>
+        </member>
+        <member name="P:PersistantModel.Texte.Content">
+            <summary>
+            Gets or sets the content
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Texte.IsTexMode">
+            <summary>
+            Gets or sets the mode
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Texte.DelimiterLeft">
+            <summary>
+            Gets or sets the delimiter
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Texte.DelimiterRight">
+            <summary>
+            Gets or sets the delimiter
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Texte.ToTex">
+            <summary>
+            Converts content to tex
+            </summary>
+            <returns>tex mode representation</returns>
+        </member>
+        <member name="M:PersistantModel.Texte.ToString">
+            <summary>
+            Affiche le texte
+            </summary>
+            <returns>contenu du texte</returns>
+        </member>
+        <member name="M:PersistantModel.Texte.InsertIntoDocument(System.Windows.Documents.List)">
+            <summary>
+            Insert text elements into a list
+            </summary>
+            <param name="list"></param>
+        </member>
+        <member name="T:PersistantModel.UnaryOperation">
+            <summary>
+            Définit une opération unaire
+            </summary>
+        </member>
+        <member name="M:PersistantModel.UnaryOperation.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.UnaryOperation.#ctor(System.Char,System.Double)">
+            <summary>
+            Constructor
+            given a unary operation with one number
+            </summary>
+            <param name="op">operator</param>
+            <param name="n">number</param>
+        </member>
+        <member name="M:PersistantModel.UnaryOperation.#ctor(System.Char,Interfaces.IArithmetic)">
+            <summary>
+            Constructor
+            given a unary operation with one term
+            </summary>
+            <param name="op">operator</param>
+            <param name="t">term</param>
+        </member>
+        <member name="P:PersistantModel.UnaryOperation.Operator">
+            <summary>
+            Gets the operator ID
+            </summary>
+        </member>
+        <member name="P:PersistantModel.UnaryOperation.IsBinaryOperator">
+            <summary>
+            Gets binary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.UnaryOperation.IsUnaryOperator">
+            <summary>
+            Gets unary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.UnaryOperation.IsNotOperator">
+            <summary>
+            Gets true if it's not an operator
+            </summary>
+        </member>
+        <member name="P:PersistantModel.UnaryOperation.InnerOperand">
+            <summary>
+            Gets the left operand
+            </summary>
+        </member>
+        <member name="M:PersistantModel.UnaryOperation.ComputeOwnerWeight">
+            <summary>
+            Computes the unique weight
+            for this object
+            </summary>
+            <returns>weight</returns>
+        </member>
+        <member name="M:PersistantModel.UnaryOperation.Create">
+            <summary>
+            Create a new addition class
+            </summary>
+        </member>
+        <member name="T:PersistantModel.Inverse">
+            <summary>
+            Persistent data format of an inverse value
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Inverse.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Inverse.#ctor(System.Double)">
+            <summary>
+            Constructor
+            given a positive value with one number
+            </summary>
+            <param name="n">number</param>
+        </member>
+        <member name="M:PersistantModel.Inverse.#ctor(Interfaces.IArithmetic)">
+            <summary>
+            Constructor
+            given a positive value with one term
+            </summary>
+            <param name="n">term</param>
+        </member>
+        <member name="M:PersistantModel.Inverse.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:PersistantModel.Inverse.Create">
+            <summary>
+            Create a new addition class
+            </summary>
+        </member>
+        <member name="T:PersistantModel.Negative">
+            <summary>
+            Persistent data format of a negative value
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Negative.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Negative.#ctor(System.Double)">
+            <summary>
+            Constructor
+            given a positive value with one number
+            </summary>
+            <param name="n">number</param>
+        </member>
+        <member name="M:PersistantModel.Negative.#ctor(Interfaces.IArithmetic)">
+            <summary>
+            Constructor
+            given a positive value with one term
+            </summary>
+            <param name="n">term</param>
+        </member>
+        <member name="P:PersistantModel.Negative.Operator">
+            <summary>
+            Gets the operator char
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Negative.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:PersistantModel.Negative.Create">
+            <summary>
+            Create a new addition class
+            </summary>
+        </member>
+        <member name="T:PersistantModel.BinaryOperation">
+            <summary>
+            Définit une opération binaire
+            </summary>
+        </member>
+        <member name="M:PersistantModel.BinaryOperation.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.BinaryOperation.#ctor(System.Char,System.Double,System.Double)">
+            <summary>
+            Constructor
+            given a binary operation with two numbers
+            </summary>
+            <param name="op">operator id</param>
+            <param name="n1">left number</param>
+            <param name="n2">right number</param>
+        </member>
+        <member name="M:PersistantModel.BinaryOperation.#ctor(System.Char,Interfaces.IArithmetic,Interfaces.IArithmetic)">
+            <summary>
+            Constructor
+            given a binary operation with two terms
+            </summary>
+            <param name="op">operator id</param>
+            <param name="t1">left term</param>
+            <param name="t2">right term</param>
+        </member>
+        <member name="P:PersistantModel.BinaryOperation.Operator">
+            <summary>
+            Gets the operator ID
+            </summary>
+        </member>
+        <member name="P:PersistantModel.BinaryOperation.IsBinaryOperator">
+            <summary>
+            Gets binary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.BinaryOperation.IsUnaryOperator">
+            <summary>
+            Gets unary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.BinaryOperation.IsMultipleOperator">
+            <summary>
+            Gets multiple switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.BinaryOperation.IsNotOperator">
+            <summary>
+            Gets true if it's not an operator
+            </summary>
+        </member>
+        <member name="P:PersistantModel.BinaryOperation.LeftOperand">
+            <summary>
+            Gets the left operand
+            </summary>
+        </member>
+        <member name="P:PersistantModel.BinaryOperation.RightOperand">
+            <summary>
+            Gets the right operand
+            </summary>
+        </member>
+        <member name="M:PersistantModel.BinaryOperation.ComputeOwnerWeight">
+            <summary>
+            Computes the unique weight
+            for this object
+            </summary>
+            <returns>weight</returns>
+        </member>
+        <member name="M:PersistantModel.BinaryOperation.Create">
+            <summary>
+            Create a new addition class
+            </summary>
+        </member>
+        <member name="T:PersistantModel.Positive">
+            <summary>
+            Persistent data format of a positive value
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Positive.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Positive.#ctor(System.Double)">
+            <summary>
+            Constructor
+            given a positive value with one number
+            </summary>
+            <param name="n">number</param>
+        </member>
+        <member name="M:PersistantModel.Positive.#ctor(Interfaces.IArithmetic)">
+            <summary>
+            Constructor
+            given a positive value with one term
+            </summary>
+            <param name="n">term</param>
+        </member>
+        <member name="P:PersistantModel.Positive.Operator">
+            <summary>
+            Gets the operator char
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Positive.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:PersistantModel.Positive.Create">
+            <summary>
+            Create a new addition class
+            </summary>
+        </member>
+        <member name="T:PersistantModel.Power">
+            <summary>
+            Persistent data format of a power
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Power.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Power.#ctor(System.Double,System.Double)">
+            <summary>
+            Default constructor
+            given a n2 power of n1
+            </summary>
+            <param name="n1">left number</param>
+            <param name="n2">right number</param>
+        </member>
+        <member name="M:PersistantModel.Power.#ctor(Interfaces.IArithmetic,Interfaces.IArithmetic)">
+            <summary>
+            Constructor
+            given a n2 power of n1
+            </summary>
+            <param name="t1">left term</param>
+            <param name="t2">right term</param>
+        </member>
+        <member name="M:PersistantModel.Power.#ctor(Interfaces.IArithmetic,System.Double)">
+            <summary>
+            Constructor
+            given a constant t2 power of t1
+            </summary>
+            <param name="t1">left term</param>
+            <param name="t2">right term</param>
+        </member>
+        <member name="M:PersistantModel.Power.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:PersistantModel.Power.ToString">
+            <summary>
+            Transforms equation object into a string representation
+            </summary>
+            <returns>string representation</returns>
+        </member>
+        <member name="M:PersistantModel.Power.Create">
+            <summary>
+            Create a new arithmetic class
+            </summary>
+        </member>
+        <member name="T:PersistantModel.Root">
+            <summary>
+            Persistent data format of a root
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Root.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Root.#ctor(System.Double,System.Double)">
+            <summary>
+            Default constructor
+            given a n2 root of n1
+            </summary>
+            <param name="n1">left number</param>
+            <param name="n2">right number</param>
+        </member>
+        <member name="M:PersistantModel.Root.#ctor(Interfaces.IArithmetic,Interfaces.IArithmetic)">
+            <summary>
+            Constructor
+            given a n2 root of n1
+            </summary>
+            <param name="t1">left term</param>
+            <param name="t2">right term</param>
+        </member>
+        <member name="M:PersistantModel.Root.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:PersistantModel.Root.Create">
+            <summary>
+            Create a new arithmetic class
+            </summary>
+        </member>
+        <member name="T:PersistantModel.Soustraction">
+            <summary>
+            Persistent data format of a substract
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Soustraction.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Soustraction.#ctor(System.Double,System.Double)">
+            <summary>
+            Constructor
+            given an addition with two numbers
+            </summary>
+            <param name="n1">left number</param>
+            <param name="n2">right number</param>
+        </member>
+        <member name="M:PersistantModel.Soustraction.#ctor(Interfaces.IArithmetic,Interfaces.IArithmetic)">
+            <summary>
+            Constructor
+            given an addition with two terms
+            </summary>
+            <param name="t1">left term</param>
+            <param name="t2">right term</param>
+        </member>
+        <member name="M:PersistantModel.Soustraction.ToSum">
+            <summary>
+            Convert additions to a sum
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistantModel.Soustraction.Create">
+            <summary>
+            Create a new addition class
+            </summary>
+        </member>
+        <member name="T:PersistantModel.Equal">
+            <summary>
+            Equality assertion arithmetic operator
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Equal.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Equal.#ctor(System.Double,System.Double)">
+            <summary>
+            Constructor
+            given an equality with two numbers
+            </summary>
+            <param name="n1">left number</param>
+            <param name="n2">right number</param>
+        </member>
+        <member name="M:PersistantModel.Equal.#ctor(Interfaces.IArithmetic,Interfaces.IArithmetic)">
+            <summary>
+            Constructor
+            given an equality with two equations
+            </summary>
+            <param name="t1">left equation</param>
+            <param name="t2">right equation</param>
+        </member>
+        <member name="M:PersistantModel.Equal.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:PersistantModel.Equal.ToString">
+            <summary>
+            Transforms equation object into a string representation
+            </summary>
+            <returns>string representation</returns>
+        </member>
+        <member name="M:PersistantModel.Equal.Create">
+            <summary>
+            Create a new arithmetic class
+            </summary>
+        </member>
+        <member name="T:PersistantModel.Division">
+            <summary>
+            Persistent data format of a division
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Division.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Division.#ctor(System.Double,System.Double)">
+            <summary>
+            Default constructor
+            given an addition with two numbers
+            </summary>
+            <param name="n1">left number</param>
+            <param name="n2">right number</param>
+        </member>
+        <member name="M:PersistantModel.Division.#ctor(Interfaces.IArithmetic,Interfaces.IArithmetic)">
+            <summary>
+            Constructor
+            given a multiplication with two terms
+            </summary>
+            <param name="t1">left term</param>
+            <param name="t2">right term</param>
+        </member>
+        <member name="M:PersistantModel.Division.ToProduct">
+            <summary>
+            Convert mult to a product
+            </summary>
+            <returns>product</returns>
+        </member>
+        <member name="M:PersistantModel.Division.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:PersistantModel.Division.Create">
+            <summary>
+            Create a new arithmetic class
+            </summary>
+        </member>
+        <member name="T:PersistantModel.Multiplication">
+            <summary>
+            Persistent data format of a product
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Multiplication.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Multiplication.#ctor(System.Double,System.Double)">
+            <summary>
+            Default constructor
+            given an addition with two numbers
+            </summary>
+            <param name="n1">left number</param>
+            <param name="n2">right number</param>
+        </member>
+        <member name="M:PersistantModel.Multiplication.#ctor(Interfaces.IArithmetic,Interfaces.IArithmetic)">
+            <summary>
+            Constructor
+            given a multiplication with two terms
+            </summary>
+            <param name="t1">left term</param>
+            <param name="t2">right term</param>
+        </member>
+        <member name="M:PersistantModel.Multiplication.MakeTransform">
+            <summary>
+            Transforms an addition into a multiplication
+            </summary>
+            <returns>a list of possibles equation</returns>
+        </member>
+        <member name="M:PersistantModel.Multiplication.ToProduct">
+            <summary>
+            Convert mult to a product
+            </summary>
+            <returns>product</returns>
+        </member>
+        <member name="M:PersistantModel.Multiplication.Create">
+            <summary>
+            Create a new arithmetic class
+            </summary>
+        </member>
+        <member name="T:PersistantModel.Addition">
+            <summary>
+            Persistent data format of an addition
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Addition.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Addition.#ctor(System.Double,System.Double)">
+            <summary>
+            Constructor
+            given an addition with two numbers
+            </summary>
+            <param name="n1">left number</param>
+            <param name="n2">right number</param>
+        </member>
+        <member name="M:PersistantModel.Addition.#ctor(Interfaces.IArithmetic,Interfaces.IArithmetic)">
+            <summary>
+            Constructor
+            given an addition with two terms
+            </summary>
+            <param name="t1">left term</param>
+            <param name="t2">right term</param>
+        </member>
+        <member name="M:PersistantModel.Addition.MakeTransform">
+            <summary>
+            Transforms an addition into a multiplication
+            </summary>
+            <returns>a list of possibles equation</returns>
+        </member>
+        <member name="M:PersistantModel.Addition.ToSum">
+            <summary>
+            Convert additions to a sum
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistantModel.Addition.Create">
+            <summary>
+            Create a new addition class
+            </summary>
+        </member>
         <member name="T:PersistantModel.Arithmetic">
             <summary>
             Classe permettant
@@ -146,9 +875,129 @@
             Inner data informations
             </summary>
         </member>
+        <member name="E:PersistantModel.Arithmetic.eventFetch">
+            <summary>
+            Events
+            </summary>
+        </member>
+        <member name="E:PersistantModel.Arithmetic.eventUnfetch">
+            <summary>
+            Events
+            </summary>
+        </member>
         <member name="M:PersistantModel.Arithmetic.#ctor">
             <summary>
             Default constructor
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.Records">
+            <summary>
+            Gets all records
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.OwnerWeight">
+            <summary>
+            Gets the weight content
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.Item(System.String)">
+            <summary>
+            Gets or sets a value from
+            persistent data
+            </summary>
+            <param name="name">name</param>
+            <returns>value</returns>
+        </member>
+        <member name="E:PersistantModel.Arithmetic.Fetch">
+            <summary>
+            Event to fetch all data into
+            a unique list of unique records
+            </summary>
+        </member>
+        <member name="E:PersistantModel.Arithmetic.Unfetch">
+            <summary>
+            Event to unfetch all data into
+            a unique list of unique records
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.Operator">
+            <summary>
+            Gets the operator ID
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.IsBinaryOperator">
+            <summary>
+            Gets binary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.IsUnaryOperator">
+            <summary>
+            Gets unary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.IsMultipleOperator">
+            <summary>
+            Gets multiple switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.IsNotOperator">
+            <summary>
+            Gets true if it's not an operator
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.InnerOperand">
+            <summary>
+            Gets the inner operand
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.LeftOperand">
+            <summary>
+            Gets the left operand
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.RightOperand">
+            <summary>
+            Gets the right operand
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.IsCalculable">
+            <summary>
+            Gets true if equation is calculable
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.IsTexMode">
+            <summary>
+            Gets or sets the tex mode
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.SelectUnknownTerms">
+            <summary>
+            Gets all unknown terms
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.UnknownTerms">
+            <summary>
+            Gets all unknown terms
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.SelectCoefficients">
+            <summary>
+            Gets all coefficients
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.Coefficients">
+            <summary>
+            Gets all coefficients
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.Constants">
+            <summary>
+            Gets all constants
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.Equation">
+            <summary>
+            Gets equation
             </summary>
         </member>
         <member name="M:PersistantModel.Arithmetic.OnFetch(PersistantModel.RecordZone{PersistantModel.Weight})">
@@ -628,151 +1477,149 @@
             <param name="b">right</param>
             <returns>power</returns>
         </member>
-        <member name="E:PersistantModel.Arithmetic.eventFetch">
+        <member name="T:PersistantModel.Coefficient">
             <summary>
-            Events
+            Classe contenant le nom, la valeur numérique
+            ou une équation d'un coefficient
             </summary>
         </member>
-        <member name="E:PersistantModel.Arithmetic.eventUnfetch">
+        <member name="M:PersistantModel.Coefficient.#ctor">
             <summary>
-            Events
+            Default constructor
             </summary>
         </member>
-        <member name="P:PersistantModel.Arithmetic.Records">
+        <member name="M:PersistantModel.Coefficient.#ctor(System.String,System.Double)">
             <summary>
-            Gets all records
+            Constructor for a coefficient
+            given a name
+            given a double precision numeric value
+            </summary>
+            <param name="letter">letter of coefficient</param>
+            <param name="value">value behind this letter</param>
+        </member>
+        <member name="M:PersistantModel.Coefficient.#ctor(System.String)">
+            <summary>
+            Constructor for a coefficient
+            given a name
+            with value as 0.0
+            </summary>
+            <param name="letter">letter of coefficient</param>
+        </member>
+        <member name="P:PersistantModel.Coefficient.Name">
+            <summary>
+            Gets the name of this coefficient
             </summary>
         </member>
-        <member name="P:PersistantModel.Arithmetic.OwnerWeight">
+        <member name="P:PersistantModel.Coefficient.Interfaces#IVariable#Value">
             <summary>
-            Gets the weight content
+            Gets the value of this coefficient
             </summary>
         </member>
-        <member name="P:PersistantModel.Arithmetic.Item(System.String)">
+        <member name="P:PersistantModel.Coefficient.Value">
             <summary>
-            Gets or sets a value from
-            persistent data
-            </summary>
-            <param name="name">name</param>
-            <returns>value</returns>
-        </member>
-        <member name="E:PersistantModel.Arithmetic.Fetch">
-            <summary>
-            Event to fetch all data into
-            a unique list of unique records
+            Gets or sets the value of this coefficient
             </summary>
         </member>
-        <member name="E:PersistantModel.Arithmetic.Unfetch">
-            <summary>
-            Event to unfetch all data into
-            a unique list of unique records
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.Operator">
-            <summary>
-            Gets the operator ID
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.IsBinaryOperator">
+        <member name="P:PersistantModel.Coefficient.IsBinaryOperator">
             <summary>
             Gets binary switch test
             </summary>
         </member>
-        <member name="P:PersistantModel.Arithmetic.IsUnaryOperator">
+        <member name="P:PersistantModel.Coefficient.IsUnaryOperator">
             <summary>
             Gets unary switch test
             </summary>
         </member>
-        <member name="P:PersistantModel.Arithmetic.IsMultipleOperator">
+        <member name="P:PersistantModel.Coefficient.IsMultipleOperator">
             <summary>
             Gets multiple switch test
             </summary>
         </member>
-        <member name="P:PersistantModel.Arithmetic.IsNotOperator">
+        <member name="P:PersistantModel.Coefficient.IsNotOperator">
             <summary>
             Gets true if it's not an operator
             </summary>
         </member>
-        <member name="P:PersistantModel.Arithmetic.InnerOperand">
+        <member name="M:PersistantModel.Coefficient.Compute(System.Boolean)">
             <summary>
-            Gets the inner operand
+            When an equation can be calculable then
+            the result is a number else, it's an arithmetic expression
+            </summary>
+            <param name="clean">true if calculate again</param>
+            <returns>result</returns>
+        </member>
+        <member name="M:PersistantModel.Coefficient.ComputeOwnerWeight">
+            <summary>
+            Computes the unique weight
+            for this object
+            </summary>
+            <returns>weight</returns>
+        </member>
+        <member name="M:PersistantModel.Coefficient.Create">
+            <summary>
+            Create a new arithmetic class
             </summary>
         </member>
-        <member name="P:PersistantModel.Arithmetic.LeftOperand">
+        <member name="T:PersistantModel.NumericValue">
             <summary>
-            Gets the left operand
+            Classe stockant une valeur numérique
             </summary>
         </member>
-        <member name="P:PersistantModel.Arithmetic.RightOperand">
-            <summary>
-            Gets the right operand
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.IsCalculable">
-            <summary>
-            Gets true if equation is calculable
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.IsTexMode">
-            <summary>
-            Gets or sets the tex mode
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.SelectUnknownTerms">
-            <summary>
-            Gets all unknown terms
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.UnknownTerms">
-            <summary>
-            Gets all unknown terms
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.SelectCoefficients">
-            <summary>
-            Gets all coefficients
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.Coefficients">
-            <summary>
-            Gets all coefficients
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.Constants">
-            <summary>
-            Gets all constants
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Arithmetic.Equation">
-            <summary>
-            Gets equation
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Gathering`1.records">
-            <summary>
-            Records
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Gathering`1.opened">
-            <summary>
-            List of terms not visited and already visited
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Gathering`1.closed">
-            <summary>
-            List of terms not visited and already visited
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Gathering`1.#ctor(PersistantModel.RecordZone{`0},`0)">
+        <member name="M:PersistantModel.NumericValue.#ctor">
             <summary>
             Default constructor
+            Empty data
             </summary>
-            <param name="r">records</param>
-            <param name="start">start</param>
         </member>
-        <member name="T:PersistantModel.RecordZone`1">
+        <member name="M:PersistantModel.NumericValue.#ctor(System.Double)">
             <summary>
-            Recording zone to handle objects
+            Constructor for a double precision number
+            </summary>
+            <param name="d">number</param>
+        </member>
+        <member name="P:PersistantModel.NumericValue.Value">
+            <summary>
+            Gets or sets the numeric value
+            </summary>
+        </member>
+        <member name="P:PersistantModel.NumericValue.IsBinaryOperator">
+            <summary>
+            Gets binary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.NumericValue.IsUnaryOperator">
+            <summary>
+            Gets unary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.NumericValue.IsMultipleOperator">
+            <summary>
+            Gets multiple switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.NumericValue.IsNotOperator">
+            <summary>
+            Gets true if it's not an operator
+            </summary>
+        </member>
+        <member name="M:PersistantModel.NumericValue.Compute(System.Boolean)">
+            <summary>
+            When an equation can be calculable then
+            the result is a number else, it's an arithmetic expression
+            </summary>
+            <param name="clean">true if calculate again</param>
+            <returns>result</returns>
+        </member>
+        <member name="M:PersistantModel.NumericValue.ComputeOwnerWeight">
+            <summary>
+            Computes the unique weight
+            for this object
+            </summary>
+            <returns>weight</returns>
+        </member>
+        <member name="M:PersistantModel.NumericValue.Create">
+            <summary>
+            Create a new arithmetic class
             </summary>
         </member>
         <member name="T:PersistantModel.PersistentDataObject">
@@ -789,6 +1636,16 @@
         <member name="M:PersistantModel.PersistentDataObject.#ctor">
             <summary>
             Default constructor
+            </summary>
+        </member>
+        <member name="P:PersistantModel.PersistentDataObject.Data">
+            <summary>
+            Data to be used
+            </summary>
+        </member>
+        <member name="P:PersistantModel.PersistentDataObject.Keys">
+            <summary>
+            Gets all direct keys
             </summary>
         </member>
         <member name="M:PersistantModel.PersistentDataObject.Exists(System.String)">
@@ -835,863 +1692,6 @@
             <param name="data">objet à sérialiser</param>
             <returns>true if success</returns>
         </member>
-        <member name="P:PersistantModel.PersistentDataObject.Data">
-            <summary>
-            Data to be used
-            </summary>
-        </member>
-        <member name="P:PersistantModel.PersistentDataObject.Keys">
-            <summary>
-            Gets all direct keys
-            </summary>
-        </member>
-        <member name="F:PersistantModel.RecordZone`1.objectListName">
-            <summary>
-            Store objects
-            </summary>
-        </member>
-        <member name="M:PersistantModel.RecordZone`1.#ctor">
-            <summary>
-            Default constructor
-            </summary>
-        </member>
-        <member name="M:PersistantModel.RecordZone`1.#ctor(System.Collections.Generic.KeyValuePair{System.Int32,`0}[])">
-            <summary>
-            Constructor
-            given an existing dictionary of objects
-            </summary>
-            <param name="keys"></param>
-        </member>
-        <member name="M:PersistantModel.RecordZone`1.Add(System.Int32,`0)">
-            <summary>
-            Register a new object into records
-            </summary>
-            <param name="h">hash code</param>
-            <param name="obj">object to register</param>
-            <returns>true if registered</returns>
-        </member>
-        <member name="M:PersistantModel.RecordZone`1.Ask(System.Int32)">
-            <summary>
-            Ask to get a recorded object
-            identified by a hash code
-            </summary>
-            <param name="hashCode">hash code</param>
-            <returns>object</returns>
-        </member>
-        <member name="M:PersistantModel.RecordZone`1.Exists(System.Int32)">
-            <summary>
-            Test if a specific hash code already exists
-            </summary>
-            <param name="hashCode">hash code</param>
-            <returns>true if already exists</returns>
-        </member>
-        <member name="P:PersistantModel.RecordZone`1.Records">
-            <summary>
-            Gets all records
-            </summary>
-        </member>
-        <member name="T:PersistantModel.Texte">
-            <summary>
-            Classe supportant un texte
-            ou un document rtf
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Texte.textName">
-            <summary>
-            Index name for text
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Texte.texModeName">
-            <summary>
-            Index name for mode
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Texte.leftDelimiterName">
-            <summary>
-            Index name for the left delimiter
-            </summary>
-        </member>
-        <member name="F:PersistantModel.Texte.rightDelimiterName">
-            <summary>
-            Index name for the right delimiter
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Texte.#ctor">
-            <summary>
-            Default constructor
-            Empty data
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Texte.#ctor(System.String)">
-            <summary>
-            Constructor
-            given a specific text
-            </summary>
-            <param name="t">text</param>
-        </member>
-        <member name="M:PersistantModel.Texte.#ctor(System.String,System.Boolean)">
-            <summary>
-            Constructor
-            given a text to be written in tex mode
-            </summary>
-            <param name="t">text</param>
-            <param name="tex">mode</param>
-        </member>
-        <member name="M:PersistantModel.Texte.#ctor(System.String,System.Boolean,System.Char,System.Char)">
-            <summary>
-            Constructor
-            given a text to be written in tex mode
-            </summary>
-            <param name="t">text</param>
-            <param name="tex">mode</param>
-            <param name="don">left delimiter</param>
-            <param name="doff">right delimiter</param>
-        </member>
-        <member name="M:PersistantModel.Texte.ToTex">
-            <summary>
-            Converts content to tex
-            </summary>
-            <returns>tex mode representation</returns>
-        </member>
-        <member name="M:PersistantModel.Texte.ToString">
-            <summary>
-            Affiche le texte
-            </summary>
-            <returns>contenu du texte</returns>
-        </member>
-        <member name="M:PersistantModel.Texte.InsertIntoDocument(System.Windows.Documents.List)">
-            <summary>
-            Insert text elements into a list
-            </summary>
-            <param name="list"></param>
-        </member>
-        <member name="P:PersistantModel.Texte.Content">
-            <summary>
-            Gets or sets the content
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Texte.IsTexMode">
-            <summary>
-            Gets or sets the mode
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Texte.DelimiterLeft">
-            <summary>
-            Gets or sets the delimiter
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Texte.DelimiterRight">
-            <summary>
-            Gets or sets the delimiter
-            </summary>
-        </member>
-        <member name="T:PersistantModel.UnaryOperation">
-            <summary>
-            Définit une opération unaire
-            </summary>
-        </member>
-        <member name="M:PersistantModel.UnaryOperation.#ctor">
-            <summary>
-            Default constructor
-            Empty data
-            </summary>
-        </member>
-        <member name="M:PersistantModel.UnaryOperation.#ctor(System.Char,System.Double)">
-            <summary>
-            Constructor
-            given a unary operation with one number
-            </summary>
-            <param name="op">operator</param>
-            <param name="n">number</param>
-        </member>
-        <member name="M:PersistantModel.UnaryOperation.#ctor(System.Char,Interfaces.IArithmetic)">
-            <summary>
-            Constructor
-            given a unary operation with one term
-            </summary>
-            <param name="op">operator</param>
-            <param name="t">term</param>
-        </member>
-        <member name="M:PersistantModel.UnaryOperation.ComputeOwnerWeight">
-            <summary>
-            Computes the unique weight
-            for this object
-            </summary>
-            <returns>weight</returns>
-        </member>
-        <member name="M:PersistantModel.UnaryOperation.Create">
-            <summary>
-            Create a new addition class
-            </summary>
-        </member>
-        <member name="P:PersistantModel.UnaryOperation.Operator">
-            <summary>
-            Gets the operator ID
-            </summary>
-        </member>
-        <member name="P:PersistantModel.UnaryOperation.IsBinaryOperator">
-            <summary>
-            Gets binary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.UnaryOperation.IsUnaryOperator">
-            <summary>
-            Gets unary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.UnaryOperation.IsNotOperator">
-            <summary>
-            Gets true if it's not an operator
-            </summary>
-        </member>
-        <member name="P:PersistantModel.UnaryOperation.InnerOperand">
-            <summary>
-            Gets the left operand
-            </summary>
-        </member>
-        <member name="T:PersistantModel.Inverse">
-            <summary>
-            Persistent data format of an inverse value
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Inverse.#ctor">
-            <summary>
-            Default constructor
-            Empty data
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Inverse.#ctor(System.Double)">
-            <summary>
-            Constructor
-            given a positive value with one number
-            </summary>
-            <param name="n">number</param>
-        </member>
-        <member name="M:PersistantModel.Inverse.#ctor(Interfaces.IArithmetic)">
-            <summary>
-            Constructor
-            given a positive value with one term
-            </summary>
-            <param name="n">term</param>
-        </member>
-        <member name="M:PersistantModel.Inverse.ToTex">
-            <summary>
-            Transforms equation object into a tex representation
-            </summary>
-            <returns>tex representation</returns>
-        </member>
-        <member name="M:PersistantModel.Inverse.Create">
-            <summary>
-            Create a new addition class
-            </summary>
-        </member>
-        <member name="T:PersistantModel.Negative">
-            <summary>
-            Persistent data format of a negative value
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Negative.#ctor">
-            <summary>
-            Default constructor
-            Empty data
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Negative.#ctor(System.Double)">
-            <summary>
-            Constructor
-            given a positive value with one number
-            </summary>
-            <param name="n">number</param>
-        </member>
-        <member name="M:PersistantModel.Negative.#ctor(Interfaces.IArithmetic)">
-            <summary>
-            Constructor
-            given a positive value with one term
-            </summary>
-            <param name="n">term</param>
-        </member>
-        <member name="M:PersistantModel.Negative.ToTex">
-            <summary>
-            Transforms equation object into a tex representation
-            </summary>
-            <returns>tex representation</returns>
-        </member>
-        <member name="M:PersistantModel.Negative.Create">
-            <summary>
-            Create a new addition class
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Negative.Operator">
-            <summary>
-            Gets the operator char
-            </summary>
-        </member>
-        <member name="T:PersistantModel.BinaryOperation">
-            <summary>
-            Définit une opération binaire
-            </summary>
-        </member>
-        <member name="M:PersistantModel.BinaryOperation.#ctor">
-            <summary>
-            Default constructor
-            Empty data
-            </summary>
-        </member>
-        <member name="M:PersistantModel.BinaryOperation.#ctor(System.Char,System.Double,System.Double)">
-            <summary>
-            Constructor
-            given a binary operation with two numbers
-            </summary>
-            <param name="op">operator id</param>
-            <param name="n1">left number</param>
-            <param name="n2">right number</param>
-        </member>
-        <member name="M:PersistantModel.BinaryOperation.#ctor(System.Char,Interfaces.IArithmetic,Interfaces.IArithmetic)">
-            <summary>
-            Constructor
-            given a binary operation with two terms
-            </summary>
-            <param name="op">operator id</param>
-            <param name="t1">left term</param>
-            <param name="t2">right term</param>
-        </member>
-        <member name="M:PersistantModel.BinaryOperation.ComputeOwnerWeight">
-            <summary>
-            Computes the unique weight
-            for this object
-            </summary>
-            <returns>weight</returns>
-        </member>
-        <member name="M:PersistantModel.BinaryOperation.Create">
-            <summary>
-            Create a new addition class
-            </summary>
-        </member>
-        <member name="P:PersistantModel.BinaryOperation.Operator">
-            <summary>
-            Gets the operator ID
-            </summary>
-        </member>
-        <member name="P:PersistantModel.BinaryOperation.IsBinaryOperator">
-            <summary>
-            Gets binary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.BinaryOperation.IsUnaryOperator">
-            <summary>
-            Gets unary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.BinaryOperation.IsMultipleOperator">
-            <summary>
-            Gets multiple switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.BinaryOperation.IsNotOperator">
-            <summary>
-            Gets true if it's not an operator
-            </summary>
-        </member>
-        <member name="P:PersistantModel.BinaryOperation.LeftOperand">
-            <summary>
-            Gets the left operand
-            </summary>
-        </member>
-        <member name="P:PersistantModel.BinaryOperation.RightOperand">
-            <summary>
-            Gets the right operand
-            </summary>
-        </member>
-        <member name="T:PersistantModel.Positive">
-            <summary>
-            Persistent data format of a positive value
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Positive.#ctor">
-            <summary>
-            Default constructor
-            Empty data
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Positive.#ctor(System.Double)">
-            <summary>
-            Constructor
-            given a positive value with one number
-            </summary>
-            <param name="n">number</param>
-        </member>
-        <member name="M:PersistantModel.Positive.#ctor(Interfaces.IArithmetic)">
-            <summary>
-            Constructor
-            given a positive value with one term
-            </summary>
-            <param name="n">term</param>
-        </member>
-        <member name="M:PersistantModel.Positive.ToTex">
-            <summary>
-            Transforms equation object into a tex representation
-            </summary>
-            <returns>tex representation</returns>
-        </member>
-        <member name="M:PersistantModel.Positive.Create">
-            <summary>
-            Create a new addition class
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Positive.Operator">
-            <summary>
-            Gets the operator char
-            </summary>
-        </member>
-        <member name="T:PersistantModel.Power">
-            <summary>
-            Persistent data format of a power
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Power.#ctor">
-            <summary>
-            Default constructor
-            Empty data
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Power.#ctor(System.Double,System.Double)">
-            <summary>
-            Default constructor
-            given a n2 power of n1
-            </summary>
-            <param name="n1">left number</param>
-            <param name="n2">right number</param>
-        </member>
-        <member name="M:PersistantModel.Power.#ctor(Interfaces.IArithmetic,Interfaces.IArithmetic)">
-            <summary>
-            Constructor
-            given a n2 power of n1
-            </summary>
-            <param name="t1">left term</param>
-            <param name="t2">right term</param>
-        </member>
-        <member name="M:PersistantModel.Power.#ctor(Interfaces.IArithmetic,System.Double)">
-            <summary>
-            Constructor
-            given a constant t2 power of t1
-            </summary>
-            <param name="t1">left term</param>
-            <param name="t2">right term</param>
-        </member>
-        <member name="M:PersistantModel.Power.ToTex">
-            <summary>
-            Transforms equation object into a tex representation
-            </summary>
-            <returns>tex representation</returns>
-        </member>
-        <member name="M:PersistantModel.Power.ToString">
-            <summary>
-            Transforms equation object into a string representation
-            </summary>
-            <returns>string representation</returns>
-        </member>
-        <member name="M:PersistantModel.Power.Create">
-            <summary>
-            Create a new arithmetic class
-            </summary>
-        </member>
-        <member name="T:PersistantModel.Root">
-            <summary>
-            Persistent data format of a root
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Root.#ctor">
-            <summary>
-            Default constructor
-            Empty data
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Root.#ctor(System.Double,System.Double)">
-            <summary>
-            Default constructor
-            given a n2 root of n1
-            </summary>
-            <param name="n1">left number</param>
-            <param name="n2">right number</param>
-        </member>
-        <member name="M:PersistantModel.Root.#ctor(Interfaces.IArithmetic,Interfaces.IArithmetic)">
-            <summary>
-            Constructor
-            given a n2 root of n1
-            </summary>
-            <param name="t1">left term</param>
-            <param name="t2">right term</param>
-        </member>
-        <member name="M:PersistantModel.Root.ToTex">
-            <summary>
-            Transforms equation object into a tex representation
-            </summary>
-            <returns>tex representation</returns>
-        </member>
-        <member name="M:PersistantModel.Root.Create">
-            <summary>
-            Create a new arithmetic class
-            </summary>
-        </member>
-        <member name="T:PersistantModel.Soustraction">
-            <summary>
-            Persistent data format of a substract
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Soustraction.#ctor">
-            <summary>
-            Default constructor
-            Empty data
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Soustraction.#ctor(System.Double,System.Double)">
-            <summary>
-            Constructor
-            given an addition with two numbers
-            </summary>
-            <param name="n1">left number</param>
-            <param name="n2">right number</param>
-        </member>
-        <member name="M:PersistantModel.Soustraction.#ctor(Interfaces.IArithmetic,Interfaces.IArithmetic)">
-            <summary>
-            Constructor
-            given an addition with two terms
-            </summary>
-            <param name="t1">left term</param>
-            <param name="t2">right term</param>
-        </member>
-        <member name="M:PersistantModel.Soustraction.ToSum">
-            <summary>
-            Convert additions to a sum
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:PersistantModel.Soustraction.Create">
-            <summary>
-            Create a new addition class
-            </summary>
-        </member>
-        <member name="T:PersistantModel.Equal">
-            <summary>
-            Equality assertion arithmetic operator
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Equal.#ctor">
-            <summary>
-            Default constructor
-            Empty data
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Equal.#ctor(System.Double,System.Double)">
-            <summary>
-            Constructor
-            given an equality with two numbers
-            </summary>
-            <param name="n1">left number</param>
-            <param name="n2">right number</param>
-        </member>
-        <member name="M:PersistantModel.Equal.#ctor(Interfaces.IArithmetic,Interfaces.IArithmetic)">
-            <summary>
-            Constructor
-            given an equality with two equations
-            </summary>
-            <param name="t1">left equation</param>
-            <param name="t2">right equation</param>
-        </member>
-        <member name="M:PersistantModel.Equal.ToTex">
-            <summary>
-            Transforms equation object into a tex representation
-            </summary>
-            <returns>tex representation</returns>
-        </member>
-        <member name="M:PersistantModel.Equal.ToString">
-            <summary>
-            Transforms equation object into a string representation
-            </summary>
-            <returns>string representation</returns>
-        </member>
-        <member name="M:PersistantModel.Equal.Create">
-            <summary>
-            Create a new arithmetic class
-            </summary>
-        </member>
-        <member name="T:PersistantModel.Division">
-            <summary>
-            Persistent data format of a division
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Division.#ctor">
-            <summary>
-            Default constructor
-            Empty data
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Division.#ctor(System.Double,System.Double)">
-            <summary>
-            Default constructor
-            given an addition with two numbers
-            </summary>
-            <param name="n1">left number</param>
-            <param name="n2">right number</param>
-        </member>
-        <member name="M:PersistantModel.Division.#ctor(Interfaces.IArithmetic,Interfaces.IArithmetic)">
-            <summary>
-            Constructor
-            given a multiplication with two terms
-            </summary>
-            <param name="t1">left term</param>
-            <param name="t2">right term</param>
-        </member>
-        <member name="M:PersistantModel.Division.ToProduct">
-            <summary>
-            Convert mult to a product
-            </summary>
-            <returns>product</returns>
-        </member>
-        <member name="M:PersistantModel.Division.ToTex">
-            <summary>
-            Transforms equation object into a tex representation
-            </summary>
-            <returns>tex representation</returns>
-        </member>
-        <member name="M:PersistantModel.Division.Create">
-            <summary>
-            Create a new arithmetic class
-            </summary>
-        </member>
-        <member name="T:PersistantModel.Multiplication">
-            <summary>
-            Persistent data format of a product
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Multiplication.#ctor">
-            <summary>
-            Default constructor
-            Empty data
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Multiplication.#ctor(System.Double,System.Double)">
-            <summary>
-            Default constructor
-            given an addition with two numbers
-            </summary>
-            <param name="n1">left number</param>
-            <param name="n2">right number</param>
-        </member>
-        <member name="M:PersistantModel.Multiplication.#ctor(Interfaces.IArithmetic,Interfaces.IArithmetic)">
-            <summary>
-            Constructor
-            given a multiplication with two terms
-            </summary>
-            <param name="t1">left term</param>
-            <param name="t2">right term</param>
-        </member>
-        <member name="M:PersistantModel.Multiplication.MakeTransform">
-            <summary>
-            Transforms an addition into a multiplication
-            </summary>
-            <returns>a list of possibles equation</returns>
-        </member>
-        <member name="M:PersistantModel.Multiplication.ToProduct">
-            <summary>
-            Convert mult to a product
-            </summary>
-            <returns>product</returns>
-        </member>
-        <member name="M:PersistantModel.Multiplication.Create">
-            <summary>
-            Create a new arithmetic class
-            </summary>
-        </member>
-        <member name="T:PersistantModel.Addition">
-            <summary>
-            Persistent data format of an addition
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Addition.#ctor">
-            <summary>
-            Default constructor
-            Empty data
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Addition.#ctor(System.Double,System.Double)">
-            <summary>
-            Constructor
-            given an addition with two numbers
-            </summary>
-            <param name="n1">left number</param>
-            <param name="n2">right number</param>
-        </member>
-        <member name="M:PersistantModel.Addition.#ctor(Interfaces.IArithmetic,Interfaces.IArithmetic)">
-            <summary>
-            Constructor
-            given an addition with two terms
-            </summary>
-            <param name="t1">left term</param>
-            <param name="t2">right term</param>
-        </member>
-        <member name="M:PersistantModel.Addition.MakeTransform">
-            <summary>
-            Transforms an addition into a multiplication
-            </summary>
-            <returns>a list of possibles equation</returns>
-        </member>
-        <member name="M:PersistantModel.Addition.ToSum">
-            <summary>
-            Convert additions to a sum
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:PersistantModel.Addition.Create">
-            <summary>
-            Create a new addition class
-            </summary>
-        </member>
-        <member name="T:PersistantModel.Coefficient">
-            <summary>
-            Classe contenant le nom, la valeur numérique
-            ou une équation d'un coefficient
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Coefficient.#ctor">
-            <summary>
-            Default constructor
-            </summary>
-        </member>
-        <member name="M:PersistantModel.Coefficient.#ctor(System.String,System.Double)">
-            <summary>
-            Constructor for a coefficient
-            given a name
-            given a double precision numeric value
-            </summary>
-            <param name="letter">letter of coefficient</param>
-            <param name="value">value behind this letter</param>
-        </member>
-        <member name="M:PersistantModel.Coefficient.#ctor(System.String)">
-            <summary>
-            Constructor for a coefficient
-            given a name
-            with value as 0.0
-            </summary>
-            <param name="letter">letter of coefficient</param>
-        </member>
-        <member name="M:PersistantModel.Coefficient.Compute(System.Boolean)">
-            <summary>
-            When an equation can be calculable then
-            the result is a number else, it's an arithmetic expression
-            </summary>
-            <param name="clean">true if calculate again</param>
-            <returns>result</returns>
-        </member>
-        <member name="M:PersistantModel.Coefficient.ComputeOwnerWeight">
-            <summary>
-            Computes the unique weight
-            for this object
-            </summary>
-            <returns>weight</returns>
-        </member>
-        <member name="M:PersistantModel.Coefficient.Create">
-            <summary>
-            Create a new arithmetic class
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Coefficient.Name">
-            <summary>
-            Gets the name of this coefficient
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Coefficient.Interfaces#IVariable#Value">
-            <summary>
-            Gets the value of this coefficient
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Coefficient.Value">
-            <summary>
-            Gets or sets the value of this coefficient
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Coefficient.IsBinaryOperator">
-            <summary>
-            Gets binary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Coefficient.IsUnaryOperator">
-            <summary>
-            Gets unary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Coefficient.IsMultipleOperator">
-            <summary>
-            Gets multiple switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Coefficient.IsNotOperator">
-            <summary>
-            Gets true if it's not an operator
-            </summary>
-        </member>
-        <member name="T:PersistantModel.NumericValue">
-            <summary>
-            Classe stockant une valeur numérique
-            </summary>
-        </member>
-        <member name="M:PersistantModel.NumericValue.#ctor">
-            <summary>
-            Default constructor
-            Empty data
-            </summary>
-        </member>
-        <member name="M:PersistantModel.NumericValue.#ctor(System.Double)">
-            <summary>
-            Constructor for a double precision number
-            </summary>
-            <param name="d">number</param>
-        </member>
-        <member name="M:PersistantModel.NumericValue.Compute(System.Boolean)">
-            <summary>
-            When an equation can be calculable then
-            the result is a number else, it's an arithmetic expression
-            </summary>
-            <param name="clean">true if calculate again</param>
-            <returns>result</returns>
-        </member>
-        <member name="M:PersistantModel.NumericValue.ComputeOwnerWeight">
-            <summary>
-            Computes the unique weight
-            for this object
-            </summary>
-            <returns>weight</returns>
-        </member>
-        <member name="M:PersistantModel.NumericValue.Create">
-            <summary>
-            Create a new arithmetic class
-            </summary>
-        </member>
-        <member name="P:PersistantModel.NumericValue.Value">
-            <summary>
-            Gets or sets the numeric value
-            </summary>
-        </member>
-        <member name="P:PersistantModel.NumericValue.IsBinaryOperator">
-            <summary>
-            Gets binary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.NumericValue.IsUnaryOperator">
-            <summary>
-            Gets unary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.NumericValue.IsMultipleOperator">
-            <summary>
-            Gets multiple switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.NumericValue.IsNotOperator">
-            <summary>
-            Gets true if it's not an operator
-            </summary>
-        </member>
         <member name="T:PersistantModel.Product">
             <summary>
             Product of multiple terms
@@ -1707,6 +1707,41 @@
             Constructor with a input list
             </summary>
             <param name="inputs">input list</param>
+        </member>
+        <member name="P:PersistantModel.Product.Operator">
+            <summary>
+            Gets the operator ID
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Product.IsBinaryOperator">
+            <summary>
+            Gets binary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Product.IsUnaryOperator">
+            <summary>
+            Gets unary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Product.IsMultipleOperator">
+            <summary>
+            Gets multiple switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Product.IsNotOperator">
+            <summary>
+            Gets true if it's not an operator
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Product.Items">
+            <summary>
+            Gets the enumeration of elements by sommation
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Product.List">
+            <summary>
+            Gets the list source
+            </summary>
         </member>
         <member name="M:PersistantModel.Product.IntermediateTransition(PersistantModel.Product)">
             <summary>
@@ -1767,41 +1802,6 @@
             Create a new arithmetic class
             </summary>
         </member>
-        <member name="P:PersistantModel.Product.Operator">
-            <summary>
-            Gets the operator ID
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Product.IsBinaryOperator">
-            <summary>
-            Gets binary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Product.IsUnaryOperator">
-            <summary>
-            Gets unary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Product.IsMultipleOperator">
-            <summary>
-            Gets multiple switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Product.IsNotOperator">
-            <summary>
-            Gets true if it's not an operator
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Product.Items">
-            <summary>
-            Gets the enumeration of elements by sommation
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Product.List">
-            <summary>
-            Gets the list source
-            </summary>
-        </member>
         <member name="T:PersistantModel.Sum">
             <summary>
             Sommation of multiple terms
@@ -1817,6 +1817,41 @@
             Constructor with a input list
             </summary>
             <param name="inputs">input list</param>
+        </member>
+        <member name="P:PersistantModel.Sum.Operator">
+            <summary>
+            Gets the operator ID
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sum.IsBinaryOperator">
+            <summary>
+            Gets binary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sum.IsUnaryOperator">
+            <summary>
+            Gets unary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sum.IsMultipleOperator">
+            <summary>
+            Gets multiple switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sum.IsNotOperator">
+            <summary>
+            Gets true if it's not an operator
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sum.Items">
+            <summary>
+            Gets the enumeration of elements by sommation
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sum.List">
+            <summary>
+            Gets the list source
+            </summary>
         </member>
         <member name="M:PersistantModel.Sum.IntermediateTransition(PersistantModel.Sum)">
             <summary>
@@ -1877,41 +1912,6 @@
             Create a new arithmetic class
             </summary>
         </member>
-        <member name="P:PersistantModel.Sum.Operator">
-            <summary>
-            Gets the operator ID
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Sum.IsBinaryOperator">
-            <summary>
-            Gets binary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Sum.IsUnaryOperator">
-            <summary>
-            Gets unary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Sum.IsMultipleOperator">
-            <summary>
-            Gets multiple switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Sum.IsNotOperator">
-            <summary>
-            Gets true if it's not an operator
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Sum.Items">
-            <summary>
-            Gets the enumeration of elements by sommation
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Sum.List">
-            <summary>
-            Gets the list source
-            </summary>
-        </member>
         <member name="T:PersistantModel.Term">
             <summary>
             Classe stockant un terme
@@ -1938,11 +1938,6 @@
             <param name="c">constant equation</param>
             <param name="s">coefficient equation</param>
             <param name="u">unknown term equation</param>
-        </member>
-        <member name="M:PersistantModel.Term.Create">
-            <summary>
-            Create a new arithmetic class
-            </summary>
         </member>
         <member name="P:PersistantModel.Term.Operator">
             <summary>
@@ -1979,6 +1974,11 @@
             Gets the unknown element
             </summary>
         </member>
+        <member name="M:PersistantModel.Term.Create">
+            <summary>
+            Create a new arithmetic class
+            </summary>
+        </member>
         <member name="T:PersistantModel.UnknownTerm">
             <summary>
             Terme inconnu
@@ -2007,26 +2007,6 @@
             </summary>
             <param name="letter">ketter</param>
             <param name="eq">equation</param>
-        </member>
-        <member name="M:PersistantModel.UnknownTerm.Compute(System.Boolean)">
-            <summary>
-            When an equation can be calculable then
-            the result is a number else, it's an arithmetic expression
-            </summary>
-            <param name="clean">true if calculate again</param>
-            <returns>result</returns>
-        </member>
-        <member name="M:PersistantModel.UnknownTerm.ComputeOwnerWeight">
-            <summary>
-            Computes the unique weight
-            for this object
-            </summary>
-            <returns>weight</returns>
-        </member>
-        <member name="M:PersistantModel.UnknownTerm.Create">
-            <summary>
-            Create a new arithmetic class
-            </summary>
         </member>
         <member name="P:PersistantModel.UnknownTerm.Name">
             <summary>
@@ -2068,6 +2048,26 @@
             Gets true if it's not an operator
             </summary>
         </member>
+        <member name="M:PersistantModel.UnknownTerm.Compute(System.Boolean)">
+            <summary>
+            When an equation can be calculable then
+            the result is a number else, it's an arithmetic expression
+            </summary>
+            <param name="clean">true if calculate again</param>
+            <returns>result</returns>
+        </member>
+        <member name="M:PersistantModel.UnknownTerm.ComputeOwnerWeight">
+            <summary>
+            Computes the unique weight
+            for this object
+            </summary>
+            <returns>weight</returns>
+        </member>
+        <member name="M:PersistantModel.UnknownTerm.Create">
+            <summary>
+            Create a new arithmetic class
+            </summary>
+        </member>
         <member name="T:PersistantModel.Verify">
             <summary>
             Verify the validity of an equal
@@ -2098,6 +2098,21 @@
             <param name="e">equal term</param>
             <param name="mode">mode</param>
         </member>
+        <member name="P:PersistantModel.Verify.IsTexMode">
+            <summary>
+            Gets or sets the tex mode
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Verify.Variables">
+            <summary>
+            Gets all variables
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Verify.Elements">
+            <summary>
+            Gets all records
+            </summary>
+        </member>
         <member name="M:PersistantModel.Verify.IsValid">
             <summary>
             
@@ -2115,21 +2130,6 @@
             Insert text elements into a list
             </summary>
             <param name="list">container</param>
-        </member>
-        <member name="P:PersistantModel.Verify.IsTexMode">
-            <summary>
-            Gets or sets the tex mode
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Verify.Variables">
-            <summary>
-            Gets all variables
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Verify.Elements">
-            <summary>
-            Gets all records
-            </summary>
         </member>
         <member name="T:PersistantModel.Weight">
             <summary>
@@ -2220,6 +2220,24 @@
             <param name="type">value type</param>
             <param name="value">value</param>
             <param name="owner">owner object</param>
+        </member>
+        <member name="P:PersistantModel.Weight.OwnerObject">
+            <summary>
+            Gets the recorded object
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Weight.HashCode">
+            <summary>
+            Gets the hash code number
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Weight.Item(System.String)">
+            <summary>
+            Gets or sets a value from
+            persistent data
+            </summary>
+            <param name="name">name</param>
+            <returns>value</returns>
         </member>
         <member name="M:PersistantModel.Weight.Owner_Fetch(System.Object,System.EventArgs)">
             <summary>
@@ -2343,24 +2361,6 @@
             Obtain the equation function as string representation
             </summary>
             <returns></returns>
-        </member>
-        <member name="P:PersistantModel.Weight.OwnerObject">
-            <summary>
-            Gets the recorded object
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Weight.HashCode">
-            <summary>
-            Gets the hash code number
-            </summary>
-        </member>
-        <member name="P:PersistantModel.Weight.Item(System.String)">
-            <summary>
-            Gets or sets a value from
-            persistent data
-            </summary>
-            <param name="name">name</param>
-            <returns>value</returns>
         </member>
     </members>
 </doc>

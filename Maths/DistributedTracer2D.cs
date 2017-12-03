@@ -334,7 +334,6 @@ namespace Maths
             {
                 DrawingContext dc = dg.Append();
                 Size size = this.areas[2, 2];
-                this.points = this.bounds.GenerateMove();
                 foreach (double w in this.points.Values)
                 {
                     try
@@ -511,6 +510,7 @@ namespace Maths
             {
                 this.inverted[index] = inv[index].Clone() as Arithmetic;
             }
+            this.points = this.bounds.GenerateMove();
         }
 
         /// <summary>

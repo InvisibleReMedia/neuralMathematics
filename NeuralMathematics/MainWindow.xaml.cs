@@ -63,28 +63,12 @@ namespace NeuralMathematics
             Button b = sender as Button;
             switch(b.Name)
             {
-                case "Polynome2Somme":
-                    this.doc.Document = Applicatif.ResolutionPolynome2Somme();
-                    this.doc.UpdateLayout();
-                    break;
-                case "Polynome2Difference":
-                    this.doc.Document = Applicatif.ResolutionPolynome2Difference();
-                    this.doc.UpdateLayout();
-                    break;
-                case "Polynome2Produit":
-                    this.doc.Document = Applicatif.Polynome2Produit();
-                    this.doc.UpdateLayout();
-                    break;
-                case "Newton":
-                    this.doc.Document = Applicatif.Newton();
+                case "P2":
+                    this.doc.Document = Applicatif.SolvePolynome2();
                     this.doc.UpdateLayout();
                     break;
                 case "GoBack":
                     this.doc.Document = Applicatif.Menu();
-                    this.doc.UpdateLayout();
-                    break;
-                case "ComputeTransformationCoefficientPolynome2":
-                    this.doc.Document = Applicatif.ComputeTransformationCoefficientPolynome2();
                     this.doc.UpdateLayout();
                     break;
                 case "Close":

@@ -101,9 +101,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Applicatif.cs" />
+    <Compile Include="Graphique.xaml.cs">
+      <DependentUpon>Graphique.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tracer.xaml.cs">
       <DependentUpon>Tracer.xaml</DependentUpon>
     </Compile>
+    <Page Include="Graphique.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

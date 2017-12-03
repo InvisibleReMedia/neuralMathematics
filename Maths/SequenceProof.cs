@@ -98,7 +98,7 @@ namespace Maths
                         l.ListItems.Add(li);
                     }
                 }
-                else
+                else if (a is Arithmetic)
                 {
                     ListItem li = new ListItem();
                     li.TextAlignment = System.Windows.TextAlignment.Center;
@@ -106,6 +106,10 @@ namespace Maths
                     fc.Formula = a.ToTex();
                     li.Blocks.Add(new BlockUIContainer(fc));
                     l.ListItems.Add(li);
+                }
+                else
+                {
+                    a.InsertIntoDocument(l);
                 }
             }
             c.Add(l);
