@@ -188,16 +188,60 @@ namespace NeuralMathematics
             w.Add(new Exercice(4, "Représentez graphiquement la courbe parabolique du polynôme d'ordre 2", "Choisissez {b=3} et {c=2}",
                                true, new Answer("Appuyez sur le bouton pour voir la courbe", new SequenceProof(g))));
 
-            w.Add(new Exercice(5, "Exprimer la différence entre {y} et {y_0}", "Obtenir un produit", true,
+            Arithmetic diffY = new Equal(C("y") - C("y_0"),
+                                         new Product(C("x") - "x_0", C("x") + "x_0" + 'b'));
+            Arithmetic diffY2 = new Equal(C("y") - C("y_0"),
+                                         new Product(C("x") - "x_0", new Sum(C("x") - "x_0", C(2.0d) * "x_0", C('b'))));
+            Arithmetic diffY3 = new Equal(C("y") - C("y_0"),
+                                         new Product(C("dx"), new Sum(C("dx"), C(2.0d) * "x_0", C('b'))));
+            Arithmetic diffY4 = new Equal(C("dy"),
+                                         new Product(C("dx"), new Sum(C("dx"), C("y'"))));
+
+            w.Add(new Exercice(5, "Exprimer la différence entre {y} et {y_0} quelque soit les coefficients {b} et {c}", "Obtenir un produit", true,
                                new Answer("Expression de la différentielle {y}", true,
                                           new SequenceProof(new Equal(C("y") - C("y_0"),
-                                                                      new Soustraction(new Sum(C("x") ^ 2.0d, C(3.0d) * "x", C(2.0d)),
-                                                                                       new Sum(C("x_0") ^ 2.0d, C(3.0d) * "x_0", C(2.0d)))),
+                                                                      new Soustraction(new Sum(C("x") ^ 2.0d, C('b') * "x", C('c')),
+                                                                                       new Sum(C("x_0") ^ 2.0d, C('b') * "x_0", C('c')))),
                                                             new Texte("Factorisation de {x - x_0}", true),
-                                                            new Equal(C("y") - C("y_0"),
-                                                                      new Product(C("x") - "x_0", C("x") + "x_0" + 3.0d))
+                                                            diffY,
+                                                            new Texte("Obtenir {dx}", true),
+                                                            diffY2,
+                                                            new Texte("Exprimez {dx} dans la différentielle", true),
+                                                            diffY3,
+                                                            new Texte("Identifiez la fonction dérivée {y' = 2 * x_0 + b}", true),
+                                                            diffY4
                                                             ))
                                          ));
+
+            diffY.Let("b", 3.0d);
+            diffY.Let("x_0", 1.0d);
+            diffY.Let("x", 1.0d);
+
+            res = diffY.Calculate(true);
+            w.Add(new Exercice(6, "Calculez {dy} en fonction de {dx} quand {x_0=1} et {x=1}. Conclure", "Choisissez {b=2} et {c=1}", true,
+                               new Answer("Vérification de l'équation différentielle",
+                                          new SequenceProof(new Texte("Le résultat est " + res, true, '(', ')'),
+                                                            new Texte("Lorsque {y - y_0 = 0} alors {x=x_0} ou {x=-(x_0+2)}", true),
+                                                            new Texte(@"Si {y - y_0 \not= 0} alors l'équation différentielle est du même ordre que la fonction", true)))));
+
+            w.Add(new Exercice(7, @"Ajoutez un point médian d'abscisse {\bar{x}}", "Obtenir deux distances", true,
+                               new Answer("Ajout d'un point médian",
+                                          new SequenceProof(new Equal(C("dx"), new Equal(C("x") - "x_0", C("x") - @"\bar{x}" + @"\bar{x}" - "x_0")),
+                                                            new Texte("Le point intermédiaire donne la somme de deux distances {dx_1} et {dx_2}", true)
+                                          ))));
+
+            w.Add(new Exercice(8, "Incorporez l'équation de {dx} dans l'équation différentielle", @"Cherchez une équation de {\bar{x}}", true,
+                               new Answer("Calculs algébriques",
+                                          new SequenceProof(new Equal(C("dy"), new Product(C("dx"), new Sum(C("dx"), C("y'")))),
+                                                            new Equal(C("dy"), new Sum(C("dx") ^ 2, C("dx") * C("y'"))),
+                                                            new Equal(C("dy"), new Sum((C("dx_1") + "dx_2") ^ 2, (C("dx_1") + "dx_2") * C("y'"))),
+                                                            new Equal(C("dy"), new Sum((C("dx_1") ^ 2.0d), C(2.0d) * C("dx_1") * C("dx_2"), C("dx_2") ^ 2.0d, C("dx_1") * C("y'"), C("dx_2") * C("y'"))),
+                                                            new Texte("Le terme {dx_2} est un terme constant", true),
+                                                            new Equal(C("dy"), new Sum((C("dx_1") ^ 2.0d), C(2.0d) * C("dx_1") * C("dx_2"), C("dx_2") ^ 2.0d, C("dx_1") * C("y'"), C("dx_2") * C("y'"))),
+                                                            new Texte("Factorisons {dx_1}", true),
+                                                            new Equal(C("dy"), new Sum((C("dx_1") ^ 2.0d), (C(2.0d) * C("dx_2") + C("y'")) * "dx_1", C("dx_2") ^ 2.0d, C("dx_2") * C("y'"))),
+                                                            new Texte("", true)
+                                          ))));
 
             w.ToDocument(fd);
             Button but = new Button();
