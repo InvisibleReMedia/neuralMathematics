@@ -253,5 +253,63 @@ namespace NeuralMathematics
 
             return fd;
         }
+
+        /// <summary>
+        /// Computes image size
+        /// </summary>
+        /// <returns></returns>
+        public static FlowDocument SolvePolynome3()
+        {
+            FlowDocument fd = new FlowDocument();
+
+            Equal function = new Equal(C("y"), (C("x") ^ 3.0d) + C('b') * (C("x") ^ 2.0d) + C('c') * "x" + C('d'));
+
+            Wording w = new Wording("Résolution du polynôme d'ordre 3", "Calcul de la réciproque");
+            w.Content.Add(new Texte("Soit l'équation d'un polynôme d'ordre 3 en fonction de l'inconnu {x}", true),
+                          function);
+
+            function.Let("b", 3.0d);
+            function.Let("c", 3.0d);
+            function.Let("d", 1.0d);
+            function.Let("x", 0.0d);
+            string res = function.RightOperand.Calculate(true);
+            w.Add(new Exercice(1, "Calculez {y} pour {x=0}", "Choisissez {b=3}, {c=3} et {d=1}",
+                               true, new Answer("Si {x=0} alors {y=d}", true, new SequenceProof(new Equal(C("y"), (C(0.0d) ^ 3.0d) + C('b') * (C(0.0d) ^ 2.0d) + C('c') * 0.0d + C('d')),
+                                                                                                new Texte("{y=" + res + "}", true)))));
+
+            function.Let("x", 1.0d);
+            res = function.RightOperand.Calculate(true);
+            w.Add(new Exercice(2, "Calculez {y} pour {x=1}", "Choisissez {b=3}, {c=3} et {d=1}",
+                               true, new Answer("Si {x=1} alors {" + new Equal(C("y"), (C(1.0d) ^ 3.0d) + C('b') * (C(1.0d) ^ 2.0d) + C('c') * 1.0d + C('d')).ToTex() + "}", true,
+                                                new SequenceProof(new Equal(C("y"), (C(1.0d) ^ 3.0d) + 3 * (C(1.0d) ^ 2.0d) + 3 * 1.0d + 1),
+                                                                  new Texte("{y=" + res + "}", true)))));
+
+            Graphique g = Graphique.Create(() =>
+            {
+                Coordinates[] bornes = new Coordinates[2];
+                bornes[0] = new Coordinates(-100.0d, -100.0d);
+                bornes[1] = new Coordinates(100.0d, 100.0d);
+                Maths.Vector v = new Maths.Vector(bornes[0], bornes[1]);
+                Coordinates s = new Coordinates(0.01d, 0.01d);
+                MovingCoordinates mc = new MovingCoordinates(v, s);
+                DistributedTracer2D d = new DistributedTracer2D(mc, 4, 4, 6, new Size(0.002d, 0.002d)); // (distance aux bornes - 20) * ratio points (0.01)
+                Arithmetic f = new Sum(C("x") ^ 3.0d, C(3.0d) * C("x") ^ 2.0, C(2.0d) * "x", C(1.0d));
+                d.SetFunction(f);
+                return d;
+            });
+
+            w.Add(new Exercice(4, "Représentez graphiquement la courbe parabolique du polynôme d'ordre 3", "Choisissez {b=3}, {c=2} et {d=1}",
+                               true, new Answer("Appuyez sur le bouton pour voir la courbe", new SequenceProof(g))));
+
+            w.ToDocument(fd);
+            Button but = new Button();
+            but.Name = "GoBack";
+            but.Content = "Retour";
+            but.Click += Button_Click;
+            SetButtonStyle(but);
+            fd.Blocks.Add(new BlockUIContainer(but));
+
+            return fd;
+        }
     }
 }

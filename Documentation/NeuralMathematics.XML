@@ -9,16 +9,6 @@
             Fonctions qui implémentent les documents (FlowDocument)
             </summary>
         </member>
-        <member name="E:NeuralMathematics.Applicatif.onButtonClick">
-            <summary>
-            Evenement sur click des boutons
-            </summary>
-        </member>
-        <member name="E:NeuralMathematics.Applicatif.ButtonClicked">
-            <summary>
-            Event handler for clicked button
-            </summary>
-        </member>
         <member name="M:NeuralMathematics.Applicatif.Menu">
             <summary>
             Fonction de menu
@@ -65,6 +55,22 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:NeuralMathematics.Applicatif.SolvePolynome3">
+            <summary>
+            Computes image size
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:NeuralMathematics.Applicatif.onButtonClick">
+            <summary>
+            Evenement sur click des boutons
+            </summary>
+        </member>
+        <member name="E:NeuralMathematics.Applicatif.ButtonClicked">
+            <summary>
+            Event handler for clicked button
+            </summary>
+        </member>
         <member name="T:NeuralMathematics.Graphique">
             <summary>
             Logique d'interaction pour Tracer.xaml
@@ -81,11 +87,6 @@
         <member name="M:NeuralMathematics.Graphique.#ctor(System.Func{Maths.DistributedTracer2D})">
             <summary>
             Tracer
-            </summary>
-        </member>
-        <member name="P:NeuralMathematics.Graphique.IsTexMode">
-            <summary>
-            Gets the tex mode
             </summary>
         </member>
         <member name="M:NeuralMathematics.Graphique.InsertIntoDocument(System.Windows.Documents.List)">
@@ -110,6 +111,11 @@
         <member name="M:NeuralMathematics.Graphique.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Graphique.IsTexMode">
+            <summary>
+            Gets the tex mode
             </summary>
         </member>
         <member name="T:NeuralMathematics.Tracer">
