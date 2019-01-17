@@ -37,5 +37,18 @@ namespace Interfaces
         /// </summary>
         /// <returns>a numerical value or an equation</returns>
         IArithmetic Compute();
+        /// <summary>
+        /// Convert an arithmetic object to a double value
+        /// </summary>
+        /// <returns>double value</returns>
+        double ToDouble();
+        /// <summary>
+        /// Converts all sub-variables into an equation
+        /// or into its value
+        /// </summary>
+        /// <returns>output new equation</returns>
+        IArithmetic Converting();
+
+
     }
 }

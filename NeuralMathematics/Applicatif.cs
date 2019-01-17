@@ -143,6 +143,26 @@ namespace NeuralMathematics
         {
             FlowDocument fd = new FlowDocument();
 
+            // variables
+            Dictionary<string, IArithmetic> variables = new Dictionary<string, IArithmetic>();
+
+            Arithmetic.EventAddVariable += new EventHandler<KeyValuePair<string, IArithmetic>>((o, e) =>
+            {
+                if (variables.ContainsKey(e.Key))
+                {
+                    variables[e.Key] = e.Value;
+                }
+                else
+                {
+                    variables.Add(e.Key, e.Value);
+                }
+            });
+            Arithmetic.EventGetVariable = new Func<string, IArithmetic>((s) =>
+            {
+                if (variables.ContainsKey(s)) return variables[s];
+                else return null;
+            });
+
             Equal function = new Equal(C("y"), (C("x") ^ 2.0d) + C('b') * "x" + 'c');
 
             Wording w = new Wording("Résolution du polynôme d'ordre 2", "Calcul de la réciproque");
@@ -152,13 +172,13 @@ namespace NeuralMathematics
             function.Let("b", 2.0d);
             function.Let("c", 1.0d);
             function.Let("x", 0.0d);
-            string res = function.RightOperand.Compute().ToDouble().ToString();
+            double res = function.RightOperand.Compute().ToDouble();
             w.Add(new Exercice(1, "Calculez {y} pour {x=0}", "Choisissez {b=2} et {c=1}",
                                true, new Answer("Si {x=0} alors {y=c}", true, new SequenceProof(new Equal(C("y"), (C(0.0d) ^ 2.0d) + C(2.0d) * 0.0d + 1.0d),
                                                                                                 new Texte("{y=" + res + "}", true)))));
 
             function.Let("x", 1.0d);
-            res = function.RightOperand.Compute().ToDouble().ToString();
+            res = function.RightOperand.Compute().ToDouble();
             w.Add(new Exercice(2, "Calculez {y} pour {x=1}", "Choisissez {b=2} et {c=1}",
                                true, new Answer("Si {x=1} alors {" + new Equal(C("y"), (C(1.0d) ^ 2.0d) + C('b') * 1.0d + 'c').ToTex() + "}", true,
                                                 new SequenceProof(new Equal(C("y"), (C(1.0d) ^ 2.0d) + C(2.0d) * 1.0d + 1.0d),
@@ -166,7 +186,7 @@ namespace NeuralMathematics
 
             function.Let("b", 3.0d);
             function.Let("c", 2.0d);
-            res = function.RightOperand.Compute().ToDouble().ToString();
+            res = function.RightOperand.Compute().ToDouble();
             w.Add(new Exercice(3, "Calculez {y} pour {x=1}", "Choisissez {b=3} et {c=2}",
                                true, new Answer("Si {x=1} alors {" + new Equal(C("y"), (C(1.0d) ^ 2.0d) + C('b') * 1.0d + 'c').ToTex() + "}", true,
                                                 new SequenceProof(new Equal(C("y"), (C(1.0d) ^ 2.0d) + C(3.0d) * 1.0d + 2.0d),
@@ -220,7 +240,7 @@ namespace NeuralMathematics
             yPrime.Let("b", 3.0d);
             diffY.Let("y'", yPrime);
 
-            res = diffY.Compute().ToDouble().ToString();
+            res = diffY.Compute().ToDouble();
             w.Add(new Exercice(6, "Calculez {dy} en fonction de {dx} quand {x_0=1} et exprimez {dx + y'}. Conclure", "Choisissez {b=2} et {c=1}", true,
                                new Answer("Vérification de l'équation différentielle",
                                           new SequenceProof(new Texte("Le résultat est " + res, true, '(', ')'),
@@ -248,7 +268,8 @@ namespace NeuralMathematics
                                                             new Equal(C("dx_2"), new Negative(C("y'") / C(2.0d))),
                                                             new Texte("Il en résulte l'équation algébrique solution comportant une racine carrée entièrement déterminée"),
                                                             new Equal(C("dx_1"), new Root(C("dy") - new Addition(C("dx_2") ^ 2.0d, C("dx_2") * C("y'")), C(2.0d))),
-                                                            new Texte("Ce qui se simplifie par {" + new Equal(C("dx_1"), new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d))).ToTex() + "}", true)
+                                                            new Texte("Ce qui se simplifie par {" + new Equal(C("dx_1"), new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d))).ToTex() + "}", true),
+                                                            new Texte("Conclusion : {dx = dx_1 + dx_2} = {" + new Soustraction(new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d)), C("y'") / C(2.0d)).ToTex() + "}", true)
 
                                           ))));
 
@@ -256,19 +277,19 @@ namespace NeuralMathematics
             Arithmetic valY0 = (C("x_0") ^ C(2.0d)) + C("x_0") * C('b') + C('c');
             Arithmetic valY = (C("x_1") ^ C(2.0d)) + C("x_1") * C('b') + C('c');
 
-            Arithmetic eqDX = new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d));
-            Arithmetic solEqDX = new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d));
+            Arithmetic eqDX = new Soustraction(new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d)), C("y'") / C(2.0d));
+            Arithmetic solEqDX = new Soustraction(new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d)), C("y'") / C(2.0d));
 
             valY0.Let("b", 2.0d);
             valY0.Let("c", 1.0d);
             valY0.Let("x_0", 1.0d);
+            yPrime.Unlet("b");
+            yPrime.Unlet("x_0");
+            eqDX.Let("y'", yPrime);
             yPrime.Let("b", 2.0d);
             yPrime.Let("x_0", 1.0d);
             solEqDX.Let("dy", C(4.0d) - C(valY0.Compute().ToDouble()));
             solEqDX.Let("y'", C(yPrime.Compute().ToDouble()));
-            yPrime.Unlet("b");
-            yPrime.Unlet("x_0");
-            eqDX.Let("y'", yPrime);
 
             w.Add(new Exercice(9, "Démontrez que l'équation {dx} ci-dessus est correcte.", "Choisissez des valeurs pour {x_0} et {y}", true,
                                new Answer("Calculs", new SequenceProof(
@@ -309,13 +330,13 @@ namespace NeuralMathematics
             function.Let("c", 3.0d);
             function.Let("d", 1.0d);
             function.Let("x", 0.0d);
-            string res = function.RightOperand.Compute().ToDouble().ToString();
+            double res = function.RightOperand.Compute().ToDouble();
             w.Add(new Exercice(1, "Calculez {y} pour {x=0}", "Choisissez {b=3}, {c=3} et {d=1}",
                                true, new Answer("Si {x=0} alors {y=d}", true, new SequenceProof(new Equal(C("y"), (C(0.0d) ^ 3.0d) + C('b') * (C(0.0d) ^ 2.0d) + C('c') * 0.0d + C('d')),
                                                                                                 new Texte("{y=" + res + "}", true)))));
 
             function.Let("x", 1.0d);
-            res = function.RightOperand.Compute().ToDouble().ToString();
+            res = function.RightOperand.Compute().ToDouble();
             w.Add(new Exercice(2, "Calculez {y} pour {x=1}", "Choisissez {b=3}, {c=3} et {d=1}",
                                true, new Answer("Si {x=1} alors {" + new Equal(C("y"), (C(1.0d) ^ 3.0d) + C('b') * (C(1.0d) ^ 2.0d) + C('c') * 1.0d + C('d')).ToTex() + "}", true,
                                                 new SequenceProof(new Equal(C("y"), (C(1.0d) ^ 3.0d) + 3 * (C(1.0d) ^ 2.0d) + 3 * 1.0d + 1),

@@ -21,6 +21,8 @@ namespace PersistantModel
         /// </summary>
         protected Sum()
         {
+            this[operatorName] = 's';
+            this[listName] = new List<IArithmetic>();
         }
 
         /// <summary>

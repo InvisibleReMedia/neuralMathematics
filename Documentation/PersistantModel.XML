@@ -37,13 +37,6 @@
             <param name="delimOff">deliiter off</param>
             <param name="p">paragraph</param>
         </member>
-        <member name="M:PersistantModel.Extensions.ToDouble(Interfaces.IArithmetic)">
-            <summary>
-            Convert an IArithmetic object to a double
-            </summary>
-            <param name="a">from</param>
-            <returns>double value</returns>
-        </member>
         <member name="M:PersistantModel.Extensions.ToArithmetic(System.Double)">
             <summary>
             Convert a double precision number to an arithmetic object
@@ -172,12 +165,12 @@
             Default constructor
             </summary>
         </member>
-        <member name="M:PersistantModel.Arithmetic.FindUnknowTerms">
+        <member name="M:PersistantModel.Arithmetic.FindUnknownTerms(System.Action{System.Tuple{Interfaces.IArithmetic,System.Object,Interfaces.IArithmetic}})">
             <summary>
             Gets all unknown terms
             </summary>
         </member>
-        <member name="M:PersistantModel.Arithmetic.FindCoefficients">
+        <member name="M:PersistantModel.Arithmetic.FindCoefficients(System.Action{System.Tuple{Interfaces.IArithmetic,System.Object,Interfaces.IArithmetic}})">
             <summary>
             Gets all unknown terms
             </summary>
@@ -311,6 +304,27 @@
             </summary>
             <returns>arithmetic object</returns>
         </member>
+        <member name="M:PersistantModel.Arithmetic.IsVariableExists(System.String)">
+            <summary>
+            Test if a variable exists
+            </summary>
+            <param name="letter">variable name</param>
+            <returns>true if exists</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.GetVariable(System.String)">
+            <summary>
+            Gets a variable object
+            </summary>
+            <param name="letter">the letter name</param>
+            <returns>a variable object</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.AddVariable(System.String,Interfaces.IArithmetic)">
+            <summary>
+            Add an existing or no variable
+            </summary>
+            <param name="letter">variable name</param>
+            <param name="e">element</param>
+        </member>
         <member name="M:PersistantModel.Arithmetic.Let(System.String,System.Double)">
             <summary>
             Let a letter as a value
@@ -385,7 +399,7 @@
         </member>
         <member name="M:PersistantModel.Arithmetic.ToDouble">
             <summary>
-            Converts to a double
+            Convert an IArithmetic object to a double
             </summary>
             <returns>double value</returns>
         </member>
@@ -782,6 +796,16 @@
         <member name="P:PersistantModel.Arithmetic.Equation">
             <summary>
             Gets equation
+            </summary>
+        </member>
+        <member name="E:PersistantModel.Arithmetic.EventAddVariable">
+            <summary>
+            Static event AddVariable
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Arithmetic.EventGetVariable">
+            <summary>
+            Static event GetVariable
             </summary>
         </member>
         <member name="F:PersistantModel.Gathering`1.records">

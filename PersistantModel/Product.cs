@@ -21,6 +21,8 @@ namespace PersistantModel
         /// </summary>
         protected Product()
         {
+            this[operatorName] = 'r';
+            this[listName] = new List<IArithmetic>();
         }
 
         /// <summary>

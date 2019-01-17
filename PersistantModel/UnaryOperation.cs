@@ -22,6 +22,8 @@ namespace PersistantModel
         /// </summary>
         protected UnaryOperation()
         {
+            this[operatorName] = 'p';
+            this[innerOperandName] = new NumericValue(0.0d);
         }
 
         /// <summary>
@@ -126,7 +128,7 @@ namespace PersistantModel
         /// </summary>
         protected override IArithmetic Create()
         {
-            throw new NotSupportedException();
+            return new UnaryOperation();
         }
 
         /// <summary>

@@ -22,6 +22,7 @@ namespace PersistantModel
         /// </summary>
         protected Root()
         {
+            this[operatorName] = 'v';
         }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace PersistantModel
             if (this.RightOperand is NumericValue && (this.RightOperand as NumericValue).Value == 2.0d)
                 output = @"\sqrt{" + left + "}";
             else
-                output = @"\sqrt[" + right + "]{" + left + "}";
+                output = @"\sqrt[{" + right + "}]{" + left + "}";
             return output;
         }
 

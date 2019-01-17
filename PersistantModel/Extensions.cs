@@ -126,20 +126,6 @@ namespace PersistantModel
         }
 
         /// <summary>
-        /// Convert an IArithmetic object to a double
-        /// </summary>
-        /// <param name="a">from</param>
-        /// <returns>double value</returns>
-        public static double ToDouble(this Interfaces.IArithmetic a)
-        {
-            Interfaces.IArithmetic c = a.Compute();
-            if (c is NumericValue)
-                return (c as NumericValue).Value;
-            else
-                return 0.0d;
-        }
-
-        /// <summary>
         /// Convert a double precision number to an arithmetic object
         /// </summary>
         /// <param name="d">double value</param>

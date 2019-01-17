@@ -22,6 +22,7 @@ namespace PersistantModel
         /// </summary>
         protected Power()
         {
+            this[operatorName] = '^';
         }
 
         /// <summary>

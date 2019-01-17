@@ -97,6 +97,19 @@
             </summary>
             <returns>a numerical value or an equation</returns>
         </member>
+        <member name="M:Interfaces.IArithmetic.ToDouble">
+            <summary>
+            Convert an arithmetic object to a double value
+            </summary>
+            <returns>double value</returns>
+        </member>
+        <member name="M:Interfaces.IArithmetic.Converting">
+            <summary>
+            Converts all sub-variables into an equation
+            or into its value
+            </summary>
+            <returns>output new equation</returns>
+        </member>
         <member name="E:Interfaces.IArithmetic.Fetch">
             <summary>
             Event to fetch all data into

@@ -22,6 +22,9 @@ namespace PersistantModel
         /// </summary>
         protected BinaryOperation()
         {
+            this[operatorName] = '+';
+            this[leftTermName] = new NumericValue(0.0d);
+            this[rightTermName] = new NumericValue(0.0d);
         }
 
         /// <summary>
@@ -152,7 +155,7 @@ namespace PersistantModel
         /// </summary>
         protected override IArithmetic Create()
         {
-            throw new NotSupportedException();
+            return new BinaryOperation();
         }
 
 
