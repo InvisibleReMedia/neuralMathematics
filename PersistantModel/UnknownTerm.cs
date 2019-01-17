@@ -172,36 +172,18 @@ namespace PersistantModel
         #region Methods
 
         /// <summary>
-        /// When an equation can be calculable then
-        /// the result is a number else, it's an arithmetic expression
+        /// This function tries to obtain a numerical value
+        /// but if not returns only equations
         /// </summary>
-        /// <param name="clean">true if calculate again</param>
-        /// <returns>result</returns>
-        protected override string Compute(bool clean)
+        /// <returns>a numerical value or an equation</returns>
+        public override IArithmetic Compute()
         {
-            if (this[hasValueName])
+            IArithmetic output = this;
+            if (this.Content != null)
             {
-                this[equationName].Calculate(clean);
-                if (this[equationName][isCalculableName])
-                {
-                    this[isCalculableName] = true;
-                    this[calculatedValueName] = this[equationName][calculatedValueName];
-                    return this[calculatedValueName].ToString();
-                }
-                else
-                {
-                    this[isCalculableName] = false;
-                    this[uncalculatedValueName] = this[equationName][uncalculatedValueName];
-                    return this[uncalculatedValueName];
-                }
-
+                output = this.Content.Compute();
             }
-            else
-            {
-                this[isCalculableName] = false;
-                this[uncalculatedValueName] = this[letterName];
-                return this[letterName];
-            }
+            return output;
         }
 
         /// <summary>
@@ -223,7 +205,6 @@ namespace PersistantModel
         }
 
         #endregion
-
 
     }
 }

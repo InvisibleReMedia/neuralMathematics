@@ -155,6 +155,56 @@ namespace PersistantModel
             throw new NotSupportedException();
         }
 
+
+        /// <summary>
+        /// This function tries to obtain a numerical value
+        /// but if not returns only equations
+        /// </summary>
+        /// <returns>a numerical value or an equation</returns>
+        public override IArithmetic Compute()
+        {
+            IArithmetic output = this;
+            if (this.LeftOperand != null && this.RightOperand != null)
+            {
+                IArithmetic left, right;
+                left = this.LeftOperand.Compute();
+                right = this.RightOperand.Compute();
+                if (left is NumericValue && right is NumericValue)
+                {
+                    switch (this.Operator)
+                    {
+                        case '+':
+                            output = new NumericValue(left.ToDouble() + right.ToDouble());
+                            break;
+                        case '-':
+                            output = new NumericValue(left.ToDouble() - right.ToDouble());
+                            break;
+                        case '*':
+                            output = new NumericValue(left.ToDouble() * right.ToDouble());
+                            break;
+                        case '/':
+                            double d = right.ToDouble();
+                            if (d != 0.0d)
+                                output = new NumericValue(left.ToDouble() / d);
+                            else
+                                output = new NumericValue(Double.NaN);
+                            break;
+                        case '^':
+                            output = new NumericValue(Math.Pow(left.ToDouble(), right.ToDouble()));
+                            break;
+                        case 'v':
+                            double r = right.ToDouble();
+                            if (r != 0.0d)
+                                output = new NumericValue(Math.Pow(left.ToDouble(), 1 / r));
+                            else
+                                output = new NumericValue(Double.NaN);
+                            break;
+                    }
+                }
+            }
+            return output;
+        }
+
         #endregion
     }
 }

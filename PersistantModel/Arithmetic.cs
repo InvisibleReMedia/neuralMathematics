@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Interfaces;
 using System.Windows.Documents;
 using WpfMath.Controls;
+using System.Reflection;
 
 namespace PersistantModel
 {
@@ -283,25 +284,6 @@ namespace PersistantModel
         }
 
         /// <summary>
-        /// Gets true if equation is calculable
-        /// </summary>
-        public bool IsCalculable
-        {
-            get
-            {
-                if (this.persistentData.ContainsKey(isCalculableName))
-                {
-                    return this[isCalculableName];
-                }
-                else
-                {
-                    return false;
-                }
-
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the tex mode
         /// </summary>
         public bool IsTexMode
@@ -357,6 +339,160 @@ namespace PersistantModel
                             foreach (IArithmetic e in a.SelectUnknownTerms) yield return e;
                         }
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets all unknown terms
+        /// </summary>
+        protected IEnumerable<Tuple<IArithmetic, dynamic, IArithmetic>> FindUnknowTerms()
+        {
+            if (this.IsBinaryOperator)
+            {
+                if (this[leftTermName] != null && (this.LeftOperand is UnknownTerm))
+                {
+                    if ((this.LeftOperand as UnknownTerm).Content != null)
+                        yield return new Tuple<IArithmetic, dynamic, IArithmetic>(this, "left", this.LeftOperand);
+                }
+                else
+                {
+                    foreach (Tuple<IArithmetic, dynamic, IArithmetic> e in this[leftTermName].FindUnknowTerms()) yield return e;
+                }
+                if (this[rightTermName] != null && (this.RightOperand is UnknownTerm))
+                {
+                    if ((this.RightOperand as UnknownTerm).Content != null)
+                    yield return new Tuple<IArithmetic, dynamic, IArithmetic>(this, "right", this.RightOperand);
+                }
+                else
+                {
+                    foreach (Tuple<IArithmetic, dynamic, IArithmetic> e in this[rightTermName].FindUnknowTerms()) yield return e;
+                }
+                    
+            }
+            else if (this.IsUnaryOperator)
+            {
+                if (this[innerOperandName] != null && (this.InnerOperand is UnknownTerm))
+                {
+                    if ((this.InnerOperand as UnknownTerm).Content != null)
+                        yield return new Tuple<IArithmetic, dynamic, IArithmetic>(this, "inner", this.InnerOperand);
+                }
+                else
+                {
+                    foreach (Tuple<IArithmetic, dynamic, IArithmetic> e in this[innerOperandName].FindUnknowTerms()) yield return e;
+                }
+            }
+            else if (this is Sum)
+            {
+                Sum s = this as Sum;
+                uint index = 0;
+                foreach (Arithmetic a in s.Items)
+                {
+                    if (a is UnknownTerm)
+                    {
+                        if ((a as UnknownTerm).Content != null)
+                            yield return new Tuple<IArithmetic, dynamic, IArithmetic>(this, index, a);
+                    }
+                    else
+                    {
+                        foreach (Tuple<IArithmetic, dynamic, IArithmetic> e in a.FindUnknowTerms()) yield return e;
+                    }
+                    ++index;
+                }
+            }
+            else if (this is Product)
+            {
+                Product p = this as Product;
+                uint index = 0;
+                foreach (Arithmetic a in p.Items)
+                {
+                    if (a is UnknownTerm)
+                    {
+                        if ((a as UnknownTerm).Content != null)
+                            yield return new Tuple<IArithmetic, dynamic, IArithmetic>(this, index, a);
+                    }
+                    else
+                    {
+                        foreach (Tuple<IArithmetic, dynamic, IArithmetic> e in a.FindUnknowTerms()) yield return e;
+                    }
+                    ++index;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets all unknown terms
+        /// </summary>
+        protected IEnumerable<Tuple<IArithmetic, dynamic, IArithmetic>> FindCoefficients()
+        {
+            if (this.IsBinaryOperator)
+            {
+                if (this[leftTermName] != null && (this.LeftOperand is Coefficient))
+                {
+                    if ((this.LeftOperand as Coefficient).Value.HasValue)
+                        yield return new Tuple<IArithmetic, dynamic, IArithmetic>(this, "left", this.LeftOperand);
+                }
+                else
+                {
+                    foreach (Tuple<IArithmetic, dynamic, IArithmetic> e in this[leftTermName].FindCoefficients()) yield return e;
+                }
+                if (this[rightTermName] != null && (this.RightOperand is Coefficient))
+                {
+                    if ((this.RightOperand as Coefficient).Value.HasValue)
+                        yield return new Tuple<IArithmetic, dynamic, IArithmetic>(this, "right", this.RightOperand);
+                }
+                else
+                {
+                    foreach (Tuple<IArithmetic, dynamic, IArithmetic> e in this[rightTermName].FindCoefficients()) yield return e;
+                }
+
+            }
+            else if (this.IsUnaryOperator)
+            {
+                if (this[innerOperandName] != null && (this.InnerOperand is Coefficient))
+                {
+                    if ((this.InnerOperand as Coefficient).Value.HasValue)
+                        yield return new Tuple<IArithmetic, dynamic, IArithmetic>(this, "inner", this.InnerOperand);
+                }
+                else
+                {
+                    foreach (Tuple<IArithmetic, dynamic, IArithmetic> e in this[innerOperandName].FindCoefficients()) yield return e;
+                }
+            }
+            else if (this is Sum)
+            {
+                Sum s = this as Sum;
+                uint index = 0;
+                foreach (Arithmetic a in s.Items)
+                {
+                    if (a is Coefficient)
+                    {
+                        if ((a as Coefficient).Value.HasValue)
+                            yield return new Tuple<IArithmetic, dynamic, IArithmetic>(this, index, a);
+                    }
+                    else
+                    {
+                        foreach (Tuple<IArithmetic, dynamic, IArithmetic> e in a.FindCoefficients()) yield return e;
+                    }
+                    ++index;
+                }
+            }
+            else if (this is Product)
+            {
+                Product p = this as Product;
+                uint index = 0;
+                foreach (Arithmetic a in p.Items)
+                {
+                    if (a is Coefficient)
+                    {
+                        if ((a as Coefficient).Value.HasValue)
+                            yield return new Tuple<IArithmetic, dynamic, IArithmetic>(this, index, a);
+                    }
+                    else
+                    {
+                        foreach (Tuple<IArithmetic, dynamic, IArithmetic> e in a.FindCoefficients()) yield return e;
+                    }
+                    ++index;
                 }
             }
         }
@@ -690,112 +826,68 @@ namespace PersistantModel
         /// When an equation can be calculable then
         /// the result is a number else, it's an arithmetic expression
         /// </summary>
-        /// <param name="clean">true if calculate again</param>
         /// <returns>result</returns>
-        protected virtual string Compute(bool clean)
+        public virtual IArithmetic Compute()
         {
-            string output = string.Empty;
+            return this;
+        }
 
-            if (this.IsBinaryOperator)
+        /// <summary>
+        /// Converts all sub-variables into an equation
+        /// or into its value
+        /// </summary>
+        /// <returns>output new equation</returns>
+        public Arithmetic Converting()
+        {
+            Arithmetic output = this.Clone() as Arithmetic;
+            foreach (Tuple<IArithmetic, dynamic, IArithmetic> e in output.FindUnknowTerms())
             {
-                string left = string.Empty, right = string.Empty;
-                if (this.LeftOperand != null)
-                    left = this.LeftOperand.Calculate(clean);
-                if (this.RightOperand != null)
-                    right = this.RightOperand.Calculate(clean);
-                if (this.LeftOperand.IsCalculable && this.RightOperand.IsCalculable)
+                if (e.Item1 is BinaryOperation)
                 {
-                    this[isCalculableName] = true;
-                    switch(this.Operator)
+                    if (e.Item2 == "left")
                     {
-                        case '+':
-                            output = (Convert.ToDouble(left) + Convert.ToDouble(right)).ToString();
-                            break;
-                        case '-':
-                            output = (Convert.ToDouble(left) - Convert.ToDouble(right)).ToString();
-                            break;
-                        case '*':
-                            output = (Convert.ToDouble(left) * Convert.ToDouble(right)).ToString();
-                            break;
-                        case '/':
-                            double d = Convert.ToDouble(right);
-                            if (d != 0.0d)
-                                output = (Convert.ToDouble(left) / d).ToString();
-                            else
-                                output = Double.NaN.ToString();
-                            break;
-                        case '^':
-                            output = Math.Pow(Convert.ToDouble(left),Convert.ToDouble(right)).ToString();
-                            break;
-                        case 'v':
-                            double r = Convert.ToDouble(right);
-                            if (r != 0.0d)
-                                output = Math.Pow(Convert.ToDouble(left), 1 / r).ToString();
-                            else
-                                output = Double.NaN.ToString();
-                            break;
-                        case '=':
-                            output = (this.LeftOperand[calculatedValueName] == this.RightOperand[calculatedValueName]).ToString();
-                            break;
+                        (e.Item1 as Arithmetic)[leftTermName] = (e.Item3 as UnknownTerm).Content;
+                    }
+                    else if (e.Item2 == "right")
+                    {
+                        (e.Item1 as Arithmetic)[rightTermName] = (e.Item3 as UnknownTerm).Content;
                     }
                 }
-                else
+                else if (e.Item1 is UnaryOperation)
                 {
-                    this[isCalculableName] = false;
-                    output = "(" + left + " " + this.Operator + " " + right + ")";
+                    (e.Item1 as Arithmetic)[innerOperandName] = (e.Item3 as UnknownTerm).Content;
+                }
+                else if (e.Item1 is Sum || e.Item1 is Product)
+                {
+                    (e.Item1 as Sum)[listName][e.Item2] = (e.Item3 as UnknownTerm).Content; 
                 }
             }
-            else if (this.IsUnaryOperator)
-            {
-                if (this.InnerOperand != null)
-                {
-                    string inner = this.InnerOperand.Calculate(clean);
-                    if (this.InnerOperand.IsCalculable)
-                    {
-                        this[isCalculableName] = true;
-                        switch (this.Operator)
-                        {
-                            case 'p':
-                                output = Convert.ToDouble(inner).ToString();
-                                break;
-                            case 'n':
-                                output = (-Convert.ToDouble(inner)).ToString();
-                                break;
-                            case '\\':
-                                double d = Convert.ToDouble(inner);
-                                if (d != 0.0d)
-                                    output = (1 / d).ToString();
-                                else
-                                    output = Double.NaN.ToString();
-                                break;
-                        }
 
-                    }
-                    else
-                    {
-                        this[isCalculableName] = false;
-                        output = this.Operator + "(" + this.InnerOperand.ToString() + ")";
-                    }
-                }
-            }
-            else
+            foreach (Tuple<IArithmetic, dynamic, IArithmetic> e in output.FindCoefficients())
             {
-                if (this is Term)
+                if (e.Item1 is BinaryOperation)
                 {
-                    Term t = this as Term;
-                    output = "{" + t.Constant.ToTex() + "} * {" + t.Coefficient.ToTex() + "} * {" + t.Unknown.ToTex() + "}";
+                    if (e.Item2 == "left")
+                    {
+                        (e.Item1 as Arithmetic)[leftTermName] = new NumericValue((e.Item3 as Coefficient).Value.Value);
+                    }
+                    else if (e.Item2 == "right")
+                    {
+                        (e.Item1 as Arithmetic)[rightTermName] = new NumericValue((e.Item3 as Coefficient).Value.Value);
+                    }
                 }
-                else if (this is NumericValue)
-                    output = (this as NumericValue).Value.ToString();
-                else if (this is Coefficient)
-                    output = (this as Coefficient).Compute(clean);
-                else if (this is UnknownTerm)
-                    output = (this as UnknownTerm).Compute(clean);
-                else
-                    throw new InvalidCastException();
+                else if (e.Item1 is UnaryOperation)
+                {
+                    (e.Item1 as Arithmetic)[innerOperandName] = new NumericValue((e.Item3 as Coefficient).Value.Value);
+                }
+                else if (e.Item1 is Sum || e.Item1 is Product)
+                {
+                    (e.Item1 as Sum)[listName][e.Item2] = new NumericValue((e.Item3 as Coefficient).Value.Value);
+                }
             }
             return output;
         }
+
 
         /// <summary>
         /// Generates a new arithmetic object
@@ -1040,15 +1132,34 @@ namespace PersistantModel
         {
             foreach (Coefficient c in this.Coefficients.Values)
             {
-                double d;
-                if (c.Name == letter && Double.TryParse(e.Calculate(true), out d))
+                IArithmetic input = e.Compute();
+                if (c.Name == letter && input is NumericValue)
                 {
-                    c.Value = d;
+                    c.Value = (input as NumericValue).Value;
                 }
             }
             foreach (UnknownTerm x in this.UnknownTerms.Values)
             {
                 if (x.Name == letter) (x as IVariable).Value = (e as ICloneable).Clone() as IArithmetic;
+            }
+        }
+
+        /// <summary>
+        /// Unlet a letter as an equation
+        /// </summary>
+        /// <param name="letter">letter value</param>
+        public void Unlet(string letter)
+        {
+            foreach (Coefficient c in this.Coefficients.Values)
+            {
+                if (c.Name == letter)
+                {
+                    (c as IVariable).Value = null;
+                }
+            }
+            foreach (UnknownTerm x in this.UnknownTerms.Values)
+            {
+                if (x.Name == letter) (x as IVariable).Value = null;
             }
         }
 
@@ -1069,48 +1180,6 @@ namespace PersistantModel
             }
             else
                 return "";
-        }
-
-        /// <summary>
-        /// Calculate the result of this equation
-        /// terms that are valued are operated with its numeric value
-        /// </summary>
-        /// <param name="clean">true if calculate again</param>
-        /// <returns>string representation number or algebraic</returns>
-        public string Calculate(bool clean)
-        {
-            if (!clean && this.persistentData.ContainsKey(isCalculableName))
-            {
-                if (this[isCalculableName])
-                {
-                    return this[calculatedValueName].ToString();
-                }
-                else
-                {
-                    return this[uncalculatedValueName];
-                }
-            }
-            else
-            {
-                this[isCalculableName] = false;
-                string res = this.Compute(clean);
-                if (this[isCalculableName])
-                {
-                    if (this is Equal)
-                    {
-                        this[calculatedValueName] = 1;
-                    }
-                    else
-                    {
-                        this[calculatedValueName] = Convert.ToDouble(res);
-                    }
-                }
-                else
-                {
-                    this[uncalculatedValueName] = res;
-                }
-                return res;
-            }
         }
 
         /// <summary>
@@ -1177,6 +1246,15 @@ namespace PersistantModel
         public int GetHashCode(Arithmetic obj)
         {
             return obj.GetHashCode();
+        }
+
+        /// <summary>
+        /// Converts to a double
+        /// </summary>
+        /// <returns>double value</returns>
+        public double ToDouble()
+        {
+            return (this as IArithmetic).ToDouble();
         }
 
         #region Operators
@@ -1569,5 +1647,6 @@ namespace PersistantModel
         #endregion
 
         #endregion
+
     }
 }

@@ -125,6 +125,39 @@ namespace PersistantModel
             }
         }
 
+        /// <summary>
+        /// Convert an IArithmetic object to a double
+        /// </summary>
+        /// <param name="a">from</param>
+        /// <returns>double value</returns>
+        public static double ToDouble(this Interfaces.IArithmetic a)
+        {
+            Interfaces.IArithmetic c = a.Compute();
+            if (c is NumericValue)
+                return (c as NumericValue).Value;
+            else
+                return 0.0d;
+        }
+
+        /// <summary>
+        /// Convert a double precision number to an arithmetic object
+        /// </summary>
+        /// <param name="d">double value</param>
+        /// <returns>arithmetic object</returns>
+        public static Interfaces.IArithmetic ToArithmetic(this double d)
+        {
+            return new NumericValue(d);
+        }
+
+        /// <summary>
+        /// Test if a is a double value
+        /// </summary>
+        /// <param name="a">arithmetic class</param>
+        /// <returns>true if it is a double</returns>
+        public static bool IsDouble(this Interfaces.IArithmetic a)
+        {
+            return a is NumericValue;
+        }
 
     }
 }

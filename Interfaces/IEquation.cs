@@ -15,10 +15,6 @@ namespace Interfaces
         #region Properties
 
         /// <summary>
-        /// Gets true if an equation is calculable
-        /// </summary>
-        bool IsCalculable { get; }
-        /// <summary>
         /// Gets all unknown terms
         /// </summary>
         IDictionary<string, IArithmetic> UnknownTerms { get; }
@@ -70,13 +66,6 @@ namespace Interfaces
         /// <param name="type">type of representation ; string or tex</param>
         /// <returns>string text</returns>
         string AsRepresented(string type);
-
-        /// <summary>
-        /// Calculate the result of this equation
-        /// terms that are valued are operated with its numeric value
-        /// </summary>
-        /// <returns>string representation number or algebraic</returns>
-        string Calculate(bool clean);
 
         /// <summary>
         /// Transform the current equation to an

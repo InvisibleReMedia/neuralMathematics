@@ -339,7 +339,7 @@ namespace Maths
                     try
                     {
                         this.function.Let("x", w);
-                        double y = Convert.ToDouble(this.function.Calculate(true));
+                        double y = this.function.ToDouble();
                         Coordinates p = new Coordinates(w, y);
                         if (p.Euclidian.Value >= this.bounds.Vector.From.Euclidian.Value && p.Euclidian.Value < this.bounds.Vector.To.Euclidian.Value)
                         {
@@ -494,7 +494,7 @@ namespace Maths
         /// <param name="pixelHeight">pixel height</param>
         private void DrawPoint(DrawingContext dc, double x, double y, double pixelWidth, double pixelHeight)
         {
-            dc.DrawRectangle(Brushes.OrangeRed, null, new Rect(x, this.imageSize.Height - y - pixelHeight, pixelWidth, pixelHeight));
+            dc.DrawRectangle(Brushes.Green, null, new Rect(x, this.imageSize.Height - y - pixelHeight, pixelWidth, pixelHeight));
         }
 
         /// <summary>

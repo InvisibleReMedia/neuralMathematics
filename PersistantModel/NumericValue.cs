@@ -104,16 +104,15 @@ namespace PersistantModel
         #region Methods
 
         /// <summary>
-        /// When an equation can be calculable then
-        /// the result is a number else, it's an arithmetic expression
+        /// This function tries to obtain a numerical value
+        /// but if not returns only equations
         /// </summary>
-        /// <param name="clean">true if calculate again</param>
-        /// <returns>result</returns>
-        protected override string Compute(bool clean)
+        /// <returns>a numerical value or an equation</returns>
+        public override IArithmetic Compute()
         {
             this[isCalculableName] = true;
             this[calculatedValueName] = Value;
-            return this[calculatedValueName].ToString();
+            return this;
         }
 
         /// <summary>

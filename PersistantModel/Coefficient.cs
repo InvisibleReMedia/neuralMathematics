@@ -77,28 +77,7 @@ namespace PersistantModel
             }
             set
             {
-                if (value is IArithmetic)
-                {
-                    IArithmetic a = value as IArithmetic;
-                    string res = a.Calculate(true);
-                    if (a.IsCalculable)
-                    {
-                        this.Value = Convert.ToDouble(res);
-                        this[isCalculableName] = true;
-                        this[calculatedValueName] = this.Value;
-                    }
-                    else
-                    {
-                        this[isCalculableName] = false;
-                        this[uncalculatedValueName] = res;
-                    }
-                }
-                else
-                {
-                    this.Value = Convert.ToDouble(value);
-                    this[isCalculableName] = true;
-                    this[calculatedValueName] = this.Value;
-                }
+                this.Value = value;
             }
         }
 
@@ -109,25 +88,11 @@ namespace PersistantModel
         {
             get
             {
-                if (this[hasValueName])
-                    return this[valueName];
-                else
-                    return null;
+                return Convert.ToDouble(this[valueName]);
             }
             set
             {
-                if (value.HasValue)
-                {
-                    this[hasValueName] = true;
-                    this[valueName] = value.Value;
-                    this[isCalculableName] = true;
-                }
-                else
-                {
-                    this[hasValueName] = false;
-                    this.persistentData.Remove(valueName);
-                    this[isCalculableName] = false;
-                }
+                this[valueName] = value;
             }
         }
 
@@ -180,25 +145,18 @@ namespace PersistantModel
         #region Methods
 
         /// <summary>
-        /// When an equation can be calculable then
-        /// the result is a number else, it's an arithmetic expression
+        /// This function tries to obtain a numerical value
+        /// but if not returns only equations
         /// </summary>
-        /// <param name="clean">true if calculate again</param>
-        /// <returns>result</returns>
-        protected override string Compute(bool clean)
+        /// <returns>a numerical value or an equation</returns>
+        public override IArithmetic Compute()
         {
-            if (this[hasValueName])
+            IArithmetic output = this;
+            if (this.Value.HasValue)
             {
-                this[isCalculableName] = true;
-                this[calculatedValueName] = this[valueName];
-                return this[valueName].ToString();
+                output = new NumericValue(this.Value.Value);
             }
-            else
-            {
-                this[isCalculableName] = false;
-                this[uncalculatedValueName] = this[letterName];
-                return this[letterName];
-            }
+            return output;
         }
         
         /// <summary>

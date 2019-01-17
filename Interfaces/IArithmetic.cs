@@ -31,5 +31,11 @@ namespace Interfaces
         /// <param name="name">key name</param>
         /// <returns>dynamix object (all data type is possible)</returns>
         dynamic this[string name] { get; set; }
+        /// <summary>
+        /// This function tries to obtain a numerical value
+        /// but if not returns only equations
+        /// </summary>
+        /// <returns>a numerical value or an equation</returns>
+        IArithmetic Compute();
     }
 }

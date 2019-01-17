@@ -340,11 +340,11 @@ namespace Maths
                     break;
                 }
             }
-            string res = f.Calculate(true);
-            if (f.IsCalculable)
+            Interfaces.IArithmetic fd = f.Compute();
+            if (f is NumericValue)
             {
                 List<double> c = new List<double>(coords);
-                c.Add(Convert.ToDouble(res));
+                c.Add(Convert.ToDouble(f));
                 Coordinates src = new Coordinates(c);
                 src = this.move.Floor(src);
                 this.Add(src);
@@ -882,10 +882,10 @@ namespace Maths
                     break;
                 }
             }
-            string res = this.function.Calculate(true);
-            if (this.function.IsCalculable)
+            Interfaces.IArithmetic fd = this.function.Compute();
+            if (fd is NumericValue)
             {
-                return Convert.ToDouble(res);
+                return Convert.ToDouble(fd);
             }
             else
             {

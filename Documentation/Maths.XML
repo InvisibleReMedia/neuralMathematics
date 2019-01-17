@@ -1036,11 +1036,6 @@
             </summary>
             <returns>transformed equation</returns>
         </member>
-        <member name="P:Maths.MathematicEquation.IsCalculable">
-            <summary>
-            Gets true if equation is calculable
-            </summary>
-        </member>
         <member name="P:Maths.MathematicEquation.Coefficients">
             <summary>
             Gets all coefficients terms

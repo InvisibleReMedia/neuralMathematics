@@ -246,79 +246,69 @@ namespace PersistantModel
         }
 
         /// <summary>
-        /// When an equation can be calculable then
-        /// the result is a number else, it's an arithmetic expression
+        /// This function tries to obtain a numerical value
+        /// but if not returns only equations
         /// </summary>
-        /// <param name="clean">true if calculate again</param>
-        /// <returns>result</returns>
-        protected override string Compute(bool clean)
+        /// <returns>a numerical value or an equation</returns>
+        public override IArithmetic Compute()
         {
-            string output = string.Empty;
+            // leaves values
+            double leaves = 0.0d;
+            // output not calculable
+            Sum lefts = new Sum();
+            lefts[listName] = new List<IArithmetic>();
+
             bool first = true;
-            string res;
-            List<double> values = new List<double>();
+
             foreach (IArithmetic a in this.Items)
             {
                 if (first)
                 {
-                    res = a.Calculate(clean);
-                    if (a.IsCalculable)
+                    IArithmetic element = a.Compute();
+                    if (element is NumericValue)
                     {
-                        this[isCalculableName] = true;
-                        this[calculatedValueName] = Convert.ToDouble(res);
-                    }
-                    else
-                    {
-                        this[isCalculableName] = false;
-                        this[uncalculatedValueName] = res;
+                        leaves = (element as NumericValue).Value;
                     }
                     first = false;
                 }
                 else
                 {
-                    res = a.Calculate(clean);
-                    if (a.IsCalculable)
+                    IArithmetic element = a.Compute();
+                    if (element is NumericValue)
                     {
-                        if (this[isCalculableName])
-                        {
-                            this[calculatedValueName] = this[calculatedValueName] + Convert.ToDouble(res);
-                        }
-                        else
-                        {
-                            values.Add(Convert.ToDouble(res));
-                        }
+                        leaves += (element as NumericValue).Value;
                     }
                     else
                     {
-                        if (this[isCalculableName])
-                        {
-                            this[isCalculableName] = false;
-                            values.Add(this[calculatedValueName]);
-                            this[uncalculatedValueName] = res;
-                        }
-                        else
-                        {
-                            this[uncalculatedValueName] = this[uncalculatedValueName] + " + " + res;
-                        }
+                        lefts[listName].Add(element);
                     }
                 }
             }
 
-            if (this[isCalculableName])
+            IArithmetic output;
+            if (leaves != 0.0d)
             {
-                output = this[calculatedValueName].ToString();
+                if (lefts.Items.Count() > 0)
+                {
+                    lefts.Add(new NumericValue(leaves));
+                    output = lefts;
+                }
+                else
+                {
+                    output = new NumericValue(leaves);
+                }
+
             }
             else
             {
-                double sum = 0.0d;
-                foreach (double d in values)
+                if (lefts.Items.Count() > 0)
                 {
-                    sum += d;
+                    output = lefts;
                 }
-                if (values.Count > 0)
-                    output = sum.ToString() + " + ";
-                output += this[uncalculatedValueName];
-                this[uncalculatedValueName] = output;
+                else
+                {
+                    output = new NumericValue(0.0d);
+                }
             }
             return output;
         }

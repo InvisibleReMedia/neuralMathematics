@@ -152,13 +152,13 @@ namespace NeuralMathematics
             function.Let("b", 2.0d);
             function.Let("c", 1.0d);
             function.Let("x", 0.0d);
-            string res = function.RightOperand.Calculate(true);
+            string res = function.RightOperand.Compute().ToDouble().ToString();
             w.Add(new Exercice(1, "Calculez {y} pour {x=0}", "Choisissez {b=2} et {c=1}",
                                true, new Answer("Si {x=0} alors {y=c}", true, new SequenceProof(new Equal(C("y"), (C(0.0d) ^ 2.0d) + C(2.0d) * 0.0d + 1.0d),
                                                                                                 new Texte("{y=" + res + "}", true)))));
 
             function.Let("x", 1.0d);
-            res = function.RightOperand.Calculate(true);
+            res = function.RightOperand.Compute().ToDouble().ToString();
             w.Add(new Exercice(2, "Calculez {y} pour {x=1}", "Choisissez {b=2} et {c=1}",
                                true, new Answer("Si {x=1} alors {" + new Equal(C("y"), (C(1.0d) ^ 2.0d) + C('b') * 1.0d + 'c').ToTex() + "}", true,
                                                 new SequenceProof(new Equal(C("y"), (C(1.0d) ^ 2.0d) + C(2.0d) * 1.0d + 1.0d),
@@ -166,7 +166,7 @@ namespace NeuralMathematics
 
             function.Let("b", 3.0d);
             function.Let("c", 2.0d);
-            res = function.RightOperand.Calculate(true);
+            res = function.RightOperand.Compute().ToDouble().ToString();
             w.Add(new Exercice(3, "Calculez {y} pour {x=1}", "Choisissez {b=3} et {c=2}",
                                true, new Answer("Si {x=1} alors {" + new Equal(C("y"), (C(1.0d) ^ 2.0d) + C('b') * 1.0d + 'c').ToTex() + "}", true,
                                                 new SequenceProof(new Equal(C("y"), (C(1.0d) ^ 2.0d) + C(3.0d) * 1.0d + 2.0d),
@@ -188,8 +188,9 @@ namespace NeuralMathematics
             w.Add(new Exercice(4, "Représentez graphiquement la courbe parabolique du polynôme d'ordre 2", "Choisissez {b=3} et {c=2}",
                                true, new Answer("Appuyez sur le bouton pour voir la courbe", new SequenceProof(g))));
 
+            Arithmetic yPrime = C(2.0d) * C("x_0") + C('b');
             Arithmetic diffY = new Equal(C("y") - C("y_0"),
-                                         new Product(C("x") - "x_0", C("x") + "x_0" + 'b'));
+                                         new Product(C("x") - "x_0", (C("x") - "x_0") + C("y'")));
             Arithmetic diffY2 = new Equal(C("y") - C("y_0"),
                                          new Product(C("x") - "x_0", new Sum(C("x") - "x_0", C(2.0d) * "x_0", C('b'))));
             Arithmetic diffY3 = new Equal(C("y") - C("y_0"),
@@ -197,7 +198,7 @@ namespace NeuralMathematics
             Arithmetic diffY4 = new Equal(C("dy"),
                                          new Product(C("dx"), new Sum(C("dx"), C("y'"))));
 
-            w.Add(new Exercice(5, "Exprimer la différence entre {y} et {y_0} quelque soit les coefficients {b} et {c}", "Obtenir un produit", true,
+            w.Add(new Exercice(5, "Exprimer la différence entre {y} et {y_0} quelque soit les coefficients {b} et {c}", "Obtenir un produit et utiliser la dérivée {y'=2x+b}", true,
                                new Answer("Expression de la différentielle {y}", true,
                                           new SequenceProof(new Equal(C("y") - C("y_0"),
                                                                       new Soustraction(new Sum(C("x") ^ 2.0d, C('b') * "x", C('c')),
@@ -215,14 +216,17 @@ namespace NeuralMathematics
 
             diffY.Let("b", 3.0d);
             diffY.Let("x_0", 1.0d);
-            diffY.Let("x", 1.0d);
+            yPrime.Let("x_0", 1.0d);
+            yPrime.Let("b", 3.0d);
+            diffY.Let("y'", yPrime);
 
-            res = diffY.Calculate(true);
-            w.Add(new Exercice(6, "Calculez {dy} en fonction de {dx} quand {x_0=1} et {x=1}. Conclure", "Choisissez {b=2} et {c=1}", true,
+            res = diffY.Compute().ToDouble().ToString();
+            w.Add(new Exercice(6, "Calculez {dy} en fonction de {dx} quand {x_0=1} et exprimez {dx + y'}. Conclure", "Choisissez {b=2} et {c=1}", true,
                                new Answer("Vérification de l'équation différentielle",
                                           new SequenceProof(new Texte("Le résultat est " + res, true, '(', ')'),
-                                                            new Texte("Lorsque {y - y_0 = 0} alors {x=x_0} ou {x=-(x_0+2)}", true),
-                                                            new Texte(@"Si {y - y_0 \not= 0} alors l'équation différentielle est du même ordre que la fonction", true)))));
+                                                            new Texte("Lorsque {y - y_0 = 0} alors {x=x_0=1} ou {dx+y'=x+4}", true),
+                                                            new Texte(@"Lorsque {y - y_0 \not= 0} alors {dx} et {dx+y'} sont non nuls", true),
+                                                            new Texte("Si l'équation différentielle est nulle alors, elle permet de déterminer l'autre solution connaissant l'une", true)))));
 
             w.Add(new Exercice(7, @"Ajoutez un point médian d'abscisse {\bar{x}}", "Obtenir deux distances", true,
                                new Answer("Ajout d'un point médian",
@@ -240,8 +244,41 @@ namespace NeuralMathematics
                                                             new Equal(C("dy"), new Sum((C("dx_1") ^ 2.0d), C(2.0d) * C("dx_1") * C("dx_2"), C("dx_2") ^ 2.0d, C("dx_1") * C("y'"), C("dx_2") * C("y'"))),
                                                             new Texte("Factorisons {dx_1}", true),
                                                             new Equal(C("dy"), new Sum((C("dx_1") ^ 2.0d), (C(2.0d) * C("dx_2") + C("y'")) * "dx_1", C("dx_2") ^ 2.0d, C("dx_2") * C("y'"))),
-                                                            new Texte("", true)
+                                                            new Texte("Si {" + (C(2.0d) * C("dx_2") + C("y'")).ToTex() + " = 0} alors le terme {dx_1^2} est isolé", true),
+                                                            new Equal(C("dx_2"), new Negative(C("y'") / C(2.0d))),
+                                                            new Texte("Il en résulte l'équation algébrique solution comportant une racine carrée entièrement déterminée"),
+                                                            new Equal(C("dx_1"), new Root(C("dy") - new Addition(C("dx_2") ^ 2.0d, C("dx_2") * C("y'")), C(2.0d))),
+                                                            new Texte("Ce qui se simplifie par {" + new Equal(C("dx_1"), new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d))).ToTex() + "}", true)
+
                                           ))));
+
+            Arithmetic validation1 = new Product(C("x") - C("x_0"), (C("x") - C("x_0")) + C("y'"));
+            Arithmetic valY0 = (C("x_0") ^ C(2.0d)) + C("x_0") * C('b') + C('c');
+            Arithmetic valY = (C("x_1") ^ C(2.0d)) + C("x_1") * C('b') + C('c');
+
+            Arithmetic eqDX = new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d));
+            Arithmetic solEqDX = new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d));
+
+            valY0.Let("b", 2.0d);
+            valY0.Let("c", 1.0d);
+            valY0.Let("x_0", 1.0d);
+            yPrime.Let("b", 2.0d);
+            yPrime.Let("x_0", 1.0d);
+            solEqDX.Let("dy", C(4.0d) - C(valY0.Compute().ToDouble()));
+            solEqDX.Let("y'", C(yPrime.Compute().ToDouble()));
+            yPrime.Unlet("b");
+            yPrime.Unlet("x_0");
+            eqDX.Let("y'", yPrime);
+
+            w.Add(new Exercice(9, "Démontrez que l'équation {dx} ci-dessus est correcte.", "Choisissez des valeurs pour {x_0} et {y}", true,
+                               new Answer("Calculs", new SequenceProof(
+                                            new Texte("Valeurs {b=2}, {c=1}", true),
+                                            new Texte("Valeur {x_0=1}", true),
+                                            new Texte("Calcul de {y_0}", true),
+                                            new Texte("{y_0 = " + valY0.Compute() + "}", true),
+                                            new Texte("Résultat pour {dx} = {" + eqDX.AsRepresented("tex") + "} = {" + eqDX.Converting().AsRepresented("tex") + "}", true),
+                                            new Texte("D'où les valeurs de {dx} = {" + solEqDX.Converting().Compute() + "} pour {y=4}", true)
+                                    ))));
 
             w.ToDocument(fd);
             Button but = new Button();
@@ -272,13 +309,13 @@ namespace NeuralMathematics
             function.Let("c", 3.0d);
             function.Let("d", 1.0d);
             function.Let("x", 0.0d);
-            string res = function.RightOperand.Calculate(true);
+            string res = function.RightOperand.Compute().ToDouble().ToString();
             w.Add(new Exercice(1, "Calculez {y} pour {x=0}", "Choisissez {b=3}, {c=3} et {d=1}",
                                true, new Answer("Si {x=0} alors {y=d}", true, new SequenceProof(new Equal(C("y"), (C(0.0d) ^ 3.0d) + C('b') * (C(0.0d) ^ 2.0d) + C('c') * 0.0d + C('d')),
                                                                                                 new Texte("{y=" + res + "}", true)))));
 
             function.Let("x", 1.0d);
-            res = function.RightOperand.Calculate(true);
+            res = function.RightOperand.Compute().ToDouble().ToString();
             w.Add(new Exercice(2, "Calculez {y} pour {x=1}", "Choisissez {b=3}, {c=3} et {d=1}",
                                true, new Answer("Si {x=1} alors {" + new Equal(C("y"), (C(1.0d) ^ 3.0d) + C('b') * (C(1.0d) ^ 2.0d) + C('c') * 1.0d + C('d')).ToTex() + "}", true,
                                                 new SequenceProof(new Equal(C("y"), (C(1.0d) ^ 3.0d) + 3 * (C(1.0d) ^ 2.0d) + 3 * 1.0d + 1),
@@ -300,6 +337,32 @@ namespace NeuralMathematics
 
             w.Add(new Exercice(4, "Représentez graphiquement la courbe parabolique du polynôme d'ordre 3", "Choisissez {b=3}, {c=2} et {d=1}",
                                true, new Answer("Appuyez sur le bouton pour voir la courbe", new SequenceProof(g))));
+
+            w.Add(new Exercice(5, "Déterminez les solutions de {x} pour l'équation suivante {" + new Equal(C(0.0d), new Multiplication(new Power(C("x"),2.0d) + C('u')*C("x"), C("x") + C('v'))).ToTex() + "}", "Choisissez {u=2} et {v=1}", true,
+                               new Answer("Il suffit de résoudre les deux équations",
+                                          new SequenceProof(new Equal(C("x"), new Addition(new Power(C("x"),2.0d), C('u')*C("x"))),
+                                                            new Equal(C("x"), new Equal(new Soustraction(new Root(new Division(new Power(C('u'), C(2.0d)), C(4.0d)), C(2.0d)), C('u') / 2), C(0.0d))),
+                                                            new Equal(C("x"), new Equal(new Soustraction(new Negative(new Root(new Division(new Power(C('u'), C(2.0d)), C(4.0d)), C(2.0d))), C('u') / 2), new Negative(C('u')))),
+                                                            new Equal(C("x"), new Addition(C("x"), C('v'))),
+                                                            new Equal(C("x"), new Negative(C('v')))))));
+
+            w.Add(new Exercice(6, "Déterminez les solutions de {u} et {v} pour l'équation suivante {" + new Equal(new Sum(C("x") ^ C(3.0d), C('b') * C("x")^2, C('c')*C("x")), new Multiplication(new Power(C("x"), 2.0d) + C('u') * C("x"), C("x") + C('v'))).ToTex() + "}", "Isolez un système d'équations à deux inconnues {u} et {v}", true,
+                               new Answer("Il suffit de résoudre le système d'équations",
+                                          new SequenceProof(new Equal(C('u') + C('v'), C('b')),
+                                                            new Equal(C('u') * C('v'), C('c')),
+                                                            new Texte("Pour résoudre, il faut exprimer {v} en fonction de {u}", true),
+                                                            new Equal(C('v'), C('c') / C('u')),
+                                                            new Equal(C('u') + C('c')/C('u'), C('b')),
+                                                            new Equal(new Addition(new Soustraction(C('u') ^ C(2.0d), C('b') * C('u')), C('c')), C(0.0d)),
+                                                            new Equal(C('u'), new Addition(new Root(new Soustraction(new Division(new Power(C('b'), C(2.0d)), C(4.0d)), C('c')), C(2.0d)), C('b') / C(2.0d))),
+                                                            new Equal(C('u'), new Addition(new Negative(new Root(new Soustraction(new Division(new Power(C('b'), C(2.0d)), C(4.0d)), C('c')), C(2.0d))), C('b') / C(2.0d))),
+                                                            new Equal(C('v'), new Division(C('c'), new Addition(new Root(new Soustraction(new Division(new Power(C('b'), C(2.0d)), C(4.0d)), C('c')), C(2.0d)), C('b') / C(2.0d)))),
+                                                            new Equal(C('v'), new Division(C('c'), new Addition(new Negative(new Root(new Soustraction(new Division(new Power(C('b'), C(2.0d)), C(4.0d)), C('c')), C(2.0d))), C('b') / C(2.0d)))),
+                                                            new Texte("Au total, {u} et {v} possèdent deux valeurs possibles. Mais pour chaque valeur de {u}, il existe une unique valeur correspondante pour {v}", true),
+                                                            new Texte("L'ensemble forme finalement deux solutions dont les deux autres sont commutatives (Exemple: {(2,1), (1,2)} sont deux solutions commutatives)"),
+                                                            new Texte("Si l'on prouve qu'il existe des cas non commutatifs alors on aura prouvé qu'il existe plus que 3 solutions dans un polynôme d'ordre 3")
+                                          ))));
+                                                            
 
             w.ToDocument(fd);
             Button but = new Button();

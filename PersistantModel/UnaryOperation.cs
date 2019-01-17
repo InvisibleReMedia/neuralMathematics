@@ -129,6 +129,37 @@ namespace PersistantModel
             throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// This function tries to obtain a numerical value
+        /// but if not returns only equations
+        /// </summary>
+        /// <returns>a numerical value or an equation</returns>
+        public override IArithmetic Compute()
+        {
+            IArithmetic output = this;
+            if (this.InnerOperand != null)
+            {
+                IArithmetic inner = this.InnerOperand.Compute();
+                switch (this.Operator)
+                {
+                    case 'p':
+                        output = new NumericValue(Convert.ToDouble(this.InnerOperand));
+                        break;
+                    case 'n':
+                        output = new NumericValue(-Convert.ToDouble(this.InnerOperand));
+                        break;
+                    case '\\':
+                        double d = Convert.ToDouble(this.InnerOperand);
+                        if (d != 0.0d)
+                            output = new NumericValue(1 / d);
+                        else
+                            output = new NumericValue(Double.NaN);
+                        break;
+                }
+            }
+            return output;
+        }
+
         #endregion
     }
 }

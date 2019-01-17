@@ -218,18 +218,6 @@ namespace Maths
         #region Properties
 
         /// <summary>
-        /// Gets true if equation is calculable
-        /// </summary>
-        public bool IsCalculable
-        {
-            get
-            {
-                this.Calculate(false);
-                return this.eq.IsCalculable;
-            }
-        }
-
-        /// <summary>
         /// Gets all coefficients terms
         /// </summary>
         public IDictionary<string, IArithmetic> Coefficients
@@ -304,7 +292,11 @@ namespace Maths
         /// <returns>string representation number or algebraic</returns>
         public string Calculate(bool clean)
         {
-            return this.eq.Calculate(clean);
+            IArithmetic output = this.eq.Compute();
+            if (output.IsDouble())
+                return output.ToDouble().ToString();
+            else
+                return output.ToString();
         }
 
         /// <summary>

@@ -37,6 +37,27 @@
             <param name="delimOff">deliiter off</param>
             <param name="p">paragraph</param>
         </member>
+        <member name="M:PersistantModel.Extensions.ToDouble(Interfaces.IArithmetic)">
+            <summary>
+            Convert an IArithmetic object to a double
+            </summary>
+            <param name="a">from</param>
+            <returns>double value</returns>
+        </member>
+        <member name="M:PersistantModel.Extensions.ToArithmetic(System.Double)">
+            <summary>
+            Convert a double precision number to an arithmetic object
+            </summary>
+            <param name="d">double value</param>
+            <returns>arithmetic object</returns>
+        </member>
+        <member name="M:PersistantModel.Extensions.IsDouble(Interfaces.IArithmetic)">
+            <summary>
+            Test if a is a double value
+            </summary>
+            <param name="a">arithmetic class</param>
+            <returns>true if it is a double</returns>
+        </member>
         <member name="T:PersistantModel.Gathering`1">
             <summary>
             Class to gather all records
@@ -151,6 +172,16 @@
             Default constructor
             </summary>
         </member>
+        <member name="M:PersistantModel.Arithmetic.FindUnknowTerms">
+            <summary>
+            Gets all unknown terms
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.FindCoefficients">
+            <summary>
+            Gets all unknown terms
+            </summary>
+        </member>
         <member name="M:PersistantModel.Arithmetic.OnFetch(PersistantModel.RecordZone{PersistantModel.Weight})">
             <summary>
             Raise the event fetch
@@ -233,13 +264,19 @@
             </summary>
             <returns>a list of possibles equation</returns>
         </member>
-        <member name="M:PersistantModel.Arithmetic.Compute(System.Boolean)">
+        <member name="M:PersistantModel.Arithmetic.Compute">
             <summary>
             When an equation can be calculable then
             the result is a number else, it's an arithmetic expression
             </summary>
-            <param name="clean">true if calculate again</param>
             <returns>result</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.Converting">
+            <summary>
+            Converts all sub-variables into an equation
+            or into its value
+            </summary>
+            <returns>output new equation</returns>
         </member>
         <member name="M:PersistantModel.Arithmetic.MakeUnique(PersistantModel.Arithmetic)">
             <summary>
@@ -290,20 +327,18 @@
             <param name="letter">letter value</param>
             <param name="e">equation object</param>
         </member>
+        <member name="M:PersistantModel.Arithmetic.Unlet(System.String)">
+            <summary>
+            Unlet a letter as an equation
+            </summary>
+            <param name="letter">letter value</param>
+        </member>
         <member name="M:PersistantModel.Arithmetic.AsRepresented(System.String)">
             <summary>
             String representation of the algebraic equation
             </summary>
             <param name="type">type of representation; string or tex</param>
             <returns>string text</returns>
-        </member>
-        <member name="M:PersistantModel.Arithmetic.Calculate(System.Boolean)">
-            <summary>
-            Calculate the result of this equation
-            terms that are valued are operated with its numeric value
-            </summary>
-            <param name="clean">true if calculate again</param>
-            <returns>string representation number or algebraic</returns>
         </member>
         <member name="M:PersistantModel.Arithmetic.InsertIntoDocument(System.Windows.Documents.List)">
             <summary>
@@ -347,6 +382,12 @@
             </summary>
             <param name="obj">obj</param>
             <returns>hash code</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.ToDouble">
+            <summary>
+            Converts to a double
+            </summary>
+            <returns>double value</returns>
         </member>
         <member name="M:PersistantModel.Arithmetic.op_Addition(PersistantModel.Arithmetic,PersistantModel.Arithmetic)">
             <summary>
@@ -708,11 +749,6 @@
             Gets the right operand
             </summary>
         </member>
-        <member name="P:PersistantModel.Arithmetic.IsCalculable">
-            <summary>
-            Gets true if equation is calculable
-            </summary>
-        </member>
         <member name="P:PersistantModel.Arithmetic.IsTexMode">
             <summary>
             Gets or sets the tex mode
@@ -1024,6 +1060,13 @@
             Create a new addition class
             </summary>
         </member>
+        <member name="M:PersistantModel.UnaryOperation.Compute">
+            <summary>
+            This function tries to obtain a numerical value
+            but if not returns only equations
+            </summary>
+            <returns>a numerical value or an equation</returns>
+        </member>
         <member name="P:PersistantModel.UnaryOperation.Operator">
             <summary>
             Gets the operator ID
@@ -1166,6 +1209,13 @@
             <summary>
             Create a new addition class
             </summary>
+        </member>
+        <member name="M:PersistantModel.BinaryOperation.Compute">
+            <summary>
+            This function tries to obtain a numerical value
+            but if not returns only equations
+            </summary>
+            <returns>a numerical value or an equation</returns>
         </member>
         <member name="P:PersistantModel.BinaryOperation.Operator">
             <summary>
@@ -1575,13 +1625,12 @@
             </summary>
             <param name="letter">letter of coefficient</param>
         </member>
-        <member name="M:PersistantModel.Coefficient.Compute(System.Boolean)">
+        <member name="M:PersistantModel.Coefficient.Compute">
             <summary>
-            When an equation can be calculable then
-            the result is a number else, it's an arithmetic expression
+            This function tries to obtain a numerical value
+            but if not returns only equations
             </summary>
-            <param name="clean">true if calculate again</param>
-            <returns>result</returns>
+            <returns>a numerical value or an equation</returns>
         </member>
         <member name="M:PersistantModel.Coefficient.ComputeOwnerWeight">
             <summary>
@@ -1647,13 +1696,12 @@
             </summary>
             <param name="d">number</param>
         </member>
-        <member name="M:PersistantModel.NumericValue.Compute(System.Boolean)">
+        <member name="M:PersistantModel.NumericValue.Compute">
             <summary>
-            When an equation can be calculable then
-            the result is a number else, it's an arithmetic expression
+            This function tries to obtain a numerical value
+            but if not returns only equations
             </summary>
-            <param name="clean">true if calculate again</param>
-            <returns>result</returns>
+            <returns>a numerical value or an equation</returns>
         </member>
         <member name="M:PersistantModel.NumericValue.ComputeOwnerWeight">
             <summary>
@@ -1734,13 +1782,12 @@
             </summary>
             <returns>string representation</returns>
         </member>
-        <member name="M:PersistantModel.Product.Compute(System.Boolean)">
+        <member name="M:PersistantModel.Product.Compute">
             <summary>
-            When an equation can be calculable then
-            the result is a number else, it's an arithmetic expression
+            This function tries to obtain a numerical value
+            but if not returns only equations
             </summary>
-            <param name="clean">true if calculate again</param>
-            <returns>result</returns>
+            <returns>a numerical value or an equation</returns>
         </member>
         <member name="M:PersistantModel.Product.ComputeOwnerWeight">
             <summary>
@@ -1857,13 +1904,12 @@
             </summary>
             <returns>string representation</returns>
         </member>
-        <member name="M:PersistantModel.Sum.Compute(System.Boolean)">
+        <member name="M:PersistantModel.Sum.Compute">
             <summary>
-            When an equation can be calculable then
-            the result is a number else, it's an arithmetic expression
+            This function tries to obtain a numerical value
+            but if not returns only equations
             </summary>
-            <param name="clean">true if calculate again</param>
-            <returns>result</returns>
+            <returns>a numerical value or an equation</returns>
         </member>
         <member name="M:PersistantModel.Sum.ComputeOwnerWeight">
             <summary>
@@ -2008,13 +2054,12 @@
             <param name="letter">ketter</param>
             <param name="eq">equation</param>
         </member>
-        <member name="M:PersistantModel.UnknownTerm.Compute(System.Boolean)">
+        <member name="M:PersistantModel.UnknownTerm.Compute">
             <summary>
-            When an equation can be calculable then
-            the result is a number else, it's an arithmetic expression
+            This function tries to obtain a numerical value
+            but if not returns only equations
             </summary>
-            <param name="clean">true if calculate again</param>
-            <returns>result</returns>
+            <returns>a numerical value or an equation</returns>
         </member>
         <member name="M:PersistantModel.UnknownTerm.ComputeOwnerWeight">
             <summary>

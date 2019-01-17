@@ -43,13 +43,6 @@
             <param name="type">type of representation ; string or tex</param>
             <returns>string text</returns>
         </member>
-        <member name="M:Interfaces.IEquation.Calculate(System.Boolean)">
-            <summary>
-            Calculate the result of this equation
-            terms that are valued are operated with its numeric value
-            </summary>
-            <returns>string representation number or algebraic</returns>
-        </member>
         <member name="M:Interfaces.IEquation.Transform">
             <summary>
             Transform the current equation to an
@@ -77,11 +70,6 @@
             </summary>
             <returns>tex representation</returns>
         </member>
-        <member name="P:Interfaces.IEquation.IsCalculable">
-            <summary>
-            Gets true if an equation is calculable
-            </summary>
-        </member>
         <member name="P:Interfaces.IEquation.UnknownTerms">
             <summary>
             Gets all unknown terms
@@ -101,6 +89,13 @@
             <summary>
             Gets the underlying arithmetic operation
             </summary>
+        </member>
+        <member name="M:Interfaces.IArithmetic.Compute">
+            <summary>
+            This function tries to obtain a numerical value
+            but if not returns only equations
+            </summary>
+            <returns>a numerical value or an equation</returns>
         </member>
         <member name="E:Interfaces.IArithmetic.Fetch">
             <summary>

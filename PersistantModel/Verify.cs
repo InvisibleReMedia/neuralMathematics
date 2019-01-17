@@ -103,9 +103,9 @@ namespace PersistantModel
         {
             foreach (Weight w in this.equalOp.Records.Records)
             {
-                w.OwnerObject.Calculate(false);
+                w.OwnerObject.Compute();
             }
-            return this.equalOp.LeftOperand.Calculate(false) == this.equalOp.RightOperand.Calculate(false);
+            return this.equalOp.LeftOperand.Compute() == this.equalOp.RightOperand.Compute();
         }
 
         /// <summary>
