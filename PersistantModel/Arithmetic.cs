@@ -101,8 +101,14 @@ namespace PersistantModel
         /// </summary>
         protected Dictionary<string, dynamic> persistentData;
 
+        /// <summary>
+        /// add variable event handler
+        /// </summary>
         protected static event EventHandler<KeyValuePair<string, IArithmetic>> addVariable;
 
+        /// <summary>
+        /// get variable event handler
+        /// </summary>
         protected static Func<string, IArithmetic> getVariable;
 
         /// <summary>
@@ -365,8 +371,8 @@ namespace PersistantModel
                 }
                 if (this[rightTermName] != null && (this.RightOperand is UnknownTerm))
                 {
-                    if (this.IsVariableExists((this.LeftOperand as UnknownTerm).Name))
-                        f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, "right", this.GetVariable((this.LeftOperand as UnknownTerm).Name)));
+                    if (this.IsVariableExists((this.RightOperand as UnknownTerm).Name))
+                        f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, "right", this.GetVariable((this.RightOperand as UnknownTerm).Name)));
                 }
                 else
                 {
@@ -379,8 +385,8 @@ namespace PersistantModel
             {
                 if (this[innerOperandName] != null && (this.InnerOperand is UnknownTerm))
                 {
-                    if (this.IsVariableExists((this.LeftOperand as UnknownTerm).Name))
-                        f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, "inner", this.GetVariable((this.LeftOperand as UnknownTerm).Name)));
+                    if (this.IsVariableExists((this.InnerOperand as UnknownTerm).Name))
+                        f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, "inner", this.GetVariable((this.InnerOperand as UnknownTerm).Name)));
                 }
                 else
                 {
@@ -395,8 +401,8 @@ namespace PersistantModel
                 {
                     if (a is UnknownTerm)
                     {
-                        if (this.IsVariableExists((this.LeftOperand as UnknownTerm).Name))
-                            f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, index, this.GetVariable((this.LeftOperand as UnknownTerm).Name)));
+                        if (this.IsVariableExists((a as UnknownTerm).Name))
+                            f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, index, this.GetVariable((a as UnknownTerm).Name)));
                     }
                     else
                     {
@@ -413,8 +419,8 @@ namespace PersistantModel
                 {
                     if (a is UnknownTerm)
                     {
-                        if (this.IsVariableExists((this.LeftOperand as UnknownTerm).Name))
-                            f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, index, this.GetVariable((this.LeftOperand as UnknownTerm).Name)));
+                        if (this.IsVariableExists((a as UnknownTerm).Name))
+                            f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, index, this.GetVariable((a as UnknownTerm).Name)));
                     }
                     else
                     {
@@ -434,8 +440,8 @@ namespace PersistantModel
             {
                 if (this[leftTermName] != null && (this.LeftOperand is Coefficient))
                 {
-                    if ((this.LeftOperand as Coefficient).Value.HasValue)
-                        f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, "left", this.LeftOperand));
+                    if (this.IsVariableExists((this.LeftOperand as Coefficient).Name))
+                        f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, "left", this.GetVariable((this.LeftOperand as Coefficient).Name)));
                 }
                 else
                 {
@@ -443,8 +449,8 @@ namespace PersistantModel
                 }
                 if (this[rightTermName] != null && (this.RightOperand is Coefficient))
                 {
-                    if ((this.RightOperand as Coefficient).Value.HasValue)
-                        f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, "right", this.RightOperand));
+                    if (this.IsVariableExists((this.RightOperand as Coefficient).Name))
+                        f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, "right", this.GetVariable((this.RightOperand as Coefficient).Name)));
                 }
                 else
                 {
@@ -456,8 +462,8 @@ namespace PersistantModel
             {
                 if (this[innerOperandName] != null && (this.InnerOperand is Coefficient))
                 {
-                    if ((this.InnerOperand as Coefficient).Value.HasValue)
-                        f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, "inner", this.InnerOperand));
+                    if (this.IsVariableExists((this.InnerOperand as Coefficient).Name))
+                        f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, "inner", this.GetVariable((this.InnerOperand as Coefficient).Name)));
                 }
                 else
                 {
@@ -472,8 +478,8 @@ namespace PersistantModel
                 {
                     if (a is Coefficient)
                     {
-                        if ((a as Coefficient).Value.HasValue)
-                            f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, index, a));
+                        if (this.IsVariableExists((a as Coefficient).Name))
+                            f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, index, this.GetVariable((a as Coefficient).Name)));
                     }
                     else
                     {
@@ -490,8 +496,8 @@ namespace PersistantModel
                 {
                     if (a is Coefficient)
                     {
-                        if ((a as Coefficient).Value.HasValue)
-                            f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, index, a));
+                        if (this.IsVariableExists((a as Coefficient).Name))
+                            f(new Tuple<IArithmetic, dynamic, IArithmetic>(this, index, this.GetVariable((a as Coefficient).Name)));
                     }
                     else
                     {
@@ -873,6 +879,63 @@ namespace PersistantModel
                 {
                     if (e.Item2 == "left")
                     {
+                        (e.Item1 as Arithmetic)[leftTermName] = e.Item3.Converting();
+                    }
+                    else if (e.Item2 == "right")
+                    {
+                        (e.Item1 as Arithmetic)[rightTermName] = e.Item3.Converting();
+                    }
+                }
+                else if (e.Item1 is UnaryOperation)
+                {
+                    (e.Item1 as Arithmetic)[innerOperandName] = e.Item3.Converting();
+                }
+                else if (e.Item1 is Sum || e.Item1 is Product)
+                {
+                    (e.Item1 as Sum)[listName][e.Item2] = e.Item3.Converting();
+                }
+            });
+
+
+            output.FindCoefficients((e) => {
+                if (e.Item1 is BinaryOperation)
+                {
+                    if (e.Item2 == "left")
+                    {
+                        (e.Item1 as Arithmetic)[leftTermName] = e.Item3;
+                    }
+                    else if (e.Item2 == "right")
+                    {
+                        (e.Item1 as Arithmetic)[rightTermName] = e.Item3;
+                    }
+                }
+                else if (e.Item1 is UnaryOperation)
+                {
+                    (e.Item1 as Arithmetic)[innerOperandName] = e.Item3;
+                }
+                else if (e.Item1 is Sum || e.Item1 is Product)
+                {
+                    (e.Item1 as Sum)[listName][e.Item2] = e.Item3;
+                }
+            });
+            return output;
+        }
+
+
+        /// <summary>
+        /// Converts all sub-variables into an equation
+        /// or into its value
+        /// </summary>
+        /// <returns>output new equation</returns>
+        public IArithmetic ConvertingOne()
+        {
+            Arithmetic output = this.Clone() as Arithmetic;
+            output.FindUnknownTerms((e) =>
+            {
+                if (e.Item1 is BinaryOperation)
+                {
+                    if (e.Item2 == "left")
+                    {
                         (e.Item1 as Arithmetic)[leftTermName] = e.Item3;
                     }
                     else if (e.Item2 == "right")
@@ -891,30 +954,30 @@ namespace PersistantModel
             });
 
 
-            output.FindCoefficients((e) => {
+            output.FindCoefficients((e) =>
+            {
                 if (e.Item1 is BinaryOperation)
                 {
                     if (e.Item2 == "left")
                     {
-                        (e.Item1 as Arithmetic)[leftTermName] = new NumericValue((e.Item3 as Coefficient).Value.Value);
+                        (e.Item1 as Arithmetic)[leftTermName] = e.Item3;
                     }
                     else if (e.Item2 == "right")
                     {
-                        (e.Item1 as Arithmetic)[rightTermName] = new NumericValue((e.Item3 as Coefficient).Value.Value);
+                        (e.Item1 as Arithmetic)[rightTermName] = e.Item3;
                     }
                 }
                 else if (e.Item1 is UnaryOperation)
                 {
-                    (e.Item1 as Arithmetic)[innerOperandName] = new NumericValue((e.Item3 as Coefficient).Value.Value);
+                    (e.Item1 as Arithmetic)[innerOperandName] = e.Item3;
                 }
                 else if (e.Item1 is Sum || e.Item1 is Product)
                 {
-                    (e.Item1 as Sum)[listName][e.Item2] = new NumericValue((e.Item3 as Coefficient).Value.Value);
+                    (e.Item1 as Sum)[listName][e.Item2] = e.Item3;
                 }
             });
             return output;
         }
-
 
         /// <summary>
         /// Generates a new arithmetic object
@@ -981,7 +1044,19 @@ namespace PersistantModel
             IArithmetic p = this.Create();
             foreach (string key in this.persistentData.Keys)
             {
-                p[key] = this.persistentData[key];
+                if (this.persistentData[key] is IArithmetic)
+                    p[key] = this.persistentData[key].Clone();
+                else if (this.persistentData[key] is IList<IArithmetic>)
+                {
+                    p[key] = new List<IArithmetic>();
+                    foreach (IArithmetic a in this.persistentData[key])
+                    {
+                        p[key].Add(a.Clone() as IArithmetic);
+                    }
+                }
+                else
+                    p[key] = this.persistentData[key];
+
             }
             return p;
         }
@@ -1170,12 +1245,10 @@ namespace PersistantModel
         {
             foreach(Coefficient c in this.SelectCoefficients)
             {
-                if (c.Name == letter) c.Value = value;
                 this.AddVariable(letter, new NumericValue(value));
             }
             foreach(UnknownTerm x in this.SelectUnknownTerms)
             {
-                if (x.Name == letter) (x as IVariable).Value = new NumericValue(value);
                 this.AddVariable(letter, new NumericValue(value));
             }
         }
@@ -1194,12 +1267,10 @@ namespace PersistantModel
                 if (c.Name == letter && input is NumericValue)
                 {
                     this.AddVariable(letter, input);
-                    c.Value = (input as NumericValue).Value;
                 }
             }
             foreach (UnknownTerm x in this.UnknownTerms.Values)
             {
-                if (x.Name == letter) (x as IVariable).Value = (e as ICloneable).Clone() as IArithmetic;
                 this.AddVariable(letter, e);
             }
         }

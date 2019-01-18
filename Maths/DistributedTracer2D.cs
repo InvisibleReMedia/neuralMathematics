@@ -339,7 +339,7 @@ namespace Maths
                     try
                     {
                         this.function.Let("x", w);
-                        double y = this.function.ToDouble();
+                        double y = this.function.Converting().Compute().ToDouble();
                         Coordinates p = new Coordinates(w, y);
                         if (p.Euclidian.Value >= this.bounds.Vector.From.Euclidian.Value && p.Euclidian.Value < this.bounds.Vector.To.Euclidian.Value)
                         {

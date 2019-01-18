@@ -148,13 +148,21 @@ namespace NeuralMathematics
 
             Arithmetic.EventAddVariable += new EventHandler<KeyValuePair<string, IArithmetic>>((o, e) =>
             {
-                if (variables.ContainsKey(e.Key))
+                if (e.Value != null)
                 {
-                    variables[e.Key] = e.Value;
+                    if (variables.ContainsKey(e.Key))
+                    {
+                        variables[e.Key] = e.Value;
+                    }
+                    else
+                    {
+                        variables.Add(e.Key, e.Value);
+                    }
                 }
                 else
                 {
-                    variables.Add(e.Key, e.Value);
+                    if (variables.ContainsKey(e.Key))
+                        variables.Remove(e.Key);
                 }
             });
             Arithmetic.EventGetVariable = new Func<string, IArithmetic>((s) =>
@@ -171,14 +179,14 @@ namespace NeuralMathematics
 
             function.Let("b", 2.0d);
             function.Let("c", 1.0d);
-            function.Let("x", 0.0d);
-            double res = function.RightOperand.Compute().ToDouble();
+            function.Let("x", C(0.0d));
+            double res = function.RightOperand.Converting().Compute().ToDouble();
             w.Add(new Exercice(1, "Calculez {y} pour {x=0}", "Choisissez {b=2} et {c=1}",
                                true, new Answer("Si {x=0} alors {y=c}", true, new SequenceProof(new Equal(C("y"), (C(0.0d) ^ 2.0d) + C(2.0d) * 0.0d + 1.0d),
                                                                                                 new Texte("{y=" + res + "}", true)))));
 
-            function.Let("x", 1.0d);
-            res = function.RightOperand.Compute().ToDouble();
+            function.Let("x", C(1.0d));
+            res = function.RightOperand.Converting().Compute().ToDouble();
             w.Add(new Exercice(2, "Calculez {y} pour {x=1}", "Choisissez {b=2} et {c=1}",
                                true, new Answer("Si {x=1} alors {" + new Equal(C("y"), (C(1.0d) ^ 2.0d) + C('b') * 1.0d + 'c').ToTex() + "}", true,
                                                 new SequenceProof(new Equal(C("y"), (C(1.0d) ^ 2.0d) + C(2.0d) * 1.0d + 1.0d),
@@ -186,7 +194,7 @@ namespace NeuralMathematics
 
             function.Let("b", 3.0d);
             function.Let("c", 2.0d);
-            res = function.RightOperand.Compute().ToDouble();
+            res = function.RightOperand.Converting().Compute().ToDouble();
             w.Add(new Exercice(3, "Calculez {y} pour {x=1}", "Choisissez {b=3} et {c=2}",
                                true, new Answer("Si {x=1} alors {" + new Equal(C("y"), (C(1.0d) ^ 2.0d) + C('b') * 1.0d + 'c').ToTex() + "}", true,
                                                 new SequenceProof(new Equal(C("y"), (C(1.0d) ^ 2.0d) + C(3.0d) * 1.0d + 2.0d),
@@ -234,11 +242,8 @@ namespace NeuralMathematics
                                                             ))
                                          ));
 
-            diffY.Let("b", 3.0d);
-            diffY.Let("x_0", 1.0d);
-            yPrime.Let("x_0", 1.0d);
-            yPrime.Let("b", 3.0d);
-            diffY.Let("y'", yPrime);
+            variables.Add("x_0", C(1.0d));
+            variables.Add("y'", yPrime);
 
             res = diffY.Compute().ToDouble();
             w.Add(new Exercice(6, "Calculez {dy} en fonction de {dx} quand {x_0=1} et exprimez {dx + y'}. Conclure", "Choisissez {b=2} et {c=1}", true,
@@ -280,25 +285,19 @@ namespace NeuralMathematics
             Arithmetic eqDX = new Soustraction(new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d)), C("y'") / C(2.0d));
             Arithmetic solEqDX = new Soustraction(new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d)), C("y'") / C(2.0d));
 
-            valY0.Let("b", 2.0d);
-            valY0.Let("c", 1.0d);
-            valY0.Let("x_0", 1.0d);
-            yPrime.Unlet("b");
-            yPrime.Unlet("x_0");
-            eqDX.Let("y'", yPrime);
-            yPrime.Let("b", 2.0d);
-            yPrime.Let("x_0", 1.0d);
-            solEqDX.Let("dy", C(4.0d) - C(valY0.Compute().ToDouble()));
-            solEqDX.Let("y'", C(yPrime.Compute().ToDouble()));
+            variables["b"] = C(2.0d);
+            variables["c"] = C(1.0d);
+            variables.Add("y_0", C(4.0d));
+            variables.Add("dy", C(4.0d) - C("y_0"));
 
             w.Add(new Exercice(9, "Démontrez que l'équation {dx} ci-dessus est correcte.", "Choisissez des valeurs pour {x_0} et {y}", true,
                                new Answer("Calculs", new SequenceProof(
                                             new Texte("Valeurs {b=2}, {c=1}", true),
                                             new Texte("Valeur {x_0=1}", true),
                                             new Texte("Calcul de {y_0}", true),
-                                            new Texte("{y_0 = " + valY0.Compute() + "}", true),
-                                            new Texte("Résultat pour {dx} = {" + eqDX.AsRepresented("tex") + "} = {" + eqDX.Converting().AsRepresented("tex") + "}", true),
-                                            new Texte("D'où les valeurs de {dx} = {" + solEqDX.Converting().Compute() + "} pour {y=4}", true)
+                                            new Texte("{y_0 = " + valY0.Converting().Compute().AsRepresented("tex") + "}", true),
+                                            new Texte("Résultat pour {dx} = {" + eqDX.ConvertingOne().AsRepresented("tex") + "} = {" + eqDX.Converting().AsRepresented("tex") + "}", true),
+                                            new Texte("D'où les valeurs de {dx} = {" + solEqDX.Converting().Compute().AsRepresented("tex") + "} pour {y=4}", true)
                                     ))));
 
             w.ToDocument(fd);

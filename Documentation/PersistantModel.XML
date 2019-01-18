@@ -160,6 +160,11 @@
             Inner data informations
             </summary>
         </member>
+        <member name="F:PersistantModel.Arithmetic.getVariable">
+            <summary>
+            get variable event handler
+            </summary>
+        </member>
         <member name="M:PersistantModel.Arithmetic.#ctor">
             <summary>
             Default constructor
@@ -265,6 +270,13 @@
             <returns>result</returns>
         </member>
         <member name="M:PersistantModel.Arithmetic.Converting">
+            <summary>
+            Converts all sub-variables into an equation
+            or into its value
+            </summary>
+            <returns>output new equation</returns>
+        </member>
+        <member name="M:PersistantModel.Arithmetic.ConvertingOne">
             <summary>
             Converts all sub-variables into an equation
             or into its value
@@ -682,6 +694,11 @@
             <param name="a">left</param>
             <param name="b">right</param>
             <returns>power</returns>
+        </member>
+        <member name="E:PersistantModel.Arithmetic.addVariable">
+            <summary>
+            add variable event handler
+            </summary>
         </member>
         <member name="E:PersistantModel.Arithmetic.eventFetch">
             <summary>
@@ -1649,13 +1666,6 @@
             </summary>
             <param name="letter">letter of coefficient</param>
         </member>
-        <member name="M:PersistantModel.Coefficient.Compute">
-            <summary>
-            This function tries to obtain a numerical value
-            but if not returns only equations
-            </summary>
-            <returns>a numerical value or an equation</returns>
-        </member>
         <member name="M:PersistantModel.Coefficient.ComputeOwnerWeight">
             <summary>
             Computes the unique weight
@@ -2077,13 +2087,6 @@
             </summary>
             <param name="letter">ketter</param>
             <param name="eq">equation</param>
-        </member>
-        <member name="M:PersistantModel.UnknownTerm.Compute">
-            <summary>
-            This function tries to obtain a numerical value
-            but if not returns only equations
-            </summary>
-            <returns>a numerical value or an equation</returns>
         </member>
         <member name="M:PersistantModel.UnknownTerm.ComputeOwnerWeight">
             <summary>

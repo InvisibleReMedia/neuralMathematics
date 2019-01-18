@@ -145,21 +145,6 @@ namespace PersistantModel
         #region Methods
 
         /// <summary>
-        /// This function tries to obtain a numerical value
-        /// but if not returns only equations
-        /// </summary>
-        /// <returns>a numerical value or an equation</returns>
-        public override IArithmetic Compute()
-        {
-            IArithmetic output = this;
-            if (this.Value.HasValue)
-            {
-                output = new NumericValue(this.Value.Value);
-            }
-            return output;
-        }
-        
-        /// <summary>
         /// Computes the unique weight
         /// for this object
         /// </summary>
