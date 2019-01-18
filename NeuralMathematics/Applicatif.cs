@@ -287,7 +287,7 @@ namespace NeuralMathematics
 
             variables["b"] = C(2.0d);
             variables["c"] = C(1.0d);
-            variables.Add("y_0", C(4.0d));
+            variables.Add("y_0", valY0);
             variables.Add("dy", C(4.0d) - C("y_0"));
 
             w.Add(new Exercice(9, "Démontrez que l'équation {dx} ci-dessus est correcte.", "Choisissez des valeurs pour {x_0} et {y}", true,
@@ -299,6 +299,63 @@ namespace NeuralMathematics
                                             new Texte("Résultat pour {dx} = {" + eqDX.ConvertingOne().AsRepresented("tex") + "} = {" + eqDX.Converting().AsRepresented("tex") + "}", true),
                                             new Texte("D'où les valeurs de {dx} = {" + solEqDX.Converting().Compute().AsRepresented("tex") + "} pour {y=4}", true)
                                     ))));
+
+            Arithmetic solEqDXPlus = new Soustraction(new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d)), C("y'") / C(2.0d));
+            Arithmetic solEqDXMoins = new Soustraction(new Negative(new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d))), C("y'") / C(2.0d));
+
+            Arithmetic solEqx1 = new Addition(C("x_0"), solEqDXPlus);
+            Arithmetic solEqx2 = new Addition(C("x_0"), solEqDXMoins);
+            
+            TextBox tCoeffB = new TextBox();
+            tCoeffB.Name = "textBox_b";
+            tCoeffB.Text = "2";
+            fd.Blocks.Add(new BlockUIContainer(tCoeffB));
+
+            TextBox tCoeffC = new TextBox();
+            tCoeffC.Name = "textBox_c";
+            tCoeffC.Text = "1";
+            fd.Blocks.Add(new BlockUIContainer(tCoeffC));
+
+            TextBox tCoeffx0 = new TextBox();
+            tCoeffx0.Name = "textBox_x0";
+            tCoeffx0.Text = "1";
+            fd.Blocks.Add(new BlockUIContainer(tCoeffx0));
+
+            TextBox tCoeffY = new TextBox();
+            tCoeffY.Name = "textBox_y";
+            tCoeffY.Text = "4";
+            fd.Blocks.Add(new BlockUIContainer(tCoeffY));
+
+            WrapPanel panel = new WrapPanel();
+            FlowDocumentScrollViewer scrollViewer = new FlowDocumentScrollViewer();
+            panel.Children.Add(scrollViewer);
+
+            fd.Blocks.Add(new BlockUIContainer(panel));
+
+            Button btCalc = new Button();
+            btCalc.Name = "btCalc";
+            btCalc.Content = "Recalculer";
+            btCalc.Click += new RoutedEventHandler((o, e) => {
+                solEqx1.Let("b", Double.Parse(tCoeffB.Text));
+                solEqx1.Let("c", Double.Parse(tCoeffC.Text));
+                solEqx1.Let("x_0", Double.Parse(tCoeffx0.Text));
+                solEqx1.Let("y_0", valY0);
+                solEqx1.Let("dy", C("y") - C("y_0"));
+                solEqx1.Let("y", Double.Parse(tCoeffY.Text));
+                Wording w2 = new Wording("Application", "Modifiez les zones de saisie et cliquer sur le bouton Recalculer",
+                                         new Exercice(1, "Calculs", "", new Answer("", true, new SequenceProof(
+                                             new Texte("{dx_+} = {" + solEqDXPlus.ConvertingOne().AsRepresented("tex") + "}", true),
+                                             new Texte("{dx_-} = {" + solEqDXMoins.ConvertingOne().AsRepresented("tex") + "}", true),
+                                             new Texte("{x_1} = {" + solEqx1.Converting().Compute().ToDouble() + "}", true),
+                                             new Texte("{x_2} = {" + solEqx2.Converting().Compute().ToDouble() + "}", true)
+                ))));
+                FlowDocument f2 = new FlowDocument();
+                scrollViewer.Document = null;
+                w2.ToDocument(f2);
+                scrollViewer.Document = f2;
+                scrollViewer.UpdateLayout();
+            });
+            fd.Blocks.Add(new BlockUIContainer(btCalc));
 
             w.ToDocument(fd);
             Button but = new Button();

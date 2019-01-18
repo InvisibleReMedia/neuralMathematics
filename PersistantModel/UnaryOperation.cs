@@ -145,10 +145,10 @@ namespace PersistantModel
                 switch (this.Operator)
                 {
                     case 'p':
-                        output = new NumericValue(Convert.ToDouble(this.InnerOperand));
+                        output = this.InnerOperand.Compute();
                         break;
                     case 'n':
-                        output = new NumericValue(-Convert.ToDouble(this.InnerOperand));
+                        output = new NumericValue(-this.InnerOperand.Compute().ToDouble());
                         break;
                     case '\\':
                         double d = Convert.ToDouble(this.InnerOperand);
