@@ -48,6 +48,12 @@ namespace Interfaces
         /// </summary>
         /// <returns>output new equation</returns>
         IArithmetic Converting();
+        /// <summary>
+        /// Converts all sub-variables into an equation
+        /// or into its value
+        /// </summary>
+        /// <returns>output new equation</returns>
+        IArithmetic ConvertingOne();
 
 
     }

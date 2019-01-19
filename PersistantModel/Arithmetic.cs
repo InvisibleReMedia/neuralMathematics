@@ -111,6 +111,8 @@ namespace PersistantModel
         /// </summary>
         protected static Func<string, IArithmetic> getVariable;
 
+        protected static event EventHandler<OverflowException> overflowException;
+
         /// <summary>
         /// Events
         /// </summary>
@@ -664,6 +666,15 @@ namespace PersistantModel
             set { Arithmetic.getVariable = value; }
         }
 
+        /// <summary>
+        /// Static event EventError
+        /// </summary>
+        public static event EventHandler<OverflowException> EventError
+        {
+            add { Arithmetic.overflowException += value; }
+            remove { Arithmetic.overflowException -= value; }
+        }
+
         #endregion
 
         #region Methods
@@ -879,20 +890,20 @@ namespace PersistantModel
                 {
                     if (e.Item2 == "left")
                     {
-                        (e.Item1 as Arithmetic)[leftTermName] = e.Item3.Converting();
+                        (e.Item1 as Arithmetic)[leftTermName] = (e.Item3.Clone() as IArithmetic).Converting();
                     }
                     else if (e.Item2 == "right")
                     {
-                        (e.Item1 as Arithmetic)[rightTermName] = e.Item3.Converting();
+                        (e.Item1 as Arithmetic)[rightTermName] = (e.Item3.Clone() as IArithmetic).Converting();
                     }
                 }
                 else if (e.Item1 is UnaryOperation)
                 {
-                    (e.Item1 as Arithmetic)[innerOperandName] = e.Item3.Converting();
+                    (e.Item1 as Arithmetic)[innerOperandName] = (e.Item3.Clone() as IArithmetic).Converting();
                 }
                 else if (e.Item1 is Sum || e.Item1 is Product)
                 {
-                    (e.Item1 as Sum)[listName][e.Item2] = e.Item3.Converting();
+                    (e.Item1 as Sum)[listName][e.Item2] = (e.Item3.Clone() as IArithmetic).Converting();
                 }
             });
 
@@ -936,20 +947,20 @@ namespace PersistantModel
                 {
                     if (e.Item2 == "left")
                     {
-                        (e.Item1 as Arithmetic)[leftTermName] = e.Item3;
+                        (e.Item1 as Arithmetic)[leftTermName] = e.Item3.Clone();
                     }
                     else if (e.Item2 == "right")
                     {
-                        (e.Item1 as Arithmetic)[rightTermName] = e.Item3;
+                        (e.Item1 as Arithmetic)[rightTermName] = e.Item3.Clone();
                     }
                 }
                 else if (e.Item1 is UnaryOperation)
                 {
-                    (e.Item1 as Arithmetic)[innerOperandName] = e.Item3;
+                    (e.Item1 as Arithmetic)[innerOperandName] = e.Item3.Clone();
                 }
                 else if (e.Item1 is Sum || e.Item1 is Product)
                 {
-                    (e.Item1 as Sum)[listName][e.Item2] = e.Item3;
+                    (e.Item1 as Sum)[listName][e.Item2] = e.Item3.Clone();
                 }
             });
 
@@ -1193,6 +1204,15 @@ namespace PersistantModel
         }
 
         /// <summary>
+        /// Overflow exception raise event
+        /// </summary>
+        /// <param name="ex">error</param>
+        public static void RaiseEventError(OverflowException ex) {
+            if (Arithmetic.overflowException != null)
+                Arithmetic.overflowException(null, ex);
+        }
+
+        /// <summary>
         /// Test if a variable exists
         /// </summary>
         /// <param name="letter">variable name</param>
@@ -1243,14 +1263,7 @@ namespace PersistantModel
         /// <param name="value">numeric value</param>
         public void Let(string letter, double value)
         {
-            foreach(Coefficient c in this.SelectCoefficients)
-            {
-                this.AddVariable(letter, new NumericValue(value));
-            }
-            foreach(UnknownTerm x in this.SelectUnknownTerms)
-            {
-                this.AddVariable(letter, new NumericValue(value));
-            }
+            this.AddVariable(letter, new NumericValue(value));
         }
 
         /// <summary>
@@ -1261,18 +1274,7 @@ namespace PersistantModel
         /// <param name="e">equation object</param>
         public void Let(string letter, IArithmetic e)
         {
-            foreach (Coefficient c in this.Coefficients.Values)
-            {
-                IArithmetic input = e.Compute();
-                if (c.Name == letter && input is NumericValue)
-                {
-                    this.AddVariable(letter, input);
-                }
-            }
-            foreach (UnknownTerm x in this.UnknownTerms.Values)
-            {
-                this.AddVariable(letter, e);
-            }
+            this.AddVariable(letter, e.Clone() as IArithmetic);
         }
 
         /// <summary>
@@ -1281,19 +1283,7 @@ namespace PersistantModel
         /// <param name="letter">letter value</param>
         public void Unlet(string letter)
         {
-            foreach (Coefficient c in this.Coefficients.Values)
-            {
-                if (c.Name == letter)
-                {
-                    (c as IVariable).Value = null;
-                    this.AddVariable(letter, null);
-                }
-            }
-            foreach (UnknownTerm x in this.UnknownTerms.Values)
-            {
-                if (x.Name == letter) (x as IVariable).Value = null;
-                this.AddVariable(letter, null);
-            }
+            this.AddVariable(letter, null);
         }
 
         /// <summary>

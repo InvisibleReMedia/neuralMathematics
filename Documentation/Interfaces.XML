@@ -110,6 +110,13 @@
             </summary>
             <returns>output new equation</returns>
         </member>
+        <member name="M:Interfaces.IArithmetic.ConvertingOne">
+            <summary>
+            Converts all sub-variables into an equation
+            or into its value
+            </summary>
+            <returns>output new equation</returns>
+        </member>
         <member name="E:Interfaces.IArithmetic.Fetch">
             <summary>
             Event to fetch all data into

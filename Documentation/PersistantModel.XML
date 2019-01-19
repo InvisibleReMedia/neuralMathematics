@@ -316,6 +316,12 @@
             </summary>
             <returns>arithmetic object</returns>
         </member>
+        <member name="M:PersistantModel.Arithmetic.RaiseEventError(System.OverflowException)">
+            <summary>
+            Overflow exception raise event
+            </summary>
+            <param name="ex">error</param>
+        </member>
         <member name="M:PersistantModel.Arithmetic.IsVariableExists(System.String)">
             <summary>
             Test if a variable exists
@@ -823,6 +829,11 @@
         <member name="P:PersistantModel.Arithmetic.EventGetVariable">
             <summary>
             Static event GetVariable
+            </summary>
+        </member>
+        <member name="E:PersistantModel.Arithmetic.EventError">
+            <summary>
+            Static event EventError
             </summary>
         </member>
         <member name="F:PersistantModel.Gathering`1.records">

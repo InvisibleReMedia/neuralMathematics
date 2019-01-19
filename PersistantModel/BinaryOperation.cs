@@ -188,19 +188,43 @@ namespace PersistantModel
                         case '/':
                             double d = right.ToDouble();
                             if (d != 0.0d)
+                            {
                                 output = new NumericValue(left.ToDouble() / d);
+                            }
                             else
+                            {
+                                Arithmetic.RaiseEventError(new OverflowException("valeur 1 / 0"));
                                 output = new NumericValue(Double.NaN);
+                            }
                             break;
                         case '^':
                             output = new NumericValue(Math.Pow(left.ToDouble(), right.ToDouble()));
                             break;
                         case 'v':
                             double r = right.ToDouble();
-                            if (r != 0.0d)
-                                output = new NumericValue(Math.Pow(left.ToDouble(), 1 / r));
+                            if (r == 0.0d)
+                            {
+                                Arithmetic.RaiseEventError(new OverflowException("valeur racine 1 / 0"));
+                                output = new NumericValue(1.0d);
+                            }
+                            else if (r % 2 == 0)
+                            {
+                                if (left.ToDouble() > 0)
+                                {
+                                    output = new NumericValue(Math.Pow(left.ToDouble(), 1 / r));
+                                }
+                                else if (left.ToDouble() == 0)
+                                {
+                                    output = new NumericValue(0.0d);
+                                }
+                                else
+                                {
+                                    output = new NumericValue(0.0d);
+                                    Arithmetic.RaiseEventError(new OverflowException("valeur sous la racine carrée négative"));
+                                }
+                            }
                             else
-                                output = new NumericValue(Double.NaN);
+                                output = new NumericValue(Math.Pow(left.ToDouble(), 1 / r));
                             break;
                     }
                 }

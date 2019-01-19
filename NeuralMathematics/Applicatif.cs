@@ -143,6 +143,10 @@ namespace NeuralMathematics
         {
             FlowDocument fd = new FlowDocument();
 
+            TextBlock errorText = new TextBlock();
+            errorText.Foreground = new SolidColorBrush(Colors.Red);
+            fd.Blocks.Add(new BlockUIContainer(errorText));
+
             // variables
             Dictionary<string, IArithmetic> variables = new Dictionary<string, IArithmetic>();
 
@@ -169,6 +173,10 @@ namespace NeuralMathematics
             {
                 if (variables.ContainsKey(s)) return variables[s];
                 else return null;
+            });
+
+            Arithmetic.EventError += new EventHandler<OverflowException>((o, e) => {
+                errorText.Text = e.Message;
             });
 
             Equal function = new Equal(C("y"), (C("x") ^ 2.0d) + C('b') * "x" + 'c');
@@ -242,8 +250,8 @@ namespace NeuralMathematics
                                                             ))
                                          ));
 
-            variables.Add("x_0", C(1.0d));
-            variables.Add("y'", yPrime);
+            yPrime.Let("x_0", 1.0d);
+            yPrime.Let("y'", yPrime);
 
             res = diffY.Compute().ToDouble();
             w.Add(new Exercice(6, "Calculez {dy} en fonction de {dx} quand {x_0=1} et exprimez {dx + y'}. Conclure", "Choisissez {b=2} et {c=1}", true,
@@ -300,31 +308,46 @@ namespace NeuralMathematics
                                             new Texte("D'où les valeurs de {dx} = {" + solEqDX.Converting().Compute().AsRepresented("tex") + "} pour {y=4}", true)
                                     ))));
 
-            Arithmetic solEqDXPlus = new Soustraction(new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d)), C("y'") / C(2.0d));
-            Arithmetic solEqDXMoins = new Soustraction(new Negative(new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d))), C("y'") / C(2.0d));
 
-            Arithmetic solEqx1 = new Addition(C("x_0"), solEqDXPlus);
-            Arithmetic solEqx2 = new Addition(C("x_0"), solEqDXMoins);
-            
+            DockPanel spB = new DockPanel();
+            TextBlock tbB = new TextBlock();
+            tbB.Text = "Coefficient B";
             TextBox tCoeffB = new TextBox();
             tCoeffB.Name = "textBox_b";
             tCoeffB.Text = "2";
-            fd.Blocks.Add(new BlockUIContainer(tCoeffB));
+            spB.Children.Add(tbB);
+            spB.Children.Add(tCoeffB);
+            fd.Blocks.Add(new BlockUIContainer(spB));
 
+            DockPanel spC = new DockPanel();
+            TextBlock tbC = new TextBlock();
+            tbC.Text = "Coefficient C";
             TextBox tCoeffC = new TextBox();
             tCoeffC.Name = "textBox_c";
             tCoeffC.Text = "1";
-            fd.Blocks.Add(new BlockUIContainer(tCoeffC));
+            spC.Children.Add(tbC);
+            spC.Children.Add(tCoeffC);
+            fd.Blocks.Add(new BlockUIContainer(spC));
 
+            DockPanel spx0 = new DockPanel();
+            TextBlock tbx0 = new TextBlock();
+            tbx0.Text = "Valeur X0";
             TextBox tCoeffx0 = new TextBox();
             tCoeffx0.Name = "textBox_x0";
             tCoeffx0.Text = "1";
-            fd.Blocks.Add(new BlockUIContainer(tCoeffx0));
+            spx0.Children.Add(tbx0);
+            spx0.Children.Add(tCoeffx0);
+            fd.Blocks.Add(new BlockUIContainer(spx0));
 
+            DockPanel spy = new DockPanel();
+            TextBlock tby = new TextBlock();
+            tby.Text = "Valeur Y";
             TextBox tCoeffY = new TextBox();
             tCoeffY.Name = "textBox_y";
             tCoeffY.Text = "4";
-            fd.Blocks.Add(new BlockUIContainer(tCoeffY));
+            spy.Children.Add(tby);
+            spy.Children.Add(tCoeffY);
+            fd.Blocks.Add(new BlockUIContainer(spy));
 
             WrapPanel panel = new WrapPanel();
             FlowDocumentScrollViewer scrollViewer = new FlowDocumentScrollViewer();
@@ -336,12 +359,20 @@ namespace NeuralMathematics
             btCalc.Name = "btCalc";
             btCalc.Content = "Recalculer";
             btCalc.Click += new RoutedEventHandler((o, e) => {
-                solEqx1.Let("b", Double.Parse(tCoeffB.Text));
-                solEqx1.Let("c", Double.Parse(tCoeffC.Text));
-                solEqx1.Let("x_0", Double.Parse(tCoeffx0.Text));
-                solEqx1.Let("y_0", valY0);
-                solEqx1.Let("dy", C("y") - C("y_0"));
-                solEqx1.Let("y", Double.Parse(tCoeffY.Text));
+                Arithmetic solEqDXPlus = new Soustraction(new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d)), C("y'") / C(2.0d));
+                Arithmetic solEqDXMoins = new Soustraction(new Negative(new Root(new Addition(C("dy"), new Division(new Power(C("y'"), C(2.0d)), C(4.0d))), C(2.0d))), C("y'") / C(2.0d));
+
+                Arithmetic solEqx1 = new Addition(C("x_0"), solEqDXPlus);
+                Arithmetic solEqx2 = new Addition(C("x_0"), solEqDXMoins);
+                Arithmetic valDY = new Soustraction(C("y"), C("y_0"));
+                errorText.Text = ""; // reinitialisation du texte d'erreur
+                function.Let("b", Convert.ToDouble(tCoeffB.Text));
+                function.Let("c", Convert.ToDouble(tCoeffC.Text));
+                valY0.Let("x_0", Convert.ToDouble(tCoeffx0.Text));
+                valY0.Let("y'", yPrime);
+                valDY.Let("y_0", valY0);
+                valDY.Let("y", Double.Parse(tCoeffY.Text));
+                solEqDXPlus.Let("dy", valDY);
                 Wording w2 = new Wording("Application", "Modifiez les zones de saisie et cliquer sur le bouton Recalculer",
                                          new Exercice(1, "Calculs", "", new Answer("", true, new SequenceProof(
                                              new Texte("{dx_+} = {" + solEqDXPlus.ConvertingOne().AsRepresented("tex") + "}", true),
