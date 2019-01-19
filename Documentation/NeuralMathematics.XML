@@ -55,11 +55,17 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:NeuralMathematics.Applicatif.TestPolynome2">
+            <summary>
+            Test resolution polynôme 2
+            </summary>
+            <returns>document</returns>
+        </member>
         <member name="M:NeuralMathematics.Applicatif.SolvePolynome3">
             <summary>
-            Computes image size
+            Solve polynôme 3
             </summary>
-            <returns></returns>
+            <returns>document</returns>
         </member>
         <member name="E:NeuralMathematics.Applicatif.onButtonClick">
             <summary>

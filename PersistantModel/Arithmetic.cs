@@ -398,9 +398,9 @@ namespace PersistantModel
             else if (this is Sum)
             {
                 Sum s = this as Sum;
-                uint index = 0;
-                foreach (Arithmetic a in s.Items)
+                for (int index = 0; index < s.Items.Count(); ++index)
                 {
+                    Arithmetic a = s.Items.ElementAt(index) as Arithmetic;
                     if (a is UnknownTerm)
                     {
                         if (this.IsVariableExists((a as UnknownTerm).Name))
@@ -410,15 +410,14 @@ namespace PersistantModel
                     {
                         a.FindUnknownTerms(f);
                     }
-                    ++index;
                 }
             }
             else if (this is Product)
             {
                 Product p = this as Product;
-                uint index = 0;
-                foreach (Arithmetic a in p.Items)
+                for (int index = 0; index < p.Items.Count(); ++index)
                 {
+                    Arithmetic a = p.Items.ElementAt(index) as Arithmetic;
                     if (a is UnknownTerm)
                     {
                         if (this.IsVariableExists((a as UnknownTerm).Name))
@@ -428,7 +427,6 @@ namespace PersistantModel
                     {
                         a.FindUnknownTerms(f);
                     }
-                    ++index;
                 }
             }
         }
@@ -475,9 +473,9 @@ namespace PersistantModel
             else if (this is Sum)
             {
                 Sum s = this as Sum;
-                uint index = 0;
-                foreach (Arithmetic a in s.Items)
+                for (int index = 0; index < s.Items.Count(); ++index)
                 {
+                    Arithmetic a = s.Items.ElementAt(index) as Arithmetic;
                     if (a is Coefficient)
                     {
                         if (this.IsVariableExists((a as Coefficient).Name))
@@ -487,15 +485,14 @@ namespace PersistantModel
                     {
                         a.FindCoefficients(f);
                     }
-                    ++index;
                 }
             }
             else if (this is Product)
             {
                 Product p = this as Product;
-                uint index = 0;
-                foreach (Arithmetic a in p.Items)
+                for (int index = 0; index < p.Items.Count(); ++index)
                 {
+                    Arithmetic a = p.Items.ElementAt(index) as Arithmetic;
                     if (a is Coefficient)
                     {
                         if (this.IsVariableExists((a as Coefficient).Name))
@@ -505,7 +502,6 @@ namespace PersistantModel
                     {
                         a.FindCoefficients(f);
                     }
-                    ++index;
                 }
             }
         }
@@ -926,7 +922,7 @@ namespace PersistantModel
                 }
                 else if (e.Item1 is Sum || e.Item1 is Product)
                 {
-                    (e.Item1 as Sum)[listName][e.Item2] = e.Item3;
+                    (e.Item1 as Sum)[Arithmetic.listName][e.Item2] = e.Item3;
                 }
             });
             return output;
