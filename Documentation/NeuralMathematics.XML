@@ -67,6 +67,12 @@
             </summary>
             <returns>document</returns>
         </member>
+        <member name="M:NeuralMathematics.Applicatif.Tests">
+            <summary>
+            Tests
+            </summary>
+            <returns></returns>
+        </member>
         <member name="E:NeuralMathematics.Applicatif.onButtonClick">
             <summary>
             Evenement sur click des boutons
@@ -206,6 +212,11 @@
         <member name="P:NeuralMathematics.Polynome2.Functions">
             <summary>
             Gets functions to compute
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Polynome2.Formulas">
+            <summary>
+            Gets formulas
             </summary>
         </member>
         <member name="P:NeuralMathematics.Polynome2.CoefficientB">

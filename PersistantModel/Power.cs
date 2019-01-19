@@ -73,14 +73,8 @@ namespace PersistantModel
                 left = this.LeftOperand.ToTex();
             if (this.RightOperand != null)
                 right = this.RightOperand.ToTex();
-            if (this.LeftOperand is Addition || this.LeftOperand is Soustraction || this.LeftOperand is Sum || this.LeftOperand is Product)
-                output = @"{\left(" + left + @"\right)}";
-            else
-                output = "{" + left + "}";
-            if (this.RightOperand is Addition || this.RightOperand is Soustraction || this.RightOperand is Sum || this.RightOperand is Product)
-                output += @" ^ {\left(" + right + @"\right)}";
-            else
-                output += @" ^ {" + right + "}";
+            output = "{" + left + "}";
+            output += " ^ {" + right + "}";
             return output;
         }
 
@@ -94,13 +88,13 @@ namespace PersistantModel
 
             string left = string.Empty, right = string.Empty;
             if (this.LeftOperand != null)
-                left = this.LeftOperand.ToTex();
+                left = this.LeftOperand.ToString();
             if (this.RightOperand != null)
-                right = this.RightOperand.ToTex();
+                right = this.RightOperand.ToString();
             if (this.LeftOperand is Addition || this.LeftOperand is Soustraction || this.LeftOperand is Sum || this.LeftOperand is Product)
                 output = "(" + left + ")";
             else
-                output = " " + left + " ";
+                output = left;
             if (this.RightOperand is Addition || this.RightOperand is Soustraction || this.RightOperand is Sum || this.RightOperand is Product)
                 output += " ^ (" + right + ")";
             else

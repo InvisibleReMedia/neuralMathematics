@@ -70,6 +70,26 @@ namespace PersistantModel
         }
 
         /// <summary>
+        /// Transforms equation object into a tex representation
+        /// </summary>
+        /// <returns>tex representation</returns>
+        public override string ToString()
+        {
+            string output = string.Empty;
+
+            string left = string.Empty, right = string.Empty;
+            if (this.LeftOperand != null)
+                left = this.LeftOperand.ToString();
+            if (this.RightOperand != null)
+                right = this.RightOperand.ToString();
+            if (this.RightOperand is NumericValue && (this.RightOperand as NumericValue).Value == 2.0d)
+                output = "sqrt" + left;
+            else
+                output = "sqrt[" + right + "]" + left;
+            return output;
+        }
+
+        /// <summary>
         /// Create a new arithmetic class
         /// </summary>
         protected override IArithmetic Create()

@@ -31,7 +31,6 @@ namespace NeuralMathematics
         public MainWindow()
         {
             InitializeComponent();
-            MessageBox.Show(("(x-x0) - [y-y0]").ToArithmetic().AsRepresented("string"));
         }
 
         /// <summary>
@@ -64,6 +63,10 @@ namespace NeuralMathematics
             Button b = sender as Button;
             switch(b.Name)
             {
+                case "Test":
+                    this.doc.Document = Applicatif.Tests();
+                    this.doc.UpdateLayout();
+                    break;
                 case "P2":
                     this.doc.Document = Applicatif.SolvePolynome2();
                     this.doc.UpdateLayout();

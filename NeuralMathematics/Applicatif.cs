@@ -68,6 +68,18 @@ namespace NeuralMathematics
             trg.Rows.Add(tr);
 
             tr = new TableRow();
+            Button te = new Button();
+            te.Name = "Test";
+            te.Content = "Tests";
+            te.Click += Button_Click;
+            SetButtonStyle(te);
+            tc = new TableCell(new BlockUIContainer(te));
+            tc.ColumnSpan = 2;
+            tr.Cells.Add(tc);
+            trg.Rows.Add(tr);
+
+
+            tr = new TableRow();
             Button t1 = new Button();
             t1.Name = "T2";
             t1.Content = "Test de résolution du polynôme d'ordre 2";
@@ -585,6 +597,46 @@ namespace NeuralMathematics
                                                             new Texte("Si l'on prouve qu'il existe des cas non commutatifs alors on aura prouvé qu'il existe plus que 3 solutions dans un polynôme d'ordre 3")
                                           ))));
                                                             
+
+            w.ToDocument(fd);
+            Button but = new Button();
+            but.Name = "GoBack";
+            but.Content = "Retour";
+            but.Click += Button_Click;
+            SetButtonStyle(but);
+            fd.Blocks.Add(new BlockUIContainer(but));
+
+            return fd;
+        }
+
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns></returns>
+        public static FlowDocument Tests()
+        {
+            FlowDocument fd = new FlowDocument();
+
+            Polynome2 p = new Polynome2();
+
+            string txt = string.Empty;
+            foreach (string key in p.Functions.Keys)
+            {
+                txt += p.Functions[key].AsRepresented("tex") + "\n";
+            }
+
+            foreach (IArithmetic a in p.Formulas["Factorisation 1"])
+            {
+                txt += a.AsRepresented("tex") + "\n";
+            }
+
+            foreach (IArithmetic a in p.Formulas["Factorisation 2"])
+            {
+                txt += a.AsRepresented("tex") + "\n";
+            }
+
+            Wording w = new Wording("Tests", 
+                                    txt, true);
 
             w.ToDocument(fd);
             Button but = new Button();

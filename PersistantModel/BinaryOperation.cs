@@ -232,6 +232,45 @@ namespace PersistantModel
             return output;
         }
 
+        /// <summary>
+        /// Transforms equation object into a string representation
+        /// </summary>
+        /// <returns>string representation</returns>
+        public override string ToString()
+        {
+            string output = string.Empty;
+            if (this.LeftOperand != null && this.RightOperand != null)
+            {
+                string left, right;
+                left = this.LeftOperand.ToTex();
+                right = this.RightOperand.ToString();
+                switch (this.Operator)
+                {
+                    case '+':
+                        output = left + " + " + right;
+                        break;
+                    case '-':
+                        output = left + " - " + right;
+                        break;
+                    case '*':
+                        output = left + " * " + right;
+                        break;
+                    case '/':
+                        output = left + " / " + right;
+                        break;
+                    case '^':
+                        output = left + " ^ " + right;
+                        break;
+                    case 'v':
+                        output = left + " v " + right;
+                        break;
+                }
+            }
+            return output;
+        }
+
+
+
         #endregion
     }
 }

@@ -1381,6 +1381,12 @@
             </summary>
             <returns>a numerical value or an equation</returns>
         </member>
+        <member name="M:PersistantModel.BinaryOperation.ToString">
+            <summary>
+            Transforms equation object into a string representation
+            </summary>
+            <returns>string representation</returns>
+        </member>
         <member name="P:PersistantModel.BinaryOperation.Operator">
             <summary>
             Gets the operator ID
@@ -1537,6 +1543,12 @@
             <param name="t2">right term</param>
         </member>
         <member name="M:PersistantModel.Root.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:PersistantModel.Root.ToString">
             <summary>
             Transforms equation object into a tex representation
             </summary>

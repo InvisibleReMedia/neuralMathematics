@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PersistantModel;
+using Interfaces;
 
 namespace NeuralMathematics
 {
@@ -37,39 +38,34 @@ namespace NeuralMathematics
         /// </summary>
         public static readonly string termYName = "termY";
 
-        private static readonly Dictionary<string, Arithmetic> functions = new Dictionary<string, Arithmetic>() {
-            { "Y0", new Sum(new UnknownTerm("X0") ^ 2.0, new Coefficient("b") * new UnknownTerm("X0"), new Coefficient("c")) },
-            { "Y'", new Sum(new UnknownTerm("X0") * 2.0d, new Coefficient("b")) },
-            { "DY", new Soustraction(new UnknownTerm("Y"), new UnknownTerm("Y0")) },
-            { "DX", new Soustraction(new UnknownTerm("X"), new UnknownTerm("X0")) },
-            { "DX1", new Soustraction(
-                                        new Root(new Sum(new UnknownTerm("DY"),
-                                                         new Power(new Division(new UnknownTerm("Y'"), (2.0d).ToArithmetic()), (2.0d).ToArithmetic())),
-                                                 (2.0d).ToArithmetic()),
-                                        new UnknownTerm("Y'") / 2.0d) },
-            { "DX2", new Soustraction(
-                                        new Negative(new Root(new Sum(new UnknownTerm("DY"),
-                                                         new Power(new Division(new UnknownTerm("Y'"), (2.0d).ToArithmetic()), (2.0d).ToArithmetic())),
-                                                 (2.0d).ToArithmetic())),
-                                        new UnknownTerm("Y'") / 2.0d) },
-            { "X1", new Addition(new UnknownTerm("X0"), new UnknownTerm("DX1")) },
-            { "X2", new Addition(new UnknownTerm("X0"), new UnknownTerm("DX2")) }
+        private static readonly Dictionary<string, IArithmetic> functions = new Dictionary<string, IArithmetic>() {
+            { "Y_0", ("X_0^2 + b*X_0 + c").ToArithmetic() },
+            { "Y'", ("2 * X_0 + b").ToArithmetic() },
+            { "DY", ("Y - Y_0").ToArithmetic() },
+            { "DX", ("X - X_0").ToArithmetic() },
+            { "DX_1", ("(DY + (Y' / 2)^2) v 2 - Y'/2").ToArithmetic() },
+            { "DX_2", ("-((DY + (Y' / 2)^2) v 2) - Y'/2").ToArithmetic() },
+            { "X_1", ("X_0 + DX_1").ToArithmetic() },
+            { "X_2", ("X_0 + DX_2").ToArithmetic() }
 
         };
 
-        private static readonly Dictionary<string, List<Arithmetic>> factorisations = new Dictionary<string, List<Arithmetic>>()
+        private static readonly Dictionary<string, List<IArithmetic>> factorisations = new Dictionary<string, List<IArithmetic>>()
         {
-            { "Factorisation 1", new List<Arithmetic>() {
-                    new Equal(new UnknownTerm("y"), new Sum(new UnknownTerm("x") ^ 2.0, new Coefficient("b") * new UnknownTerm("x"), new Coefficient("c"))),
-                    new Equal(new UnknownTerm("y"), new Sum(new Product(new UnknownTerm("x"), new Sum(new UnknownTerm("x"), new Coefficient("b"))), new Coefficient("c"))),
-                    new Equal(new Soustraction(new UnknownTerm("y"), new Coefficient("c")), new Product(new UnknownTerm("x"), new Sum(new UnknownTerm("x"), new Coefficient("b")))),
-                    new Equal(new Soustraction(new UnknownTerm("y"), new Coefficient("c")), new Product(
-                                                        new Sum(new UnknownTerm("x"), new Coefficient("b") / 2.0, new Negative(new Coefficient("b") / 2.0)),
-                                                        new Sum(new UnknownTerm("x"), new Coefficient("b") / 2.0, new Coefficient("b") / 2.0))),
-                    new Equal(new Soustraction(new UnknownTerm("y"), new Coefficient("c")),
-                                            new Soustraction(new Power(new Addition(new UnknownTerm("x"), new Coefficient("b") / 2.0), 2.0d),
-                                                             new Power(new Coefficient("b") / 2.0, 2.0d)))
-
+            { "Factorisation 1", new List<IArithmetic>() {
+                    ("Y = X^2 + b*X + c").ToArithmetic(),
+                    ("Y = X*(X+b) + c").ToArithmetic(),
+                    ("Y - c = X*(X+b)").ToArithmetic(),
+                    ("Y - c = (X+b/2-b/2)*(X+b/2+b/2)").ToArithmetic(),
+                    ("Y - c = (X+b/2)^2 - (b/2)^2").ToArithmetic()
+                }
+            },
+            { "Factorisation 2", new List<IArithmetic>() {
+                    ("Y - Y_0 = [X^2 + b*X + c] - [X_0^2 + b*X + c]").ToArithmetic(),
+                    ("Y - Y_0 = (X^2 - X_0^2) - b*(X - X_0)").ToArithmetic(),
+                    ("Y - Y_0 = (X - X_0)*( X + X_0 + b )").ToArithmetic(),
+                    ("Y - Y_0 = (X - X_0)*( [X - X_0] + 2*X_0 + b)").ToArithmetic(),
+                    ("Y - Y_0 = (X - X_0)*( [X - X_0] + Y'_0)").ToArithmetic()
                 }
             }
         };
@@ -81,9 +77,17 @@ namespace NeuralMathematics
         /// <summary>
         /// Gets functions to compute
         /// </summary>
-        public Dictionary<string, Arithmetic> Functions
+        public Dictionary<string, IArithmetic> Functions
         {
             get { return Polynome2.functions; }
+        }
+
+        /// <summary>
+        /// Gets formulas
+        /// </summary>
+        public Dictionary<string, List<IArithmetic>> Formulas
+        {
+            get { return Polynome2.factorisations; }
         }
 
         /// <summary>
@@ -134,11 +138,11 @@ namespace NeuralMathematics
         /// <returns>Y0 value output</returns>
         public double ComputeY0(double x0)
         {
-            Arithmetic function = Polynome2.functions["Y0"];
+            IArithmetic function = Polynome2.functions["Y_0"];
             this.TermX0 = x0;
             function.Let("b", this.CoefficientB);
             function.Let("c", this.CoefficientC);
-            function.Let("x0", this.TermX0);
+            function.Let("X_0", this.TermX0);
             return function.Converting().Compute().ToDouble();
         }
 
@@ -151,13 +155,13 @@ namespace NeuralMathematics
         /// <returns>Y0 value output</returns>
         public double ComputeY0(double x0, double b, double c)
         {
-            Arithmetic function = Polynome2.functions["Y0"];
+            IArithmetic function = Polynome2.functions["Y_0"];
             this.TermX0 = x0;
             this.CoefficientB = b;
             this.CoefficientC = c;
             function.Let("b", this.CoefficientB);
             function.Let("c", this.CoefficientC);
-            function.Let("x0", this.TermX0);
+            function.Let("X_0", this.TermX0);
             return function.Converting().Compute().ToDouble();
         }
 
@@ -171,19 +175,19 @@ namespace NeuralMathematics
         {
             this.TermY = Y;
             this.TermX0 = x0;
-            Arithmetic yPrime = Polynome2.functions["Y'"];
-            Arithmetic y0 = Polynome2.functions["Y0"];
-            Arithmetic dy = Polynome2.functions["DY"];
-            Arithmetic functionDX = Polynome2.functions["DX1"];
-            Arithmetic x1 = Polynome2.functions["X1"];
+            IArithmetic yPrime = Polynome2.functions["Y'"];
+            IArithmetic y0 = Polynome2.functions["Y_0"];
+            IArithmetic dy = Polynome2.functions["DY"];
+            IArithmetic functionDX = Polynome2.functions["DX_1"];
+            IArithmetic x1 = Polynome2.functions["X_1"];
             x1.Let("b", this.CoefficientB);
             x1.Let("c", this.CoefficientC);
-            x1.Let("x0", this.TermX0);
-            x1.Let("y0", y0);
-            x1.Let("y", this.TermY);
-            x1.Let("dy", dy);
-            x1.Let("dx", functionDX);
-            x1.Let("y'", yPrime);
+            x1.Let("X_0", this.TermX0);
+            x1.Let("Y_0", y0);
+            x1.Let("Y", this.TermY);
+            x1.Let("DY", dy);
+            x1.Let("DX", functionDX);
+            x1.Let("Y'", yPrime);
             return x1.Converting().Compute().ToDouble();
         }
 
@@ -201,19 +205,19 @@ namespace NeuralMathematics
             this.TermX0 = x0;
             this.CoefficientB = b;
             this.CoefficientC = c;
-            Arithmetic yPrime = Polynome2.functions["Y'"];
-            Arithmetic y0 = Polynome2.functions["Y0"];
-            Arithmetic dy = Polynome2.functions["DY"];
-            Arithmetic functionDX = Polynome2.functions["DX1"];
-            Arithmetic x1 = Polynome2.functions["X1"];
+            IArithmetic yPrime = Polynome2.functions["Y'"];
+            IArithmetic y0 = Polynome2.functions["Y_0"];
+            IArithmetic dy = Polynome2.functions["DY"];
+            IArithmetic functionDX = Polynome2.functions["DX_1"];
+            IArithmetic x1 = Polynome2.functions["X_1"];
             x1.Let("b", this.CoefficientB);
             x1.Let("c", this.CoefficientC);
-            x1.Let("x0", this.TermX0);
-            x1.Let("y0", y0);
-            x1.Let("y", this.TermY);
-            x1.Let("dy", dy);
-            x1.Let("dx", functionDX);
-            x1.Let("y'", yPrime);
+            x1.Let("X_0", this.TermX0);
+            x1.Let("Y_0", y0);
+            x1.Let("Y", this.TermY);
+            x1.Let("DY", dy);
+            x1.Let("DX", functionDX);
+            x1.Let("Y'", yPrime);
             return x1.Converting().Compute().ToDouble();
         }
 
@@ -227,19 +231,19 @@ namespace NeuralMathematics
         {
             this.TermY = Y;
             this.TermX0 = x0;
-            Arithmetic yPrime = Polynome2.functions["Y'"];
-            Arithmetic y0 = Polynome2.functions["Y0"];
-            Arithmetic dy = Polynome2.functions["DY"];
-            Arithmetic functionDX = Polynome2.functions["DX2"];
-            Arithmetic x2 = Polynome2.functions["X2"];
+            IArithmetic yPrime = Polynome2.functions["Y'"];
+            IArithmetic y0 = Polynome2.functions["Y_0"];
+            IArithmetic dy = Polynome2.functions["DY"];
+            IArithmetic functionDX = Polynome2.functions["DX_2"];
+            IArithmetic x2 = Polynome2.functions["X_2"];
             x2.Let("b", this.CoefficientB);
             x2.Let("c", this.CoefficientC);
-            x2.Let("x0", this.TermX0);
-            x2.Let("y0", y0);
-            x2.Let("y", this.TermY);
-            x2.Let("dy", dy);
-            x2.Let("dx", functionDX);
-            x2.Let("y'", yPrime);
+            x2.Let("X_0", this.TermX0);
+            x2.Let("Y_0", y0);
+            x2.Let("Y", this.TermY);
+            x2.Let("DY", dy);
+            x2.Let("DX", functionDX);
+            x2.Let("Y'", yPrime);
             return x2.Converting().Compute().ToDouble();
         }
 
@@ -257,19 +261,19 @@ namespace NeuralMathematics
             this.TermX0 = x0;
             this.CoefficientB = b;
             this.CoefficientC = c;
-            Arithmetic yPrime = Polynome2.functions["Y'"];
-            Arithmetic y0 = Polynome2.functions["Y0"];
-            Arithmetic dy = Polynome2.functions["DY"];
-            Arithmetic functionDX = Polynome2.functions["DX2"];
-            Arithmetic x2 = Polynome2.functions["X2"];
+            IArithmetic yPrime = Polynome2.functions["Y'"];
+            IArithmetic y0 = Polynome2.functions["Y_0"];
+            IArithmetic dy = Polynome2.functions["DY"];
+            IArithmetic functionDX = Polynome2.functions["DX_2"];
+            IArithmetic x2 = Polynome2.functions["X_2"];
             x2.Let("b", this.CoefficientB);
             x2.Let("c", this.CoefficientC);
-            x2.Let("x0", this.TermX0);
-            x2.Let("y0", y0);
-            x2.Let("y", this.TermY);
-            x2.Let("dy", dy);
-            x2.Let("dx", functionDX);
-            x2.Let("y'", yPrime);
+            x2.Let("X_0", this.TermX0);
+            x2.Let("Y_0", y0);
+            x2.Let("Y", this.TermY);
+            x2.Let("DY", dy);
+            x2.Let("DX", functionDX);
+            x2.Let("Y'", yPrime);
             return x2.Converting().Compute().ToDouble();
         }
 
