@@ -4,6 +4,26 @@
         <name>PersistantModel</name>
     </assembly>
     <members>
+        <member name="M:PersistantModel.Compute.run(System.String)">
+            <summary>
+            Converts a string to an arithmetic form
+            </summary>
+            <param name="expr">string representation</param>
+            <returns>arithmetic object</returns>
+        </member>
+        <member name="T:PersistantModel.Expression">
+            <summary>
+            Static class for convert string
+            to Arithmetic object
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Expression.Convert(System.String)">
+            <summary>
+            Converts a string to an arithmetic object
+            </summary>
+            <param name="expr">expression string</param>
+            <returns>arithmetic object</returns>
+        </member>
         <member name="T:PersistantModel.Extensions">
             <summary>
             Extensions
@@ -42,6 +62,13 @@
             Convert a double precision number to an arithmetic object
             </summary>
             <param name="d">double value</param>
+            <returns>arithmetic object</returns>
+        </member>
+        <member name="M:PersistantModel.Extensions.ToArithmetic(System.String)">
+            <summary>
+            Convert a string to an arithmetic object
+            </summary>
+            <param name="s">string</param>
             <returns>arithmetic object</returns>
         </member>
         <member name="M:PersistantModel.Extensions.IsDouble(Interfaces.IArithmetic)">
@@ -706,6 +733,11 @@
             add variable event handler
             </summary>
         </member>
+        <member name="E:PersistantModel.Arithmetic.overflowException">
+            <summary>
+            overflow exception event handler
+            </summary>
+        </member>
         <member name="E:PersistantModel.Arithmetic.eventFetch">
             <summary>
             Events
@@ -857,6 +889,157 @@
             </summary>
             <param name="r">records</param>
             <param name="start">start</param>
+        </member>
+        <member name="T:PersistantModel.Crochet">
+            <summary>
+            Crochet content
+            </summary>
+        </member>
+        <member name="T:PersistantModel.UnaryOperation">
+            <summary>
+            Définit une opération unaire
+            </summary>
+        </member>
+        <member name="M:PersistantModel.UnaryOperation.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.UnaryOperation.#ctor(System.Char,System.Double)">
+            <summary>
+            Constructor
+            given a unary operation with one number
+            </summary>
+            <param name="op">operator</param>
+            <param name="n">number</param>
+        </member>
+        <member name="M:PersistantModel.UnaryOperation.#ctor(System.Char,Interfaces.IArithmetic)">
+            <summary>
+            Constructor
+            given a unary operation with one term
+            </summary>
+            <param name="op">operator</param>
+            <param name="t">term</param>
+        </member>
+        <member name="M:PersistantModel.UnaryOperation.ComputeOwnerWeight">
+            <summary>
+            Computes the unique weight
+            for this object
+            </summary>
+            <returns>weight</returns>
+        </member>
+        <member name="M:PersistantModel.UnaryOperation.Create">
+            <summary>
+            Create a new addition class
+            </summary>
+        </member>
+        <member name="M:PersistantModel.UnaryOperation.Compute">
+            <summary>
+            This function tries to obtain a numerical value
+            but if not returns only equations
+            </summary>
+            <returns>a numerical value or an equation</returns>
+        </member>
+        <member name="P:PersistantModel.UnaryOperation.Operator">
+            <summary>
+            Gets the operator ID
+            </summary>
+        </member>
+        <member name="P:PersistantModel.UnaryOperation.IsBinaryOperator">
+            <summary>
+            Gets binary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.UnaryOperation.IsUnaryOperator">
+            <summary>
+            Gets unary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.UnaryOperation.IsNotOperator">
+            <summary>
+            Gets true if it's not an operator
+            </summary>
+        </member>
+        <member name="P:PersistantModel.UnaryOperation.InnerOperand">
+            <summary>
+            Gets the left operand
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Crochet.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Crochet.#ctor(Interfaces.IArithmetic)">
+            <summary>
+            Constructor
+            given a positive value with one term
+            </summary>
+            <param name="n">term</param>
+        </member>
+        <member name="M:PersistantModel.Crochet.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:PersistantModel.Crochet.ToString">
+            <summary>
+            Transforms equation object into a string representation
+            </summary>
+            <returns>string representation</returns>
+        </member>
+        <member name="M:PersistantModel.Crochet.Create">
+            <summary>
+            Create a new addition class
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Crochet.Operator">
+            <summary>
+            Gets the operator char
+            </summary>
+        </member>
+        <member name="T:PersistantModel.Parenthese">
+            <summary>
+            Parenthese content
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Parenthese.#ctor">
+            <summary>
+            Default constructor
+            Empty data
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Parenthese.#ctor(Interfaces.IArithmetic)">
+            <summary>
+            Constructor
+            given a positive value with one term
+            </summary>
+            <param name="n">term</param>
+        </member>
+        <member name="M:PersistantModel.Parenthese.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:PersistantModel.Parenthese.ToString">
+            <summary>
+            Transforms equation object into a string representation
+            </summary>
+            <returns>string representation</returns>
+        </member>
+        <member name="M:PersistantModel.Parenthese.Create">
+            <summary>
+            Create a new addition class
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Parenthese.Operator">
+            <summary>
+            Gets the operator char
+            </summary>
         </member>
         <member name="T:PersistantModel.RecordZone`1">
             <summary>
@@ -1071,77 +1254,6 @@
         <member name="P:PersistantModel.Texte.DelimiterRight">
             <summary>
             Gets or sets the delimiter
-            </summary>
-        </member>
-        <member name="T:PersistantModel.UnaryOperation">
-            <summary>
-            Définit une opération unaire
-            </summary>
-        </member>
-        <member name="M:PersistantModel.UnaryOperation.#ctor">
-            <summary>
-            Default constructor
-            Empty data
-            </summary>
-        </member>
-        <member name="M:PersistantModel.UnaryOperation.#ctor(System.Char,System.Double)">
-            <summary>
-            Constructor
-            given a unary operation with one number
-            </summary>
-            <param name="op">operator</param>
-            <param name="n">number</param>
-        </member>
-        <member name="M:PersistantModel.UnaryOperation.#ctor(System.Char,Interfaces.IArithmetic)">
-            <summary>
-            Constructor
-            given a unary operation with one term
-            </summary>
-            <param name="op">operator</param>
-            <param name="t">term</param>
-        </member>
-        <member name="M:PersistantModel.UnaryOperation.ComputeOwnerWeight">
-            <summary>
-            Computes the unique weight
-            for this object
-            </summary>
-            <returns>weight</returns>
-        </member>
-        <member name="M:PersistantModel.UnaryOperation.Create">
-            <summary>
-            Create a new addition class
-            </summary>
-        </member>
-        <member name="M:PersistantModel.UnaryOperation.Compute">
-            <summary>
-            This function tries to obtain a numerical value
-            but if not returns only equations
-            </summary>
-            <returns>a numerical value or an equation</returns>
-        </member>
-        <member name="P:PersistantModel.UnaryOperation.Operator">
-            <summary>
-            Gets the operator ID
-            </summary>
-        </member>
-        <member name="P:PersistantModel.UnaryOperation.IsBinaryOperator">
-            <summary>
-            Gets binary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.UnaryOperation.IsUnaryOperator">
-            <summary>
-            Gets unary switch test
-            </summary>
-        </member>
-        <member name="P:PersistantModel.UnaryOperation.IsNotOperator">
-            <summary>
-            Gets true if it's not an operator
-            </summary>
-        </member>
-        <member name="P:PersistantModel.UnaryOperation.InnerOperand">
-            <summary>
-            Gets the left operand
             </summary>
         </member>
         <member name="T:PersistantModel.Inverse">

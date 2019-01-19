@@ -31,6 +31,7 @@ namespace NeuralMathematics
         public MainWindow()
         {
             InitializeComponent();
+            MessageBox.Show(("(x-x0) - [y-y0]").ToArithmetic().AsRepresented("string"));
         }
 
         /// <summary>

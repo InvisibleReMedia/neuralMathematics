@@ -68,8 +68,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Expression.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Gathering.cs" />
+    <Compile Include="Crochet.cs" />
+    <Compile Include="Parenthese.cs" />
     <Compile Include="RecordZone.cs" />
     <Compile Include="Texte.cs" />
     <Compile Include="UnaryOperation.cs" />

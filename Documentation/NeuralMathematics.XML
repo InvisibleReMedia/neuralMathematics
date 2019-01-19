@@ -124,6 +124,110 @@
             Gets the tex mode
             </summary>
         </member>
+        <member name="T:NeuralMathematics.Polynome2">
+            <summary>
+            Implements a polynome as the second order
+            Coefficients are in munuscule
+            Terms are in majuscule
+            </summary>
+        </member>
+        <member name="F:NeuralMathematics.Polynome2.coefficientBName">
+            <summary>
+            Index for coefficient b
+            </summary>
+        </member>
+        <member name="F:NeuralMathematics.Polynome2.coefficientCName">
+            <summary>
+            Index for coefficient c
+            </summary>
+        </member>
+        <member name="F:NeuralMathematics.Polynome2.termX0Name">
+            <summary>
+            Index name for term x0
+            </summary>
+        </member>
+        <member name="F:NeuralMathematics.Polynome2.termYName">
+            <summary>
+            Index name for term y
+            </summary>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.ComputeY0(System.Double)">
+            <summary>
+            Compute Y0 value
+            </summary>
+            <param name="x0">X0 value input</param>
+            <returns>Y0 value output</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.ComputeY0(System.Double,System.Double,System.Double)">
+            <summary>
+            Compute Y0 value
+            </summary>
+            <param name="x0">X0 value input</param>
+            <param name="b">b coefficient input</param>
+            <param name="c">c coefficient input</param>
+            <returns>Y0 value output</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.ComputeX1(System.Double,System.Double)">
+            <summary>
+            Compute x1 output
+            </summary>
+            <param name="Y">y input</param>
+            <param name="x0">x0 input</param>
+            <returns>x1 output</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.ComputeX1(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Compute x1 output
+            </summary>
+            <param name="Y">y input</param>
+            <param name="x0">x0 input</param>
+            <param name="b">b coefficient input</param>
+            <param name="c">c coefficient input</param>
+            <returns>x1 output</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.ComputeX2(System.Double,System.Double)">
+            <summary>
+            Compute x2 output
+            </summary>
+            <param name="Y">y input</param>
+            <param name="x0">x0 input</param>
+            <returns>x2 output</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.ComputeX2(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Compute x2 output
+            </summary>
+            <param name="Y">y input</param>
+            <param name="x0">x0 input</param>
+            <param name="b">b coefficient input</param>
+            <param name="c">c coefficient input</param>
+            <returns>x2 output</returns>
+        </member>
+        <member name="P:NeuralMathematics.Polynome2.Functions">
+            <summary>
+            Gets functions to compute
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Polynome2.CoefficientB">
+            <summary>
+            Gets or sets the B coefficient
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Polynome2.CoefficientC">
+            <summary>
+            Gets or sets the C coefficient
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Polynome2.TermX0">
+            <summary>
+            Gets or sets the X0 term
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Polynome2.TermY">
+            <summary>
+            Gets or sets the Y term
+            </summary>
+        </member>
         <member name="T:NeuralMathematics.Tracer">
             <summary>
             Logique d'interaction pour Window1.xaml

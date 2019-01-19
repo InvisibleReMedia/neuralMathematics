@@ -111,6 +111,9 @@ namespace PersistantModel
         /// </summary>
         protected static Func<string, IArithmetic> getVariable;
 
+        /// <summary>
+        /// overflow exception event handler
+        /// </summary>
         protected static event EventHandler<OverflowException> overflowException;
 
         /// <summary>
@@ -1150,7 +1153,7 @@ namespace PersistantModel
                 if (this.Operator == '+' || this.Operator == '-')
                 {
                     output = left + " " + this.Operator;
-                    if (this.Operator == '-' && !(this.RightOperand is Coefficient || this.RightOperand is UnknownTerm || this.RightOperand is Term || this.RightOperand is NumericValue))
+                    if (this.Operator == '-' && !(this.RightOperand is Coefficient || this.RightOperand is UnknownTerm || this.RightOperand is Term || this.RightOperand is NumericValue || this.RightOperand is Parenthese || this.RightOperand is Crochet))
                         output += " [" + right + "]";
                     else
                         output += " " + right;

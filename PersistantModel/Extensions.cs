@@ -136,6 +136,16 @@ namespace PersistantModel
         }
 
         /// <summary>
+        /// Convert a string to an arithmetic object
+        /// </summary>
+        /// <param name="s">string</param>
+        /// <returns>arithmetic object</returns>
+        public static Interfaces.IArithmetic ToArithmetic(this string s)
+        {
+            return Expression.Convert(s);
+        }
+
+        /// <summary>
         /// Test if a is a double value
         /// </summary>
         /// <param name="a">arithmetic class</param>
