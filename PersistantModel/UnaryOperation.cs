@@ -157,6 +157,10 @@ namespace PersistantModel
                         else
                             output = new NumericValue(Double.NaN);
                         break;
+                    case 'd':
+                    case 't':
+                        output = this.InnerOperand.Compute();
+                        break;
                 }
             }
             return output;

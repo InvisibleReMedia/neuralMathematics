@@ -617,6 +617,43 @@ namespace NeuralMathematics
         {
             FlowDocument fd = new FlowDocument();
 
+            TextBlock errorText = new TextBlock();
+            errorText.Foreground = new SolidColorBrush(Colors.Red);
+            fd.Blocks.Add(new BlockUIContainer(errorText));
+
+            // variables
+            Dictionary<string, IArithmetic> variables = new Dictionary<string, IArithmetic>();
+
+            Arithmetic.EventAddVariable += new EventHandler<KeyValuePair<string, IArithmetic>>((o, e) =>
+            {
+                if (e.Value != null)
+                {
+                    if (variables.ContainsKey(e.Key))
+                    {
+                        variables[e.Key] = e.Value;
+                    }
+                    else
+                    {
+                        variables.Add(e.Key, e.Value);
+                    }
+                }
+                else
+                {
+                    if (variables.ContainsKey(e.Key))
+                        variables.Remove(e.Key);
+                }
+            });
+            Arithmetic.EventGetVariable = new Func<string, IArithmetic>((s) =>
+            {
+                if (variables.ContainsKey(s)) return variables[s];
+                else return null;
+            });
+            Arithmetic.EventError += new EventHandler<OverflowException>((o, e) =>
+            {
+                errorText.Text = e.Message;
+            });
+
+
             Polynome2 p = new Polynome2();
 
             string txt = string.Empty;
@@ -634,6 +671,37 @@ namespace NeuralMathematics
             {
                 txt += a.AsRepresented("tex") + "\n";
             }
+
+            Polynome3 p3 = new Polynome3();
+
+            // ensure variables
+            p3.ComputeR1();
+
+            txt += "{A=" + p3.Functions["A"].AsRepresented("tex") + "}";
+
+            txt += "\nA=" + p3.ComputeA(27, 2, 2, 36, 3, 3, 1).ToString();
+
+            txt += "\n{A=" + p3.Functions["A"].Converting().Compute().AsRepresented("tex") + "}";
+
+            txt += "\n{U=" + p3.Functions["U"].AsRepresented("tex") + "}";
+
+            txt += "\n{U=" + p3.Functions["U"].Converting().AsRepresented("tex") + "}";
+
+            txt += "\n{R_1=" + p3.Functions["R_1"].AsRepresented("tex") + "}";
+
+            txt += "\n{R_1=" + p3.Functions["R_1"].Converting().AsRepresented("tex") + "}";
+
+            txt += "\nR_1=" + p3.ComputeR1();
+
+            //txt += "\n{Sum=" + p3.Sum(0, 10, 1).AsRepresented("tex") + "}";
+
+            //txt += "\n{Sum=" + p3.Sum(0, 10, 3).Compute().ToDouble() + "}";
+
+            Polynome2 p2 = new Polynome2();
+
+            txt += "\n{Sum=" + p2.Sum2(2, 2, 30) + "}";
+
+            txt += "\n{Sum=" + p2.Sum3(2, 2, 63) + "}";
 
             Wording w = new Wording("Tests", 
                                     txt, true);

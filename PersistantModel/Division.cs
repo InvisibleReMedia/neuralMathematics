@@ -70,7 +70,7 @@ namespace PersistantModel
                 left = this.LeftOperand.ToTex();
             if (this.RightOperand != null)
                 right = this.RightOperand.ToTex();
-            output = @"\frac{" + left + "}{" + right + "}";
+            output = @"\frac{{" + left + @"}}{{" + right + @"}}";
             return output;
         }
 

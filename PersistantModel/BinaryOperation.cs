@@ -194,7 +194,7 @@ namespace PersistantModel
                             else
                             {
                                 Arithmetic.RaiseEventError(new OverflowException("valeur 1 / 0"));
-                                output = new NumericValue(Double.NaN);
+                                output = new NumericValue(0.0);
                             }
                             break;
                         case '^':
@@ -242,7 +242,7 @@ namespace PersistantModel
             if (this.LeftOperand != null && this.RightOperand != null)
             {
                 string left, right;
-                left = this.LeftOperand.ToTex();
+                left = this.LeftOperand.ToString();
                 right = this.RightOperand.ToString();
                 switch (this.Operator)
                 {

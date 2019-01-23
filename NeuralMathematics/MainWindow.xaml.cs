@@ -31,7 +31,49 @@ namespace NeuralMathematics
         public MainWindow()
         {
             InitializeComponent();
+            Polynome2 p = new Polynome2();
+
+            // variables
+            Dictionary<string, IArithmetic> variables = new Dictionary<string, IArithmetic>();
+
+            Arithmetic.EventAddVariable += new EventHandler<KeyValuePair<string, IArithmetic>>((o, e) =>
+            {
+                if (e.Value != null)
+                {
+                    if (variables.ContainsKey(e.Key))
+                    {
+                        variables[e.Key] = e.Value;
+                    }
+                    else
+                    {
+                        variables.Add(e.Key, e.Value);
+                    }
+                }
+                else
+                {
+                    if (variables.ContainsKey(e.Key))
+                        variables.Remove(e.Key);
+                }
+            });
+            Arithmetic.EventGetVariable = new Func<string, IArithmetic>((s) =>
+            {
+                if (variables.ContainsKey(s)) return variables[s];
+                else return null;
+            });
+
+            Arithmetic.EventError += new EventHandler<OverflowException>((o, e) =>
+            {
+                MessageBox.Show(e.Message);
+            });
+
+            double x;
+            if (p.searchNumerical(3, 1, 25, 17, out x))
+            {
+                MessageBox.Show(x.ToString());
+            }
+            MessageBox.Show(p.ComputeY0(x).ToString());
         }
+
 
         /// <summary>
         /// When the main windows was loaded

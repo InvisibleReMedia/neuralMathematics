@@ -209,6 +209,97 @@
             <param name="c">c coefficient input</param>
             <returns>x2 output</returns>
         </member>
+        <member name="M:NeuralMathematics.Polynome2.Sum(System.Double,System.Double,System.Double)">
+            <summary>
+            Sum
+            </summary>
+            <param name="b">b coeff</param>
+            <param name="xLeft">xLeft</param>
+            <param name="xRight">xright</param>
+            <returns>sum</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.Sum2(System.Double,System.Double,System.Double)">
+            <summary>
+            Sum
+            </summary>
+            <param name="b">b coeff</param>
+            <param name="c">coeff c</param>
+            <param name="x0">y</param>
+            <returns>sum</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.Sum3(System.Double,System.Double,System.Double)">
+            <summary>
+            Sum
+            </summary>
+            <param name="b">b coeff</param>
+            <param name="c">coeff c</param>
+            <param name="y">y</param>
+            <returns>sum</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.searchNumericalCalc(System.Double,System.Double,System.Double)">
+            <summary>
+            Calculate numerical difference
+            </summary>
+            <param name="y">y input</param>
+            <param name="x0">x0 input</param>
+            <param name="dx">size</param>
+            <returns>numerical difference</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.searchNumericalIntegerDigits(System.Double,System.Double,System.Double@,System.Double@)">
+            <summary>
+            Search a numerical value for
+            finding root or one of x values for a given y value
+            </summary>
+            <param name="y">y value</param>
+            <param name="dec">number position</param>
+            <param name="x0">initial value</param>
+            <param name="x">x value</param>
+            <returns>true if found</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.searchNumericalInteger(System.Double,System.Double,System.Double@,System.Double@)">
+            <summary>
+            Search a numerical value for
+            finding root or one of x values for a given y value
+            </summary>
+            <param name="y">y value</param>
+            <param name="exposant">exposant</param>
+            <param name="x0">initial value</param>
+            <param name="x">x value</param>
+            <returns>true if found</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.searchNumericalDecimal(System.Double,System.Double,System.Double,System.Double,System.Double@)">
+            <summary>
+            Search a numerical value for
+            finding root or one of x values for a given y value
+            </summary>
+            <param name="y">y value</param>
+            <param name="dec">decimal position</param>
+            <param name="exposant">maximal position</param>
+            <param name="x0">integer value</param>
+            <param name="x">x value</param>
+            <returns>true if found</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.searchNumericaDigit(System.Double,System.Double@)">
+            <summary>
+            Search a numerical value for
+            finding root or one of x values for a given y value
+            </summary>
+            <param name="y">y value</param>
+            <param name="x">x value</param>
+            <returns>true if found</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.searchNumerical(System.Double,System.Double,System.Double,System.Double,System.Double@)">
+            <summary>
+            Search a numerical value for
+            finding root or one of x values for a given y value
+            </summary>
+            <param name="b">b coeff</param>
+            <param name="c">c coeff</param>
+            <param name="y">y value</param>
+            <param name="exposant">number size</param>
+            <param name="x">x value found</param>
+            <returns>true if found</returns>
+        </member>
         <member name="P:NeuralMathematics.Polynome2.Functions">
             <summary>
             Gets functions to compute
@@ -235,6 +326,151 @@
             </summary>
         </member>
         <member name="P:NeuralMathematics.Polynome2.TermY">
+            <summary>
+            Gets or sets the Y term
+            </summary>
+        </member>
+        <member name="T:NeuralMathematics.Polynome3">
+            <summary>
+            Represents a polynome at the third order
+            </summary>
+        </member>
+        <member name="F:NeuralMathematics.Polynome3.coefficientBName">
+            <summary>
+            Index for coefficient b
+            </summary>
+        </member>
+        <member name="F:NeuralMathematics.Polynome3.coefficientCName">
+            <summary>
+            Index for coefficient c
+            </summary>
+        </member>
+        <member name="F:NeuralMathematics.Polynome3.coefficientDName">
+            <summary>
+            Index for coefficient d
+            </summary>
+        </member>
+        <member name="F:NeuralMathematics.Polynome3.termX0Name">
+            <summary>
+            Index name for term x0
+            </summary>
+        </member>
+        <member name="F:NeuralMathematics.Polynome3.termX1Name">
+            <summary>
+            Index name for term x1
+            </summary>
+        </member>
+        <member name="F:NeuralMathematics.Polynome3.termX2Name">
+            <summary>
+            Index name for term x2
+            </summary>
+        </member>
+        <member name="F:NeuralMathematics.Polynome3.termVName">
+            <summary>
+            Index name for term V
+            </summary>
+        </member>
+        <member name="F:NeuralMathematics.Polynome3.termYName">
+            <summary>
+            Index name for term y
+            </summary>
+        </member>
+        <member name="M:NeuralMathematics.Polynome3.ComputeY0(System.Double)">
+            <summary>
+            Compute Y0 value
+            </summary>
+            <param name="x0">X0 value input</param>
+            <returns>Y0 value output</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome3.ComputeY0(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Compute Y0 value
+            </summary>
+            <param name="x0">X0 value input</param>
+            <param name="b">b coefficient input</param>
+            <param name="c">c coefficient input</param>
+            <param name="d">d coefficient input</param>
+            <returns>Y0 value output</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome3.ComputeA(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Compute A value
+            </summary>
+            <param name="y">y search input</param>
+            <param name="x1">x1 input value</param>
+            <param name="x2">x2 input value</param>
+            <param name="v">v input value</param>
+            <returns>A value</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome3.ComputeA(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Compute A value
+            </summary>
+            <param name="y">y search input</param>
+            <param name="x1">x1 input value</param>
+            <param name="x2">x2 input value</param>
+            <param name="v">v input value</param>
+            <param name="b">b coefficient input</param>
+            <param name="c">c coefficient input</param>
+            <param name="d">d coefficient input</param>
+            <returns>A value</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome3.ComputeR1">
+            <summary>
+            Compute R1
+            </summary>
+            <returns>return R1</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome3.Sum(System.Double,System.Double,System.Double)">
+            <summary>
+            Sum
+            </summary>
+            <param name="xLeft">xleft</param>
+            <param name="distance">d</param>
+            <param name="xRight">xright</param>
+            <returns>sum</returns>
+        </member>
+        <member name="P:NeuralMathematics.Polynome3.Functions">
+            <summary>
+            Gets functions to compute
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Polynome3.CoefficientB">
+            <summary>
+            Gets or sets the B coefficient
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Polynome3.CoefficientC">
+            <summary>
+            Gets or sets the C coefficient
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Polynome3.CoefficientD">
+            <summary>
+            Gets or sets the D coefficient
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Polynome3.TermX0">
+            <summary>
+            Gets or sets the X0 term
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Polynome3.TermX1">
+            <summary>
+            Gets or sets the X1 term
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Polynome3.TermX2">
+            <summary>
+            Gets or sets the X2 term
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Polynome3.TermV">
+            <summary>
+            Gets or sets the V term
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Polynome3.TermY">
             <summary>
             Gets or sets the Y term
             </summary>
