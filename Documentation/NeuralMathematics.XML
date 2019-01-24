@@ -245,7 +245,7 @@
             <param name="dx">size</param>
             <returns>numerical difference</returns>
         </member>
-        <member name="M:NeuralMathematics.Polynome2.searchNumericalIntegerDigits(System.Double,System.Double,System.Double@,System.Double@)">
+        <member name="M:NeuralMathematics.Polynome2.searchNumericalIntegerDigits(System.Double,System.Double,System.Double,System.Double@)">
             <summary>
             Search a numerical value for
             finding root or one of x values for a given y value

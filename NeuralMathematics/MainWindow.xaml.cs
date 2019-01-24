@@ -67,7 +67,7 @@ namespace NeuralMathematics
             });
 
             double x;
-            if (p.searchNumerical(3, 1, 25, 17, out x))
+            if (p.searchNumerical(2, 1, 2490, 17, out x))
             {
                 MessageBox.Show(x.ToString());
             }

@@ -401,43 +401,39 @@ namespace NeuralMathematics
         /// <param name="x0">initial value</param>
         /// <param name="x">x value</param>
         /// <returns>true if found</returns>
-        public bool searchNumericalIntegerDigits(double y, double dec, ref double x0, out double x)
+        public bool searchNumericalIntegerDigits(double y, double dec, double x0, out double x)
         {
             double turn = 9;
-            double x0Step = x0;
+            double x0Step = 9 * Math.Pow(10, dec);
             while (turn > 0)
             {
-                int c = searchNumericalCalc(y, x0Step, -1);
+                int c = searchNumericalCalc(y, x0Step, -Math.Pow(10, dec));
                 if (c == 0)
                 {
-                    x0 = x0Step;
-                    x = x0Step - 1;
+                    x = x0 + x0Step - Math.Pow(10, dec);
                     return true;
                 }
                 else if (c == -1)
                 {
                     if (dec > 0)
                     {
-                        x = x0Step - 1;
-                        if (dec > 1)
+                        if (searchNumericalIntegerDigits(y, dec - 1, x0 + x0Step, out x))
                         {
-                            return searchNumericalIntegerDigits(y, dec - 1, ref x0, out x);
-                        }
-                        else
-                        {
+                            x = x - Math.Pow(10, dec);
                             return true;
                         }
+                        else
+                            return false;
                     }
                     else
                     {
-                        x0 = x0Step + 1;
-                        x = x0Step;
+                        x = x0 + x0Step - Math.Pow(10, dec);
                         return true;
                     }
                 }
                 else
                 {
-                    x0Step -= 1;
+                    x0Step -= Math.Pow(10, dec);
                 }
                 --turn;
             }
@@ -469,7 +465,13 @@ namespace NeuralMathematics
                 else if (c == -1)
                 {
                     x0 = x0Step;
-                    return searchNumericalIntegerDigits(y, turn, ref x0, out x);
+                    if (searchNumericalIntegerDigits(y, turn, x0, out x))
+                    {
+                        x = x - 10;
+                        return true;
+                    }
+                    else
+                        return false;
                 }
                 else
                 {
