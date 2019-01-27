@@ -22,7 +22,8 @@ namespace PersistantModel
         /// </summary>
         public Coefficient()
         {
-
+            this[letterName] = "p";
+            this[hasValueName] = false;
         }
 
         /// <summary>

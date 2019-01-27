@@ -16,6 +16,40 @@ namespace NeuralMathematics
     public class Polynome2 : PersistentDataObject
     {
 
+        #region Inner Class
+
+        /// <summary>
+        /// Solution
+        /// </summary>
+        public class Solution
+        {
+            private double x0;
+            private double dx;
+
+            /// <summary>
+            /// Constructor
+            /// </summary>
+            /// <param name="x0">x0 input</param>
+            /// <param name="dx">dx input</param>
+            public Solution(double x0, double dx)
+            {
+                this.x0 = x0;
+                this.dx = dx;
+            }
+
+            /// <summary>
+            /// Gets or sets X0 value
+            /// </summary>
+            public double X0 { get { return this.x0; } set { this.x0 = value; } }
+
+            /// <summary>
+            /// Gets or sets DX value
+            /// </summary>
+            public double DX { get { return this.dx; } set { this.dx = value; } }
+        }
+
+        #endregion
+
         #region Fields
 
         /// <summary>
@@ -638,7 +672,63 @@ namespace NeuralMathematics
             }
         }
 
+        /// <summary>
+        /// Computes all positive exposant couple of numbers intervals
+        /// </summary>
+        /// <param name="exposant">size</param>
+        /// <returns>list of couples</returns>
+        public IEnumerable<Tuple<double, double>> Couples(double exposant)
+        {
+            for (double d = exposant; d > 0; --d)
+            {
+                yield return new Tuple<double, double>(Math.Pow(10, d), Math.Pow(10, d - 1) + 1);
+            }
+        }
+
+        /// <summary>
+        /// Gets digits
+        /// </summary>
+        public IEnumerable<Tuple<double, double>> Digits
+        {
+            get
+            {
+                for (double d = 9; d > 0; --d)
+                {
+                    yield return new Tuple<double, double>(d, d - 1);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Transforms digits with exposant from 0 (none) to n (x * 10^n)
+        /// </summary>
+        /// <param name="exposant">exposant</param>
+        /// <returns>tuple list</returns>
+        public IEnumerable<Tuple<double, double>> TransformDigits(double exposant)
+        {
+            foreach (Tuple<double, double> t in this.Digits)
+            {
+                yield return new Tuple<double, double>(t.Item1 * Math.Pow(10, exposant), t.Item2 * Math.Pow(10, exposant));
+            }
+        }
+
+        /// <summary>
+        /// Transforms digits with exposant from 0 (none) to n (x * 10^n)
+        /// </summary>
+        /// <param name="exposant">exposant</param>
+        /// <param name="addition">addition to add</param>
+        /// <returns>tuple list</returns>
+        public IEnumerable<Tuple<double, double>> TransformDigits(double exposant, double addition)
+        {
+            foreach (Tuple<double, double> t in this.Digits)
+            {
+                yield return new Tuple<double, double>(t.Item1 * Math.Pow(10, exposant) + addition, t.Item2 * Math.Pow(10, exposant) + addition);
+            }
+        }
+
+
         #endregion
+
 
     }
 }

@@ -70,10 +70,12 @@
   <ItemGroup>
     <Compile Include="Expression.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Function.cs" />
     <Compile Include="Gathering.cs" />
     <Compile Include="Crochet.cs" />
     <Compile Include="Parenthese.cs" />
     <Compile Include="RecordZone.cs" />
+    <Compile Include="Sequence.cs" />
     <Compile Include="Texte.cs" />
     <Compile Include="UnaryOperation.cs" />
     <Compile Include="Inverse.cs" />

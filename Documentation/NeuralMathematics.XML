@@ -61,6 +61,12 @@
             </summary>
             <returns>document</returns>
         </member>
+        <member name="M:NeuralMathematics.Applicatif.TestNumericalPolynome2">
+            <summary>
+            Test resolution numérique polynôme 2
+            </summary>
+            <returns>document</returns>
+        </member>
         <member name="M:NeuralMathematics.Applicatif.SolvePolynome3">
             <summary>
             Solve polynôme 3
@@ -300,6 +306,28 @@
             <param name="x">x value found</param>
             <returns>true if found</returns>
         </member>
+        <member name="M:NeuralMathematics.Polynome2.Couples(System.Double)">
+            <summary>
+            Computes all positive exposant couple of numbers intervals
+            </summary>
+            <param name="exposant">size</param>
+            <returns>list of couples</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.TransformDigits(System.Double)">
+            <summary>
+            Transforms digits with exposant from 0 (none) to n (x * 10^n)
+            </summary>
+            <param name="exposant">exposant</param>
+            <returns>tuple list</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.TransformDigits(System.Double,System.Double)">
+            <summary>
+            Transforms digits with exposant from 0 (none) to n (x * 10^n)
+            </summary>
+            <param name="exposant">exposant</param>
+            <param name="addition">addition to add</param>
+            <returns>tuple list</returns>
+        </member>
         <member name="P:NeuralMathematics.Polynome2.Functions">
             <summary>
             Gets functions to compute
@@ -328,6 +356,33 @@
         <member name="P:NeuralMathematics.Polynome2.TermY">
             <summary>
             Gets or sets the Y term
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Polynome2.Digits">
+            <summary>
+            Gets digits
+            </summary>
+        </member>
+        <member name="T:NeuralMathematics.Polynome2.Solution">
+            <summary>
+            Solution
+            </summary>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.Solution.#ctor(System.Double,System.Double)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="x0">x0 input</param>
+            <param name="dx">dx input</param>
+        </member>
+        <member name="P:NeuralMathematics.Polynome2.Solution.X0">
+            <summary>
+            Gets or sets X0 value
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.Polynome2.Solution.DX">
+            <summary>
+            Gets or sets DX value
             </summary>
         </member>
         <member name="T:NeuralMathematics.Polynome3">

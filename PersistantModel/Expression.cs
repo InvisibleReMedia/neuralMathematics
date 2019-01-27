@@ -1,7 +1,9 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
+using Interfaces;
 
 namespace PersistantModel
 {
@@ -11,7 +13,7 @@ namespace PersistantModel
         private const char StackIdentifierParentheses = '$';
         private const char StackIdentifierBrackets = '£';
         private readonly string[] errors = new string[] { null, "Erreur parenthèses", "Expression {0:G} incorrecte", "Terme inconnu" };
-        private readonly char[] opers = new char[] { '=', '+', '-', '/', '*', '^', 'v' };
+        private readonly char[] opers = new char[] { '=', ',', '+', '-', '/', '*', '^', 'v' };
         #endregion
 
         #region Private Fields
@@ -30,10 +32,10 @@ namespace PersistantModel
 
             foreach (char c in s)
             {
-                if (!Char.IsLower(c))
-                    return false;
+                if (Char.IsLetter(c) && !Char.IsLower(c))
+                    return true;
             }
-            return true;
+            return false;
         }
 
         private void Enqueue(string s)
@@ -49,6 +51,7 @@ namespace PersistantModel
         private bool function(string expr, ref int i)
         {
             bool result = false;
+            expr = expr.TrimEnd();
             if (expr.EndsWith(Compute.StackIdentifierParentheses.ToString()))
             {
                 this.words.Add(expr.Substring(0, expr.Length - 1));
@@ -183,8 +186,7 @@ namespace PersistantModel
                     if (this.function(trimedExpr, ref i))
                     {
                         string subexpr = this.Dequeue();
-                        if (!String.IsNullOrEmpty(subexpr))
-                            this.parentheses(subexpr);
+                        this.parentheses(subexpr);
                     }
                     else
                     {
@@ -204,7 +206,15 @@ namespace PersistantModel
             string subexpr;
 
             j = i = expr.Length;
-            if (i == 0) throw new Exception(String.Format(this.errors[2], expr));
+            if (i == 0)
+                if (oper == 0)
+                {
+                    this.stock.Add('@');
+                    this.stock.Add(0);
+                    return;
+                }
+                else
+                    throw new Exception(String.Format(this.errors[2], expr));
             if (expr[--i] != this.opers[oper])
             {
                 while (--i >= 0)
@@ -304,7 +314,7 @@ namespace PersistantModel
 
         private Arithmetic calculate()
         {
-            Arithmetic a, b;
+            Arithmetic a = null, b = null;
             Arithmetic res = new NumericValue(0.0d);
             switch (this.stock[this.index])
             {
@@ -379,13 +389,46 @@ namespace PersistantModel
                     ++this.index;
                     string fun = this.words[(int)this.stock[this.index]];
                     ++this.index;
-                    a = this.calculate();
-                    switch (fun.ToLower())
+                    res = new Function(fun, this.calculate());
+                    break;
+                case ',':
+                    string paramLeft = string.Empty, paramRight = string.Empty;
+                    if (this.stock[index] == ',')
                     {
-                        default:
-                            res = a;
-                            break;
+                        ++this.index;
+                        a = this.calculate();
                     }
+                    else
+                    {
+                        b = this.calculate();
+                    }
+                    if (this.stock[index] == ',')
+                    {
+                        ++this.index;
+                        b = this.calculate();
+                    }
+                    else
+                    {
+                        b = calculate();
+                    }
+                    List<IArithmetic> list = new List<IArithmetic>();
+                    if (a is Sequence)
+                    {
+                        list.AddRange((a as Sequence).Items);
+                    }
+                    else
+                    {
+                        list.Add(a);
+                    }
+                    if (b is Sequence)
+                    {
+                        list.AddRange((b as Sequence).Items);
+                    }
+                    else
+                    {
+                        list.Add(b);
+                    }
+                    res = new Sequence(list);
                     break;
             }
             return res;

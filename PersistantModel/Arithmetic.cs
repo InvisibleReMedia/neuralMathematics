@@ -880,7 +880,7 @@ namespace PersistantModel
         /// or into its value
         /// </summary>
         /// <returns>output new equation</returns>
-        public IArithmetic Converting()
+        public virtual IArithmetic Converting()
         {
             Arithmetic output = this.Clone() as Arithmetic;
             output.FindUnknownTerms((e) =>

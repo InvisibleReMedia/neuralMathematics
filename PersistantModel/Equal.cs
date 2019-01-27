@@ -48,6 +48,22 @@ namespace PersistantModel
         #region Methods
 
         /// <summary>
+        /// When an equation can be calculable then
+        /// the result is a number else, it's an arithmetic expression
+        /// </summary>
+        /// <returns>result</returns>
+        public override IArithmetic Compute()
+        {
+            if (this.LeftOperand is Coefficient || this.LeftOperand is UnknownTerm || this.LeftOperand is Function) {
+                IVariable v = this.LeftOperand as IVariable;
+                this.AddVariable(v.Name, this.RightOperand);
+                return this.GetVariable(v.Name).Compute();
+            }
+            else
+                return (this.LeftOperand.Compute().ToDouble() == this.RightOperand.Compute().ToDouble()) ? new NumericValue(1) : new NumericValue(0);
+        }
+
+        /// <summary>
         /// Transforms equation object into a tex representation
         /// </summary>
         /// <returns>tex representation</returns>

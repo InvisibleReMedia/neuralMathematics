@@ -78,6 +78,16 @@ namespace NeuralMathematics
             tr.Cells.Add(tc);
             trg.Rows.Add(tr);
 
+            tr = new TableRow();
+            Button tn = new Button();
+            tn.Name = "Num";
+            tn.Content = "Résolution numérique du polynôme 2";
+            tn.Click += Button_Click;
+            SetButtonStyle(tn);
+            tc = new TableCell(new BlockUIContainer(tn));
+            tc.ColumnSpan = 2;
+            tr.Cells.Add(tc);
+            trg.Rows.Add(tr);
 
             tr = new TableRow();
             Button t1 = new Button();
@@ -93,6 +103,17 @@ namespace NeuralMathematics
             tc = new TableCell(new BlockUIContainer(t1));
             tr.Cells.Add(tc);
             tc = new TableCell(new BlockUIContainer(t2));
+            tr.Cells.Add(tc);
+            trg.Rows.Add(tr);
+
+            tr = new TableRow();
+            Button tf = new Button();
+            tf.Name = "F";
+            tf.Content = "Différence de polynômes";
+            tf.Click += Button_Click;
+            SetButtonStyle(tf);
+            tc = new TableCell(new BlockUIContainer(tf));
+            tc.ColumnSpan = 2;
             tr.Cells.Add(tc);
             trg.Rows.Add(tr);
 
@@ -526,6 +547,147 @@ namespace NeuralMathematics
         }
 
         /// <summary>
+        /// Test resolution numérique polynôme 2
+        /// </summary>
+        /// <returns>document</returns>
+        public static FlowDocument TestNumericalPolynome2()
+        {
+            FlowDocument fd = new FlowDocument();
+
+            TextBlock errorText = new TextBlock();
+            errorText.Foreground = new SolidColorBrush(Colors.Red);
+            fd.Blocks.Add(new BlockUIContainer(errorText));
+
+            // variables
+            Dictionary<string, IArithmetic> variables = new Dictionary<string, IArithmetic>();
+
+            Arithmetic.EventAddVariable += new EventHandler<KeyValuePair<string, IArithmetic>>((o, e) =>
+            {
+                if (e.Value != null)
+                {
+                    if (variables.ContainsKey(e.Key))
+                    {
+                        variables[e.Key] = e.Value;
+                    }
+                    else
+                    {
+                        variables.Add(e.Key, e.Value);
+                    }
+                }
+                else
+                {
+                    if (variables.ContainsKey(e.Key))
+                        variables.Remove(e.Key);
+                }
+            });
+            Arithmetic.EventGetVariable = new Func<string, IArithmetic>((s) =>
+            {
+                if (variables.ContainsKey(s)) return variables[s];
+                else return null;
+            });
+
+            Arithmetic.EventError += new EventHandler<OverflowException>((o, e) =>
+            {
+                errorText.Text = e.Message;
+            });
+
+            Equal function = new Equal(C("y"), (C("x") ^ 2.0d) + C('b') * "x" + 'c');
+            Wording w = new Wording("Résolution du polynôme d'ordre 2", "Calcul de la réciproque");
+            w.Content.Add(new Texte("Soit l'équation d'un polynôme d'ordre 2 en fonction de l'inconnu {x}", true),
+                          function);
+
+            Arithmetic yPrime = new Equal(C("y'"), C(2.0d) * C("x_0") + C('b'));
+            Arithmetic dx1 = new Equal(C("dx_+"), C("x_1") - C("x_0"));
+            Arithmetic dx2 = new Equal(C("dx_-"), C("x_2") - C("x_0"));
+            Arithmetic x0 = new Equal(C("x_0"), C(1.0));
+            Arithmetic y0 = new Equal(C("y_0"), new Sum(C("x_0") ^ 2.0, C('b') * C("x_0"), C('c')));
+            Arithmetic dy = new Equal(C("dy"), C("dx") * (C("dy") + C("y'")));
+            Arithmetic diffy = new Equal(C("dy"), C("y") - C("y_0"));
+
+            y0.Let("b", 2.0d);
+            y0.Let("c", 1.0d);
+            x0.Let("x_0", 1.0d);
+            y0.Let("y_0", y0.RightOperand);
+            dy.Let("y", 4.0);
+            dy.Let("dy", diffy.RightOperand);
+            yPrime.Let("y'", yPrime.RightOperand);
+
+
+            DockPanel spB = new DockPanel();
+            TextBlock tbB = new TextBlock();
+            tbB.Text = "Coefficient B";
+            TextBox tCoeffB = new TextBox();
+            tCoeffB.Name = "textBox_b";
+            tCoeffB.Text = "2";
+            spB.Children.Add(tbB);
+            spB.Children.Add(tCoeffB);
+            fd.Blocks.Add(new BlockUIContainer(spB));
+
+            DockPanel spC = new DockPanel();
+            TextBlock tbC = new TextBlock();
+            tbC.Text = "Coefficient C";
+            TextBox tCoeffC = new TextBox();
+            tCoeffC.Name = "textBox_c";
+            tCoeffC.Text = "1";
+            spC.Children.Add(tbC);
+            spC.Children.Add(tCoeffC);
+            fd.Blocks.Add(new BlockUIContainer(spC));
+
+            DockPanel spy = new DockPanel();
+            TextBlock tby = new TextBlock();
+            tby.Text = "Valeur Y";
+            TextBox tCoeffY = new TextBox();
+            tCoeffY.Name = "textBox_y";
+            tCoeffY.Text = "4";
+            spy.Children.Add(tby);
+            spy.Children.Add(tCoeffY);
+            fd.Blocks.Add(new BlockUIContainer(spy));
+
+            WrapPanel panel = new WrapPanel();
+            FlowDocumentScrollViewer scrollViewer = new FlowDocumentScrollViewer();
+            panel.Children.Add(scrollViewer);
+
+            fd.Blocks.Add(new BlockUIContainer(panel));
+
+            Button btCalc = new Button();
+            btCalc.Name = "btCalc";
+            btCalc.Content = "Recalculer";
+            btCalc.Click += new RoutedEventHandler((o, e) =>
+            {
+                Polynome2 p = new Polynome2();
+                double b, c, y, x;
+                b = Convert.ToDouble(tCoeffB.Text);
+                c = Convert.ToDouble(tCoeffC.Text);
+                y = Convert.ToDouble(tCoeffY.Text);
+                p.searchNumerical(b, c, y, 17, out x);
+                function.Let("b", b);
+                function.Let("c", c);
+                function.Let("x", x);
+                Wording w2 = new Wording("Application", "Modifiez les zones de saisie et cliquer sur le bouton Recalculer",
+                                         new Exercice(1, "Calculs", "", new Answer("", true, new SequenceProof(
+                                                    new Texte("Valeur calculée numériquement {x = " + x.ToString() + "}", true),
+                                                    new Texte("Preuve : {f(" + x.ToString() + ") = " + function.RightOperand.Converting().ToDouble() + "}", true)
+                ))));
+                FlowDocument f2 = new FlowDocument();
+                scrollViewer.Document = null;
+                w2.ToDocument(f2);
+                scrollViewer.Document = f2;
+                scrollViewer.UpdateLayout();
+            });
+            fd.Blocks.Add(new BlockUIContainer(btCalc));
+
+            w.ToDocument(fd);
+            Button but = new Button();
+            but.Name = "GoBack";
+            but.Content = "Retour";
+            but.Click += Button_Click;
+            SetButtonStyle(but);
+            fd.Blocks.Add(new BlockUIContainer(but));
+
+            return fd;
+        }
+
+        /// <summary>
         /// Solve polynôme 3
         /// </summary>
         /// <returns>document</returns>
@@ -715,6 +877,68 @@ namespace NeuralMathematics
             fd.Blocks.Add(new BlockUIContainer(but));
 
             return fd;
+        }
+
+        public static FlowDocument Differential()
+        {
+
+            FlowDocument fd = new FlowDocument();
+
+            TextBlock errorText = new TextBlock();
+            errorText.Foreground = new SolidColorBrush(Colors.Red);
+            fd.Blocks.Add(new BlockUIContainer(errorText));
+
+            // variables
+            Dictionary<string, IArithmetic> variables = new Dictionary<string, IArithmetic>();
+
+            Arithmetic.EventAddVariable += new EventHandler<KeyValuePair<string, IArithmetic>>((o, e) =>
+            {
+                if (e.Value != null)
+                {
+                    if (variables.ContainsKey(e.Key))
+                    {
+                        variables[e.Key] = e.Value;
+                    }
+                    else
+                    {
+                        variables.Add(e.Key, e.Value);
+                    }
+                }
+                else
+                {
+                    if (variables.ContainsKey(e.Key))
+                        variables.Remove(e.Key);
+                }
+            });
+            Arithmetic.EventGetVariable = new Func<string, IArithmetic>((s) =>
+            {
+                if (variables.ContainsKey(s)) return variables[s];
+                else return null;
+            });
+            Arithmetic.EventError += new EventHandler<OverflowException>((o, e) =>
+            {
+                errorText.Text = e.Message;
+            });
+
+            Wording w = new Wording("Diffentielle des polynômes", "Différence entre des polynômes d'ordre différents",
+                            new Exercice(1, "Exprimez le taux de variation d'une fonction quelconque", "Notion d'analyse",
+                                new Answer("On calcule le rapport des différences en ordonnée et en abscisse",
+                                    new SequenceProof(new Equal((@"\tau(F(X),X_0,\mu)").ToArithmetic(), (@"(F(X_0 + \mu) - F(X_0)) / \mu").ToArithmetic()))
+                                                      
+                                )
+                            )
+            );
+
+            w.ToDocument(fd);
+            Button but = new Button();
+            but.Name = "GoBack";
+            but.Content = "Retour";
+            but.Click += Button_Click;
+            SetButtonStyle(but);
+            fd.Blocks.Add(new BlockUIContainer(but));
+
+            return fd;
+
         }
     }
 }

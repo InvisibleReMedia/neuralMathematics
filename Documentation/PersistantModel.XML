@@ -78,12 +78,11 @@
             <param name="a">arithmetic class</param>
             <returns>true if it is a double</returns>
         </member>
-        <member name="T:PersistantModel.Gathering`1">
+        <member name="T:PersistantModel.Function">
             <summary>
-            Class to gather all records
-            into a graph of shared nodes
+            Class to handle a function and
+            parameters separated by a ,
             </summary>
-            <typeparam name="T">Persistent object</typeparam>
         </member>
         <member name="T:PersistantModel.Arithmetic">
             <summary>
@@ -868,6 +867,118 @@
             Static event EventError
             </summary>
         </member>
+        <member name="F:PersistantModel.Function.functionName">
+            <summary>
+            Index name for function
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Function.parametersName">
+            <summary>
+            Index name for parameter list
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Function.#ctor">
+            <summary>
+            Non empty creatable class
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Function.#ctor(System.String,Interfaces.IArithmetic[])">
+            <summary>
+            Constructor completed
+            </summary>
+            <param name="f">function name</param>
+            <param name="pars">parameters</param>
+        </member>
+        <member name="M:PersistantModel.Function.#ctor(System.String,System.Collections.Generic.List{Interfaces.IArithmetic})">
+            <summary>
+            Constructor completed
+            </summary>
+            <param name="f">function name</param>
+            <param name="list">parameters</param>
+        </member>
+        <member name="M:PersistantModel.Function.#ctor(System.String,PersistantModel.Sequence)">
+            <summary>
+            Constructor completed
+            </summary>
+            <param name="f">function name</param>
+            <param name="s">parameters</param>
+        </member>
+        <member name="M:PersistantModel.Function.Converting">
+            <summary>
+            Converts all sub-variables into an equation
+            or into its value
+            </summary>
+            <returns>output new equation</returns>
+        </member>
+        <member name="M:PersistantModel.Function.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:PersistantModel.Function.ToString">
+            <summary>
+            Transforms equation object into a string representation
+            </summary>
+            <returns>string representation</returns>
+        </member>
+        <member name="M:PersistantModel.Function.Create">
+            <summary>
+            Create a new arithmetic class
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Function.Name">
+            <summary>
+            Gets the name of this coefficient
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Function.Operator">
+            <summary>
+            Gets the operator ID
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Function.IsBinaryOperator">
+            <summary>
+            Gets binary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Function.IsUnaryOperator">
+            <summary>
+            Gets unary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Function.IsMultipleOperator">
+            <summary>
+            Gets multiple switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Function.IsNotOperator">
+            <summary>
+            Gets true if it's not an operator
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Function.FunctionName">
+            <summary>
+            Gets or sets the function name
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Function.Parameters">
+            <summary>
+            Gets all parameters
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Function.Value">
+            <summary>
+            Gets or sets the value
+            </summary>
+        </member>
+        <member name="T:PersistantModel.Gathering`1">
+            <summary>
+            Class to gather all records
+            into a graph of shared nodes
+            </summary>
+            <typeparam name="T">Persistent object</typeparam>
+        </member>
         <member name="F:PersistantModel.Gathering`1.records">
             <summary>
             Records
@@ -1159,6 +1270,100 @@
         <member name="P:PersistantModel.RecordZone`1.Records">
             <summary>
             Gets all records
+            </summary>
+        </member>
+        <member name="T:PersistantModel.Sequence">
+            <summary>
+            Sommation of multiple terms
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Sequence.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Sequence.#ctor(Interfaces.IArithmetic[])">
+            <summary>
+            Constructor with a input list
+            </summary>
+            <param name="inputs">input list</param>
+        </member>
+        <member name="M:PersistantModel.Sequence.#ctor(System.Collections.Generic.List{Interfaces.IArithmetic})">
+            <summary>
+            Constructor with a input list
+            </summary>
+            <param name="list">input list</param>
+        </member>
+        <member name="M:PersistantModel.Sequence.Add(Interfaces.IArithmetic)">
+            <summary>
+            Add an addition to the sum
+            </summary>
+            <param name="a">element to add</param>
+        </member>
+        <member name="M:PersistantModel.Sequence.Replace(Interfaces.IArithmetic,Interfaces.IArithmetic)">
+            <summary>
+            Replace an element to an another
+            </summary>
+            <param name="old">old element</param>
+            <param name="n">new element</param>
+        </member>
+        <member name="M:PersistantModel.Sequence.ToTex">
+            <summary>
+            Transforms equation object into a tex representation
+            </summary>
+            <returns>tex representation</returns>
+        </member>
+        <member name="M:PersistantModel.Sequence.ToString">
+            <summary>
+            Transforms equation object into a string representation
+            </summary>
+            <returns>string representation</returns>
+        </member>
+        <member name="M:PersistantModel.Sequence.ToFlat(PersistantModel.Sequence)">
+            <summary>
+            Flat the tree
+            </summary>
+            <param name="s">sequence</param>
+            <returns>flat list</returns>
+        </member>
+        <member name="M:PersistantModel.Sequence.Create">
+            <summary>
+            Create a new arithmetic class
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sequence.Operator">
+            <summary>
+            Gets the operator ID
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sequence.IsBinaryOperator">
+            <summary>
+            Gets binary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sequence.IsUnaryOperator">
+            <summary>
+            Gets unary switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sequence.IsMultipleOperator">
+            <summary>
+            Gets multiple switch test
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sequence.IsNotOperator">
+            <summary>
+            Gets true if it's not an operator
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sequence.Items">
+            <summary>
+            Gets the enumeration of elements by sommation
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Sequence.List">
+            <summary>
+            Gets the list source
             </summary>
         </member>
         <member name="T:PersistantModel.Texte">
@@ -1623,6 +1828,13 @@
             </summary>
             <param name="t1">left equation</param>
             <param name="t2">right equation</param>
+        </member>
+        <member name="M:PersistantModel.Equal.Compute">
+            <summary>
+            When an equation can be calculable then
+            the result is a number else, it's an arithmetic expression
+            </summary>
+            <returns>result</returns>
         </member>
         <member name="M:PersistantModel.Equal.ToTex">
             <summary>
