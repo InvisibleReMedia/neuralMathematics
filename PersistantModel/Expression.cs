@@ -51,7 +51,7 @@ namespace PersistantModel
         private bool function(string expr, ref int i)
         {
             bool result = false;
-            expr = expr.TrimEnd();
+            expr = expr.Trim();
             if (expr.EndsWith(Compute.StackIdentifierParentheses.ToString()))
             {
                 this.words.Add(expr.Substring(0, expr.Length - 1));

@@ -926,7 +926,82 @@ namespace NeuralMathematics
                                     new SequenceProof(new Equal((@"\tau(F(X),X_0,\mu)").ToArithmetic(), (@"(F(X_0 + \mu) - F(X_0)) / \mu").ToArithmetic()))
                                                       
                                 )
+                            ),
+                            new Exercice(2, "Exprimez la différence des ordonnées en fonction du taux de variation", @"Multipliez par {\mu}", true, 
+                                new Answer(@"On multiplie le taux de variation {\tau} par {\mu}", true,
+                                    new SequenceProof(new Equal((@"\mu * \tau(F(X),X_0,\mu)").ToArithmetic(), (@"F(X_0 + \mu) - F(X_0)").ToArithmetic()))
+                                )
+                            ),
+                            new Exercice(3, @"Exprimez le taux de variation pour la fonction particulière {F(X)=X*H(X)+c} où {c} est un coefficient et {H(X)} une sous-fonction", "", true,
+                                new Answer(@"La fonction est définie {F(X)=X*H(X)+c}", true,
+                                    new SequenceProof(
+                                        new Equal((@"\tau(F(X),X_0,\mu)").ToArithmetic(), (@"(F(X_0 + \mu) - F(X_0)) / \mu").ToArithmetic()),
+                                        new Equal((@"\tau(F(X),X_0,\mu)").ToArithmetic(), (@"((X_0 + \mu)*H(X_0 + \mu) - X_0*H(X_0)) / \mu").ToArithmetic()),
+                                        new Texte(@"Je ne connais pas la valeur numérique de {H(X_0 + \mu)}. Donc, je tente de la supprimer de l'équation", true),
+                                        new Equal((@"\tau(F(X),X_0,\mu)").ToArithmetic(), (@"((X_0 + \mu)*H(X_0 + \mu) - (X_0 + \mu)*H(X_0) + (X_0 + \mu)*H(X_0) - X_0*H(X_0)) / \mu").ToArithmetic()),
+                                        new Equal((@"\tau(F(X),X_0,\mu)").ToArithmetic(), (@"((X_0 + \mu)*(H(X_0 + \mu) - H(X_0)) + \mu*H(X_0)) / \mu").ToArithmetic()),
+                                        new Equal((@"\tau(F(X),X_0,\mu)").ToArithmetic(), (@"(X_0 + \mu)*(H(X_0 + \mu) - H(X_0)) / \mu + H(X_0)").ToArithmetic()),
+                                        new Equal((@"\tau(F(X),X_0,\mu)").ToArithmetic(), (@"(X_0 + \mu)*\tau(H(X),X_0,\mu) + H(X_0)").ToArithmetic())
+                                    )
+                                )
+                            ),
+                            new Exercice(4, "Exprimez la différence des ordonnées en fonction du taux de variation de {F}", @"Multipliez par {\mu}", true, 
+                                new Answer(@"On multiplie le taux de variation de {F} par {\mu}", true,
+                                    new SequenceProof(new Equal((@"F(X_0 + \mu) - F(X_0)").ToArithmetic(), (@"\mu*((X_0 + \mu)*\tau(H(X),X_0,\mu) + H(X_0))").ToArithmetic()))
+                                )
+                            ),
+                            new Exercice(5, "Simplifiez l'équation en supprimant le taux de variation de {H}", "", true,
+                                new Answer("", false,
+                                    new SequenceProof(new Equal((@"F(X) - F(X_0)").ToArithmetic(), (@"X*(H(X)-H(X_0)) + \mu*H(X_0)").ToArithmetic()))
+                                )
+                            ),
+                            new Exercice(6, @"Exprimez le taux de variation pour deux déplacements successifs {\mu_1} et {\mu_2}", "", true,
+                                new Answer(@"", false,
+                                    new SequenceProof(new Equal((@"\tau(F(X),X_0,\mu_1 + \mu_2)").ToArithmetic(), (@"(X_0 + \mu_1 + \mu_2)*\tau(H(X),X_0,\mu_1 + \mu_2) + H(X_0)").ToArithmetic()))
+                                )
+                            ),
+                            new Exercice(7, @"Exprimez la somme de deux taux de variation pour deux déplacements successifs {\mu_1} et {\mu_2}", "", true,
+                                new Answer(@"", false,
+                                    new SequenceProof(
+                                        new Equal((@"\mu_1*\tau(F(X),X_0,\mu_1) + \mu_2*\tau(F(X),X_0 + \mu_1, \mu_2)").ToArithmetic(), (@"\mu_1 * ((X_0 + \mu_1)*\tau(H(X),X_0,\mu_1) + H(X_0)) + ...").ToArithmetic()),
+                                        new Texte("     {" + (@"\mu_2 * ((X_0 + \mu_1 + \mu_2)*\tau(H(X),X_0 + \mu_1, \mu_2) + H(X_0+\mu_1))").ToArithmetic().ToTex() + "}", true)
+                                    )
+                                )
+                            ),
+                            new Exercice(8, "Montrez que la somme de deux déplacements successifs est égal à la somme des déplacements", "", false,
+                                new Answer("", false,
+                                    new SequenceProof(
+                                        new Texte("On multiplie chaque taux de variation par le déplacement"),
+                                        new Equal((@"F(X) - F(X_0)").ToArithmetic(), (@"(\mu_1 + \mu_2)*\tau(F(X),X_0,\mu_1 + \mu_2)").ToArithmetic()),
+                                        new Equal((@"F(X_1) - F(X_0)").ToArithmetic(), (@"\mu_1*\tau(F(X),X_0,\mu_1)").ToArithmetic()),
+                                        new Equal((@"F(X) - F(X_1)").ToArithmetic(), (@"\mu_2*\tau(F(X),X_1,\mu_2)").ToArithmetic()),
+                                        new Equal((@"F(X) - F(X_0)").ToArithmetic(), (@"F(X_1) - F(X_0) + F(X) - F(X_1)").ToArithmetic()),
+                                        new Texte("L'égalité est vraie")
+                                    )
+                                )
+                            ),
+                            new Exercice(9, @"Isolez {X} dans l'équation obtenue à l'exercice 5 et posez {\mu = \mu_1 + \mu_2}", "", true,
+                                new Answer("", false,
+                                    new SequenceProof(new Equal((@"X").ToArithmetic(), (@"(F(X) - F(X_0) - (\mu_1 + \mu_2)*H(X_0)) / (H(X)-H(X_0))").ToArithmetic()))
+                                )
+                            ),
+                            new Exercice(10, @"Remplacez la différentielle de {F} par la somme de deux déplacements successifs et simplifiez", "", true,
+                                new Answer("", false,
+                                    new SequenceProof(
+                                        new Equal((@"X").ToArithmetic(), (@"(X_1*(H(X_1)-H(X_0)) + \mu*H(X_0) + X*(H(X)-H(X_1)) + \mu_2*H(X_1) - (\mu_1 + \mu_2)*H(X_0)) / (H(X)-H(X_0))").ToArithmetic()),
+                                        new Equal((@"X").ToArithmetic(), (@"(X_1*(H(X_1)-H(X_0)) + X*(H(X)-H(X_1)) - \mu_2*(H(X_1) - H(X_0))) / (H(X)-H(X_0))").ToArithmetic()),
+                                        new Equal((@"X").ToArithmetic(), (@"((X_1-\mu_2)*(H(X_1)-H(X_0)) + X*(H(X)-H(X_1))) / (H(X)-H(X_0))").ToArithmetic()),
+                                        new Equal((@"X*(H(X)-H(X_0))").ToArithmetic(), (@"(X_1-\mu_2)*(H(X_1)-H(X_0)) + X*(H(X)-H(X_1))").ToArithmetic()),
+                                        new Equal((@"X*(H(X)-H(X_0)) - X*(H(X)-H(X_1))").ToArithmetic(), (@"(X_1-\mu_2)*(H(X_1)-H(X_0))").ToArithmetic()),
+                                        new Equal((@"X*(H(X_1)-H(X_0))").ToArithmetic(), (@"(X_1-\mu_2)*(H(X_1)-H(X_0))").ToArithmetic()),
+                                        new Equal((@"X_0 + \mu_1 + \mu_2").ToArithmetic(), (@"X_0 + \mu_1 - \mu_2").ToArithmetic()),
+                                        new Equal((@"\mu_2").ToArithmetic(), (@"0").ToArithmetic())
+
+                                    )
+                                )
                             )
+
+
             );
 
             w.ToDocument(fd);
