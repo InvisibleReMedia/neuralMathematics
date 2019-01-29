@@ -80,6 +80,10 @@ namespace NeuralMathematics
                     this.doc.Document = Applicatif.TestPolynome2();
                     this.doc.UpdateLayout();
                     break;
+                case "TF3":
+                    this.doc.Document = Applicatif.Differential3();
+                    this.doc.UpdateLayout();
+                    break;
                 case "P3":
                     this.doc.Document = Applicatif.SolvePolynome3();
                     this.doc.UpdateLayout();

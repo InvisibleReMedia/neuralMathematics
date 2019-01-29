@@ -113,7 +113,13 @@ namespace NeuralMathematics
             tf.Click += Button_Click;
             SetButtonStyle(tf);
             tc = new TableCell(new BlockUIContainer(tf));
-            tc.ColumnSpan = 2;
+            tr.Cells.Add(tc);
+            Button tf3 = new Button();
+            tf3.Name = "TF3";
+            tf3.Content = "Différentielle du polynôme 3";
+            tf3.Click += Button_Click;
+            SetButtonStyle(tf3);
+            tc = new TableCell(new BlockUIContainer(tf3));
             tr.Cells.Add(tc);
             trg.Rows.Add(tr);
 
@@ -1015,5 +1021,98 @@ namespace NeuralMathematics
             return fd;
 
         }
+
+        public static FlowDocument Differential3()
+        {
+
+            FlowDocument fd = new FlowDocument();
+
+            TextBlock errorText = new TextBlock();
+            errorText.Foreground = new SolidColorBrush(Colors.Red);
+            fd.Blocks.Add(new BlockUIContainer(errorText));
+
+            // variables
+            Dictionary<string, IArithmetic> variables = new Dictionary<string, IArithmetic>();
+
+            Arithmetic.EventAddVariable += new EventHandler<KeyValuePair<string, IArithmetic>>((o, e) =>
+            {
+                if (e.Value != null)
+                {
+                    if (variables.ContainsKey(e.Key))
+                    {
+                        variables[e.Key] = e.Value;
+                    }
+                    else
+                    {
+                        variables.Add(e.Key, e.Value);
+                    }
+                }
+                else
+                {
+                    if (variables.ContainsKey(e.Key))
+                        variables.Remove(e.Key);
+                }
+            });
+            Arithmetic.EventGetVariable = new Func<string, IArithmetic>((s) =>
+            {
+                if (variables.ContainsKey(s)) return variables[s];
+                else return null;
+            });
+            Arithmetic.EventError += new EventHandler<OverflowException>((o, e) =>
+            {
+                errorText.Text = e.Message;
+            });
+
+            Wording w = new Wording("Diffentielle du polynôme 3", "Différence entre deux points d'un même polynôme 3",
+                            new Exercice(1, "Exprimez la différentielle du polynôme 3", "",
+                                new Answer("On présente la différentielle du polynôme 3",
+                                    new SequenceProof(new Equal((@"Y - Y_0").ToArithmetic(), (@"DX*(DX^2 + (f''(X_0)/2)*DX + f'(X_0))").ToArithmetic()))
+
+                                )
+                            ),
+                            new Exercice(2, "Exprimez les autres solutions {X_1} et {X_2} pour un point {X_0} donné", "", true,
+                                new Answer(@"On pose la différentielle nulle",
+                                    new SequenceProof(
+                                        new Equal((@"0").ToArithmetic(), (@"DX*(DX^2 + f''(X_0)/2*DX + f'(X_0))").ToArithmetic()),
+                                        new Texte("On résout l'équation d'ordre 2 dans la différentielle"),
+                                        new Equal(("X_1").ToArithmetic(), ("X_0 + ((f''(X_0)/4)^2 - f'(X_0))v2 - f''(X_0)/4").ToArithmetic()),
+                                        new Equal(("X_2").ToArithmetic(), ("X_0 - ((f''(X_0)/4)^2 - f'(X_0))v2 - f''(X_0)/4").ToArithmetic())
+                                )
+                            )),
+                            new Exercice(3, "Exprimez la fonction {Y} selon le produit de trois fonctions", "Les fonctions sont affines", true,
+                                new Answer(@"On développe la fonction {Y}",
+                                    new SequenceProof(
+                                        new Equal(("Y").ToArithmetic(), (@"(X-X_0)*(X-X_1)*(X-X_2)").ToArithmetic()),
+                                        new Texte("On développe cette équation"),
+                                        new Equal(("Y").ToArithmetic(), ("X^3 - (X_0+X_1+X_2)*X^2 + (X_0*[X_1+X_2]+X_1*X_2)*X - X_0*X_1*X_2").ToArithmetic())
+                                )
+                            )),
+                            new Exercice(4, "Remplacez dans l'exercice 3, les équations de {X_1} et {X_2}", "", true,
+                                new Answer(@"",
+                                    new SequenceProof(
+                                        new Equal("Q".ToArithmetic(), "((X_0 - f''(X_0)/4) + ((f''(X_0)/4)^2 - f'(X_0))v2)*((X_0 - f''(X_0)/4) - ((f''(X_0)/4)^2 - f'(X_0))v2)".ToArithmetic()),
+                                        new Equal("Q".ToArithmetic(), "(X_0 - f''(X_0)/4) ^2  - (f''(X_0)/4)^2 + f'(X_0)".ToArithmetic()),
+                                        new Equal("Q".ToArithmetic(), "X_0^2 - X_0*f''(X_0)/2 + f'(X_0)".ToArithmetic()),
+                                        new Equal(("Y").ToArithmetic(), ("X^3 - (3*X_0-f''(X_0)/2)*X^2 + (2*X_0*(X_0 - f''(X_0)/4)+Q)*X + X_0*Q").ToArithmetic()),
+                                        new Equal(("Y").ToArithmetic(), ("X^3 - (3*X_0-f''(X_0)/2)*X^2 + (2*X_0*(X_0 - f''(X_0)/4)+X_0^2 - X_0*f''(X_0)/2 + f'(X_0))*X - X_0*Q").ToArithmetic()),
+                                        new Equal(("Y").ToArithmetic(), ("X^3 - (3*X_0-f''(X_0)/2)*X^2 + (3*X_0^2 - X_0*f''(X_0) + f'(X_0))*X - (X_0^3 - X_0^2*f''(X_0)/2 + X_0*f'(X_0))").ToArithmetic()),
+                                        new Equal(("Y").ToArithmetic(), ("X^3 + b*X^2 + c*X - (X_0^3 - X_0^2*f''(X_0)/2 + X_0*f'(X_0))").ToArithmetic())
+                                )
+                            ))
+            );
+
+            w.ToDocument(fd);
+            Button but = new Button();
+            but.Name = "GoBack";
+            but.Content = "Retour";
+            but.Click += Button_Click;
+            SetButtonStyle(but);
+            fd.Blocks.Add(new BlockUIContainer(but));
+
+            return fd;
+
+        }
+
+    
     }
 }
