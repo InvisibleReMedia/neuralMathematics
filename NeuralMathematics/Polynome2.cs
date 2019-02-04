@@ -80,7 +80,8 @@ namespace NeuralMathematics
             { "DX_1", ("(DY + (Y' / 2)^2) v 2 - Y'/2").ToArithmetic() },
             { "DX_2", ("-((DY + (Y' / 2)^2) v 2) - Y'/2").ToArithmetic() },
             { "X_1", ("X_0 + DX_1").ToArithmetic() },
-            { "X_2", ("X_0 + DX_2").ToArithmetic() }
+            { "X_2", ("X_0 + DX_2").ToArithmetic() },
+            { "Complementaire", "-(X_0+b)".ToArithmetic() }
 
         };
 
@@ -180,6 +181,80 @@ namespace NeuralMathematics
             return function.Converting().Compute().ToDouble();
         }
 
+
+        /// <summary>
+        /// Differential DY
+        /// </summary>
+        /// <param name="y">y</param>
+        /// <param name="y0">y0</param>
+        /// <returns>value</returns>
+        public double Differential(double y, double y0)
+        {
+            IArithmetic function = Polynome2.functions["DY"];
+            function.Let("Y", y);
+            function.Let("Y_0", y0);
+            return function.Converting().ToDouble();
+        }
+
+        /// <summary>
+        /// Differential DY
+        /// </summary>
+        /// <param name="y">y</param>
+        /// <param name="y0">y0</param>
+        /// <param name="b">coefficient b</param>
+        /// <param name="c">coefficient c</param>
+        /// <returns>value</returns>
+        public double Differential(double y, double y0, double b, double c)
+        {
+            IArithmetic function = Polynome2.functions["DY"];
+            this.CoefficientB = b;
+            this.CoefficientC = c;
+            function.Let("b", this.CoefficientB);
+            function.Let("c", this.CoefficientC);
+            function.Let("Y", y);
+            function.Let("Y_0", y0);
+            return function.Converting().ToDouble();
+        }
+
+        /// <summary>
+        /// Differential DX
+        /// </summary>
+        /// <param name="dx">dx</param>
+        /// <param name="x0">x0</param>
+        /// <returns>value</returns>
+        public double DifferentialDX(double dx, double x0)
+        {
+            IArithmetic function = ("DX*[DX+Y']").ToArithmetic();
+            IArithmetic yPrime = ("2*X_0 + b").ToArithmetic();
+            function.Let("b", this.CoefficientB);
+            function.Let("c", this.CoefficientC);
+            function.Let("Y'", yPrime);
+            function.Let("X_0", x0);
+            return function.Converting().ToDouble();
+        }
+
+        /// <summary>
+        /// Differential DX
+        /// </summary>
+        /// <param name="dx">dx</param>
+        /// <param name="x0">x0</param>
+        /// <param name="b">coefficient b</param>
+        /// <param name="c">coefficient c</param>
+        /// <returns>value</returns>
+        public double DifferentialDX(double dx, double x0, double b, double c)
+        {
+            IArithmetic function = ("DX*[DX+Y']").ToArithmetic();
+            IArithmetic yPrime = ("2*X_0 + b").ToArithmetic();
+            this.CoefficientB = b;
+            this.CoefficientC = c;
+            function.Let("b", this.CoefficientB);
+            function.Let("c", this.CoefficientC);
+            function.Let("Y'", yPrime);
+            function.Let("X_0", x0);
+            function.Let("DX", dx);
+            return function.Converting().ToDouble();
+        }
+
         /// <summary>
         /// Compute Y0 value
         /// </summary>
@@ -217,11 +292,12 @@ namespace NeuralMathematics
             x1.Let("b", this.CoefficientB);
             x1.Let("c", this.CoefficientC);
             x1.Let("X_0", this.TermX0);
-            x1.Let("Y_0", y0);
+            x1.Let("Y_0", y0.Converting().ToDouble());
             x1.Let("Y", this.TermY);
+            x1.Let("Y", Y);
             x1.Let("DY", dy);
-            x1.Let("DX", functionDX);
-            x1.Let("Y'", yPrime);
+            x1.Let("DX_1", functionDX);
+            x1.Let("Y'", yPrime.Converting().ToDouble());
             return x1.Converting().Compute().ToDouble();
         }
 
@@ -247,11 +323,12 @@ namespace NeuralMathematics
             x1.Let("b", this.CoefficientB);
             x1.Let("c", this.CoefficientC);
             x1.Let("X_0", this.TermX0);
-            x1.Let("Y_0", y0);
+            x1.Let("Y_0", y0.Converting().ToDouble());
             x1.Let("Y", this.TermY);
+            x1.Let("Y", Y);
             x1.Let("DY", dy);
-            x1.Let("DX", functionDX);
-            x1.Let("Y'", yPrime);
+            x1.Let("DX_1", functionDX);
+            x1.Let("Y'", yPrime.Converting().ToDouble());
             return x1.Converting().Compute().ToDouble();
         }
 
@@ -273,11 +350,12 @@ namespace NeuralMathematics
             x2.Let("b", this.CoefficientB);
             x2.Let("c", this.CoefficientC);
             x2.Let("X_0", this.TermX0);
-            x2.Let("Y_0", y0);
+            x2.Let("Y_0", y0.Converting().ToDouble());
             x2.Let("Y", this.TermY);
+            x2.Let("Y", Y);
             x2.Let("DY", dy);
-            x2.Let("DX", functionDX);
-            x2.Let("Y'", yPrime);
+            x2.Let("DX_2", functionDX);
+            x2.Let("Y'", yPrime.Converting().ToDouble());
             return x2.Converting().Compute().ToDouble();
         }
 
@@ -303,11 +381,12 @@ namespace NeuralMathematics
             x2.Let("b", this.CoefficientB);
             x2.Let("c", this.CoefficientC);
             x2.Let("X_0", this.TermX0);
-            x2.Let("Y_0", y0);
+            x2.Let("Y_0", y0.Converting().ToDouble());
             x2.Let("Y", this.TermY);
+            x2.Let("Y", Y);
             x2.Let("DY", dy);
-            x2.Let("DX", functionDX);
-            x2.Let("Y'", yPrime);
+            x2.Let("DX_2", functionDX);
+            x2.Let("Y'", yPrime.Converting().ToDouble());
             return x2.Converting().Compute().ToDouble();
         }
 
@@ -391,286 +470,171 @@ namespace NeuralMathematics
 
 
         /// <summary>
-        /// Calculate numerical difference
+        /// Compare y and the iterative selection value
         /// </summary>
-        /// <param name="y">y input</param>
-        /// <param name="x0">x0 input</param>
-        /// <param name="dx">size</param>
-        /// <returns>numerical difference</returns>
-        public int searchNumericalCalc(double y, double x0, double dx)
+        /// <param name="x0">x0 start</param>
+        /// <param name="dx">difference</param>
+        /// <param name="y">y to find</param>
+        /// <param name="n">digit n</param>
+        /// <param name="b">coeff b</param>
+        /// <param name="c">coeff c</param>
+        /// <returns>1, 0, -1</returns>
+        private int CompareY(double x0, double dx, double y, out int n, double b, double c)
         {
-            IArithmetic f = functions["Y_0"].Clone() as IArithmetic;
-            f.Let("X_0", x0);
-            f.Let("b", this.CoefficientB);
-            f.Let("c", this.CoefficientC);
-            double y0 = f.Converting().ToDouble();
-            IArithmetic diffY = functions["DY"].Clone() as IArithmetic;
-            diffY.Let("Y", y);
-            diffY.Let("Y_0", y0);
-            double dy = diffY.Converting().ToDouble();
-            IArithmetic fdx = ("dx*[dx + Y']").ToArithmetic();
-            fdx.Let("dx", dx);
-            fdx.Let("Y'", functions["Y'"].Converting().ToDouble());
-            double dyCalc = fdx.Converting().Converting().ToDouble();
-            if (dyCalc == dy)
+            List<Tuple<int, double>> res;
+            Tuple<int, double>[] tab = new Tuple<int, double>[10];
+            for (int cnt = 0; cnt < 10; ++cnt)
+            {
+                tab[cnt] = new Tuple<int, double>(cnt, y - this.ComputeY0(x0 + cnt * dx + dx, b, c));
+            }
+            res = tab.OrderBy(key => key.Item2).ToList();
+            n = res.ElementAt(0).Item1;
+            if (res.ElementAt(0).Item2 == 0)
             {
                 return 0;
             }
-            else if (dyCalc < dy)
-            {
-                return -1;
-            }
-            else
+            else if (res.ElementAt(0).Item2 > 0)
             {
                 return 1;
             }
-        }
-
-        /// <summary>
-        /// Search a numerical value for
-        /// finding root or one of x values for a given y value
-        /// </summary>
-        /// <param name="y">y value</param>
-        /// <param name="dec">number position</param>
-        /// <param name="x0">initial value</param>
-        /// <param name="x">x value</param>
-        /// <returns>true if found</returns>
-        public bool searchNumericalIntegerDigits(double y, double dec, double x0, out double x)
-        {
-            double turn = 9;
-            double x0Step = 9 * Math.Pow(10, dec);
-            while (turn > 0)
-            {
-                int c = searchNumericalCalc(y, x0Step, -Math.Pow(10, dec));
-                if (c == 0)
-                {
-                    x = x0 + x0Step - Math.Pow(10, dec);
-                    return true;
-                }
-                else if (c == -1)
-                {
-                    if (dec > 0)
-                    {
-                        if (searchNumericalIntegerDigits(y, dec - 1, x0 + x0Step, out x))
-                        {
-                            x = x - Math.Pow(10, dec);
-                            return true;
-                        }
-                        else
-                            return false;
-                    }
-                    else
-                    {
-                        x = x0 + x0Step - Math.Pow(10, dec);
-                        return true;
-                    }
-                }
-                else
-                {
-                    x0Step -= Math.Pow(10, dec);
-                }
-                --turn;
-            }
-            x = 0;
-            return false;
-        }
-        /// <summary>
-        /// Search a numerical value for
-        /// finding root or one of x values for a given y value
-        /// </summary>
-        /// <param name="y">y value</param>
-        /// <param name="exposant">exposant</param>
-        /// <param name="x0">initial value</param>
-        /// <param name="x">x value</param>
-        /// <returns>true if found</returns>
-        public bool searchNumericalInteger(double y, double exposant, ref double x0, out double x)
-        {
-            double turn = exposant;
-            double x0Step = x0;
-            while (turn > 0)
-            {
-                int c = searchNumericalCalc(y, x0Step, -10);
-                if (c == 0)
-                {
-                    x0 = x0Step;
-                    x = x0Step - 10;
-                    return true;
-                }
-                else if (c == -1)
-                {
-                    x0 = x0Step;
-                    if (searchNumericalIntegerDigits(y, turn, x0, out x))
-                    {
-                        x = x - 10;
-                        return true;
-                    }
-                    else
-                        return false;
-                }
-                else
-                {
-                    x0Step /= 10;
-                }
-                --turn;
-            }
-            x = 0;
-            return false;
-        }
-
-        /// <summary>
-        /// Search a numerical value for
-        /// finding root or one of x values for a given y value
-        /// </summary>
-        /// <param name="y">y value</param>
-        /// <param name="dec">decimal position</param>
-        /// <param name="exposant">maximal position</param>
-        /// <param name="x0">integer value</param>
-        /// <param name="x">x value</param>
-        /// <returns>true if found</returns>
-        public bool searchNumericalDecimal(double y, double dec, double exposant, double x0, ref double x)
-        {
-            double turn = 10;
-            double x0Step = 0;
-            while (turn > 0)
-            {
-                int c = searchNumericalCalc(y, x0 + x0Step, Math.Pow(10, -dec));
-                if (c == 0)
-                {
-                    x = x + x0Step;
-                    return true;
-                }
-                else if (c == 1)
-                {
-                    if (dec < exposant)
-                    {
-                        if (searchNumericalDecimal(y, dec + 1, exposant, x0 + x0Step, ref x))
-                        {
-                            x = x + x0Step;
-                            return true;
-                        }
-                        else
-                            return true;
-                    }
-                    else
-                        return true;
-                }
-                else
-                {
-                    x0Step += Math.Pow(10, -dec);
-                }
-                --turn;
-            }
-            if (dec < exposant)
-            {
-                if (searchNumericalDecimal(y, dec + 1, exposant, x0 + x0Step, ref x))
-                {
-                    return true;
-                }
-                else
-                    return true;
-            }
             else
-                return true;
-        }
-
-        /// <summary>
-        /// Search a numerical value for
-        /// finding root or one of x values for a given y value
-        /// </summary>
-        /// <param name="y">y value</param>
-        /// <param name="x">x value</param>
-        /// <returns>true if found</returns>
-        public bool searchNumericaDigit(double y, out double x)
-        {
-            double turn = 9;
-            double x0Step = turn;
-            while (turn > 0)
             {
-                int c = searchNumericalCalc(y, x0Step, -1);
-                if (c == 0)
+                foreach (Tuple<int, double> t in res)
                 {
-                    x = x0Step;
-                    return true;
+                    if (t.Item2 >= 0)
+                    {
+                        n = t.Item1;
+                        return 1;
+                    }
                 }
-                else if (c == 1)
-                {
-                    x = turn + 1;
-                    return true;
-                }
-                else
-                {
-                    x0Step -= 1;
-                }
-                --turn;
+                n = res.ElementAt(9).Item1;
+                return -1;
             }
-            x = 0;
-            return false;
         }
 
         /// <summary>
-        /// Search a numerical value for
-        /// finding root or one of x values for a given y value
+        /// Search numerical evaluation
         /// </summary>
-        /// <param name="b">b coeff</param>
-        /// <param name="c">c coeff</param>
-        /// <param name="y">y value</param>
-        /// <param name="exposant">number size</param>
-        /// <param name="x">x value found</param>
+        /// <param name="y">y to find</param>
+        /// <param name="exposant">exp</param>
+        /// <param name="dec">decimal position</param>
+        /// <param name="x0">x0 starting</param>
+        /// <param name="x">x found</param>
+        /// <param name="b">coeff b</param>
+        /// <param name="c">coeff c</param>
         /// <returns>true if found</returns>
-        public bool searchNumerical(double b, double c, double y, double exposant, out double x)
+        private bool searchNumericalIntern(double y, int exposant, int dec, double x0, out double x, double b, double c)
         {
+            double dx;
+            for (int exp = dec; exp > -exposant; --exp)
+            {
+                dx = Math.Pow(10, exp);
+                int n;
+                int res = this.CompareY(x0, dx, y, out n, b, c);
+                if (res == 0)
+                {
+                    x = x0 + n * dx + dx;
+                    return true;
+                }
+                else if (res == 1)
+                {
+                    if (n == 9) // deux chiffres
+                        --exp;
+                    x0 = x0 + n * dx + dx;
+                }
+            }
+            x = x0;
+            return true;
+        }
+
+        /// <summary>
+        /// Search numerical evaluation
+        /// </summary>
+        /// <param name="y">y to find</param>
+        /// <param name="exposant">exp</param>
+        /// <param name="dec">decimal position</param>
+        /// <param name="x0">x0 starting</param>
+        /// <param name="x">x found</param>
+        /// <param name="b">coeff b</param>
+        /// <param name="c">coeff c</param>
+        /// <returns>true if found</returns>
+        private bool searchNumericalInternNegate(double y, int exposant, int dec, double x0, out double x, double b, double c)
+        {
+            double dx;
+            for (int exp = dec; exp > -exposant; --exp)
+            {
+                dx = -Math.Pow(10, exp);
+                int n;
+                int res = this.CompareY(x0, dx, y, out n, b, c);
+                if (res == 0)
+                {
+                    x = x0 + n * dx + dx;
+                    return true;
+                }
+                else if (res == 1)
+                {
+                    if (n == 9) // deux chiffres
+                        --exp;
+                    x0 = x0 + n * dx + dx;
+                }
+            }
+            x = x0;
+            return true;
+        }
+
+        /// <summary>
+        /// Search numerical evaluation
+        /// </summary>
+        /// <param name="y">y to find</param>
+        /// <param name="exposant">exp</param>
+        /// <param name="x">x found</param>
+        /// <param name="b">coeff b</param>
+        /// <param name="c">coeff c</param>
+        /// <returns>true if found</returns>
+        public bool searchNumerical(double y, int exposant, out double x, double b, double c)
+        {
+            double x0, dx;
             this.CoefficientB = b;
             this.CoefficientC = c;
-            double x0 = Math.Pow(10, exposant);
-            double exp = exposant;
-            while (x0 > 0)
+            for (int exp = exposant; exp > -exposant; --exp)
             {
-                if (searchNumericalInteger(y, exposant, ref x0, out x))
+                dx = Math.Pow(10, exp);
+                x0 = -this.CoefficientB / 2;
+                int n;
+                int res = this.CompareY(x0, dx, y, out n, b, c);
+                if (res == 0)
                 {
-                    goto deci;
+                    x = x0 + n * dx + dx;
+                    return true;
                 }
-                else
+                else if (res == 1)
                 {
-                    x0 /= 10;
+                    x0 = x0 + n * dx + dx;
+                    return searchNumericalIntern(y, exposant, exp - 1, x0, out x, b, c);
                 }
             }
-            x0 = -1;
-            while (exp > 0)
+
+            for (int exp = exposant; exp > -exposant; --exp)
             {
-                if (searchNumericalInteger(y, exposant, ref x0, out x))
+                dx = -Math.Pow(10, exp);
+                x0 = -this.CoefficientB / 2;
+                int n;
+                int res = this.CompareY(x0, dx, y, out n, b, c);
+                if (res == 0)
                 {
-                    goto deci;
+                    x = x0 + n * dx + dx;
+                    return true;
                 }
-                else
+                else if (res == 1)
                 {
-                    x0 /= 10;
-                    --exp;
+                    x0 = x0 + n * dx + dx;
+                    return searchNumericalInternNegate(y, exposant, exp - 1, x0, out x, b, c);
                 }
             }
             x = 0;
             return false;
-        deci:
-            {
-                double x0Step = 0;
-                x0 = x;
-                exp = exposant;
-                while (exp > 0)
-                {
-                    if (searchNumericalDecimal(y, 1, exposant, x0 + x0Step, ref x))
-                    {
-                        x = x + x0Step;
-                        return true;
-                    }
-                    else
-                    {
-                        x0Step /= 10;
-                        --exp;
-                    }
-                }
-                x = 0;
-                return false;
-            }
         }
+
 
         /// <summary>
         /// Computes all positive exposant couple of numbers intervals

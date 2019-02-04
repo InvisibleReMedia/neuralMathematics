@@ -92,6 +92,10 @@ namespace NeuralMathematics
                     this.doc.Document = Applicatif.Differential();
                     this.doc.UpdateLayout();
                     break;
+                case "Tab":
+                    this.doc.Document = Applicatif.TabularPolynome2();
+                    this.doc.UpdateLayout();
+                    break;
                 case "GoBack":
                     this.doc.Document = Applicatif.Menu();
                     this.doc.UpdateLayout();

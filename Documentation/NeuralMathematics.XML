@@ -9,6 +9,22 @@
             Fonctions qui implémentent les documents (FlowDocument)
             </summary>
         </member>
+        <member name="M:NeuralMathematics.Applicatif.AddItemStretchedMenu(System.String,System.String,System.Windows.Documents.TableRowGroup)">
+            <summary>
+            Add an item into the menu
+            </summary>
+            <param name="id">button id</param>
+            <param name="title">title</param>
+            <param name="g">table</param>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.AddItemCellIntoMenu(System.String,System.String,System.Windows.Documents.TableRow)">
+            <summary>
+            Add an item into the menu
+            </summary>
+            <param name="id">button id</param>
+            <param name="title">title</param>
+            <param name="tr">table</param>
+        </member>
         <member name="M:NeuralMathematics.Applicatif.Menu">
             <summary>
             Fonction de menu
@@ -78,6 +94,41 @@
             Tests
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.Differential">
+            <summary>
+            Differential
+            </summary>
+            <returns>document</returns>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.Differential3">
+            <summary>
+            Differential 3
+            </summary>
+            <returns>document</returns>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.AddTextBox(System.String,System.String,System.String,System.Windows.Documents.FlowDocument,System.Action{System.Windows.Controls.TextBox})">
+            <summary>
+            Add a textbox
+            </summary>
+            <param name="id">textbox id</param>
+            <param name="title">title textbox</param>
+            <param name="initialValue">value init</param>
+            <param name="fd">flow document</param>
+            <param name="a">fonction callback</param>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.AddItemCellIntoTabular(System.Object,System.Windows.Documents.TableRow)">
+            <summary>
+            Add an item into the menu
+            </summary>
+            <param name="value">value</param>
+            <param name="tr">table</param>
+        </member>
+        <member name="M:NeuralMathematics.Applicatif.TabularPolynome2">
+            <summary>
+            Create a tabular to study data numbers
+            </summary>
+            <returns>flow document</returns>
         </member>
         <member name="E:NeuralMathematics.Applicatif.onButtonClick">
             <summary>
@@ -170,6 +221,42 @@
             <param name="x0">X0 value input</param>
             <returns>Y0 value output</returns>
         </member>
+        <member name="M:NeuralMathematics.Polynome2.Differential(System.Double,System.Double)">
+            <summary>
+            Differential DY
+            </summary>
+            <param name="y">y</param>
+            <param name="y0">y0</param>
+            <returns>value</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.Differential(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Differential DY
+            </summary>
+            <param name="y">y</param>
+            <param name="y0">y0</param>
+            <param name="b">coefficient b</param>
+            <param name="c">coefficient c</param>
+            <returns>value</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.DifferentialDX(System.Double,System.Double)">
+            <summary>
+            Differential DX
+            </summary>
+            <param name="dx">dx</param>
+            <param name="x0">x0</param>
+            <returns>value</returns>
+        </member>
+        <member name="M:NeuralMathematics.Polynome2.DifferentialDX(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Differential DX
+            </summary>
+            <param name="dx">dx</param>
+            <param name="x0">x0</param>
+            <param name="b">coefficient b</param>
+            <param name="c">coefficient c</param>
+            <returns>value</returns>
+        </member>
         <member name="M:NeuralMathematics.Polynome2.ComputeY0(System.Double,System.Double,System.Double)">
             <summary>
             Compute Y0 value
@@ -242,68 +329,53 @@
             <param name="y">y</param>
             <returns>sum</returns>
         </member>
-        <member name="M:NeuralMathematics.Polynome2.searchNumericalCalc(System.Double,System.Double,System.Double)">
+        <member name="M:NeuralMathematics.Polynome2.CompareY(System.Double,System.Double,System.Double,System.Int32@,System.Double,System.Double)">
             <summary>
-            Calculate numerical difference
+            Compare y and the iterative selection value
             </summary>
-            <param name="y">y input</param>
-            <param name="x0">x0 input</param>
-            <param name="dx">size</param>
-            <returns>numerical difference</returns>
+            <param name="x0">x0 start</param>
+            <param name="dx">difference</param>
+            <param name="y">y to find</param>
+            <param name="n">digit n</param>
+            <param name="b">coeff b</param>
+            <param name="c">coeff c</param>
+            <returns>1, 0, -1</returns>
         </member>
-        <member name="M:NeuralMathematics.Polynome2.searchNumericalIntegerDigits(System.Double,System.Double,System.Double,System.Double@)">
+        <member name="M:NeuralMathematics.Polynome2.searchNumericalIntern(System.Double,System.Int32,System.Int32,System.Double,System.Double@,System.Double,System.Double)">
             <summary>
-            Search a numerical value for
-            finding root or one of x values for a given y value
+            Search numerical evaluation
             </summary>
-            <param name="y">y value</param>
-            <param name="dec">number position</param>
-            <param name="x0">initial value</param>
-            <param name="x">x value</param>
-            <returns>true if found</returns>
-        </member>
-        <member name="M:NeuralMathematics.Polynome2.searchNumericalInteger(System.Double,System.Double,System.Double@,System.Double@)">
-            <summary>
-            Search a numerical value for
-            finding root or one of x values for a given y value
-            </summary>
-            <param name="y">y value</param>
-            <param name="exposant">exposant</param>
-            <param name="x0">initial value</param>
-            <param name="x">x value</param>
-            <returns>true if found</returns>
-        </member>
-        <member name="M:NeuralMathematics.Polynome2.searchNumericalDecimal(System.Double,System.Double,System.Double,System.Double,System.Double@)">
-            <summary>
-            Search a numerical value for
-            finding root or one of x values for a given y value
-            </summary>
-            <param name="y">y value</param>
+            <param name="y">y to find</param>
+            <param name="exposant">exp</param>
             <param name="dec">decimal position</param>
-            <param name="exposant">maximal position</param>
-            <param name="x0">integer value</param>
-            <param name="x">x value</param>
+            <param name="x0">x0 starting</param>
+            <param name="x">x found</param>
+            <param name="b">coeff b</param>
+            <param name="c">coeff c</param>
             <returns>true if found</returns>
         </member>
-        <member name="M:NeuralMathematics.Polynome2.searchNumericaDigit(System.Double,System.Double@)">
+        <member name="M:NeuralMathematics.Polynome2.searchNumericalInternNegate(System.Double,System.Int32,System.Int32,System.Double,System.Double@,System.Double,System.Double)">
             <summary>
-            Search a numerical value for
-            finding root or one of x values for a given y value
+            Search numerical evaluation
             </summary>
-            <param name="y">y value</param>
-            <param name="x">x value</param>
+            <param name="y">y to find</param>
+            <param name="exposant">exp</param>
+            <param name="dec">decimal position</param>
+            <param name="x0">x0 starting</param>
+            <param name="x">x found</param>
+            <param name="b">coeff b</param>
+            <param name="c">coeff c</param>
             <returns>true if found</returns>
         </member>
-        <member name="M:NeuralMathematics.Polynome2.searchNumerical(System.Double,System.Double,System.Double,System.Double,System.Double@)">
+        <member name="M:NeuralMathematics.Polynome2.searchNumerical(System.Double,System.Int32,System.Double@,System.Double,System.Double)">
             <summary>
-            Search a numerical value for
-            finding root or one of x values for a given y value
+            Search numerical evaluation
             </summary>
-            <param name="b">b coeff</param>
-            <param name="c">c coeff</param>
-            <param name="y">y value</param>
-            <param name="exposant">number size</param>
-            <param name="x">x value found</param>
+            <param name="y">y to find</param>
+            <param name="exposant">exp</param>
+            <param name="x">x found</param>
+            <param name="b">coeff b</param>
+            <param name="c">coeff c</param>
             <returns>true if found</returns>
         </member>
         <member name="M:NeuralMathematics.Polynome2.Couples(System.Double)">

@@ -41,6 +41,43 @@ namespace NeuralMathematics
             }
         }
 
+        /// <summary>
+        /// Add an item into the menu
+        /// </summary>
+        /// <param name="id">button id</param>
+        /// <param name="title">title</param>
+        /// <param name="g">table</param>
+        private static void AddItemStretchedMenu(string id, string title, TableRowGroup g)
+        {
+            TableRow tr = new TableRow();
+            Button te = new Button();
+            te.Name = id;
+            te.Content = title;
+            te.Click += Button_Click;
+            SetButtonStyle(te);
+            TableCell tc = new TableCell(new BlockUIContainer(te));
+            tc.ColumnSpan = 2;
+            tr.Cells.Add(tc);
+            g.Rows.Add(tr);
+        }
+
+        /// <summary>
+        /// Add an item into the menu
+        /// </summary>
+        /// <param name="id">button id</param>
+        /// <param name="title">title</param>
+        /// <param name="tr">table</param>
+        private static void AddItemCellIntoMenu(string id, string title, TableRow tr)
+        {
+            Button te = new Button();
+            te.Name = id;
+            te.Content = title;
+            te.Click += Button_Click;
+            SetButtonStyle(te);
+            TableCell tc = new TableCell(new BlockUIContainer(te));
+            tr.Cells.Add(tc);
+        }
+
 
         /// <summary>
         /// Fonction de menu
@@ -50,89 +87,29 @@ namespace NeuralMathematics
         {
             Table t = new Table();
             TableRowGroup trg = new TableRowGroup();
-            TableRow tr = new TableRow();
-            Button b1 = new Button();
-            b1.Name = "P2";
-            b1.Content = "Résolution du polynôme d'ordre 2";
-            b1.Click += Button_Click;
-            SetButtonStyle(b1);
-            Button b2 = new Button();
-            b2.Name = "P3";
-            b2.Content = "Résolution du polynôme d'ordre 3";
-            b2.Click += Button_Click;
-            SetButtonStyle(b2);
-            TableCell tc = new TableCell(new BlockUIContainer(b1));
-            tr.Cells.Add(tc);
-            tc = new TableCell(new BlockUIContainer(b2));
-            tr.Cells.Add(tc);
-            trg.Rows.Add(tr);
 
-            tr = new TableRow();
-            Button te = new Button();
-            te.Name = "Test";
-            te.Content = "Tests";
-            te.Click += Button_Click;
-            SetButtonStyle(te);
-            tc = new TableCell(new BlockUIContainer(te));
-            tc.ColumnSpan = 2;
-            tr.Cells.Add(tc);
-            trg.Rows.Add(tr);
+            TableRow row = new TableRow();
+            AddItemCellIntoMenu("P2", "Résolution du polynôme d'ordre 2", row);
+            AddItemCellIntoMenu("P3", "Résolution du polynôme d'ordre 3", row);
+            trg.Rows.Add(row);
 
-            tr = new TableRow();
-            Button tn = new Button();
-            tn.Name = "Num";
-            tn.Content = "Résolution numérique du polynôme 2";
-            tn.Click += Button_Click;
-            SetButtonStyle(tn);
-            tc = new TableCell(new BlockUIContainer(tn));
-            tc.ColumnSpan = 2;
-            tr.Cells.Add(tc);
-            trg.Rows.Add(tr);
+            AddItemStretchedMenu("Test", "Tests", trg);
+            AddItemStretchedMenu("Num", "Résolution numérique du polynôme 2", trg);
 
-            tr = new TableRow();
-            Button t1 = new Button();
-            t1.Name = "T2";
-            t1.Content = "Test de résolution du polynôme d'ordre 2";
-            t1.Click += Button_Click;
-            SetButtonStyle(t1);
-            Button t2 = new Button();
-            t2.Name = "T3";
-            t2.Content = "Test de résolution du polynôme d'ordre 3";
-            t2.Click += Button_Click;
-            SetButtonStyle(t2);
-            tc = new TableCell(new BlockUIContainer(t1));
-            tr.Cells.Add(tc);
-            tc = new TableCell(new BlockUIContainer(t2));
-            tr.Cells.Add(tc);
-            trg.Rows.Add(tr);
+            AddItemStretchedMenu("Tab", "Tableau de calcul du polynôme 2", trg);
 
-            tr = new TableRow();
-            Button tf = new Button();
-            tf.Name = "F";
-            tf.Content = "Différence de polynômes";
-            tf.Click += Button_Click;
-            SetButtonStyle(tf);
-            tc = new TableCell(new BlockUIContainer(tf));
-            tr.Cells.Add(tc);
-            Button tf3 = new Button();
-            tf3.Name = "TF3";
-            tf3.Content = "Différentielle du polynôme 3";
-            tf3.Click += Button_Click;
-            SetButtonStyle(tf3);
-            tc = new TableCell(new BlockUIContainer(tf3));
-            tr.Cells.Add(tc);
-            trg.Rows.Add(tr);
+            row = new TableRow();
+            AddItemCellIntoMenu("T2", "Test de résolution du polynôme d'ordre 2", row);
+            AddItemCellIntoMenu("T3", "Test de résolution du polynôme d'ordre 3", row);
+            trg.Rows.Add(row);
 
-            tr = new TableRow();
-            Button b5 = new Button();
-            b5.Name = "Close";
-            b5.Content = "Quitter";
-            b5.Click += Button_Click;
-            SetButtonStyle(b5);
-            tc = new TableCell(new BlockUIContainer(b5));
-            tc.ColumnSpan = 2;
-            tr.Cells.Add(tc);
-            trg.Rows.Add(tr);
+            row = new TableRow();
+            AddItemCellIntoMenu("F", "Différence de polynômes", row);
+            AddItemCellIntoMenu("TF3", "Différentielle du polynôme 3", row);
+            trg.Rows.Add(row);
+
+            AddItemStretchedMenu("Close", "Quitter", trg);
+
             t.RowGroups.Add(trg);
 
             FlowDocument fd = new FlowDocument(t);
@@ -462,45 +439,11 @@ namespace NeuralMathematics
             yPrime.Let("y'", yPrime.RightOperand);
 
 
-            DockPanel spB = new DockPanel();
-            TextBlock tbB = new TextBlock();
-            tbB.Text = "Coefficient B";
-            TextBox tCoeffB = new TextBox();
-            tCoeffB.Name = "textBox_b";
-            tCoeffB.Text = "2";
-            spB.Children.Add(tbB);
-            spB.Children.Add(tCoeffB);
-            fd.Blocks.Add(new BlockUIContainer(spB));
-
-            DockPanel spC = new DockPanel();
-            TextBlock tbC = new TextBlock();
-            tbC.Text = "Coefficient C";
-            TextBox tCoeffC = new TextBox();
-            tCoeffC.Name = "textBox_c";
-            tCoeffC.Text = "1";
-            spC.Children.Add(tbC);
-            spC.Children.Add(tCoeffC);
-            fd.Blocks.Add(new BlockUIContainer(spC));
-
-            DockPanel spx0 = new DockPanel();
-            TextBlock tbx0 = new TextBlock();
-            tbx0.Text = "Valeur X0";
-            TextBox tCoeffx0 = new TextBox();
-            tCoeffx0.Name = "textBox_x0";
-            tCoeffx0.Text = "1";
-            spx0.Children.Add(tbx0);
-            spx0.Children.Add(tCoeffx0);
-            fd.Blocks.Add(new BlockUIContainer(spx0));
-
-            DockPanel spy = new DockPanel();
-            TextBlock tby = new TextBlock();
-            tby.Text = "Valeur Y";
-            TextBox tCoeffY = new TextBox();
-            tCoeffY.Name = "textBox_y";
-            tCoeffY.Text = "4";
-            spy.Children.Add(tby);
-            spy.Children.Add(tCoeffY);
-            fd.Blocks.Add(new BlockUIContainer(spy));
+            string[] textValues = new string[4];
+            AddTextBox("textbox_b", "Coefficient B", "2", fd, (t) => { textValues[0] = t.Text; });
+            AddTextBox("textbox_c", "Coefficient C", "1", fd, (t) => { textValues[1] = t.Text; });
+            AddTextBox("textbox_x0", "Valeur X0", "1", fd, (t) => { textValues[2] = t.Text; });
+            AddTextBox("textbox_y", "Valeur Y", "4", fd, (t) => { textValues[3] = t.Text; });
 
             WrapPanel panel = new WrapPanel();
             FlowDocumentScrollViewer scrollViewer = new FlowDocumentScrollViewer();
@@ -520,11 +463,11 @@ namespace NeuralMathematics
                 Arithmetic solEqx2 = new Addition(C("x_0"), solEqDXMoins);
                 Arithmetic valDY = new Soustraction(C("y"), C("y_0"));
                 errorText.Text = ""; // reinitialisation du texte d'erreur
-                function.Let("b", Convert.ToDouble(tCoeffB.Text));
-                function.Let("c", Convert.ToDouble(tCoeffC.Text));
-                y0.Let("x_0", Convert.ToDouble(tCoeffx0.Text));
+                function.Let("b", Convert.ToDouble(textValues[0]));
+                function.Let("c", Convert.ToDouble(textValues[1]));
+                y0.Let("x_0", Convert.ToDouble(textValues[2]));
                 valDY.Let("y_0", y0.RightOperand);
-                valDY.Let("y", Double.Parse(tCoeffY.Text));
+                valDY.Let("y", Double.Parse(textValues[3]));
                 solEqDXPlus.Let("dy", valDY);
                 Wording w2 = new Wording("Application", "Modifiez les zones de saisie et cliquer sur le bouton Recalculer",
                                          new Exercice(1, "Calculs", "", new Answer("", true, new SequenceProof(
@@ -619,60 +562,47 @@ namespace NeuralMathematics
             yPrime.Let("y'", yPrime.RightOperand);
 
 
-            DockPanel spB = new DockPanel();
-            TextBlock tbB = new TextBlock();
-            tbB.Text = "Coefficient B";
-            TextBox tCoeffB = new TextBox();
-            tCoeffB.Name = "textBox_b";
-            tCoeffB.Text = "2";
-            spB.Children.Add(tbB);
-            spB.Children.Add(tCoeffB);
-            fd.Blocks.Add(new BlockUIContainer(spB));
+            string[] textValues = new string[3];
+            AddTextBox("textbox_b", "Coefficient B", "2", fd, (t) => { textValues[0] = t.Text; });
+            AddTextBox("textbox_c", "Coefficient C", "1", fd, (t) => { textValues[1] = t.Text; });
+            AddTextBox("textbox_y", "Valeur Y", "4", fd, (t) => { textValues[2] = t.Text; });
 
-            DockPanel spC = new DockPanel();
-            TextBlock tbC = new TextBlock();
-            tbC.Text = "Coefficient C";
-            TextBox tCoeffC = new TextBox();
-            tCoeffC.Name = "textBox_c";
-            tCoeffC.Text = "1";
-            spC.Children.Add(tbC);
-            spC.Children.Add(tCoeffC);
-            fd.Blocks.Add(new BlockUIContainer(spC));
-
-            DockPanel spy = new DockPanel();
-            TextBlock tby = new TextBlock();
-            tby.Text = "Valeur Y";
-            TextBox tCoeffY = new TextBox();
-            tCoeffY.Name = "textBox_y";
-            tCoeffY.Text = "4";
-            spy.Children.Add(tby);
-            spy.Children.Add(tCoeffY);
-            fd.Blocks.Add(new BlockUIContainer(spy));
-
-            WrapPanel panel = new WrapPanel();
             FlowDocumentScrollViewer scrollViewer = new FlowDocumentScrollViewer();
-            panel.Children.Add(scrollViewer);
-
-            fd.Blocks.Add(new BlockUIContainer(panel));
-
             Button btCalc = new Button();
             btCalc.Name = "btCalc";
             btCalc.Content = "Recalculer";
             btCalc.Click += new RoutedEventHandler((o, e) =>
             {
+                errorText.Text = string.Empty;
                 Polynome2 p = new Polynome2();
-                double b, c, y, x;
-                b = Convert.ToDouble(tCoeffB.Text);
-                c = Convert.ToDouble(tCoeffC.Text);
-                y = Convert.ToDouble(tCoeffY.Text);
-                p.searchNumerical(b, c, y, 17, out x);
+                double b, c, y, x, x2;
+                b = Convert.ToDouble(textValues[0]);
+                c = Convert.ToDouble(textValues[1]);
+                y = Convert.ToDouble(textValues[2]);
+                if (!p.searchNumerical(y, 20, out x, b, c))
+                    Arithmetic.RaiseEventError(new OverflowException("Solution non trouvée"));
                 function.Let("b", b);
                 function.Let("c", c);
                 function.Let("x", x);
+                function.Let("x0", 0);
+                x2 = p.Functions["Complementaire"].Converting().ToDouble();
+                p.ComputeX1(y, 0);
                 Wording w2 = new Wording("Application", "Modifiez les zones de saisie et cliquer sur le bouton Recalculer",
                                          new Exercice(1, "Calculs", "", new Answer("", true, new SequenceProof(
+                                                    new Texte("Le point de départ de la recherche vaut {x_0 = " + ("-b/2").ToArithmetic().AsRepresented("tex") + "}", true),
                                                     new Texte("Valeur calculée numériquement {x = " + x.ToString() + "}", true),
-                                                    new Texte("Preuve : {f(" + x.ToString() + ") = " + function.RightOperand.Converting().ToDouble() + "}", true)
+                                                    new Texte("Preuve : {f(" + x.ToString() + ") = " + function.RightOperand.Converting().ToDouble() + "}", true),
+                                                    new Texte("On sait également déterminer la seconde solution"),
+                                                    new Equal("X_2".ToArithmetic(), p.Functions["Complementaire"]),
+                                                    new Texte("Valeur calculée numériquement {x = " + x2.ToString() + "}", true),
+                                                    new Texte("Preuve : {f(" + x2.ToString() + ") = " + p.ComputeY0(x2) + "}", true)))),
+                                         new Exercice(2, "Calculs algébriques", "", new Answer("", true, new SequenceProof(
+                                                    new Texte("Valeur calculée algébriquement {x = " + p.Functions["DX_1"].AsRepresented("tex") + "}", true),
+                                                    new Texte("Le résultat vaut {x = " + p.Functions["DX_1"].Converting().AsRepresented("tex") + " = " + p.ComputeX1(y, 0).ToString() + "}", true),
+                                                    new Texte("Preuve : {f(" + p.ComputeX1(y, 0).ToString() + ") = " + p.ComputeY0(p.ComputeX1(y, 0)) + "}", true),
+                                                    new Texte("On sait également déterminer la seconde solution"),
+                                                    new Texte("Le résultat vaut {x = " + p.Functions["DX_2"].Converting().AsRepresented("tex") + " = " + p.ComputeX2(y, 0).ToString() + "}", true),
+                                                    new Texte("Preuve : {f(" + p.ComputeX2(y, 0).ToString() + ") = " + p.ComputeY0(p.ComputeX2(y, 0)) + "}", true)
                 ))));
                 FlowDocument f2 = new FlowDocument();
                 scrollViewer.Document = null;
@@ -681,6 +611,12 @@ namespace NeuralMathematics
                 scrollViewer.UpdateLayout();
             });
             fd.Blocks.Add(new BlockUIContainer(btCalc));
+
+            WrapPanel panel = new WrapPanel();
+            panel.Children.Add(scrollViewer);
+
+            fd.Blocks.Add(new BlockUIContainer(panel));
+
 
             w.ToDocument(fd);
             Button but = new Button();
@@ -885,6 +821,10 @@ namespace NeuralMathematics
             return fd;
         }
 
+        /// <summary>
+        /// Differential
+        /// </summary>
+        /// <returns>document</returns>
         public static FlowDocument Differential()
         {
 
@@ -1022,6 +962,10 @@ namespace NeuralMathematics
 
         }
 
+        /// <summary>
+        /// Differential 3
+        /// </summary>
+        /// <returns>document</returns>
         public static FlowDocument Differential3()
         {
 
@@ -1080,7 +1024,7 @@ namespace NeuralMathematics
                                 )
                             )),
                             new Exercice(3, "Exprimez la fonction {Y} selon le produit de trois fonctions", "Les fonctions sont affines", true,
-                                new Answer(@"On développe la fonction {Y}",
+                                new Answer(@"On développe la fonction {Y}", true,
                                     new SequenceProof(
                                         new Equal(("Y").ToArithmetic(), (@"(X-X_0)*(X-X_1)*(X-X_2)").ToArithmetic()),
                                         new Texte("On développe cette équation"),
@@ -1093,7 +1037,7 @@ namespace NeuralMathematics
                                         new Equal("Q".ToArithmetic(), "((X_0 - f''(X_0)/4) + ((f''(X_0)/4)^2 - f'(X_0))v2)*((X_0 - f''(X_0)/4) - ((f''(X_0)/4)^2 - f'(X_0))v2)".ToArithmetic()),
                                         new Equal("Q".ToArithmetic(), "(X_0 - f''(X_0)/4) ^2  - (f''(X_0)/4)^2 + f'(X_0)".ToArithmetic()),
                                         new Equal("Q".ToArithmetic(), "X_0^2 - X_0*f''(X_0)/2 + f'(X_0)".ToArithmetic()),
-                                        new Equal(("Y").ToArithmetic(), ("X^3 - (3*X_0-f''(X_0)/2)*X^2 + (2*X_0*(X_0 - f''(X_0)/4)+Q)*X + X_0*Q").ToArithmetic()),
+                                        new Equal(("Y").ToArithmetic(), ("X^3 - (3*X_0-f''(X_0)/2)*X^2 + (2*X_0*(X_0 - f''(X_0)/4)+Q)*X - X_0*Q").ToArithmetic()),
                                         new Equal(("Y").ToArithmetic(), ("X^3 - (3*X_0-f''(X_0)/2)*X^2 + (2*X_0*(X_0 - f''(X_0)/4)+X_0^2 - X_0*f''(X_0)/2 + f'(X_0))*X - X_0*Q").ToArithmetic()),
                                         new Equal(("Y").ToArithmetic(), ("X^3 - (3*X_0-f''(X_0)/2)*X^2 + (3*X_0^2 - X_0*f''(X_0) + f'(X_0))*X - (X_0^3 - X_0^2*f''(X_0)/2 + X_0*f'(X_0))").ToArithmetic()),
                                         new Equal(("Y").ToArithmetic(), ("X^3 + b*X^2 + c*X - (X_0^3 - X_0^2*f''(X_0)/2 + X_0*f'(X_0))").ToArithmetic())
@@ -1113,6 +1057,171 @@ namespace NeuralMathematics
 
         }
 
-    
+        /// <summary>
+        /// Add a textbox
+        /// </summary>
+        /// <param name="id">textbox id</param>
+        /// <param name="title">title textbox</param>
+        /// <param name="initialValue">value init</param>
+        /// <param name="fd">flow document</param>
+        /// <param name="a">fonction callback</param>
+        private static void AddTextBox(string id, string title, string initialValue, FlowDocument fd, Action<TextBox> a)
+        {
+            DockPanel d = new DockPanel();
+            TextBlock txtb = new TextBlock();
+            txtb.Text = title;
+            TextBox tbox = new TextBox();
+            tbox.TextChanged += new TextChangedEventHandler((o, e) => { a(tbox); });
+            tbox.Name = id;
+            tbox.Text = initialValue;
+            d.Children.Add(txtb);
+            d.Children.Add(tbox);
+            fd.Blocks.Add(new BlockUIContainer(d));
+        }
+
+        /// <summary>
+        /// Add an item into the menu
+        /// </summary>
+        /// <param name="value">value</param>
+        /// <param name="tr">table</param>
+        private static void AddItemCellIntoTabular(dynamic value, TableRow tr)
+        {
+            TextBlock txtb = new TextBlock();
+            txtb.Text = Convert.ToString(value);
+            TableCell tc = new TableCell(new BlockUIContainer(txtb));
+            tc.BorderBrush = new SolidColorBrush(Colors.Aqua);
+            tc.BorderThickness = new Thickness(1);
+            tr.Cells.Add(tc);
+        }
+
+        /// <summary>
+        /// Create a tabular to study data numbers
+        /// </summary>
+        /// <returns>flow document</returns>
+        public static FlowDocument TabularPolynome2()
+        {
+
+            FlowDocument fd = new FlowDocument();
+
+            TextBlock errorText = new TextBlock();
+            errorText.Foreground = new SolidColorBrush(Colors.Red);
+            fd.Blocks.Add(new BlockUIContainer(errorText));
+
+            // variables
+            Dictionary<string, IArithmetic> variables = new Dictionary<string, IArithmetic>();
+
+            Arithmetic.EventAddVariable += new EventHandler<KeyValuePair<string, IArithmetic>>((o, e) =>
+            {
+                if (e.Value != null)
+                {
+                    if (variables.ContainsKey(e.Key))
+                    {
+                        variables[e.Key] = e.Value;
+                    }
+                    else
+                    {
+                        variables.Add(e.Key, e.Value);
+                    }
+                }
+                else
+                {
+                    if (variables.ContainsKey(e.Key))
+                        variables.Remove(e.Key);
+                }
+            });
+            Arithmetic.EventGetVariable = new Func<string, IArithmetic>((s) =>
+            {
+                if (variables.ContainsKey(s)) return variables[s];
+                else return null;
+            });
+            Arithmetic.EventError += new EventHandler<OverflowException>((o, e) =>
+            {
+                errorText.Text = e.Message;
+            });
+
+            IArithmetic function = ("X_0^2 + b*X_0 + c").ToArithmetic();
+
+
+            string[] textValues = new string[5];
+            AddTextBox("textbox_b", "Coefficient B", "2", fd, (t) => { textValues[0] = t.Text; });
+            AddTextBox("textbox_c", "Coefficient C", "1", fd, (t) => { textValues[1] = t.Text; });
+            AddTextBox("textbox_dx", "Valeur DX", "1", fd, (t) => { textValues[3] = t.Text; });
+            AddTextBox("textbox_x0", "Valeur de départ X0", "0", fd, (t) => { textValues[4] = t.Text; });
+
+            WrapPanel panel = new WrapPanel();
+            FlowDocumentScrollViewer scrollViewer = new FlowDocumentScrollViewer();
+
+            Button btCalc = new Button();
+            btCalc.Name = "btCalc";
+            btCalc.Content = "Recalculer";
+            btCalc.Click += new RoutedEventHandler((o, e) =>
+            {
+                double x0, b, c, y, y0, dx, dy, prev = 0, diff = 0;
+                Table t = new Table();
+                TableRowGroup trg = new TableRowGroup();
+
+                TableRow row = new TableRow();
+                AddItemCellIntoTabular("X0", row);
+                AddItemCellIntoTabular("Y0 = X0^2 + b*X0 + c", row);
+                AddItemCellIntoTabular("DY = DX*[DX + Y'(X0)]", row);
+                AddItemCellIntoTabular("Y = Y0 + DY", row);
+                AddItemCellIntoTabular("Diff DY = 2*dx^2", row);
+                AddItemCellIntoTabular("Sum DY", row);
+                AddItemCellIntoTabular("Y final = Sum DY + Y0", row);
+                trg.Rows.Add(row);
+
+                Polynome2 p = new Polynome2();
+                x0 = Convert.ToDouble(textValues[4]);
+                dx = Convert.ToDouble(textValues[3]);
+                y = Convert.ToDouble(textValues[2]);
+                b = Convert.ToDouble(textValues[0]);
+                c = Convert.ToDouble(textValues[1]);
+                double sum = 0;
+                double y0init = p.ComputeY0(x0, b, c);
+                for (int step = 0; step < 100; ++step)
+                {
+
+                    row = new TableRow();
+                    y0 = p.ComputeY0(x0, b, c);
+                    AddItemCellIntoTabular(x0, row);
+                    AddItemCellIntoTabular(y0, row);
+                    dy = p.DifferentialDX(dx, x0, b, c);
+                    AddItemCellIntoTabular(dy, row);
+                    y = y0 + dy;
+                    if (step > 0)
+                        diff = dy - prev;
+                    prev = dy;
+                    AddItemCellIntoTabular(y, row);
+                    AddItemCellIntoTabular(diff, row);
+                    sum = sum + dy;
+                    AddItemCellIntoTabular(sum, row);
+                    AddItemCellIntoTabular(sum + y0init, row);
+                    trg.Rows.Add(row);
+                    x0 += dx;
+                }
+                t.RowGroups.Add(trg);
+
+                FlowDocument f2 = new FlowDocument(t);
+                Paragraph p2 = new Paragraph();
+                fd.Blocks.Add(p2);
+                scrollViewer.Document = f2;
+                scrollViewer.UpdateLayout();
+            });
+            fd.Blocks.Add(new BlockUIContainer(btCalc));
+
+            panel.Children.Add(scrollViewer);
+
+            fd.Blocks.Add(new BlockUIContainer(panel));
+
+            Button but = new Button();
+            but.Name = "GoBack";
+            but.Content = "Retour";
+            but.Click += Button_Click;
+            SetButtonStyle(but);
+            fd.Blocks.Add(new BlockUIContainer(but));
+
+            return fd;
+        
+        }
     }
 }
