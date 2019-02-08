@@ -54,6 +54,12 @@ namespace Interfaces
         /// </summary>
         /// <returns>output new equation</returns>
         IArithmetic ConvertingOne();
+        /// <summary>
+        /// Select all terms accordingly with model
+        /// </summary>
+        /// <param name="model">model to search</param>
+        /// <returns>list of matches</returns>
+        IEnumerable<IArithmetic> Select(IArithmetic model);
 
 
     }

@@ -106,6 +106,7 @@
     </Compile>
     <Compile Include="Polynome2.cs" />
     <Compile Include="Polynome3.cs" />
+    <Compile Include="GrobnerPolynome.cs" />
     <Compile Include="Tracer.xaml.cs">
       <DependentUpon>Tracer.xaml</DependentUpon>
     </Compile>

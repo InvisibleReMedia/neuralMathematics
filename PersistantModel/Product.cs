@@ -344,6 +344,25 @@ namespace PersistantModel
             return new Product();
         }
 
+        /// <summary>
+        /// Select all terms accordingly with model
+        /// </summary>
+        /// <param name="model">model to search</param>
+        /// <returns>list of elements</returns>
+        public override IEnumerable<IArithmetic> Select(IArithmetic model)
+        {
+            foreach (IArithmetic e in this.Items)
+            {
+                if (model.ToString() == e.ToString())
+                    yield return e;
+                else
+                    foreach (IArithmetic s in e.Select(model))
+                    {
+                        yield return s;
+                    }
+            }
+        }
+
         #endregion
     }
 }

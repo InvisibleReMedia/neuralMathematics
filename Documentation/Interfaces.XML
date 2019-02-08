@@ -117,6 +117,13 @@
             </summary>
             <returns>output new equation</returns>
         </member>
+        <member name="M:Interfaces.IArithmetic.Select(Interfaces.IArithmetic)">
+            <summary>
+            Select all terms accordingly with model
+            </summary>
+            <param name="model">model to search</param>
+            <returns>list of matches</returns>
+        </member>
         <member name="E:Interfaces.IArithmetic.Fetch">
             <summary>
             Event to fetch all data into

@@ -130,6 +130,12 @@
             </summary>
             <returns>flow document</returns>
         </member>
+        <member name="M:NeuralMathematics.Applicatif.PolynômeBase10">
+            <summary>
+            Differential 3
+            </summary>
+            <returns>document</returns>
+        </member>
         <member name="E:NeuralMathematics.Applicatif.onButtonClick">
             <summary>
             Evenement sur click des boutons
@@ -378,27 +384,14 @@
             <param name="c">coeff c</param>
             <returns>true if found</returns>
         </member>
-        <member name="M:NeuralMathematics.Polynome2.Couples(System.Double)">
+        <member name="M:NeuralMathematics.Polynome2.ConstructBaseX(System.Double,System.Double@,System.Double,System.Double)">
             <summary>
-            Computes all positive exposant couple of numbers intervals
+            Constructs a base from this polynome
             </summary>
-            <param name="exposant">size</param>
-            <returns>list of couples</returns>
-        </member>
-        <member name="M:NeuralMathematics.Polynome2.TransformDigits(System.Double)">
-            <summary>
-            Transforms digits with exposant from 0 (none) to n (x * 10^n)
-            </summary>
-            <param name="exposant">exposant</param>
-            <returns>tuple list</returns>
-        </member>
-        <member name="M:NeuralMathematics.Polynome2.TransformDigits(System.Double,System.Double)">
-            <summary>
-            Transforms digits with exposant from 0 (none) to n (x * 10^n)
-            </summary>
-            <param name="exposant">exposant</param>
-            <param name="addition">addition to add</param>
-            <returns>tuple list</returns>
+            <param name="y"></param>
+            <param name="x"></param>
+            <param name="b"></param>
+            <param name="c"></param>
         </member>
         <member name="P:NeuralMathematics.Polynome2.Functions">
             <summary>
@@ -428,11 +421,6 @@
         <member name="P:NeuralMathematics.Polynome2.TermY">
             <summary>
             Gets or sets the Y term
-            </summary>
-        </member>
-        <member name="P:NeuralMathematics.Polynome2.Digits">
-            <summary>
-            Gets digits
             </summary>
         </member>
         <member name="T:NeuralMathematics.Polynome2.Solution">
@@ -600,6 +588,79 @@
         <member name="P:NeuralMathematics.Polynome3.TermY">
             <summary>
             Gets or sets the Y term
+            </summary>
+        </member>
+        <member name="T:NeuralMathematics.GrobnerPolynome">
+            <summary>
+            A recursive polynome
+            A polynome is a Base X
+            </summary>
+        </member>
+        <member name="F:NeuralMathematics.GrobnerPolynome.b">
+            <summary>
+            Base
+            </summary>
+        </member>
+        <member name="M:NeuralMathematics.GrobnerPolynome.#ctor(System.Int32)">
+            <summary>
+            Constructs a grobner polynome
+            </summary>
+            <param name="order">order</param>
+        </member>
+        <member name="M:NeuralMathematics.GrobnerPolynome.PolynomeAsBase(System.String,System.String)">
+            <summary>
+            Gets a polynome as a base
+            </summary>
+            <param name="name">indice names</param>
+            <param name="uterm">unknown term</param>
+            <returns>an arithmetic function</returns>
+        </member>
+        <member name="M:NeuralMathematics.GrobnerPolynome.GetBaseY(System.Double)">
+            <summary>
+            Gets Base Y
+            </summary>
+            <param name="y">y value</param>
+            <returns>arithmetic function</returns>
+        </member>
+        <member name="M:NeuralMathematics.GrobnerPolynome.GetBaseX(System.Int32)">
+            <summary>
+            Gets Base X
+            </summary>
+            <param name="size">size of X</param>
+            <returns>arithmetic function</returns>
+        </member>
+        <member name="M:NeuralMathematics.GrobnerPolynome.TrianglePascal(System.UInt32,System.Collections.Generic.IEnumerable{System.UInt32})">
+            <summary>
+            Gets the pascal list of values
+            </summary>
+            <param name="order">order</param>
+            <param name="source">list origin</param>
+            <returns>new list</returns>
+        </member>
+        <member name="M:NeuralMathematics.GrobnerPolynome.TrianglePascal(System.UInt32)">
+            <summary>
+            Computes the pascal triangle
+            </summary>
+            <param name="order">order</param>
+            <returns>list result</returns>
+        </member>
+        <member name="M:NeuralMathematics.GrobnerPolynome.BinomialLaw(System.UInt32,System.String,System.String)">
+            <summary>
+            Loi binomiale
+            </summary>
+            <param name="order">order</param>
+            <param name="u">unknown term</param>
+            <param name="v">coefficient</param>
+            <returns>developed equation</returns>
+        </member>
+        <member name="P:NeuralMathematics.GrobnerPolynome.PolynomeAsFunction">
+            <summary>
+            Gets arithmetic formula
+            </summary>
+        </member>
+        <member name="P:NeuralMathematics.GrobnerPolynome.Base">
+            <summary>
+            Gets the base of this polynome
             </summary>
         </member>
         <member name="T:NeuralMathematics.Tracer">

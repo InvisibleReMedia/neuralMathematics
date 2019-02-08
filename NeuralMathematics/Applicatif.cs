@@ -108,6 +108,8 @@ namespace NeuralMathematics
             AddItemCellIntoMenu("TF3", "Différentielle du polynôme 3", row);
             trg.Rows.Add(row);
 
+            AddItemStretchedMenu("Sum", "Nombre en base 10", trg);
+
             AddItemStretchedMenu("Close", "Quitter", trg);
 
             t.RowGroups.Add(trg);
@@ -1223,5 +1225,110 @@ namespace NeuralMathematics
             return fd;
         
         }
+
+        /// <summary>
+        /// Differential 3
+        /// </summary>
+        /// <returns>document</returns>
+        public static FlowDocument PolynômeBase10()
+        {
+
+            FlowDocument fd = new FlowDocument();
+
+            TextBlock errorText = new TextBlock();
+            errorText.Foreground = new SolidColorBrush(Colors.Red);
+            fd.Blocks.Add(new BlockUIContainer(errorText));
+
+            // variables
+            Dictionary<string, IArithmetic> variables = new Dictionary<string, IArithmetic>();
+
+            Arithmetic.EventAddVariable += new EventHandler<KeyValuePair<string, IArithmetic>>((o, e) =>
+            {
+                if (e.Value != null)
+                {
+                    if (variables.ContainsKey(e.Key))
+                    {
+                        variables[e.Key] = e.Value;
+                    }
+                    else
+                    {
+                        variables.Add(e.Key, e.Value);
+                    }
+                }
+                else
+                {
+                    if (variables.ContainsKey(e.Key))
+                        variables.Remove(e.Key);
+                }
+            });
+            Arithmetic.EventGetVariable = new Func<string, IArithmetic>((s) =>
+            {
+                if (variables.ContainsKey(s)) return variables[s];
+                else return null;
+            });
+            Arithmetic.EventError += new EventHandler<OverflowException>((o, e) =>
+            {
+                errorText.Text = e.Message;
+            });
+
+            Wording w = new Wording("Le polynôme de base X", "La valeur numérique d'un nombre",
+                            new Exercice(1, "Exprimez un polynôme d'ordre 2 avec les coefficients b et c", "",
+                                new Answer("Le polynôme 2 est formé d'un trinome",
+                                    new SequenceProof(new Equal((@"Y").ToArithmetic(), (@"X^2 + b*X + c").ToArithmetic()))
+
+                                )
+                            ),
+                            new Exercice(2, "Développez un nombre réel comme la sommation des chiffres du nombre. Concluez", "", true,
+                                new Answer(@"On suppose, pour le moment, que {X} est un nombre entier", true,
+                                    new SequenceProof(
+                                        new Equal((@"f(10)").ToArithmetic(), (@"n_4*10^4 + n_3*10^3 + n_2*10^2 + n_1*10 + n_0").ToArithmetic()),
+                                        new Texte("Un nombre peut être vu comme un polynôme où les coefficients sont les chiffres de base 10")
+                                )
+                            )),
+                            new Exercice(3, "Dans cet exercice, il s'agit de trouver la valeur d'un chiffre", "Exprimez la valeur {Y} pour chaque valeur {n_i} de 0 à 9", true,
+                                new Answer(@"On développe la fonction {Y}", true,
+                                    new SequenceProof(
+                                        new Equal(("p_i").ToArithmetic(), ("(n_i)^2 + b*(n_i) + c").ToArithmetic()),
+                                        new Texte("Comme tous les {n_i} vont de 0 à 9, calculons la valeur de {Y} pour chaque valeur de {X} de 0 à 9", true),
+                                        new Equal(("p_i").ToArithmetic(), ("0^2 + b*0 + c").ToArithmetic()),
+                                        new Equal(("p_i").ToArithmetic(), ("1^2 + b*1 + c").ToArithmetic()),
+                                        new Equal(("p_i").ToArithmetic(), ("2^2 + b*2 + c").ToArithmetic()),
+                                        new Equal(("p_i").ToArithmetic(), ("3^2 + b*3 + c").ToArithmetic()),
+                                        new Equal(("p_i").ToArithmetic(), ("4^2 + b*4 + c").ToArithmetic()),
+                                        new Equal(("p_i").ToArithmetic(), ("5^2 + b*5 + c").ToArithmetic()),
+                                        new Equal(("p_i").ToArithmetic(), ("6^2 + b*6 + c").ToArithmetic()),
+                                        new Equal(("p_i").ToArithmetic(), ("7^2 + b*7 + c").ToArithmetic()),
+                                        new Equal(("p_i").ToArithmetic(), ("8^2 + b*8 + c").ToArithmetic()),
+                                        new Equal(("p_i").ToArithmetic(), ("9^2 + b*9 + c").ToArithmetic())
+                                )
+                            )),
+                            new Exercice(4, "Expliquez l'effet quand {p_i} peut avoir deux chiffres", "Se rappeler la notion de congruence", true,
+                                new Answer(@"",
+                                    new SequenceProof(
+                                        new Texte("{p_i} devient un nombre à deux chiffres à partir de {n_i=3}", true),
+                                        new Texte("Dans ce cas, la base 10 ne convient plus et {B=f(n_i)+1}", true),
+                                        new Texte("Ainsi, lorsque {p_i=3} alors {B=17}", true),
+                                        new Texte("Ainsi, lorsque {p_i=4} alors {B=26}", true),
+                                        new Texte("Ainsi, lorsque {p_i=5} alors {B=17}", true),
+                                        new Texte("Ainsi, lorsque {p_i=3} alors {B=17}", true),
+                                        new Texte("Ainsi, lorsque {p_i=3} alors {B=17}", true),
+                                        new Texte("Ainsi, lorsque {p_i=3} alors {B=17}", true),
+                                        new Texte("Ainsi, lorsque {p_i=3} alors {B=17}", true)
+                                )
+                            ))
+            );
+
+            w.ToDocument(fd);
+            Button but = new Button();
+            but.Name = "GoBack";
+            but.Content = "Retour";
+            but.Click += Button_Click;
+            SetButtonStyle(but);
+            fd.Blocks.Add(new BlockUIContainer(but));
+
+            return fd;
+
+        }
+
     }
 }

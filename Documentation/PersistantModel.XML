@@ -4,6 +4,190 @@
         <name>PersistantModel</name>
     </assembly>
     <members>
+        <member name="T:PersistantModel.Base">
+            <summary>
+            A base contains a vector space
+            with its ker and its dim
+            </summary>
+        </member>
+        <member name="T:PersistantModel.PersistentDataObject">
+            <summary>
+            Classe contenant la séquence
+            de sérialisation/déserialisation
+            </summary>
+        </member>
+        <member name="F:PersistantModel.PersistentDataObject.dict">
+            <summary>
+            Field to store data information to serialize
+            </summary>
+        </member>
+        <member name="M:PersistantModel.PersistentDataObject.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:PersistantModel.PersistentDataObject.Exists(System.String)">
+            <summary>
+            Test if a key exists
+            </summary>
+            <param name="name">key name</param>
+            <returns>true if exists</returns>
+        </member>
+        <member name="M:PersistantModel.PersistentDataObject.Set(System.String,System.Object)">
+            <summary>
+            Sets a value into the dictionary
+            </summary>
+            <param name="name">name of the field</param>
+            <param name="value">value of field</param>
+        </member>
+        <member name="M:PersistantModel.PersistentDataObject.Get(System.String,System.Object)">
+            <summary>
+            Gets a value from the dictionary
+            </summary>
+            <param name="name">name of the field</param>
+            <param name="init">default value</param>
+            <returns>value</returns>
+        </member>
+        <member name="M:PersistantModel.PersistentDataObject.Remove(System.String)">
+            <summary>
+            Remove a key
+            </summary>
+            <param name="name">key name</param>
+        </member>
+        <member name="M:PersistantModel.PersistentDataObject.Load(System.IO.FileInfo,PersistantModel.PersistentDataObject@)">
+            <summary>
+            Lecture d'un document
+            </summary>
+            <param name="file">information de fichier</param>
+            <param name="result">objet obtenu</param>
+            <returns>true if success</returns>
+        </member>
+        <member name="M:PersistantModel.PersistentDataObject.Save(System.IO.FileInfo,PersistantModel.PersistentDataObject)">
+            <summary>
+            Sauvegarde d'un document
+            </summary>
+            <param name="file">information de fichier</param>
+            <param name="data">objet à sérialiser</param>
+            <returns>true if success</returns>
+        </member>
+        <member name="P:PersistantModel.PersistentDataObject.Data">
+            <summary>
+            Data to be used
+            </summary>
+        </member>
+        <member name="P:PersistantModel.PersistentDataObject.Keys">
+            <summary>
+            Gets all direct keys
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Base.baseName">
+            <summary>
+            base number
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Base.dimName">
+            <summary>
+            Dimension
+            </summary>
+        </member>
+        <member name="F:PersistantModel.Base.vectorSpaceName">
+            <summary>
+            Vector space
+            </summary>
+        </member>
+        <member name="M:PersistantModel.Base.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Constructs a base with ker and dimension
+            left vector at zero values
+            </summary>
+            <param name="b">ker</param>
+            <param name="d">dimension</param>
+        </member>
+        <member name="M:PersistantModel.Base.#ctor(System.Int32,System.Collections.Generic.IEnumerable{System.Double})">
+            <summary>
+            Constructs a base with ker
+            and a vector space
+            </summary>
+            <param name="b">ker</param>
+            <param name="vector">vector space</param>
+        </member>
+        <member name="M:PersistantModel.Base.Indices(System.String)">
+            <summary>
+            Gets indices for base
+            </summary>
+            <param name="name">name</param>
+            <returns>coefficient list</returns>
+        </member>
+        <member name="M:PersistantModel.Base.SetValue(System.Double)">
+            <summary>
+            Converts a value to a vector space
+            regarding the ker value
+            </summary>
+            <param name="d">double value input</param>
+        </member>
+        <member name="M:PersistantModel.Base.ToDouble">
+            <summary>
+            Converts the vector space to a double
+            </summary>
+            <returns>double value</returns>
+        </member>
+        <member name="M:PersistantModel.Base.ToBase(System.Int32,System.Int32)">
+            <summary>
+            Converts this Base to an another
+            </summary>
+            <param name="b">another base</param>
+            <param name="d">dim</param>
+            <returns>new base</returns>
+        </member>
+        <member name="M:PersistantModel.Base.ConvertToReadable(System.Double,System.Double)">
+            <summary>
+            Transforms a number into a vector space
+            </summary>
+            <param name="d">double value</param>
+            <param name="radix">radix</param>
+            <returns>vector space</returns>
+        </member>
+        <member name="M:PersistantModel.Base.ConvertToNumber(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
+            <summary>
+            Converts a vector space to a double value
+            </summary>
+            <param name="list">vector space</param>
+            <param name="radix">radix</param>
+            <returns>double value</returns>
+        </member>
+        <member name="M:PersistantModel.Base.Clone">
+            <summary>
+            Clone this object
+            </summary>
+            <returns>new object</returns>
+        </member>
+        <member name="P:PersistantModel.Base.Vector">
+            <summary>
+            Gets the vector space
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Base.Coefficients">
+            <summary>
+            Gets the coefficient list
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Base.Ker">
+            <summary>
+            Gets the ker
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Base.Dimension">
+            <summary>
+            Gets the dimension
+            </summary>
+        </member>
+        <member name="P:PersistantModel.Base.Item(System.Int32)">
+            <summary>
+            Gets or sets the indiced vector space
+            </summary>
+            <param name="p">size of dim</param>
+            <returns>double value</returns>
+        </member>
         <member name="M:PersistantModel.Compute.run(System.String)">
             <summary>
             Converts a string to an arithmetic form
@@ -727,6 +911,13 @@
             <param name="b">right</param>
             <returns>power</returns>
         </member>
+        <member name="M:PersistantModel.Arithmetic.Select(Interfaces.IArithmetic)">
+            <summary>
+            Select all terms accordingly with model
+            </summary>
+            <param name="model">model to search</param>
+            <returns>list of matches</returns>
+        </member>
         <member name="E:PersistantModel.Arithmetic.addVariable">
             <summary>
             add variable event handler
@@ -1052,6 +1243,13 @@
             </summary>
             <returns>a numerical value or an equation</returns>
         </member>
+        <member name="M:PersistantModel.UnaryOperation.Select(Interfaces.IArithmetic)">
+            <summary>
+            Select all terms accordingly with model
+            </summary>
+            <param name="model">model to search</param>
+            <returns>list of elements</returns>
+        </member>
         <member name="P:PersistantModel.UnaryOperation.Operator">
             <summary>
             Gets the operator ID
@@ -1155,76 +1353,6 @@
         <member name="T:PersistantModel.RecordZone`1">
             <summary>
             Recording zone to handle objects
-            </summary>
-        </member>
-        <member name="T:PersistantModel.PersistentDataObject">
-            <summary>
-            Classe contenant la séquence
-            de sérialisation/déserialisation
-            </summary>
-        </member>
-        <member name="F:PersistantModel.PersistentDataObject.dict">
-            <summary>
-            Field to store data information to serialize
-            </summary>
-        </member>
-        <member name="M:PersistantModel.PersistentDataObject.#ctor">
-            <summary>
-            Default constructor
-            </summary>
-        </member>
-        <member name="M:PersistantModel.PersistentDataObject.Exists(System.String)">
-            <summary>
-            Test if a key exists
-            </summary>
-            <param name="name">key name</param>
-            <returns>true if exists</returns>
-        </member>
-        <member name="M:PersistantModel.PersistentDataObject.Set(System.String,System.Object)">
-            <summary>
-            Sets a value into the dictionary
-            </summary>
-            <param name="name">name of the field</param>
-            <param name="value">value of field</param>
-        </member>
-        <member name="M:PersistantModel.PersistentDataObject.Get(System.String,System.Object)">
-            <summary>
-            Gets a value from the dictionary
-            </summary>
-            <param name="name">name of the field</param>
-            <param name="init">default value</param>
-            <returns>value</returns>
-        </member>
-        <member name="M:PersistantModel.PersistentDataObject.Remove(System.String)">
-            <summary>
-            Remove a key
-            </summary>
-            <param name="name">key name</param>
-        </member>
-        <member name="M:PersistantModel.PersistentDataObject.Load(System.IO.FileInfo,PersistantModel.PersistentDataObject@)">
-            <summary>
-            Lecture d'un document
-            </summary>
-            <param name="file">information de fichier</param>
-            <param name="result">objet obtenu</param>
-            <returns>true if success</returns>
-        </member>
-        <member name="M:PersistantModel.PersistentDataObject.Save(System.IO.FileInfo,PersistantModel.PersistentDataObject)">
-            <summary>
-            Sauvegarde d'un document
-            </summary>
-            <param name="file">information de fichier</param>
-            <param name="data">objet à sérialiser</param>
-            <returns>true if success</returns>
-        </member>
-        <member name="P:PersistantModel.PersistentDataObject.Data">
-            <summary>
-            Data to be used
-            </summary>
-        </member>
-        <member name="P:PersistantModel.PersistentDataObject.Keys">
-            <summary>
-            Gets all direct keys
             </summary>
         </member>
         <member name="F:PersistantModel.RecordZone`1.objectListName">
@@ -1591,6 +1719,13 @@
             Transforms equation object into a string representation
             </summary>
             <returns>string representation</returns>
+        </member>
+        <member name="M:PersistantModel.BinaryOperation.Select(Interfaces.IArithmetic)">
+            <summary>
+            Select all terms accordingly with model
+            </summary>
+            <param name="model">model to search</param>
+            <returns>list of elements</returns>
         </member>
         <member name="P:PersistantModel.BinaryOperation.Operator">
             <summary>
@@ -2025,6 +2160,13 @@
             Create a new arithmetic class
             </summary>
         </member>
+        <member name="M:PersistantModel.Coefficient.Select(Interfaces.IArithmetic)">
+            <summary>
+            Select all terms accordingly with model
+            </summary>
+            <param name="model">model to search</param>
+            <returns>list of elements</returns>
+        </member>
         <member name="P:PersistantModel.Coefficient.Name">
             <summary>
             Gets the name of this coefficient
@@ -2095,6 +2237,13 @@
             <summary>
             Create a new arithmetic class
             </summary>
+        </member>
+        <member name="M:PersistantModel.NumericValue.Select(Interfaces.IArithmetic)">
+            <summary>
+            Select all terms accordingly with model
+            </summary>
+            <param name="model">model to search</param>
+            <returns>list of elements</returns>
         </member>
         <member name="P:PersistantModel.NumericValue.Value">
             <summary>
@@ -2194,6 +2343,13 @@
             <summary>
             Create a new arithmetic class
             </summary>
+        </member>
+        <member name="M:PersistantModel.Product.Select(Interfaces.IArithmetic)">
+            <summary>
+            Select all terms accordingly with model
+            </summary>
+            <param name="model">model to search</param>
+            <returns>list of elements</returns>
         </member>
         <member name="P:PersistantModel.Product.Operator">
             <summary>
@@ -2304,6 +2460,13 @@
             Create a new arithmetic class
             </summary>
         </member>
+        <member name="M:PersistantModel.Sum.Select(Interfaces.IArithmetic)">
+            <summary>
+            Select all terms accordingly with model
+            </summary>
+            <param name="model">model to search</param>
+            <returns>list of elements</returns>
+        </member>
         <member name="P:PersistantModel.Sum.Operator">
             <summary>
             Gets the operator ID
@@ -2406,6 +2569,43 @@
             Gets the unknown element
             </summary>
         </member>
+        <member name="T:PersistantModel.UniqueStrings">
+            <summary>
+            Class to stand unique strings
+            </summary>
+        </member>
+        <member name="F:PersistantModel.UniqueStrings.list">
+            <summary>
+             list of admitted chars
+            </summary>
+        </member>
+        <member name="F:PersistantModel.UniqueStrings.maxDepth">
+            <summary>
+            maximum size of the string length
+            threshold of possibilites (length list)^6
+            </summary>
+        </member>
+        <member name="F:PersistantModel.UniqueStrings.counterName">
+            <summary>
+            Index Name for counter
+            </summary>
+        </member>
+        <member name="M:PersistantModel.UniqueStrings.#ctor">
+            <summary>
+            Constructs a new instance
+            </summary>
+        </member>
+        <member name="M:PersistantModel.UniqueStrings.ComputeNewString">
+            <summary>
+            Create a new unique name and increment pointer
+            </summary>
+            <returns>new unique name</returns>
+        </member>
+        <member name="P:PersistantModel.UniqueStrings.Counter">
+            <summary>
+            Gets or sets the counter position
+            </summary>
+        </member>
         <member name="T:PersistantModel.UnknownTerm">
             <summary>
             Terme inconnu
@@ -2446,6 +2646,13 @@
             <summary>
             Create a new arithmetic class
             </summary>
+        </member>
+        <member name="M:PersistantModel.UnknownTerm.Select(Interfaces.IArithmetic)">
+            <summary>
+            Select all terms accordingly with model
+            </summary>
+            <param name="model">model to search</param>
+            <returns>list of elements</returns>
         </member>
         <member name="P:PersistantModel.UnknownTerm.Name">
             <summary>

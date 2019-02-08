@@ -189,6 +189,19 @@ namespace PersistantModel
             return new UnknownTerm();
         }
 
+        /// <summary>
+        /// Select all terms accordingly with model
+        /// </summary>
+        /// <param name="model">model to search</param>
+        /// <returns>list of elements</returns>
+        public override IEnumerable<IArithmetic> Select(IArithmetic model)
+        {
+            if (this.Name == model.ToString())
+                yield return model;
+            else
+                yield break;
+        }
+
         #endregion
 
     }

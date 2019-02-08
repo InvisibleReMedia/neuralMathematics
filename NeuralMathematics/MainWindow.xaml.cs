@@ -30,6 +30,23 @@ namespace NeuralMathematics
         /// </summary>
         public MainWindow()
         {
+            GrobnerPolynome g = new GrobnerPolynome(7);
+            MessageBox.Show(g.PolynomeAsFunction.ToString());
+            MessageBox.Show(g.GetBaseY(4242432).ToString());
+            MessageBox.Show(g.GetBaseX(3).ToString());
+            string res = string.Empty;
+            foreach (uint s in g.TrianglePascal(10))
+            {
+                res += s.ToString() + " ";
+            }
+            MessageBox.Show(res);
+            MessageBox.Show(g.BinomialLaw(3, "U", "v").ToString());
+            res = string.Empty;
+            foreach (IArithmetic a in g.PolynomeAsFunction.Select(("X").ToArithmetic()))
+            {
+                res += a.ToString() + " ";
+            }
+            MessageBox.Show(res);
             InitializeComponent();
         }
 
@@ -98,6 +115,10 @@ namespace NeuralMathematics
                     break;
                 case "GoBack":
                     this.doc.Document = Applicatif.Menu();
+                    this.doc.UpdateLayout();
+                    break;
+                case "Sum":
+                    this.doc.Document = Applicatif.PolynômeBase10();
                     this.doc.UpdateLayout();
                     break;
                 case "Close":

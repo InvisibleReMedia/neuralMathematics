@@ -166,6 +166,23 @@ namespace PersistantModel
             return output;
         }
 
+        /// <summary>
+        /// Select all terms accordingly with model
+        /// </summary>
+        /// <param name="model">model to search</param>
+        /// <returns>list of elements</returns>
+        public override IEnumerable<IArithmetic> Select(IArithmetic model)
+        {
+            if (model.ToString() == this.InnerOperand.ToString())
+                yield return this.InnerOperand;
+            else
+                foreach (IArithmetic s in this.InnerOperand.Select(model))
+                {
+                    yield return s;
+                }
+
+        }
+
         #endregion
     }
 }

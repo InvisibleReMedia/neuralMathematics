@@ -637,57 +637,15 @@ namespace NeuralMathematics
 
 
         /// <summary>
-        /// Computes all positive exposant couple of numbers intervals
+        /// Constructs a base from this polynome
         /// </summary>
-        /// <param name="exposant">size</param>
-        /// <returns>list of couples</returns>
-        public IEnumerable<Tuple<double, double>> Couples(double exposant)
-        {
-            for (double d = exposant; d > 0; --d)
-            {
-                yield return new Tuple<double, double>(Math.Pow(10, d), Math.Pow(10, d - 1) + 1);
-            }
-        }
+        /// <param name="y"></param>
+        /// <param name="x"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        public void ConstructBaseX(double y, out double x, double b, double c) {
 
-        /// <summary>
-        /// Gets digits
-        /// </summary>
-        public IEnumerable<Tuple<double, double>> Digits
-        {
-            get
-            {
-                for (double d = 9; d > 0; --d)
-                {
-                    yield return new Tuple<double, double>(d, d - 1);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Transforms digits with exposant from 0 (none) to n (x * 10^n)
-        /// </summary>
-        /// <param name="exposant">exposant</param>
-        /// <returns>tuple list</returns>
-        public IEnumerable<Tuple<double, double>> TransformDigits(double exposant)
-        {
-            foreach (Tuple<double, double> t in this.Digits)
-            {
-                yield return new Tuple<double, double>(t.Item1 * Math.Pow(10, exposant), t.Item2 * Math.Pow(10, exposant));
-            }
-        }
-
-        /// <summary>
-        /// Transforms digits with exposant from 0 (none) to n (x * 10^n)
-        /// </summary>
-        /// <param name="exposant">exposant</param>
-        /// <param name="addition">addition to add</param>
-        /// <returns>tuple list</returns>
-        public IEnumerable<Tuple<double, double>> TransformDigits(double exposant, double addition)
-        {
-            foreach (Tuple<double, double> t in this.Digits)
-            {
-                yield return new Tuple<double, double>(t.Item1 * Math.Pow(10, exposant) + addition, t.Item2 * Math.Pow(10, exposant) + addition);
-            }
+            x = 0;
         }
 
 

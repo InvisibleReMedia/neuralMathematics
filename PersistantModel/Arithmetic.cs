@@ -1772,6 +1772,18 @@ namespace PersistantModel
 
         #endregion
 
+
+
+        /// <summary>
+        /// Select all terms accordingly with model
+        /// </summary>
+        /// <param name="model">model to search</param>
+        /// <returns>list of matches</returns>
+        public virtual IEnumerable<IArithmetic> Select(IArithmetic model)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
     }
